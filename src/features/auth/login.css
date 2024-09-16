@@ -1,0 +1,348 @@
+.label {
+  color: #41414e;
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 21px; /* 52.5% */
+}
+
+.label-container {
+  width: 47vw;
+  flex-shrink: 0;
+}
+.signup-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4%;
+}
+.email-signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.email-signupcontainer {
+  margin-top: 3%;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icon {
+  width: 18.831px;
+  height: 19.14px;
+  flex-shrink: 0;
+  fill: #41414e;
+  margin-left: 18px;
+
+  /* margin-right: 41.17px; */
+  margin-top: 10px;
+  margin-bottom: 10.68px;
+}
+.social-icongoogle {
+  width: 18.831px;
+  height: 19.14px;
+  flex-shrink: 0;
+  fill: #41414e;
+  margin-left: 6px;
+
+  /* margin-right: 41.17px; */
+  margin-top: 10px;
+  margin-bottom: 10.68px;
+}
+.login-page {
+  background: #f9eee1;
+
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 300px;
+
+  justify-content: center;
+  align-items: center;
+}
+.forgotpassword-textcontainer {
+  margin-top: 17px;
+  margin-bottom: 24px;
+}
+.forgotpassword-text {
+  text-align: center;
+}
+.logo-container {
+  margin-left: 100px;
+  margin-right: 1192px;
+  margin-top: 100px;
+}
+.logininputs-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+
+  justify-content: center;
+  align-items: center;
+}
+.login-left {
+  background: #41414e;
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.social-button {
+  background: #f9eee1;
+  display: flex;
+  width: 260px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 40px;
+  border: 0.5px solid #41414e;
+  margin: 14px;
+}
+.social-text {
+  margin-left: 78px;
+  margin-right: 82px;
+}
+
+.svg-container {
+  width: 2px;
+  height: 308px;
+  flex-shrink: 0;
+  stroke-width: 1px;
+  margin-top: 33px;
+}
+
+.svg-container svg path {
+  stroke: #41414e;
+}
+.dividercontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  /* margin-top: 68px; */
+}
+
+.account-text {
+  color: #41414e;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 156.25% */
+  letter-spacing: 0.32px;
+}
+.legal-info {
+  color: #aa6754;
+  font-family: Raleway;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0.24px;
+  text-decoration-line: underline;
+}
+
+.socialsignup-buttoncontainer {
+  margin-bottom: 37px;
+}
+
+.policy-textcontainer {
+  display: flex;
+  width: 394px;
+  height: 14px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 24px;
+}
+
+.policy-text {
+  color: #41414e;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px; /* 125% */
+  letter-spacing: 0.24px;
+}
+.registration-titlecontainer {
+  width: 47vw;
+  flex-shrink: 0;
+}
+
+.registration-title {
+  color: #41414e;
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+}
+
+.registration-text {
+  color: #41414e;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 156.25% */
+  letter-spacing: 0.32px;
+  margin-bottom: 25px;
+}
+.signup-inputbox {
+  display: flex;
+  background: #f9eee1;
+  flex-direction: column;
+  width: 400px;
+  margin-bottom: 27px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 38px;
+  border: 0.5px solid #41414e;
+}
+
+.signup-label {
+  display: flex;
+  width: 200px;
+  height: 6.452px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #41414e;
+  font-family: Raleway;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 175% */
+  letter-spacing: 0.24px;
+  margin-bottom: 9.55px;
+}
+.sigup-button {
+  width: 180px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 38px;
+  background: #c68977;
+  color: #fff;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 150% */
+  letter-spacing: 0.28px;
+  border-style: none;
+}
+
+.login-textcontainer {
+  width: 760px;
+  height: 42px;
+  flex-shrink: 0;
+  margin-bottom: 30px;
+}
+.login-buttoncontainer {
+  text-align: center;
+}
+.navbar-container {
+  margin-top: 46px;
+}
+.login-text {
+  color: #f9eee1;
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2;
+  margin-top: -6%;
+}
+
+.logininput-box {
+  width: 400px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: #f9eee1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  border-style: none;
+  text-align: center;
+  color: #41414e;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 150% */
+  letter-spacing: 0.28px;
+}
+
+.login-button {
+  width: 180px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 38px;
+  background: #c68977;
+  color: #fff;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 150% */
+  letter-spacing: 0.28px;
+  border-style: none;
+}
+.forgotpassword-container {
+  display: flex;
+  width: 221px;
+  height: 22px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.forgotpassword-text {
+  color: #fff;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 150% */
+  letter-spacing: 0.28px;
+  text-decoration-line: underline;
+}
+.divider {
+  width: 50px;
+  height: 42px;
+  flex-shrink: 0;
+  color: #41414e;
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-size: 40px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 21px; /* 52.5% */
+}

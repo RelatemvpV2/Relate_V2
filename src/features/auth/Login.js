@@ -2,8 +2,11 @@
 import React, { useState, useEffect } from "react";
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
-import { auth } from "../../firebase/firebase"; 
+import { auth } from "../../firebase/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import RelateLogo from "../../components/Relatelogo";
+import Navbar from "../../components/Navbar";
+import "./login.css";
 
 const Login = () => {
   const [user, setUser] = useState(null);
@@ -40,31 +43,63 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <header>
-        <nav>
-          <ul>
-            <li>About</li>
-            <li>Services</li>
-            <li>Therapists</li>
-            <li>Contact</li>
-          </ul>
-        </nav>
-      </header>
+      <div className="login-left">
+        <Navbar />
 
-      <div className="login-container">
-        <div className="login-left">
-          <h2>I have an account</h2>
-          <form>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button type="submit">Login</button>
-            <a href="/forgot-password">Forgot my password</a>
-          </form>
+        <RelateLogo />
+
+        <div className="login-container">
+          <div className="login-textcontainer">
+            <h3 className="login-text">I have an account</h3>
+          </div>
+
+          <div className="logininputs-container">
+            <form>
+              <input
+                className="logininput-box"
+                type="email"
+                placeholder="Email"
+              />
+              <input
+                className="logininput-box"
+                type="password"
+                placeholder="Password"
+              />
+              <div className="login-buttoncontainer">
+                <button className="login-button" type="submit">
+                  Login
+                </button>
+              </div>
+            </form>
+            <div className="forgotpassword-textcontainer">
+              <a className="forgotpassword-text" href="/forgot-password">
+                I forgot my password
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="signup-section">
+        <div className="email-signupcontainer">
+          <EmailSignup />
+        </div>
+        <div className="dividercontainer">
+          <div className="divider">or</div>
+          <div class="svg-container">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2"
+              height="308"
+              viewBox="0 0 2 308"
+              fill="none"
+            >
+              <path d="M1 0V308" stroke="#41414E" />
+            </svg>
+          </div>
         </div>
 
-        <div className="signup-section">
-          <EmailSignup />
-          <div className="divider">or</div>
+        <div className="social-logincontainer">
           <SocialLogin />
         </div>
       </div>
