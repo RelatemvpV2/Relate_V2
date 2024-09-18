@@ -1,32 +1,8 @@
-.label {
-  color: #41414e;
-  text-align: center;
-  font-family: "Cormorant Garamond";
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 21px; /* 52.5% */
-}
-
-.label-container {
-  width: 47vw;
-  flex-shrink: 0;
-}
-.signup-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 4%;
-}
 .email-signup {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.email-signupcontainer {
-  margin-top: 3%;
 }
 
 .social-login {
@@ -58,24 +34,7 @@
   margin-top: 10px;
   margin-bottom: 10.68px;
 }
-.login-page {
-  background: #f9eee1;
 
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 300px;
-
-  justify-content: center;
-  align-items: center;
-}
-.forgotpassword-textcontainer {
-  margin-top: 17px;
-  margin-bottom: 24px;
-}
-.forgotpassword-text {
-  text-align: center;
-}
 .logo-container {
   margin-left: 100px;
   margin-right: 1192px;
@@ -89,16 +48,116 @@
   justify-content: center;
   align-items: center;
 }
-.login-left {
-  background: #41414e;
-  width: 100%;
 
+.inviteuser-inputbox {
   display: flex;
-
+  background: #f9eee1;
   flex-direction: column;
+  width: 400px;
+  /* margin-bottom: 12px; */
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 38px;
+  border: 0.5px solid #41414e;
+}
+.radiobut-container{
+  display: flex;
+  align-items: center;
 
+
+width:58%;
+background: #f9eee1; 
+  
+  
+  
+}
+.radio-option {
+  width: 11px;
+height: 11px;
+stroke-width: 0.5px;
+stroke: #000;
+background: #f9eee1; 
+flex-shrink: 0;
+  
+
+  margin-bottom: 20%;
+  
+  
+  
+  
+}
+.radio-text{
+  color: #41414E;
+text-align: center;
+font-family: Raleway;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: 2;
+letter-spacing: 0.2px;
+
+    
+}
+
+.inputs-container {
+  display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 27px;
+}
+.dateinputbox {
+  width: 190px;
+  color: rgba(65, 65, 78, 0.6);
+
+  height: 40px;
+
+  flex-shrink: 0;
+  background: #f9eee1;
+  border-radius: 38px;
+  border: 0.5px solid #41414e;
+  margin-right: 20px;
+  text-align: center;
+  text-align-last: center;
+ 
+}
+.childinputbox {
+  width: 190px;
+  color: rgba(65, 65, 78, 0.6);
+  height: 40px;
+  appearance: none;
+  flex-shrink: 0;
+  background: #f9eee1;
+  border-radius: 38px;
+  border: 0.5px solid #41414e;
+  margin-right: 20px;
+  text-align: center;
+  text-align-last: center;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none"><path d="M0.736905 0.999999L5.50004 5.5L10.2632 1" stroke="%2341414E" stroke-opacity="0.6" stroke-width="0.7" stroke-linecap="round"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 25px center;
+  background-size: 9.5px 4.5px;
+}
+.gender-inputbox {
+  background: #f9eee1;
+  color: rgba(65, 65, 78, 0.6);
+  appearance: none;
+
+  width: 400px;
+  margin-bottom: 27px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 38px;
+  border: 0.5px solid #41414e;
+  text-align: center;
+  text-align-last: center;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none"><path d="M0.736905 0.999999L5.50004 5.5L10.2632 1" stroke="%2341414E" stroke-opacity="0.6" stroke-width="0.7" stroke-linecap="round"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 25px center;
+  background-size: 9.5px 4.5px;
+}
+.dateinputbox::-webkit-calendar-picker-indicator {
+  text-align: center;
+  margin-right: 10%;
 }
 
 .social-button {
@@ -138,16 +197,6 @@
   /* margin-top: 68px; */
 }
 
-.account-text {
-  color: #41414e;
-  text-align: center;
-  font-family: Raleway;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 25px; /* 156.25% */
-  letter-spacing: 0.32px;
-}
 .legal-info {
   color: #aa6754;
   font-family: Raleway;
@@ -162,7 +211,18 @@
 .socialsignup-buttoncontainer {
   margin-bottom: 37px;
 }
-
+.userpage-buttoncontainer{
+  text-align: center;
+}
+.userpage-button{
+  width: 261.886px;
+height: 40px;
+flex-shrink: 0;
+border-radius: 38px;
+background: #C68977;
+border-style: none;
+color: #fff;
+}
 .policy-textcontainer {
   display: flex;
   width: 394px;
@@ -183,60 +243,10 @@
   line-height: 15px; /* 125% */
   letter-spacing: 0.24px;
 }
-.registration-titlecontainer {
-  width: 47vw;
-  flex-shrink: 0;
-}
 
-.registration-title {
-  color: #41414e;
-  text-align: center;
-  font-family: "Cormorant Garamond";
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 600;
-  margin: 0;
-}
 
-.registration-text {
-  color: #41414e;
-  text-align: center;
-  font-family: Raleway;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 25px; /* 156.25% */
-  letter-spacing: 0.32px;
-  margin-bottom: 25px;
-}
-.signup-inputbox {
-  display: flex;
-  background: #f9eee1;
-  flex-direction: column;
-  width: 400px;
-  margin-bottom: 27px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: 38px;
-  border: 0.5px solid #41414e;
-}
 
-.signup-label {
-  display: flex;
-  width: 200px;
-  height: 6.452px;
-  flex-direction: column;
-  justify-content: center;
-  flex-shrink: 0;
-  color: #41414e;
-  font-family: Raleway;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 21px; /* 175% */
-  letter-spacing: 0.24px;
-  margin-bottom: 9.55px;
-}
+
 .sigup-button {
   width: 180px;
   height: 40px;
@@ -254,27 +264,11 @@
   border-style: none;
 }
 
-.login-textcontainer {
-  width: 760px;
-  height: 42px;
-  flex-shrink: 0;
-  margin-bottom: 30px;
-}
-.login-buttoncontainer {
+.loginpage-buttoncontainer {
   text-align: center;
 }
 .navbar-container {
   margin-top: 46px;
-}
-.login-text {
-  color: #f9eee1;
-  text-align: center;
-  font-family: "Cormorant Garamond";
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 2;
-  margin-top: -6%;
 }
 
 .logininput-box {
@@ -299,7 +293,7 @@
   letter-spacing: 0.28px;
 }
 
-.login-button {
+.loginpage-button {
   width: 180px;
   height: 40px;
   flex-shrink: 0;
@@ -315,25 +309,7 @@
   letter-spacing: 0.28px;
   border-style: none;
 }
-.forgotpassword-container {
-  display: flex;
-  width: 221px;
-  height: 22px;
-  flex-direction: column;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.forgotpassword-text {
-  color: #fff;
-  text-align: center;
-  font-family: Raleway;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 21px; /* 150% */
-  letter-spacing: 0.28px;
-  text-decoration-line: underline;
-}
+
 .divider {
   width: 50px;
   height: 42px;

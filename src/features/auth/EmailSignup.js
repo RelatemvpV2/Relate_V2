@@ -27,44 +27,44 @@ const EmailSignup = () => {
 
   return (
     <div className="email-signup">
-      <div className="registration-titlecontainer">
-        <h2 className="registration-title">I wish to create an account</h2>
+      <div className="sub-containerheading">
+        <h2 className="sub-containerheadingtext">I wish to create an account</h2>
       </div>
-      <div className="registration-textcontainer">
-        <h3 className="registration-text">
+      <div className="subcontainer-text">
+        <h3 className="text">
           Enter your email and create a new password
         </h3>
       </div>
-      <div className="email-inputscontainer">
+      <div className="inputscontainer">
         <form onSubmit={handleSignup}>
-          <label htmlFor="email" className="signup-label">
+          <label htmlFor="email" className="labels">
             Email
           </label>
           <input
             id="email"
-            className="signup-inputbox"
+            className="inputboxes"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <label htmlFor="password" className="signup-label">
+          <label htmlFor="password" className="labels">
             Create password. Must be 8 digits
           </label>
           <input
             id="password"
-            className="signup-inputbox"
+            className="inputboxes"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <label htmlFor="confirmPassword" className="signup-label">
+          <label htmlFor="confirmPassword" className="labels">
             Confirm password
           </label>
           <input
             id="confirmPassword"
-            className="signup-inputbox"
+            className="inputboxes"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -84,8 +84,8 @@ const EmailSignup = () => {
           <span className="legal-info">cookie policy.</span>
         </p>
       </div>
-      <div className="sigup-buttoncontainer">
-        <button className="sigup-button">Create user </button>
+      <div className="loginpage-buttoncontainer">
+        <button className="loginpage-button">Create user </button>
       </div>
     </div>
   );

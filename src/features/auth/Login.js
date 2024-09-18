@@ -7,6 +7,8 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import RelateLogo from "../../components/Relatelogo";
 import Navbar from "../../components/Navbar";
 import "./login.css";
+import './../../App.css'
+
 
 const Login = () => {
   const [user, setUser] = useState(null);
@@ -42,15 +44,15 @@ const Login = () => {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-left">
+    <div className="main-container">
+      <div className="upper-container">
         <Navbar />
 
         <RelateLogo />
 
         <div className="login-container">
-          <div className="login-textcontainer">
-            <h3 className="login-text">I have an account</h3>
+          <div className="heading-container">
+            <h3 className="heading-text">I have an account</h3>
           </div>
 
           <div className="logininputs-container">
@@ -65,14 +67,14 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
               />
-              <div className="login-buttoncontainer">
-                <button className="login-button" type="submit">
+              <div className="loginpage-buttoncontainer">
+                <button className="loginpage-button" type="submit">
                   Login
                 </button>
               </div>
             </form>
-            <div className="forgotpassword-textcontainer">
-              <a className="forgotpassword-text" href="/forgot-password">
+            <div className="links-textcontainer">
+              <a className="links-text" href="/forgot-password">
                 I forgot my password
               </a>
             </div>
@@ -80,8 +82,8 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="signup-section">
-        <div className="email-signupcontainer">
+      <div className="sub-container">
+        <div className="left-container">
           <EmailSignup />
         </div>
         <div className="dividercontainer">
@@ -99,7 +101,7 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="social-logincontainer">
+        <div className="right-container">
           <SocialLogin />
         </div>
       </div>

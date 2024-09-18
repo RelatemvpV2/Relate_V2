@@ -35,12 +35,12 @@ const SocialLogin = () => {
 
   return (
     <div className="social-login">
-      <div className="label-container">
-        <h3 className="registration-title">Login using platforms</h3>
+      <div className="sub-containerheading">
+        <h3 className="sub-containerheadingtext">Login using platforms</h3>
       </div>
 
-      <div className="account-textcontainer">
-        <p className="account-text">Use an already existing account</p>
+      <div className="subcontainer-text">
+        <p className="text">Use an already existing account</p>
       </div>
       <div className="socialsignup-buttoncontainer">
         <button
