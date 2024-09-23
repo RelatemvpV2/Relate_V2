@@ -35,11 +35,7 @@
   margin-bottom: 10.68px;
 }
 
-.logo-container {
-  margin-left: 100px;
-  margin-right: 1192px;
-  margin-top: 100px;
-}
+
 .logininputs-container {
   display: flex;
   flex-direction: column;
@@ -211,62 +207,17 @@ letter-spacing: 0.2px;
 .socialsignup-buttoncontainer {
   margin-bottom: 37px;
 }
-.userpage-buttoncontainer{
-  text-align: center;
-}
-.userpage-button{
-  width: 261.886px;
-height: 40px;
-flex-shrink: 0;
-border-radius: 38px;
-background: #C68977;
-border-style: none;
-color: #fff;
-}
-.policy-textcontainer {
-  display: flex;
-  width: 394px;
-  height: 14px;
-  flex-direction: column;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-bottom: 24px;
-}
-
-.policy-text {
-  color: #41414e;
-  text-align: center;
-  font-family: Raleway;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 15px; /* 125% */
-  letter-spacing: 0.24px;
-}
 
 
 
 
-.sigup-button {
-  width: 180px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: 38px;
-  background: #c68977;
-  color: #fff;
-  text-align: center;
-  font-family: Raleway;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 21px; /* 150% */
-  letter-spacing: 0.28px;
-  border-style: none;
-}
 
-.loginpage-buttoncontainer {
-  text-align: center;
-}
+
+
+
+
+
+
 .navbar-container {
   margin-top: 46px;
 }
@@ -293,22 +244,7 @@ color: #fff;
   letter-spacing: 0.28px;
 }
 
-.loginpage-button {
-  width: 180px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: 38px;
-  background: #c68977;
-  color: #fff;
-  text-align: center;
-  font-family: Raleway;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 21px; /* 150% */
-  letter-spacing: 0.28px;
-  border-style: none;
-}
+
 
 .divider {
   width: 50px;

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { auth } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./login.css";
+import Button from "../../components/button/Button";
+import Text from "../../components/text/Text";
 
 const EmailSignup = () => {
   const [email, setEmail] = useState("");
@@ -28,18 +30,25 @@ const EmailSignup = () => {
   return (
     <div className="email-signup">
       <div className="sub-containerheading">
-        <h2 className="sub-containerheadingtext">I wish to create an account</h2>
+        {/* Text component for heading */}
+        <Text type="h2" className="sub-containerheadingtext">
+          I wish to create an account
+        </Text>
       </div>
+
       <div className="subcontainer-text">
-        <h3 className="text">
+        {/*  Text component for subheading */}
+        <Text type="h3" className="text">
           Enter your email and create a new password
-        </h3>
+        </Text>
       </div>
+
       <div className="inputscontainer">
         <form onSubmit={handleSignup}>
-          <label htmlFor="email" className="labels">
+          {/*  Text component for labels */}
+          <Text type="label" htmlFor="email" className="labels">
             Email
-          </label>
+          </Text>
           <input
             id="email"
             className="inputboxes"
@@ -48,9 +57,10 @@ const EmailSignup = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <label htmlFor="password" className="labels">
+
+          <Text type="label" htmlFor="password" className="labels">
             Create password. Must be 8 digits
-          </label>
+          </Text>
           <input
             id="password"
             className="inputboxes"
@@ -59,9 +69,10 @@ const EmailSignup = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <label htmlFor="confirmPassword" className="labels">
+
+          <Text type="label" htmlFor="confirmPassword" className="labels">
             Confirm password
-          </label>
+          </Text>
           <input
             id="confirmPassword"
             className="inputboxes"
@@ -71,24 +82,30 @@ const EmailSignup = () => {
             required
           />
 
-          {error && <p style={{ color: "red" }}>{error}</p>}
+          {/* Display error message */}
+          {error && <Text style={{ color: "red" }}>{error}</Text>}
         </form>
       </div>
 
       <div className="policy-textcontainer">
-        <p className="policy-text">
+        {/* component for policy paragraph */}
+        <Text type="p" className="policy-text">
           By clicking ‘Create user’ you accept our{" "}
-          <span className="legal-info">terms and conditions.</span>
-          Learn how we use your data in our{" "}
+          <span className="legal-info">terms and conditions.</span> Learn how we
+          use your data in our{" "}
           <span className="legal-info">privacy policy</span> and{" "}
-          <span className="legal-info">cookie policy.</span>
-        </p>
+          <span className="legal-info">cookie policy</span>.
+        </Text>
       </div>
+
       <div className="loginpage-buttoncontainer">
-        <button className="loginpage-button">Create user </button>
+       
+        <Button className="loginpage-button" type="submit" onClick={handleSignup}>
+          Create user
+        </Button>
       </div>
     </div>
-  );
+  ); 
 };
 
 export default EmailSignup;

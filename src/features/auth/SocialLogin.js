@@ -16,6 +16,8 @@ import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
+import Text from "../../components/text/Text";
+
 const SocialLogin = () => {
   const handleLogin = async (provider) => {
     try {
@@ -34,14 +36,21 @@ const SocialLogin = () => {
   };
 
   return (
-    <div className="social-login">
+<div className="social-login">
       <div className="sub-containerheading">
-        <h3 className="sub-containerheadingtext">Login using platforms</h3>
+        {/*  Text component for the heading */}
+        <Text type="h3" className="sub-containerheadingtext">
+          Login using platforms
+        </Text>
       </div>
 
       <div className="subcontainer-text">
-        <p className="text">Use an already existing account</p>
+        {/*  Text component for the paragraph */}
+        <Text type="p" className="text">
+          Use an already existing account
+        </Text>
       </div>
+
       <div className="socialsignup-buttoncontainer">
         <button
           className="social-button"
@@ -49,7 +58,8 @@ const SocialLogin = () => {
         >
           <FontAwesomeIcon className="social-icongoogle" icon={faGoogle} />
           <div className="social-text">
-            <span>Google</span>
+            {/*  Text component for the social media name */}
+            <Text type="span">Google</Text>
           </div>
         </button>
 
@@ -59,7 +69,8 @@ const SocialLogin = () => {
         >
           <FontAwesomeIcon className="social-icon" icon={faFacebook} />
           <div className="social-text">
-            <span>Facebook</span>
+            {/*  Text component for the social media name */}
+            <Text type="span">Facebook</Text>
           </div>
         </button>
 
@@ -69,7 +80,8 @@ const SocialLogin = () => {
         >
           <FontAwesomeIcon className="social-icon" icon={faMicrosoft} />
           <div className="social-text">
-            <span>Microsoft</span>
+            {/* Text component for the social media name */}
+            <Text type="span">Microsoft</Text>
           </div>
         </button>
 
@@ -79,24 +91,21 @@ const SocialLogin = () => {
         >
           <FontAwesomeIcon className="social-icon" icon={faLinkedin} />
           <div className="social-text">
-            <span> LinkedIn</span>
+            {/*  Text component for the social media name */}
+            <Text type="span">LinkedIn</Text>
           </div>
         </button>
       </div>
 
       <div className="policy-textcontainer">
-        <p className="policy-text">
-          When signing in you accept our{" "}
-          <span
-            className="legal-info
-"
-          >
-            terms and conditions.
-          </span>
-          Learn how we use your data in our{" "}
-          <span className="legal-info">privacy policy</span> and{" "}
-          <span className="legal-info">cookie policy.</span>
-        </p>
+        {/* Text component for the paragraph and links */}
+        <Text type="p" className="policy-text">
+  When signing in you accept our{" "}
+  <span className="legal-info">terms and conditions</span>. Learn how we use your data in our{" "}
+  <span className="legal-info">privacy policy</span> and{" "}
+  <span className="legal-info">cookie policy</span>.
+</Text>
+
       </div>
     </div>
   );

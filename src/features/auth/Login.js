@@ -8,10 +8,22 @@ import RelateLogo from "../../components/Relatelogo";
 import Navbar from "../../components/Navbar";
 import "./login.css";
 import './../../App.css'
+import Button from "../../components/button/Button";
+import MainContainer from "../../components/maincontainer/Maincontainer";
+import Text from "../../components/text/Text";
+import GreyBackground from "../../components/greybackground/Greybackground";
+
 
 
 const Login = () => {
   const [user, setUser] = useState(null);
+
+
+
+  const handleLogin=(e)=>{
+    e.preventDefault();
+    console.log("login")
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -44,15 +56,17 @@ const Login = () => {
   }
 
   return (
-    <div className="main-container">
-      <div className="upper-container">
+<MainContainer>
+      <GreyBackground >
         <Navbar />
-
         <RelateLogo />
 
         <div className="login-container">
           <div className="heading-container">
-            <h3 className="heading-text">I have an account</h3>
+            {/*  Text component for the heading */}
+            <Text type="h3" className="heading-text">
+              I have an account
+            </Text>
           </div>
 
           <div className="logininputs-container">
@@ -68,27 +82,34 @@ const Login = () => {
                 placeholder="Password"
               />
               <div className="loginpage-buttoncontainer">
-                <button className="loginpage-button" type="submit">
+                <Button
+                  className="loginpage-button"
+                  type="submit"
+                  onClick={handleLogin} // Call handleLogin function
+                >
                   Login
-                </button>
+                </Button>
               </div>
             </form>
+
             <div className="links-textcontainer">
-              <a className="links-text" href="/forgot-password">
+              {/*  Text component for the link */}
+              <Text type="a" href="/forgot-password" className="links-text">
                 I forgot my password
-              </a>
+              </Text>
             </div>
           </div>
         </div>
-      </div>
+      </GreyBackground>
 
       <div className="sub-container">
         <div className="left-container">
           <EmailSignup />
         </div>
+
         <div className="dividercontainer">
           <div className="divider">or</div>
-          <div class="svg-container">
+          <div className="svg-container">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="2"
@@ -105,7 +126,8 @@ const Login = () => {
           <SocialLogin />
         </div>
       </div>
-    </div>
+    </MainContainer>
+
   );
 };
 
