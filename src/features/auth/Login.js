@@ -12,6 +12,7 @@ import Button from "../../components/button/Button";
 import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
+import InputComponent from "../../components/input/InputComponent";
 
 
 
@@ -71,13 +72,11 @@ const Login = () => {
 
           <div className="logininputs-container">
             <form>
-              <input
-                className="logininput-box"
+              <InputComponent
                 type="email"
                 placeholder="Email"
               />
-              <input
-                className="logininput-box"
+              <InputComponent 
                 type="password"
                 placeholder="Password"
               />
