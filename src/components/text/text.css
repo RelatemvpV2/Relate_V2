@@ -1,0 +1,163 @@
+.heading-container {
+    width: 760px;
+    height: 42px;
+    flex-shrink: 0;
+    margin-bottom: 30px;
+  }
+  .heading-text {
+    color: #f9eee1;
+    text-align: center;
+    font-family: "Cormorant Garamond";
+    font-style: normal;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-top: -6%;
+  }
+  
+  
+  .links-textcontainer {
+    margin-top: 17px;
+    margin-bottom: 24px;
+    display: flex;
+    width: 221px;
+    height: 22px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .links-text {
+    color: #fff;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; /* 150% */
+    letter-spacing: 0.28px;
+    text-decoration-line: underline;
+  }
+  
+
+
+
+
+
+
+
+.sub-containerheading {
+    width: 47vw;
+    flex-shrink: 0;
+  }
+  .sub-containerheadingtext {
+    color: #41414e;
+    text-align: center;
+    font-family: "Cormorant Garamond";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    margin:0;
+  }
+  .text {
+    color: #41414e;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px; /* 156.25% */
+    letter-spacing: 0.32px;
+    margin-bottom: 25px;
+  }
+  .labels {
+    display: flex;
+    width: 200px;
+    height: 6.452px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #41414e;
+    font-family: Raleway;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; /* 175% */
+    letter-spacing: 0.24px;
+    margin-bottom: 9.55px;
+  }
+  .policy-textcontainer {
+    display: flex;
+    width: 394px;
+    height: 14px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: 24px;
+  }
+  .policy-text {
+    color: #41414e;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px; /* 125% */
+    letter-spacing: 0.24px;
+  }
+  .description-container {
+    margin-top: 17px;
+    margin-bottom: 24px;
+  }
+  .description-text {
+    color: #fff;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; /* 150% */
+    letter-spacing: 0.28px;
+  }
+  .startques-container{
+    width: 860px;
+height: 74px;
+flex-shrink: 0;
+  }
+  .startques-text{
+    color: #F9EEE1;
+text-align: center;
+font-family: Raleway;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 22px; /* 137.5% */
+letter-spacing: 0.32px;
+  }
+
+  .username-text{
+    width: 504px;
+height: 25px;
+flex-shrink: 0;
+    color: #F9EEE1;
+text-align: center;
+font-family: Raleway;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 25px; /* 125% */
+letter-spacing: 0.4px;
+  }
+  .invitationtext-container{
+    width: 860px;
+height: 31px;
+flex-shrink: 0;
+  }
+  .invitation-text{
+    color: #F9EEE1;
+text-align: center;
+font-family: Raleway;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 22px; /* 137.5% */
+letter-spacing: 0.32px;
+  }

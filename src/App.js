@@ -7,7 +7,6 @@ import LanguageSwitcher from './components/LanguageSwitcher';
 import LandingPage from './components/langingPage/LandingPage';
 
 function App() {
-   
   return (
     <div className="App">
     {/*   <LanguageSwitcher />

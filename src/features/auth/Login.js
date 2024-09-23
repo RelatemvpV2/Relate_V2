@@ -2,11 +2,29 @@
 import React, { useState, useEffect } from "react";
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
-import { auth } from "../../firebase/firebase"; 
+import { auth } from "../../firebase/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import RelateLogo from "../../components/Relatelogo";
+import Navbar from "../../components/Navbar";
+import "./login.css";
+import './../../App.css'
+import Button from "../../components/button/Button";
+import MainContainer from "../../components/maincontainer/Maincontainer";
+import Text from "../../components/text/Text";
+import GreyBackground from "../../components/greybackground/Greybackground";
+import InputComponent from "../../components/input/InputComponent";
+
+
 
 const Login = () => {
   const [user, setUser] = useState(null);
+
+
+
+  const handleLogin=(e)=>{
+    e.preventDefault();
+    console.log("login")
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -39,36 +57,76 @@ const Login = () => {
   }
 
   return (
-    <div className="login-page">
-      <header>
-        <nav>
-          <ul>
-            <li>About</li>
-            <li>Services</li>
-            <li>Therapists</li>
-            <li>Contact</li>
-          </ul>
-        </nav>
-      </header>
+<MainContainer>
+      <GreyBackground >
+        <Navbar />
+        <RelateLogo />
 
-      <div className="login-container">
-        <div className="login-left">
-          <h2>I have an account</h2>
-          <form>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button type="submit">Login</button>
-            <a href="/forgot-password">Forgot my password</a>
-          </form>
+        <div className="login-container">
+          <div className="heading-container">
+            {/*  Text component for the heading */}
+            <Text type="h3" className="heading-text">
+              I have an account
+            </Text>
+          </div>
+
+          <div className="logininputs-container">
+            <form>
+              <InputComponent
+                type="email"
+                placeholder="Email"
+              />
+              <InputComponent 
+                type="password"
+                placeholder="Password"
+              />
+              <div className="loginpage-buttoncontainer">
+                <Button
+                  className="loginpage-button"
+                  type="submit"
+                  onClick={handleLogin} // Call handleLogin function
+                >
+                  Login
+                </Button>
+              </div>
+            </form>
+
+            <div className="links-textcontainer">
+              {/*  Text component for the link */}
+              <Text type="a" href="/forgot-password" className="links-text">
+                I forgot my password
+              </Text>
+            </div>
+          </div>
+        </div>
+      </GreyBackground>
+
+      <div className="sub-container">
+        <div className="left-container">
+          <EmailSignup />
         </div>
 
-        <div className="signup-section">
-          <EmailSignup />
+        <div className="dividercontainer">
           <div className="divider">or</div>
+          <div className="svg-container">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2"
+              height="308"
+              viewBox="0 0 2 308"
+              fill="none"
+            >
+              <path d="M1 0V308" stroke="#41414E" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="right-container">
           <SocialLogin />
         </div>
       </div>
-    </div>
+    </MainContainer>
+
   );
 };
 

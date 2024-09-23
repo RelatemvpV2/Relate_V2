@@ -1,0 +1,12 @@
+.main-container {
+    background: #f9eee1;
+    /* height :100vh; */
+  
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 300px;
+  
+    justify-content: center;
+    align-items: center;
+  }
