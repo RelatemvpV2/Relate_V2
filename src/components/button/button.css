@@ -1,0 +1,32 @@
+.loginpage-button {
+    width: 180px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 38px;
+    background: #c68977;
+    color: #fff;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; /* 150% */
+    letter-spacing: 0.28px;
+    border-style: none;
+  }
+  .loginpage-buttoncontainer {
+    text-align: center;
+  }
+  .userpage-buttoncontainer{
+    text-align: center;
+  }
+  .userpage-button{
+    width: 261.886px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 38px;
+  background: #C68977;
+  border-style: none;
+  color: #fff;
+  }
+  
