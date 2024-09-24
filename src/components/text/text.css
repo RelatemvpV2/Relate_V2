@@ -37,6 +37,54 @@
     text-decoration-line: underline;
   }
   
+.my-relations {
+  width: 198px;
+  height: 21px;
+  flex-shrink: 0;
+  color: #F9EEE1;
+  text-align: center;
+  font-family: "Cormorant Garamond", serif; /* Added serif fallback */
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 21px; /* 77.778% */
+}
+.myrelations-text{
+  width: 157px;
+height: 21px;
+flex-shrink: 0;
+color: #F9EEE1;
+text-align: center;
+font-family: "Cormorant Garamond";
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: 21px; /* 116.667% */
+text-decoration-line: underline;
+}
+.newrelation-text{
+  width: 157px;
+height: 21px;
+flex-shrink: 0;
+color: #F9EEE1;
+text-align: center;
+font-family: "Cormorant Garamond";
+font-size: 18px;
+font-style: italic;
+font-weight: 500;
+line-height: 21px; /* 116.667% */ 
+}
+.therapist-text{
+  width: 198px;
+  color: #F9EEE1;
+text-align: center;
+font-family: "Cormorant Garamond";
+font-size: 27px;
+font-style: normal;
+font-weight: 500;
+line-height: 21px; /* 77.778% */
+}
+  
 
 
 

@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./login.css";
 import Button from "../../components/button/Button";
 import Text from "../../components/text/Text";
+import InputComponent from "../../components/inputs/InputComponent";
 
 const EmailSignup = () => {
   const [email, setEmail] = useState("");
@@ -49,7 +50,7 @@ const EmailSignup = () => {
           <Text type="label" htmlFor="email" className="labels">
             Email
           </Text>
-          <input
+          <InputComponent
             id="email"
             className="inputboxes"
             type="email"
@@ -61,7 +62,7 @@ const EmailSignup = () => {
           <Text type="label" htmlFor="password" className="labels">
             Create password. Must be 8 digits
           </Text>
-          <input
+          <InputComponent
             id="password"
             className="inputboxes"
             type="password"
@@ -73,7 +74,7 @@ const EmailSignup = () => {
           <Text type="label" htmlFor="confirmPassword" className="labels">
             Confirm password
           </Text>
-          <input
+          <InputComponent
             id="confirmPassword"
             className="inputboxes"
             type="password"
