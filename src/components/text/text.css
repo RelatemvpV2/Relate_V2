@@ -1,6 +1,6 @@
 .heading-container {
     width: 760px;
-    height: 42px;
+ /*    height: 42px; */
     flex-shrink: 0;
     margin-bottom: 30px;
   }
@@ -26,7 +26,7 @@
     flex-shrink: 0;
   }
   .links-text {
-    color: #fff;
+    color: #f9eee1;
     text-align: center;
     font-family: Raleway;
     font-size: 14px;
@@ -37,9 +37,6 @@
     text-decoration-line: underline;
   }
   
-
-
-
 
 
 
@@ -106,9 +103,10 @@
   .description-container {
     margin-top: 17px;
     margin-bottom: 24px;
+    width:85%;
   }
   .description-text {
-    color: #fff;
+    color: #f9eee1;
     text-align: center;
     font-family: Raleway;
     font-size: 14px;

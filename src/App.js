@@ -12,9 +12,11 @@ function App() {
     {/*   <LanguageSwitcher />
       <h1>Welcome to the Authentication Page</h1>
       <div className="authentication-section">
-        <Login /> 
+        
       </div> */}
-           <LandingPage/>
+      <Login /> 
+           {/* <LandingPage/> */}
+          
     </div>
   );
 }
