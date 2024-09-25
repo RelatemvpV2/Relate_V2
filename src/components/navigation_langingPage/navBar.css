@@ -1,0 +1,18 @@
+
+
+.nav-link,
+.dropdown-item {
+    font-family: 'raleway';
+    color: #F9EEE1 !important;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    background-color: #41414E;
+}
+
+.dropdown-menu {
+    background-color: #41414E;
+    border: none;
+}
