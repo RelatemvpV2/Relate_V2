@@ -6,13 +6,15 @@ import StartQuesPage from "./features/startQuestionare/StartQuesPage";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import Assessment from "./features/assessment/Assessment";
 
+
 function App() {
   return (
     <div className="App">
       <div className="authentication-section">
-        <Assessment/>
+        {/* <Assessment/> */}
         
-        {/* <Login /> */}
+        
+        <Login />
         {/* <InviteCreateUser/> */}
         {/* <StartQuesPage/> */}
 
