@@ -4,7 +4,7 @@ import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
 import { auth } from "../../firebase/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import RelateLogo from "../../components/Relatelogo";
+import RelateLogo from "../../components/relatelogo/Relatelogo";
 import Navbar from "../../components/Navbar";
 import "./login.css";
 import './../../App.css'
@@ -12,11 +12,13 @@ import Button from "../../components/button/Button";
 import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
-import InputComponent from "../../components/input/InputComponent";
+import InputComponent from "../../components/inputs/InputComponent";
 
 
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
 
 
@@ -73,12 +75,20 @@ const Login = () => {
           <div className="logininputs-container">
             <form>
               <InputComponent
+                className="logininput-box"
                 type="email"
                 placeholder="Email"
+                value={email} // Bind the value to the state
+            onChange={(e) => setEmail(e.target.value)} // Update the state on change
+            required
               />
-              <InputComponent 
+              <InputComponent
+                className="logininput-box"
                 type="password"
                 placeholder="Password"
+                value={password} // Bind the value to the state
+            onChange={(e) => setPassword(e.target.value)} // Update the state on change
+            required
               />
               <div className="loginpage-buttoncontainer">
                 <Button

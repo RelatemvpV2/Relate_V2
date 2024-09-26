@@ -1,23 +1,38 @@
 
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from "./features/auth/Login";
+import InviteCreateUser from "./features/userInvite/InviteCreateUser";
+import StartQuesPage from "./features/startQuestionare/StartQuesPage";
+import LanguageSwitcher from "./components/LanguageSwitcher";
+import Assessment from "./features/assessment/Assessment";
 
-import Login from './features/auth/Login'; 
-import LanguageSwitcher from './components/LanguageSwitcher'; 
-import LandingPage from './components/langingPage/LandingPage';
+
+
+
+
+
 
 function App() {
   return (
     <div className="App">
     {/*   <LanguageSwitcher />
-      <h1>Welcome to the Authentication Page</h1>
-      <div className="authentication-section">
+      
         
-      </div> */}
-      <Login /> 
-           {/* <LandingPage/> */}
-          
-    </div>
+        
+         
+        {/*  */}
+        {/* <StartQuesPage/> */}
+      
+
+        {/* <Assessment/>   */}
+
+        <Login /> 
+        
+        {/* <InviteCreateUser/> */}
+       
+
+
+      </div>
+    
   );
 }
 

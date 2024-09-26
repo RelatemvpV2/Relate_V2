@@ -2,7 +2,7 @@ import React from 'react';
 import MainContainer from '../../components/maincontainer/Maincontainer';
 import GreyBackground from '../../components/greybackground/Greybackground';
 import Navbar from '../../components/Navbar';
-import RelateLogo from '../../components/Relatelogo';
+import RelateLogo from '../../components/relatelogo/Relatelogo';
 import Text from '../../components/text/Text';
 import Button from '../../components/button/Button';
 

@@ -5,7 +5,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./login.css";
 import Button from "../../components/button/Button";
 import Text from "../../components/text/Text";
-import InputComponent from "../../components/input/InputComponent";
+import InputComponent from "../../components/inputs/InputComponent";
+import { registerUser } from "./authServices";
 
 const EmailSignup = () => {
   const [email, setEmail] = useState("");
@@ -15,18 +16,39 @@ const EmailSignup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
-
+  
     try {
+      // Option 1: Firebase Authentication
       await createUserWithEmailAndPassword(auth, email, password);
-      console.log("User signed up successfully");
+      console.log("User signed up successfully with Firebase");
+  
+      // After successful Firebase signup, proceed to GraphQL registration
+      const { success, responseData } = await registerUser(email, password); // Call the GraphQL registration service
+  
+      if (success) {
+        console.log("User signed up successfully with GraphQL", responseData);
+        // Handle successful signup (e.g., redirect, store token, etc.)
+      } else {
+        setError("Registration failed. Please try again.");
+      }
     } catch (error) {
-      setError(error.message);
+      // Check if the error is from Firebase or GraphQL
+      if (error.code) {
+        // Firebase specific error handling
+        setError(error.message); // Firebase signup error
+      } else {
+        // GraphQL error handling
+        setError("Failed to register user with GraphQL: " + error.message);
+      }
     }
   };
+  
+  
 
   return (
     <div className="email-signup">
