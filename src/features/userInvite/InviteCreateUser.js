@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../auth/login.css";
 import Navbar from "../../components/Navbar";
-import RelateLogo from "../../components/Relatelogo";
+import RelateLogo from "../../components/relatelogo/Relatelogo";
 import './../../App.css'
 import Button from "../../components/button/Button";
 import MainContainer from "../../components/maincontainer/Maincontainer";
