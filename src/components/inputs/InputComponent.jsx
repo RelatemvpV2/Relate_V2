@@ -6,16 +6,17 @@ const InputComponent = ({
   placeholder = '', // Default placeholder
   value,
   onChange,
-  min
+  min,
+  className = '', // Accept custom class name
 }) => {
   return (
     <div>
       <input
         type={type}
-        className='input-style'
+        className={className} // Use only the provided className
         placeholder={placeholder}
         onChange={onChange}
-        value={value || ""}
+        value={value || ''}
         {...(type === 'number' ? { min } : {})} // Apply min only if type is number
       />
     </div>
