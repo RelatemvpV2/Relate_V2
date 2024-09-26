@@ -1,6 +1,6 @@
 .heading-container {
     width: 760px;
- /*    height: 42px; */
+    height: 42px;
     flex-shrink: 0;
     margin-bottom: 30px;
   }
