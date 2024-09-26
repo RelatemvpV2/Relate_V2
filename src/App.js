@@ -1,4 +1,3 @@
-import React from "react";
 
 import Login from "./features/auth/Login";
 import InviteCreateUser from "./features/userInvite/InviteCreateUser";
@@ -7,19 +6,33 @@ import LanguageSwitcher from "./components/LanguageSwitcher";
 import Assessment from "./features/assessment/Assessment";
 
 
+
+
+
+
+
 function App() {
   return (
     <div className="App">
-      <div className="authentication-section">
-        {/* <Assessment/> */}
+    {/*   <LanguageSwitcher />
+      
         
         
-        <Login />
-        {/* <InviteCreateUser/> */}
+         
+        {/*  */}
         {/* <StartQuesPage/> */}
+      
+
+        {/* <Assessment/>   */}
+
+        <Login /> 
+        
+        {/* <InviteCreateUser/> */}
+       
+
 
       </div>
-    </div>
+    
   );
 }
 
