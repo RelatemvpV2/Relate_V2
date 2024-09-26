@@ -1,27 +1,34 @@
-input.input-style , input[type="text"]{
+.logininput-box {
     width: 400px;
     height: 40px;
-    background-color: #F9EEE1;
-    border: 0.5px solid #41414E;
+    flex-shrink: 0;
     border-radius: 40px;
-    color: #41414E;
+    background: #f9eee1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    border-style: none;
+    text-align: center;
+    color: #41414e;
+    text-align: center;
     font-family: Raleway;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 21px;
-    letter-spacing: 0.32px;
-    margin-bottom: 23px;
-    text-align: center;
-}
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px  #F9EEE1 inset !important;
-}
-.input-style:focus,
-.input-style:active {
-    outline: none;
-    border: 0.5px solid #41414E;
-}
+    line-height: 21px; /* 150% */
+    letter-spacing: 0.28px;
+  }
+
+
+  .inputboxes{
+    display: flex;
+    background: #f9eee1;
+    flex-direction: column;
+    width: 400px;
+    margin-bottom: 27px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 38px;
+    border: 0.5px solid #41414e;
+  }
