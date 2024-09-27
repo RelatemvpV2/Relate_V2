@@ -31,35 +31,23 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          console.log("user signed in through firebase", userCredential)
-          setFireBaseSuccess(true)
-        })
-
-      // After successful Firebase signup, proceed to GraphQL registration
-      const { token, success, responseData } = loginUser(email, password); // Call the GraphQL registration service
-console.log(success)
-      if (success) {
-        console.log("User logged in successfully with GraphQL", responseData);
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("user signed in through firebase")
+      // After successful Firebase signin, proceed to GraphQL login
+      const response = await loginUser(email, password); // Call the GraphQL login service
+      console.log(response)
+      if (response.success) 
+        console.log("User logged in successfully with GraphQL", response);
+      
         // Handle successful signup (e.g., redirect, store token, etc.)
-      } else {
-       setError("Login failed. Please try again.");
-     }
+       else 
+        console.error("Login failed. Please try again.");
     }
-
-
     catch (error) {
-      // Check if the error is from Firebase or GraphQL
-      if (error.code) {
-        // Firebase specific error handling
-        setError(error.message, "at here"); // Firebase signin error
-      } else {
-        // GraphQL error handling
-        setError("Failed to login user with GraphQL: " + error.message, 3);
-      }
+      console.error("Failed to login user with GraphQL: " + error.message, 3);
     }
   }
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
