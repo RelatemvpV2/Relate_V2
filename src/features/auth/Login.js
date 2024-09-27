@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
 import { auth } from "../../firebase/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut,signInWithEmailAndPassword } from "firebase/auth";
 import RelateLogo from "../../components/relatelogo/Relatelogo";
 import Navbar from "../../components/Navbar";
 import "./login.css";
@@ -13,6 +13,7 @@ import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import InputComponent from "../../components/inputs/InputComponent";
+import { loginUser } from "./authServices";
 
 
 
@@ -22,11 +23,27 @@ const Login = () => {
   const [user, setUser] = useState(null);
 
 
-
-  const handleLogin=(e)=>{
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("login")
-  }
+    console.log("Attempting login");
+
+    try {
+      //  logging in with Firebase
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("Firebase login successful");
+
+      //  log in with GraphQL 
+      const response = await loginUser(email, password);
+      if (response.success) {
+        // Handle GraphQL login success if needed
+        console.log("GraphQL login successful:", response);
+      } else {
+        console.log("GraphQL login failed:", response);
+      }
+    } catch (error) {
+      console.error("Error during login:", error.message);
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
