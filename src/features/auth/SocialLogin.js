@@ -74,13 +74,13 @@ const SocialLogin = () => {
           </div>
         </button>
 
-        <button
+      {/*   <button
           className="social-button"
           onClick={() => handleLogin(microsoftProvider)}
         >
           <FontAwesomeIcon className="social-icon" icon={faMicrosoft} />
           <div className="social-text">
-            {/* Text component for the social media name */}
+            {/* Text component for the social media name *}
             <Text type="span">Microsoft</Text>
           </div>
         </button>
@@ -91,11 +91,11 @@ const SocialLogin = () => {
         >
           <FontAwesomeIcon className="social-icon" icon={faLinkedin} />
           <div className="social-text">
-            {/*  Text component for the social media name */}
+            {/*  Text component for the social media name *}
             <Text type="span">LinkedIn</Text>
           </div>
-        </button>
-      </div>
+        </button>*/}
+      </div> 
 
       <div className="policy-textcontainer">
         {/* Text component for the paragraph and links */}

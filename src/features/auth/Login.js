@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
 import { auth } from "../../firebase/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut, signInWithEmailAndPassword } from "firebase/auth";
 import RelateLogo from "../../components/relatelogo/Relatelogo";
 import Navbar from "../../components/Navbar";
 import "./login.css";
@@ -13,6 +13,7 @@ import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import InputComponent from "../../components/inputs/InputComponent";
+import { loginUser } from "./authServices";
 
 
 
@@ -20,13 +21,33 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
+  const [firebaseSuccess, setFireBaseSuccess] = useState(false);
+  const [graphqlSuccess, setGraphqlSuccess] = useState(false);
 
 
 
-  const handleLogin=(e)=>{
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("login")
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("user signed in through firebase")
+      // After successful Firebase signin, proceed to GraphQL login
+      const response = await loginUser(email, password); // Call the GraphQL login service
+      console.log(response)
+      if (response.success) 
+        console.log("User logged in successfully with GraphQL", response);
+      
+        // Handle successful signup (e.g., redirect, store token, etc.)
+       else 
+        console.error("Login failed. Please try again.");
+    }
+    catch (error) {
+      console.error("Failed to login user with GraphQL: " + error.message, 3);
+    }
   }
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -59,7 +80,7 @@ const Login = () => {
   }
 
   return (
-<MainContainer>
+    <MainContainer>
       <GreyBackground >
         <Navbar />
         <RelateLogo />
@@ -79,16 +100,16 @@ const Login = () => {
                 type="email"
                 placeholder="Email"
                 value={email} // Bind the value to the state
-            onChange={(e) => setEmail(e.target.value)} // Update the state on change
-            required
+                onChange={(e) => setEmail(e.target.value)} // Update the state on change
+                required
               />
               <InputComponent
                 className="logininput-box"
                 type="password"
                 placeholder="Password"
                 value={password} // Bind the value to the state
-            onChange={(e) => setPassword(e.target.value)} // Update the state on change
-            required
+                onChange={(e) => setPassword(e.target.value)} // Update the state on change
+                required
               />
               <div className="loginpage-buttoncontainer">
                 <Button
