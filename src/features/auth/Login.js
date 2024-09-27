@@ -1,19 +1,22 @@
 // src/components/Login.js
 import React, { useState, useEffect } from "react";
-import EmailSignup from "./EmailSignup";
-import SocialLogin from "./SocialLogin";
+//firebase
 import { auth } from "../../firebase/firebase";
 import { onAuthStateChanged, signOut, signInWithEmailAndPassword } from "firebase/auth";
+//components
 import RelateLogo from "../../components/relatelogo/Relatelogo";
 import Navbar from "../../components/Navbar";
-import "./login.css";
-import './../../App.css'
 import Button from "../../components/button/Button";
 import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import InputComponent from "../../components/inputs/InputComponent";
 import { loginUser } from "./authServices";
+import EmailSignup from "./EmailSignup";
+import SocialLogin from "./SocialLogin";
+//css
+import "./login.css";
+import './../../App.css'
 
 
 
@@ -41,12 +44,20 @@ const Login = () => {
         localStorage.setItem("token", response.token)
         // Handle successful signup (e.g., redirect, store token, etc.)
       }
+      else {
+        setError("Login failed. Please try again.");
+      }
 
-      else
-        console.error("Login failed. Please try again.");
     }
     catch (error) {
-      console.error("Failed to login user with GraphQL: " + error.message, 3);
+      // Check if the error is from Firebase or GraphQL
+      if (error.code) {
+        // Firebase specific error handling
+        setError(error.message); // Firebase signin error
+      } else {
+        // GraphQL error handling
+        setError("Failed to Login user with GraphQL: " + error.message);
+      }
     }
   }
 
@@ -98,6 +109,7 @@ const Login = () => {
 
           <div className="logininputs-container">
             <form>
+
               <InputComponent
                 className="logininput-box"
                 type="email"
@@ -114,6 +126,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)} // Update the state on change
                 required
               />
+
               <div className="loginpage-buttoncontainer">
                 <Button
                   className="loginpage-button"
@@ -122,7 +135,10 @@ const Login = () => {
                 >
                   Login
                 </Button>
+
               </div>
+              {/* Display error message */}
+              {error && <Text style={{ color: "red", marginBottom: 0 }}>{error}</Text>}
             </form>
 
             <div className="links-textcontainer">
