@@ -1,4 +1,4 @@
-.loginpage-button {
+.loginpage-button,.landingpage-button {
     width: 180px;
     height: 40px;
     flex-shrink: 0;
@@ -13,6 +13,7 @@
     line-height: 21px; /* 150% */
     letter-spacing: 0.28px;
     border-style: none;
+    margin:auto;
   }
   .loginpage-buttoncontainer {
     text-align: center;

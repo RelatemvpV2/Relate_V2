@@ -1,6 +1,6 @@
 .heading-container {
     width: 760px;
-    height: 42px;
+ /*    height: 42px; */
     flex-shrink: 0;
     margin-bottom: 30px;
   }
@@ -26,7 +26,7 @@
     flex-shrink: 0;
   }
   .links-text {
-    color: #fff;
+    color: #f9eee1;
     text-align: center;
     font-family: Raleway;
     font-size: 14px;
@@ -85,9 +85,6 @@ font-weight: 500;
 line-height: 21px; /* 77.778% */
 }
   
-
-
-
 
 
 
@@ -154,9 +151,10 @@ line-height: 21px; /* 77.778% */
   .description-container {
     margin-top: 17px;
     margin-bottom: 24px;
+ 
   }
   .description-text {
-    color: #fff;
+    color: #f9eee1;
     text-align: center;
     font-family: Raleway;
     font-size: 14px;
