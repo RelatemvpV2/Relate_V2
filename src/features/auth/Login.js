@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
 import { auth } from "../../firebase/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut, signInWithEmailAndPassword } from "firebase/auth";
 import RelateLogo from "../../components/relatelogo/Relatelogo";
 import Navbar from "../../components/Navbar";
 import "./login.css";
@@ -13,6 +13,7 @@ import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import InputComponent from "../../components/inputs/InputComponent";
+import { loginUser } from "./authServices";
 
 
 
@@ -20,12 +21,44 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
+  const [firebaseSuccess, setFireBaseSuccess] = useState(false);
+  const [graphqlSuccess, setGraphqlSuccess] = useState(false);
 
 
 
-  const handleLogin=(e)=>{
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("login")
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log("user signed in through firebase", userCredential)
+          setFireBaseSuccess(true)
+        })
+
+      // After successful Firebase signup, proceed to GraphQL registration
+      const { token, success, responseData } = loginUser(email, password); // Call the GraphQL registration service
+console.log(success)
+      if (success) {
+        console.log("User logged in successfully with GraphQL", responseData);
+        // Handle successful signup (e.g., redirect, store token, etc.)
+      } else {
+       setError("Login failed. Please try again.");
+     }
+    }
+
+
+    catch (error) {
+      // Check if the error is from Firebase or GraphQL
+      if (error.code) {
+        // Firebase specific error handling
+        setError(error.message, "at here"); // Firebase signin error
+      } else {
+        // GraphQL error handling
+        setError("Failed to login user with GraphQL: " + error.message, 3);
+      }
+    }
   }
 
   useEffect(() => {
@@ -59,7 +92,7 @@ const Login = () => {
   }
 
   return (
-<MainContainer>
+    <MainContainer>
       <GreyBackground >
         <Navbar />
         <RelateLogo />
@@ -79,16 +112,16 @@ const Login = () => {
                 type="email"
                 placeholder="Email"
                 value={email} // Bind the value to the state
-            onChange={(e) => setEmail(e.target.value)} // Update the state on change
-            required
+                onChange={(e) => setEmail(e.target.value)} // Update the state on change
+                required
               />
               <InputComponent
                 className="logininput-box"
                 type="password"
                 placeholder="Password"
                 value={password} // Bind the value to the state
-            onChange={(e) => setPassword(e.target.value)} // Update the state on change
-            required
+                onChange={(e) => setPassword(e.target.value)} // Update the state on change
+                required
               />
               <div className="loginpage-buttoncontainer">
                 <Button

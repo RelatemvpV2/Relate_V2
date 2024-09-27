@@ -6,18 +6,10 @@ import LanguageSwitcher from "./components/LanguageSwitcher";
 import Assessment from "./features/assessment/Assessment";
 
 
-
-
-
-
-
 function App() {
   return (
     <div className="App">
     {/*   <LanguageSwitcher />
-      
-        
-        
          
         {/*  */}
         {/* <StartQuesPage/> */}

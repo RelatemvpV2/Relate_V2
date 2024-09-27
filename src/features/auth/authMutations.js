@@ -10,3 +10,15 @@ export const REGISTER_USER = gql`
     }
   }
 `;
+
+// Define the mutation for user login
+export const LOGIN_USER = gql`
+mutation LoginUser($loginUserEmail2: String!, $loginUserPassword2: String!) {
+  loginUser(email: $loginUserEmail2, password: $loginUserPassword2) {
+    token
+    success
+    responseData
+  }
+}
+`;
+
