@@ -35,12 +35,14 @@ const Login = () => {
       console.log("user signed in through firebase")
       // After successful Firebase signin, proceed to GraphQL login
       const response = await loginUser(email, password); // Call the GraphQL login service
-      console.log(response)
-      if (response.success) 
-        console.log("User logged in successfully with GraphQL", response);
-      
+
+      if (response.success) {
+        /*   console.log("User logged in successfully with GraphQL", response); */
+        localStorage.setItem("token", response.token)
         // Handle successful signup (e.g., redirect, store token, etc.)
-       else 
+      }
+
+      else
         console.error("Login failed. Please try again.");
     }
     catch (error) {
@@ -64,6 +66,7 @@ const Login = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      localStorage.removeItem("token")
       console.log("User signed out");
     } catch (error) {
       console.error("Error signing out:", error);
