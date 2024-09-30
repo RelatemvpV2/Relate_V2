@@ -5,6 +5,7 @@ import InviteCreateUser from "./features/userInvite/InviteCreateUser";
 import StartQuesPage from "./features/startQuestionare/StartQuesPage";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import Assessment from "./features/assessment/Assessment";
+import LandingPage from "./components/landingPage/LandingPage";
 
 
 function App() {
@@ -18,7 +19,6 @@ function App() {
         <Route path="/userInvite/InviteCreateUser" element={<InviteCreateUser />} />
         <Route path="/startQuestionare/StartQuesPage" element={<StartQuesPage />} />
         <Route path="/assessment/Assessment" element={<Assessment />} />
-
 
 
 
