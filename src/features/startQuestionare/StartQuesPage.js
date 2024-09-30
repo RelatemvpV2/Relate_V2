@@ -1,13 +1,22 @@
 import React from 'react';
+import '../assessment/Assessment';
+import { useNavigate } from 'react-router-dom'; 
 import MainContainer from '../../components/maincontainer/Maincontainer';
 import GreyBackground from '../../components/greybackground/Greybackground';
 import Navbar from '../../components/Navbar';
+
 import RelateLogo from '../../components/relatelogo/Relatelogo';
 import Text from '../../components/text/Text';
 import Button from '../../components/button/Button';
 
 
 const StartQuesPage = () => {
+
+  const navigate = useNavigate(); // Step 2
+
+  const handleGetStarted = () => {
+      navigate('/assessment/Assessment'); // Step 3 - Update the path to your Assessment page route
+  };
     return (
         <MainContainer>
             <GreyBackground>
@@ -53,7 +62,7 @@ const StartQuesPage = () => {
 
         </Text>
         <div className="startques-buttoncontainer">
-              <Button className="userpage-button" type="submit" >
+              <Button className="userpage-button" type="submit"  onClick={handleGetStarted} >
               Get started
               </Button>
             </div>
