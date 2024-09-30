@@ -11,6 +11,7 @@ export const REGISTER_USER = gql`
   }
 `;
 
+// Define the mutation for user login
 export const LOGIN_USER = gql`
   mutation LoginUser($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {

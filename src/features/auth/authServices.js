@@ -1,5 +1,5 @@
 import client from './../../graphql/apolloClient'; // Adjust the path according to your structure
-import { REGISTER_USER, LOGIN_USER } from './authMutations';
+import { REGISTER_USER,LOGIN_USER } from './authMutations'; // Import the mutation
 
 // Service function for user registration
 export const registerUser = async (email, password) => {
@@ -28,3 +28,6 @@ export const loginUser = async (email, password) => {
     throw new Error(error.message); // Handle errors appropriately
   }
 };
+
+// Service function for user registration
+
