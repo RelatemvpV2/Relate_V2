@@ -108,7 +108,7 @@ const Login = () => {
     <MainContainer>
       <GreyBackground >
         <Navbar />
-        <RelateLogo />
+        <RelateLogo className="relate-logo-large"/>
 
         <div className="login-container">
           <div className="heading-container">
@@ -168,7 +168,7 @@ const Login = () => {
         </div>
 
         <div className="dividercontainer">
-          <div className="divider">or</div>
+          <div className="divider-Or">or</div>
           <div className="svg-container">
             <svg
               xmlns="http://www.w3.org/2000/svg"

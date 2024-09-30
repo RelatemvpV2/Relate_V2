@@ -10,6 +10,7 @@ import LandingPage from "./components/landingPage/LandingPage";
 
 function App() {
   return (
+
     <Router>
       <Routes>
         {/* Define the route for the login page */}
@@ -24,7 +25,6 @@ function App() {
 
       </Routes>
     </Router>
-
     
   );
 }
