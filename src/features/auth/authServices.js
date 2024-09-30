@@ -13,19 +13,21 @@ export const registerUser = async (email, password) => {
   } catch (error) {
     throw new Error(error.message); // Handle errors appropriately
   }
-};
+}; 
 
-// Service function for user registration
+
+
 export const loginUser = async (email, password) => {
-  console.log(email)
   try {
     const { data } = await client.mutate({
       mutation: LOGIN_USER,
-      variables: { email, password }, // Use the default role
+      variables: { email, password }, // No role is sent here
     });
-    console.log(data,":::data")
-    return data.loginUser; // Returns token,success and responseData
+    return data.loginUser; // Returns success, token, and responseData
   } catch (error) {
     throw new Error(error.message); // Handle errors appropriately
   }
 };
+
+// Service function for user registration
+

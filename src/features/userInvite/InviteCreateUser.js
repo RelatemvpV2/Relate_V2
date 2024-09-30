@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import '../startQuestionare/StartQuesPage'
+import { useNavigate } from "react-router-dom";
 import "../auth/login.css";
 import Navbar from "../../components/Navbar";
 import RelateLogo from "../../components/relatelogo/Relatelogo";
@@ -17,6 +19,7 @@ const InviteCreateUser = () => {
     partnerEmail: "",
     inviteLater: false, // Boolean to indicate whether to invite later
   });
+  const navigate = useNavigate();  
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -36,7 +39,9 @@ const InviteCreateUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData); // Handle form submission logic here
+    navigate("/startQuestionare/StartQuesPage");
+    
+   
   };
 
   return (
