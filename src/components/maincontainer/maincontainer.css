@@ -1,14 +1,12 @@
 .main-container {
     background: #f9eee1;
-    
-  
     background-size: cover;
     display: flex;
     flex-direction: column;
-    padding-bottom: 20%;
-  
+    padding-bottom: 5%;
     justify-content: center;
     align-items: center;
+    width:100%;
   }
 .sidelight-bg{
   width: 80%;
