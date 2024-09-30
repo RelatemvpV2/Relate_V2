@@ -4,6 +4,7 @@ import InviteCreateUser from "./features/userInvite/InviteCreateUser";
 import StartQuesPage from "./features/startQuestionare/StartQuesPage";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import Assessment from "./features/assessment/Assessment";
+import LandingPage from "./components/landingPage/LandingPage";
 
 
 function App() {
@@ -17,11 +18,11 @@ function App() {
 
         {/* <Assessment/>   */}
 
-        <Login /> 
+        {/* <Login />  */}
         
         {/* <InviteCreateUser/> */}
        
-
+<LandingPage/>
 
       </div>
     
