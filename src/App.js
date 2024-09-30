@@ -18,11 +18,11 @@ function App() {
 
         {/* <Assessment/>   */}
 
-        {/* <Login />  */}
+        <Login /> 
         
         {/* <InviteCreateUser/> */}
        
-<LandingPage/>
+{/* <LandingPage/> */}
 
       </div>
     

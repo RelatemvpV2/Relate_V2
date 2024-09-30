@@ -2,11 +2,13 @@ import React from "react";
 import logo from "../../assets/logo.png"; 
 import './relatelogo.css'
 
-const RelateLogo = () => {
+const RelateLogo = (props) => {
+  const className = props.className;
+
   return (
     <img
       src={logo}
-      className="relate-logo-large"
+      className={`${className}`}
       alt="Relate Logo"
      
     />

@@ -32,7 +32,7 @@ const LandingPage = () => {
                     </section>
                 </div>
 
-                <RelateLogo />
+                <RelateLogo className="relate-logo-large"/>
 
                 <div style={{ paddingBottom: "70px" }}>
                     <div className="heading-container">

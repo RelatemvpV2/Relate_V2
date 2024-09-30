@@ -1,6 +1,6 @@
 import React from 'react';
 import './sidegreybg.css'; // Importing the CSS'
-import Smallrelatelogo from '../relatelogo/Smallrelatelogo';
+import Relatelogo from '../relatelogo/Relatelogo';
 import Text from '../text/Text';
 import Footer from '../footer/Footer';
 
@@ -8,7 +8,7 @@ const SideGreyBg = () => {
   return (
     <div className="sidegrey-bg">
       <aside className="sidebar">
-      <Smallrelatelogo/>
+      <Relatelogo className="relate-logo-small"/>
         
         <nav className="sidebar-nav">
         <Text type="p" className="my-relations">

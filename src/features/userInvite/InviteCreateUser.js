@@ -44,7 +44,7 @@ const InviteCreateUser = () => {
       <GreyBackground>
         <Navbar />
 
-        <RelateLogo />
+        <RelateLogo className="relate-logo-large"/>
 
         <div className="heading-container">
           {/*  Text component for h1 */}
