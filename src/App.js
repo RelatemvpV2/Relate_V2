@@ -1,5 +1,6 @@
 
 import Login from "./features/auth/Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import InviteCreateUser from "./features/userInvite/InviteCreateUser";
 import StartQuesPage from "./features/startQuestionare/StartQuesPage";
 import LanguageSwitcher from "./components/LanguageSwitcher";
@@ -8,22 +9,22 @@ import Assessment from "./features/assessment/Assessment";
 
 function App() {
   return (
-    <div className="App">
-    {/*   <LanguageSwitcher />
-         
-        {/*  */}
-        {/* <StartQuesPage/> */}
-      
+    <Router>
+      <Routes>
+        {/* Define the route for the login page */}
+        <Route path="/" element={<Login />} />
 
-        {/* <Assessment/>   */}
-
-        <Login /> 
-        
-        {/* <InviteCreateUser/> */}
-       
+        {/* Define the route for InviteCreateUser page */}
+        <Route path="/userInvite/InviteCreateUser" element={<InviteCreateUser />} />
+        <Route path="/startQuestionare/StartQuesPage" element={<StartQuesPage />} />
+        <Route path="/assessment/Assessment" element={<Assessment />} />
 
 
-      </div>
+
+
+      </Routes>
+    </Router>
+
     
   );
 }

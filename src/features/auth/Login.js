@@ -1,80 +1,108 @@
 // src/components/Login.js
+
 import React, { useState, useEffect } from "react";
-import EmailSignup from "./EmailSignup";
-import SocialLogin from "./SocialLogin";
+import '../userInvite/InviteCreateUser'
+//firebase
 import { auth } from "../../firebase/firebase";
 import { onAuthStateChanged, signOut, signInWithEmailAndPassword } from "firebase/auth";
+//navigation
+import { useNavigate } from "react-router-dom";
+//components
 import RelateLogo from "../../components/relatelogo/Relatelogo";
 import Navbar from "../../components/Navbar";
-import "./login.css";
-import './../../App.css'
 import Button from "../../components/button/Button";
 import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import InputComponent from "../../components/inputs/InputComponent";
 import { loginUser } from "./authServices";
+import EmailSignup from "./EmailSignup";
+import SocialLogin from "./SocialLogin";
+//css
+import "./login.css";
+import './../../App.css'
 
 
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
 
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     try {
+      // Firebase Authentication
       await signInWithEmailAndPassword(auth, email, password);
-      console.log("user signed in through firebase")
-      // After successful Firebase signin, proceed to GraphQL login
+      console.log("User signed in through Firebase");
+  
+      // GraphQL Login
       const response = await loginUser(email, password); // Call the GraphQL login service
-      console.log(response)
-      if (response.success) 
-        console.log("User logged in successfully with GraphQL", response);
-      
-        // Handle successful signup (e.g., redirect, store token, etc.)
-       else 
-        console.error("Login failed. Please try again.");
-    }
-    catch (error) {
-      console.error("Failed to login user with GraphQL: " + error.message, 3);
-    }
-  }
-
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
+      console.log("GraphQL response:", response); // Log GraphQL response for debugging
+  
+      if (response.success) {
+        // If GraphQL login is successful, store the token
+        localStorage.setItem("token", response.token);
+        console.log("Token stored in localStorage:", response.token); // Log the token to confirm it's stored
+        navigate("/userInvite/InviteCreateUser")
+  
+        // Handle successful login (e.g., redirect, store token, etc.)
       } else {
-        setUser(null);
+        setError("Login failed. Please try again.");
+        console.log("GraphQL login failed.");
       }
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      console.log("User signed out");
+  
     } catch (error) {
-      console.error("Error signing out:", error);
+      if (error.code) {
+        // Firebase specific error handling
+        setError(error.message); // Firebase login error
+        console.log("Firebase login error:", error.message); // Log Firebase error
+      } else {
+        // GraphQL error handling
+        setError("Failed to login user with GraphQL: " + error.message);
+        console.log("GraphQL login error:", error.message); // Log GraphQL error
+      }
     }
   };
+  
+  
 
-  if (user) {
-    return (
-      <div className="welcome-page">
-        <h2>Welcome, {user.email}</h2>
-        <button onClick={handleLogout}>Logout</button>
-      </div>
-    );
-  }
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setUser(user);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
+
+  //   return () => unsubscribe();
+  // }, []);
+
+  // const handleLogout = async () => {
+  //   try {
+  //     await signOut(auth);
+  //     localStorage.removeItem("token")
+  //     console.log("User signed out");
+  //   } catch (error) {
+  //     console.error("Error signing out:", error);
+  //   }
+  // };
+
+  // if (user) {
+  //   return (
+  //     <div className="welcome-page">
+  //       <h2>Welcome, {user.email}</h2>
+  //       <button onClick={handleLogout}>Logout</button>
+  //     </div>
+  //   );
+  // }
 
   return (
     <MainContainer>
@@ -91,7 +119,9 @@ const Login = () => {
           </div>
 
           <div className="logininputs-container">
-            <form>
+                 
+            <form onClick={handleLogin} >
+
               <InputComponent
                 className="logininput-box"
                 type="email"
@@ -108,15 +138,18 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)} // Update the state on change
                 required
               />
+
               <div className="loginpage-buttoncontainer">
                 <Button
                   className="loginpage-button"
                   type="submit"
-                  onClick={handleLogin} // Call handleLogin function
                 >
                   Login
                 </Button>
+
               </div>
+              {/* Display error message */}
+              {error && <Text style={{ color: "red", marginBottom: 0 }}>{error}</Text>}
             </form>
 
             <div className="links-textcontainer">

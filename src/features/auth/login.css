@@ -1,16 +1,21 @@
-.email-signup {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.login-container,.right-container {
+  height: 40%;
 }
 
-.social-login {
+.email-signup,.social-login  {
+  display: grid;
+ grid-template-rows: 1fr 1fr auto 1fr;
+ height: max-content;
+ align-items: center;
+ justify-items: center;
+}
+
+/* .email-signup,.social-login  {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .social-icon {
   width: 18.831px;
@@ -87,11 +92,12 @@
 
 }
 
-.inputs-container {
+.inputscontainer {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 27px;
+  height:240px;
 }
 
 .dateinputbox {
@@ -204,6 +210,7 @@
 
 .socialsignup-buttoncontainer {
   margin-bottom: 37px;
+  height:240px;
 }
 
 
