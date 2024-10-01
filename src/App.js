@@ -6,6 +6,7 @@ import StartQuesPage from "./features/startQuestionare/StartQuesPage";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import Assessment from "./features/assessment/Assessment";
 import LandingPage from "./components/landingPage/LandingPage";
+import PageNotFound from "./components/pageNotFound/PageNotFound";
 
 
 function App() {
@@ -15,6 +16,11 @@ function App() {
       <Routes>
         {/* Define the route for the login page */}
         <Route path="/" element={<Login />} />
+        {/* Define the route for Page not found */}
+        <Route
+          path="*"
+          element={<PageNotFound />}
+        />
 
         {/* Define the route for InviteCreateUser page */}
         <Route path="/userInvite/InviteCreateUser" element={<InviteCreateUser />} />
@@ -25,7 +31,7 @@ function App() {
 
       </Routes>
     </Router>
-    
+
   );
 }
 
