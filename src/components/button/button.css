@@ -1,4 +1,4 @@
-.loginpage-button {
+.loginpage-button,.landingpage-button {
     width: 180px;
     height: 40px;
     flex-shrink: 0;
