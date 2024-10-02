@@ -1,4 +1,4 @@
-.login-container,.right-container {
+.login-container,.right-container,.left-container {
   height: 40%;
 }
 
@@ -92,12 +92,13 @@
 
 }
 
-.inputscontainer {
+.inputs-container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-bottom: 27px;
-  height:240px;
+ 
 }
 
 .dateinputbox {
@@ -110,7 +111,7 @@
   background: #f9eee1;
   border-radius: 38px;
   border: 0.5px solid #41414e;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   text-align: center;
   text-align-last: center;
 

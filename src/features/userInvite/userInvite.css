@@ -1,0 +1,7 @@
+.invite-partner-container,.profile-container {
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    height: max-content;
+    align-items: center;
+    justify-items: center;
+}

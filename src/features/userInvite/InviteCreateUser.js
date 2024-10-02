@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import '../startQuestionare/StartQuesPage'
 import { useNavigate } from "react-router-dom";
-import "../auth/login.css";
+
+//Components
 import Navbar from "../../components/Navbar";
 import RelateLogo from "../../components/relatelogo/Relatelogo";
-import './../../App.css'
 import Button from "../../components/button/Button";
 import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
+import '../startQuestionare/StartQuesPage';
+
+//CSS
+import "../auth/login.css";
+import "./../../App.css";
+import "./userInvite.css";
+
+
 const InviteCreateUser = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -80,7 +87,7 @@ const InviteCreateUser = () => {
       <div className="sub-container">
         {/* You Section */}
         <div className="left-container">
-          <div className="email-signup">
+          <div className="profile-container">
             <div className="sub-containerheading">
               {/*  Text component for h2 */}
               <Text type="h2" className="sub-containerheadingtext">
@@ -179,7 +186,7 @@ const InviteCreateUser = () => {
 
         {/* Invite Partner Section */}
         <div className="right-container">
-          <div className="social-login">
+          <div className="invite-partner-container">
             <div className="sub-containerheading">
               {/*  Text component for h2 */}
               <Text type="h2" className="sub-containerheadingtext">
