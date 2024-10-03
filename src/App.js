@@ -14,7 +14,9 @@ function App() {
     <Router>
       <Routes>
         {/* Define the route for the login page */}
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/Login" element={<Login />} />
+
 
         {/* Define the route for InviteCreateUser page */}
         <Route path="/userInvite/InviteCreateUser" element={<InviteCreateUser />} />
