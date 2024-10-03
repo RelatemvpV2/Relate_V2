@@ -1,5 +1,6 @@
 import React from 'react'
 import { Nav, NavDropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 //components
 import MainContainer from '../maincontainer/Maincontainer';
@@ -22,12 +23,15 @@ const LandingPage = () => {
                     </section>
                     <section className='nav-login'>
                         <Nav>
-                            <NavDropdown title="Login as" id="basic-nav-dropdown" style={{ color: "rgb(249, 238, 225)" }}>
-                                <NavDropdown.Item href="/Login" className='rounded-pill my-1' >User</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2" className='rounded-pill my-1' >
-                                    terapist
+                        <NavDropdown title="Login as" id="basic-nav-dropdown" style={{ color: "rgb(249, 238, 225)" }}>
+                                <NavDropdown.Item as={Link} to="/Login" className='rounded-pill my-1' >
+                                    User
+                                </NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/therapist-login" className='rounded-pill my-1' >
+                                    Therapist
                                 </NavDropdown.Item>
                             </NavDropdown>
+
                         </Nav>
                     </section>
                 </div>
