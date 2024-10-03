@@ -15,7 +15,7 @@ import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import InputComponent from "../../components/inputs/InputComponent";
-import { loginUser } from "./authServices";
+import { loginUser} from "./authServices";
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
 //css
@@ -29,34 +29,36 @@ const Login = () => {
   const [password, setPassword] = useState("");
   // const [user, setUser] = useState(null);
   const [error, setError] = useState("");
+  const [msg, setMsg] = useState("")
+
   const navigate = useNavigate();
 
 
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     try {
       // Firebase Authentication
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User signed in through Firebase");
-  
+
       // GraphQL Login
       const response = await loginUser(email, password); // Call the GraphQL login service
       console.log("GraphQL response:", response); // Log GraphQL response for debugging
-  
+
       if (response.success) {
         // If GraphQL login is successful, store the token
         localStorage.setItem("token", response.token);
         console.log("Token stored in localStorage:", response.token); // Log the token to confirm it's stored
         navigate("/userInvite/InviteCreateUser")
-  
+
         // Handle successful login (e.g., redirect, store token, etc.)
       } else {
         setError("Login failed. Please try again.");
         console.log("GraphQL login failed.");
       }
-  
+
     } catch (error) {
       if (error.code) {
         // Firebase specific error handling
@@ -69,9 +71,6 @@ const Login = () => {
       }
     }
   };
-  
-  
-
 
   // useEffect(() => {
   //   const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -108,7 +107,7 @@ const Login = () => {
     <MainContainer>
       <GreyBackground >
         <Navbar />
-        <RelateLogo className="relate-logo-large"/>
+        <RelateLogo className="relate-logo-large" />
 
         <div className="login-container">
           <div className="heading-container">
@@ -119,8 +118,8 @@ const Login = () => {
           </div>
 
           <div className="logininputs-container">
-                 
-            <form onClick={handleLogin} >
+
+            <form onSubmit={handleLogin} >
 
               <InputComponent
                 className="logininput-box"
