@@ -36,7 +36,7 @@ const LandingPage = () => {
                     </section>
                 </div>
 
-                <RelateLogo className="relate-logo-large"/>
+                <RelateLogo className="relate-logo-large" />
 
                 <div style={{ paddingBottom: "70px" }}>
                     <div className="heading-container">
@@ -47,7 +47,7 @@ const LandingPage = () => {
 
                     </div>
                     <div className="">
-                        <Text type="p" className='heading-desc'>
+                        <Text type="p" className='heading-desc' style={{ color: "#f9eee1" }}>
                             We are here to help you improve yours.
                             We believe that by strengthen your relationship
                             you can improve the quality of your life.
@@ -105,7 +105,7 @@ const LandingPage = () => {
 
                     <section className='section-Landingpage'>
                         <h3>Recurring check-in</h3>
-                        <p className='P-overflow'>Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.  Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.Lorem ipsum dolor sit amet consectetur adipiscing elit.
+                        <p className='P-overflow'>Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.  Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.
                         </p>
                         <Button className='landingpage-button'>How it works</Button>
                     </section>
@@ -118,11 +118,11 @@ const LandingPage = () => {
                 <section className='last-section-landingpage'>
                     {/* <image src='/' alt="Picture" width={'40'} height={'40'} /> */}
                     <div className='img-container'>
-                        <image src='/' alt="Picture" width={'40'} height={'40'} />
+                        <img src='/' alt="Picture" width={'40'} height={'40'} />
                     </div>
-                    <div className='text-container'>
+                    <div className='text-container' style={{ color: "#f9eee1" }}>
                         <h3 className='meet-our-expert'>Meet our expert</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.
+                        <Text type="p">Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.
                             <br />
                             <br />
 
@@ -134,7 +134,7 @@ const LandingPage = () => {
                             <br />
                             <br />
 
-                            We encourage you to have a check-in on your relationship every month. </p>
+                            We encourage you to have a check-in on your relationship every month. </Text>
                     </div>
                 </section>
 

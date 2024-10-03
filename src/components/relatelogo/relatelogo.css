@@ -1,6 +1,6 @@
 
   
-  .relate-logo-large {
+  .relate-logo-large  {
     width: 148px;
     height: auto; /* Maintain aspect ratio */
     flex-shrink: 0;
@@ -9,6 +9,13 @@
   
   .relate-logo-small {
     width: 111px;
+    height: auto;
+    flex-shrink: 0;
+    margin-top: 15%; /* No shrinking for Flexbox */
+  }
+
+  .relate-logo-tiny {
+    width: 70px;
     height: auto;
     flex-shrink: 0;
     margin-top: 15%; /* No shrinking for Flexbox */

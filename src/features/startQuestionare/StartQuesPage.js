@@ -11,7 +11,7 @@ import Button from '../../components/button/Button';
 
 
 const StartQuesPage = () => {
-
+  
   const navigate = useNavigate(); // Step 2
 
   const handleGetStarted = () => {
@@ -82,4 +82,6 @@ const StartQuesPage = () => {
 
 
 
-export default StartQuesPage;
+export default StartQuesPage; 
+
+
