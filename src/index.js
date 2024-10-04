@@ -1,4 +1,6 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import ReactDOM from 'react-dom/client';
 import { ApolloProvider } from '@apollo/client';
 import './index.css';
