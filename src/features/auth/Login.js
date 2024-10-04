@@ -15,7 +15,7 @@ import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import InputComponent from "../../components/inputs/InputComponent";
-import { loginUser} from "./authServices";
+import { loginUser, forgotPassword } from "./authServices";
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
 //css
@@ -71,6 +71,38 @@ const Login = () => {
       }
     }
   };
+
+
+  const handleResetPwd = (email) => {
+console.log(email)
+  }
+
+  const handleForgotPwd = async () => {
+
+    navigate('/forgot-password');
+
+   /*  const email = await reqForEmail();
+    try {
+      
+      const response = await forgotPassword(email); // Call the GraphQL forgot password service
+      console.log("GraphQL response:", response); // Log GraphQL response for debugging
+
+      if (response.success) {
+        console.log("Password reset token sent to your email");
+        setMsg("Password reset token sent to your email") 
+      }
+      else {
+        console.log("User not found");
+        setError("User not found")
+      }
+    } catch (error) {
+      setError(error.message);
+      console.log(error.message);
+    } */
+  }
+
+
+
 
   // useEffect(() => {
   //   const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -151,7 +183,7 @@ const Login = () => {
               {error && <Text style={{ color: "red", marginBottom: 0 }}>{error}</Text>}
             </form>
 
-            <div className="links-textcontainer">
+            <div className="links-textcontainer" onClick={handleForgotPwd}>
               {/*  Text component for the link */}
               <Text type="a" href="/forgot-password" className="links-text">
                 I forgot my password

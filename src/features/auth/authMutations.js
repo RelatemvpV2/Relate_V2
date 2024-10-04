@@ -21,3 +21,12 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+ export const FORGOT_PASSWORD = gql`
+ mutation {
+  forgotPassword(email: "keerthi1822@gmail.com") {
+    success
+    responseData
+  }
+}
+ `
