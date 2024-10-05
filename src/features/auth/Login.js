@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import '../userInvite/InviteCreateUser';
+
 //firebase
 import { auth } from "../../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+
 //navigation
 import { useNavigate } from "react-router-dom";
+
 //components
 import RelateLogo from "../../components/relatelogo/Relatelogo";
 import Navbar from "../../components/Navbar";
@@ -16,8 +19,10 @@ import InputComponent from "../../components/inputs/InputComponent";
 import { loginUser } from "./authServices";
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
+
 // Loader component
-import Loader from "../../components/loader/Loader";  
+import Loader from "../../components/loader/Loader"; 
+ 
 //css
 import "./login.css";
 import './../../App.css';
@@ -48,7 +53,7 @@ const Login = () => {
         console.log("Token stored in localStorage:", response.token); // Log the token to confirm it's stored
         
         // Navigate after successful login
-        navigate("/userInvite/InviteCreateUser");
+        navigate("/startQuestionare/StartQuesPage");
       } else {
         setError("Login failed. Please try again.");
         console.log("GraphQL login failed.");
