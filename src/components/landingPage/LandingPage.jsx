@@ -73,7 +73,7 @@ const LandingPage = () => {
                     </div>
                     <div className="links-textcontainer">
                         {/*  Text component for the link */}
-                        <Text type="a" href="/freeQuestionair" className="links-text" style={{ fontSize: "20px" }}>
+                        <Text type="a" href="/Login" className="links-text" style={{ fontSize: "20px" }}>
                             Try our free relation-questionnaire
                         </Text>
                     </div>
