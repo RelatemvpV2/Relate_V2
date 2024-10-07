@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './assessment.css'; // CSS for custom styles
 import SideGreyBg from '../../components/sidegreybg/SideGreyBg';
 import MainContainer from '../../components/maincontainer/Maincontainer';
+import LightBgMain from '../../components/lightBgMain/LightBgMain';
 
 const Assessment = () => {
   const [rating, setRating] = useState(null);
@@ -21,6 +22,8 @@ const Assessment = () => {
   return (
     <div className="assessment-layout">
       <SideGreyBg/>
+
+      <LightBgMain/>
 
      
 

@@ -1,0 +1,56 @@
+.options-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-basis: 40vh; */
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.02em;
+}
+
+.Options-section {
+    cursor: pointer;
+
+}
+
+
+
+.Options-section section:hover div,
+.Options-section section:focus div,
+.option-active section div {
+    background-color: #C68977 !important;
+    color: rgb(249, 238, 225);
+}
+
+/* .Options-section section:hover::before,
+.Options-section section:focus::before,
+.option-active section::before{
+
+    content: "you";
+} */
+
+.option-active section p {
+
+    color: #C68977;
+}
+
+.Options-section section:hover div p,
+.Options-section section:focus div p {
+    color: rgb(249, 238, 225);
+}
+
+.Options-section section:hover p,
+.Options-section section:focus p {
+    color: #C68977
+}
+
+.Options-section:hover {
+    color: #C68977
+}
+
+.line-between-options {
+    width: 3px;
+}

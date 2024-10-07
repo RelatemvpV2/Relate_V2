@@ -1,8 +1,10 @@
 import React from 'react';
-import './sidegreybg.css'; // Importing the CSS'
+
 import Relatelogo from '../relatelogo/Relatelogo';
 import Text from '../text/Text';
 import Footer from '../footer/Footer';
+
+import './sidegreybg.css'; // Importing the CSS'
 
 const SideGreyBg = () => {
   return (
