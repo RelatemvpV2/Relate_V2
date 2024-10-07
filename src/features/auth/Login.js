@@ -79,10 +79,11 @@ const Login = () => {
       <GreyBackground>
         <Navbar />
         <RelateLogo className="relate-logo-large" />
+        {loading && <Loader />}
 
         <div className="login-container">
           {/* Show Loader when loading is true */}
-          {loading && <Loader />}
+          
           
           {/* Apply blur effect when loading */}
           <div className={loading ? "blurred-content" : ""}>
@@ -129,11 +130,15 @@ const Login = () => {
           </div>
         </div>
       </GreyBackground>
+      
 
-      <div className="sub-container">
+      <div className={loading ? "sub-container blurred-content" : "sub-container"}>
         <div className="left-container">
-          <EmailSignup />
+          <EmailSignup setLoading={setLoading}  />
         </div>
+
+     
+
 
         <div className="dividercontainer">
           <div className="divider-Or">or</div>
