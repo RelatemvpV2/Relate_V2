@@ -1,5 +1,6 @@
 // src/components/EmailSignup.js
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 import { auth } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./login.css";
@@ -8,11 +9,15 @@ import Text from "../../components/text/Text";
 import InputComponent from "../../components/inputs/InputComponent";
 import { registerUser } from "./authServices";
 
-const EmailSignup = () => {
+
+
+const EmailSignup = ({ setLoading }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  
+  const navigate = useNavigate(); 
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -21,6 +26,7 @@ const EmailSignup = () => {
       setError("Passwords do not match");
       return;
     }
+    setLoading(true); 
   
     try {
       // Option 1: Firebase Authentication
@@ -32,6 +38,7 @@ const EmailSignup = () => {
   
       if (success) {
         console.log("User signed up successfully with GraphQL", responseData);
+        navigate("/userInvite/InviteCreateUser"); 
         // Handle successful signup (e.g., redirect, store token, etc.)
       } else {
         setError("Registration failed. Please try again.");
@@ -46,12 +53,17 @@ const EmailSignup = () => {
         setError("Failed to register user with GraphQL: " + error.message);
       }
     }
+    finally {
+      setLoading(false); // Stop loader
+    }
   };
   
   
 
   return (
     <div className="email-signup">
+       
+
       <div className="sub-containerheading">
         {/* Text component for heading */}
         <Text type="h2" className="sub-containerheadingtext">
