@@ -58,10 +58,9 @@ const InviteCreateUser = () => {
 
         <RelateLogo className="relate-logo-large"/>
 
-        <div className="heading-container">
-          {/*  Text component for h1 */}
-          <Text type="h1" className="heading-text">
-            Help us get to know you and <br /> invite your partner
+        <div className="">
+          <Text type="h3" className="heading-text">
+            Help us get to know you and invite your partner
           </Text>
         </div>
 

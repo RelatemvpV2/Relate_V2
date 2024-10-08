@@ -2,19 +2,27 @@
   /*   width: 760px; */
   height: 42px;
   flex-shrink: 0;
+ 
   margin-bottom: 30px;
 }
 
 .heading-text {
   color: #f9eee1;
-  text-align: center;
-  font-family: "Cormorant Garamond";
   font-style: normal;
-  font-size: 2.5rem;
-  font-weight: 600;
   margin-top: -6%;
+
   /*  height: 42px; */
+
 }
+
+h1 {
+  font-family: Cormorant Garamond;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: center;
+}
+
 
 .heading-desc {
   font-family: Raleway;
@@ -24,7 +32,16 @@
   letter-spacing: 0.02em;
   text-align: center;
   width: 60vw;
-  height: 92px;
+}
+
+.desc {
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  width: 60vw;
 }
 
 
@@ -109,15 +126,12 @@
 }
 
 
-
-
-
 .sub-containerheading {
   width: 47vw;
   flex-shrink: 0;
 }
 
-.sub-containerheadingtext {
+.sub-containerheadingtext{
   color: #41414e;
   text-align: center;
   font-family: "Cormorant Garamond";
@@ -125,6 +139,34 @@
   font-style: normal;
   font-weight: 600;
   margin: 0;
+}
+
+.h2 {
+  color: #41414e;
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  margin: 0;
+  font-size: 45px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.meet-our-expert {
+  text-align: left;
+  color: #F9EEE1;
+  margin-left: 0;
+}
+
+.meet-our-expert-text {
+  color: #F9EEE1;
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+  text-align: left;
+
 }
 
 .text {
@@ -137,7 +179,27 @@
   line-height: 25px;
   /* 156.25% */
   letter-spacing: 0.32px;
-  margin-bottom: 25px;
+  margin: 25px 0;
+}
+
+.section-header,
+h3 {
+  font-family: Cormorant Garamond;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: center;
+
+}
+
+.sections-text {
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+  text-align: center;
+
 }
 
 .labels {
@@ -207,20 +269,13 @@
 
 }
 
-
-
-
 .username-text {
-  width: 504px;
-  height: 25px;
   flex-shrink: 0;
   color: #F9EEE1;
   text-align: center;
   font-family: Raleway;
   font-size: 20px;
-  font-style: normal;
   font-weight: 400;
-
   letter-spacing: 0.4px;
   margin: 0;
 }

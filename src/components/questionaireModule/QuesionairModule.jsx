@@ -10,7 +10,7 @@ import './quesionairModule.css'
 const QuesionairModule = () => {
   return (
     <div className='questionaire-div'>
-      <Text type="h1" className='quesionaire-heading' >My relation with</Text>
+      <Text type="h3" className='quesionaire-heading h3' >My relation with</Text>
       <Text className='questionaire-partnerName '>James Samuelson</Text>
 
       {/* Divider */}
@@ -36,7 +36,7 @@ const QuesionairModule = () => {
       <Button className='loginpage-button'>Continue</Button>
       <div className="links-textcontainer">
         {/*  Text component for the link */}
-        <Text type="a" href="/" className="links-text" style={{ fontSize: "20px" }}>
+        <Text type="a" href="/" className="links-text" style={{ fontSize: "12px" }}>
           Go back
         </Text>
       </div>
