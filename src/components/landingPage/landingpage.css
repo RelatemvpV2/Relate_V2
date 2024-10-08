@@ -108,9 +108,9 @@ justify-self: end;
 
 .section-Landingpage {
     display: grid;
-    grid-template-rows: 40px auto 40px;
+    grid-template-rows: 40px 250px 40px;
     justify-items: center;
-    width: 70%;
+    width: 80%;
 
 }
 
