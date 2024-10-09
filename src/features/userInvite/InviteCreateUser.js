@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 //Components
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import RelateLogo from "../../components/relatelogo/Relatelogo";
 import Button from "../../components/button/Button";
 import MainContainer from "../../components/maincontainer/Maincontainer";
@@ -58,7 +58,7 @@ const InviteCreateUser = () => {
 
         <RelateLogo className="relate-logo-large"/>
 
-        <div className="">
+        <div className="heading-container">
           <Text type="h3" className="heading-text">
             Help us get to know you and invite your partner
           </Text>

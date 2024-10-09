@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 //components
 import RelateLogo from "../../components/relatelogo/Relatelogo";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Button from "../../components/button/Button";
 import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";

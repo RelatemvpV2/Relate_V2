@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 //components
 import MainContainer from '../maincontainer/Maincontainer';
 import GreyBackground from '../greybackground/Greybackground';
-import Navbar from '../Navbar';
+import Navbar from '../Navbar/Navbar';
 import RelateLogo from '../relatelogo/Relatelogo';
 import Text from '../text/Text';
 import Button from '../button/Button';
