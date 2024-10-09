@@ -3,7 +3,7 @@ import '../assessment/Assessment';
 import { useNavigate } from 'react-router-dom';
 import MainContainer from '../../components/maincontainer/Maincontainer';
 import GreyBackground from '../../components/greybackground/Greybackground';
-import Navbar from '../../components/Navbar';
+import Navbar from '../../components/Navbar/Navbar';
 
 import RelateLogo from '../../components/relatelogo/Relatelogo';
 import Text from '../../components/text/Text';
@@ -34,7 +34,7 @@ const StartQuesPage = () => {
           </Text>
           <Text type="p" className="description-text">
             You have taken the first step to improve your relation and you and your partners <br />
-            answers will help 5us guide you in the best way.
+            answers will help us guide you in the best way.
           </Text>
         </div>
 
@@ -60,7 +60,7 @@ const StartQuesPage = () => {
 
         <div className="subcontainer-text">
           {/*  Text component for subheading */}
-          <Text type="p" className="description-text"  style={{  color:"#41414E",marginTop:"20px"}}>
+          <Text type="p" className="description-text"  style={{  color:"#41414E", margin:"20px auto"}}>
             We will take you through 9 different categories, each containing a question. After submitting your <br /> answers we will match the answers with your partners, and help you identify focus areas.<br /> When you’re done, your answers will be shown in your personal dashboard.
 
           </Text>

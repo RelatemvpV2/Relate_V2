@@ -21,3 +21,8 @@
     margin-top: 15%; /* No shrinking for Flexbox */
   }
   
+  @media only screen and (max-width: 768px) {
+    .relate-logo-large {
+        margin-left: 0;
+    }
+  }
