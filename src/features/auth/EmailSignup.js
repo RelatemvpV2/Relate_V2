@@ -142,7 +142,7 @@ const EmailSignup = ({ setLoading }) => {
           </Text>
           <InputComponent
             id="email"
-            className="inputboxes"
+            className="inputboxes indent"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -154,7 +154,7 @@ const EmailSignup = ({ setLoading }) => {
           </Text>
           <InputComponent
             id="password"
-            className="inputboxes"
+            className="inputboxes indent"
             type="password"
             value={password}
             onChange={handlePasswordChange}
@@ -166,7 +166,7 @@ const EmailSignup = ({ setLoading }) => {
           </Text>
           <InputComponent
             id="confirmPassword"
-            className="inputboxes"
+            className="inputboxes indent"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
