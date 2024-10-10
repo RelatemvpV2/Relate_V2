@@ -104,7 +104,7 @@ const InviteCreateUser = () => {
                   id="firstName"
                   type="text"
                   name="firstName"
-                  className="inputboxes"
+                  className="inputboxes indent"
                   value={formData.firstName}
                   onChange={handleChange}
                 />
@@ -116,7 +116,7 @@ const InviteCreateUser = () => {
                   id="lastName"
                   type="text"
                   name="lastName"
-                  className="inputboxes"
+                  className="inputboxes indent"
                   value={formData.lastName}
                   onChange={handleChange}
                 />
@@ -212,7 +212,7 @@ const InviteCreateUser = () => {
                 id="email"
                 type="email"
                 name="partnerEmail"
-                className="inviteuser-inputbox"
+                className="inviteuser-inputbox indent"
                 value={formData.partnerEmail}
                 onChange={handleChange}
                 disabled={formData.inviteLater}
