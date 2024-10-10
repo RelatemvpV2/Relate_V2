@@ -212,7 +212,7 @@ const InviteCreateUser = () => {
                 id="email"
                 type="email"
                 name="partnerEmail"
-                className="inviteuser-inputbox"
+                className="inviteuser-inputbox indent"
                 value={formData.partnerEmail}
                 onChange={handleChange}
                 disabled={formData.inviteLater}
