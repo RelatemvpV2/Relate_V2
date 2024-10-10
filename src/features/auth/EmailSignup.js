@@ -1,13 +1,16 @@
 // src/components/EmailSignup.js
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
-import { auth } from "../../firebase/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import "./login.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+//firebase
+/* import { auth } from "../../firebase/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth"; */
+//components
 import Button from "../../components/button/Button";
 import Text from "../../components/text/Text";
 import InputComponent from "../../components/inputs/InputComponent";
 import { registerUser } from "./authServices";
+//css
+import "./login.css";
 
 
 
@@ -16,53 +19,106 @@ const EmailSignup = ({ setLoading }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  
-  const navigate = useNavigate(); 
+  const [errors, setErrors] = useState({});
+  const [msg, setMsg] = useState("")
+
+  const validatePassword = (password) => {
+    const validationErrors = {};
+
+    // At least one uppercase letter
+    if (!/[A-Z]/.test(password)) {
+      validationErrors.uppercase = 'Password must contain at least one uppercase letter.';
+    }
+
+    // At least one lowercase letter
+    if (!/[a-z]/.test(password)) {
+      validationErrors.lowercase = 'Password must contain at least one lowercase letter.';
+    }
+
+    // At least one number
+    if (!/[0-9]/.test(password)) {
+      validationErrors.number = 'Password must contain at least one number.';
+    }
+
+    // At least one special character
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      validationErrors.specialChar = 'Password must contain at least one special character.';
+    }
+
+    // Minimum 8 characters
+    if (password.length < 8) {
+      validationErrors.length = 'Password must be at least 8 characters long.';
+    }
+
+    return validationErrors;
+  };
+
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+
+    // Validate password on change
+    setErrors(validatePassword(newPassword));
+  };
+
+  const handlePassword = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validatePassword(password);
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      alert('Password is valid!');
+    } else {
+      alert('Password is invalid!');
+    }
+  };
+
+
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    
+
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
-    setLoading(true); 
-  
+    setLoading(true);
+
     try {
-      // Option 1: Firebase Authentication
-      await createUserWithEmailAndPassword(auth, email, password);
-      console.log("User signed up successfully with Firebase");
-  
+
       // After successful Firebase signup, proceed to GraphQL registration
       const { success, responseData } = await registerUser(email, password); // Call the GraphQL registration service
-  
+      // if the api call is success.
       if (success) {
+        setMsg(responseData)
         console.log("User signed up successfully with GraphQL", responseData);
-        navigate("/userInvite/InviteCreateUser"); 
-        // Handle successful signup (e.g., redirect, store token, etc.)
+      
+        // Handle successful signup (e.g., redirect, store token, etc.) 
       } else {
-        setError("Registration failed. Please try again.");
+        setError(responseData);
+        console.log("error:", responseData);
       }
     } catch (error) {
-      // Check if the error is from Firebase or GraphQL
-      if (error.code) {
-        // Firebase specific error handling
-        setError(error.message); // Firebase signup error
-      } else {
-        // GraphQL error handling
-        setError("Failed to register user with GraphQL: " + error.message);
-      }
+      // Check if the error is from GraphQL
+      // GraphQL error handling
+      setError("Failed to register user with GraphQL: " + error.message);
     }
     finally {
       setLoading(false); // Stop loader
     }
   };
-  
-  
+
+
+  useEffect(() => {
+
+  }, [error, msg])
+
+
 
   return (
     <div className="email-signup">
-       
 
       <div className="sub-containerheading">
         {/* Text component for heading */}
@@ -101,7 +157,7 @@ const EmailSignup = ({ setLoading }) => {
             className="inputboxes"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             required
           />
 
@@ -116,9 +172,17 @@ const EmailSignup = ({ setLoading }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-
+          {msg && <Text style={{ color: "green" }}>{msg}</Text>}
           {/* Display error message */}
           {error && <Text style={{ color: "red" }}>{error}</Text>}
+
+          <ul style={{ color: 'red' }}>
+            {errors.uppercase && <li>{errors.uppercase}</li>}
+            {errors.lowercase && <li>{errors.lowercase}</li>}
+            {errors.number && <li>{errors.number}</li>}
+            {errors.specialChar && <li>{errors.specialChar}</li>}
+            {errors.length && <li>{errors.length}</li>}
+          </ul>
         </form>
       </div>
 
@@ -134,13 +198,13 @@ const EmailSignup = ({ setLoading }) => {
       </div>
 
       <div className="loginpage-buttoncontainer">
-       
+
         <Button className="loginpage-button" type="submit" onClick={handleSignup}>
           Create user
         </Button>
       </div>
     </div>
-  ); 
+  );
 };
 
 export default EmailSignup;
