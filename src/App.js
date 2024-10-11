@@ -10,6 +10,7 @@ import LanguageSwitcher from "./components/LanguageSwitcher";
 import Assessment from "./features/assessment/Assessment";
 import LandingPage from "./components/landingPage/LandingPage";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
+import PopUpComponent from "./components/popUp/PopUpComponent";
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
         {/* Define the route for the login page */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/Login" element={<Login />} />
+
+        <Route path="/popup" element={<PopUpComponent/>}/>
 
         <Route path="/dashboard" element={<Dashboard/>}/>
 
