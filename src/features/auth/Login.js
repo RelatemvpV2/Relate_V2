@@ -39,10 +39,10 @@ const Login = () => {
     setLoading(true);
 
     try {
-      // Firebase Authentication
+     /*  // Firebase Authentication
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User signed in through Firebase");
-
+ */
       // GraphQL Login
       const response = await loginUser(email, password); // Call the GraphQL login service
       console.log("GraphQL response:", response); // Log GraphQL response for debugging
@@ -60,11 +60,11 @@ const Login = () => {
       }
 
     } catch (error) {
-      if (error.code) {
+      if (error.code) /* {
         // Firebase specific error handling
         setError(error.message); // Firebase login error
         console.log("Firebase login error:", error.message); // Log Firebase error
-      } else {
+      } else */ {
         // GraphQL error handling
         setError("Failed to login user with GraphQL: " + error.message);
         console.log("GraphQL login error:", error.message); // Log GraphQL error
