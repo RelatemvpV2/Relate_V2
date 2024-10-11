@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 //Components
 import Login from "./features/auth/Login";
+import Dashboard from "./components/dashboard/Dashboard";
 import InviteCreateUser from "./features/userInvite/InviteCreateUser";
 import StartQuesPage from "./features/startQuestionare/StartQuesPage";
 import LanguageSwitcher from "./components/LanguageSwitcher";
@@ -22,6 +23,8 @@ function App() {
         {/* Define the route for the login page */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/Login" element={<Login />} />
+
+        <Route path="/dashboard" element={<Dashboard/>}/>
 
 
         {/* Define the route for InviteCreateUser page */}
