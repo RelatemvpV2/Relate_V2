@@ -4,14 +4,11 @@ import QuesionairModule from '../questionaireModule/QuesionairModule'
 
 import './lightBgMain.css'
 
-const LightBgMain = () => {
+const LightBgMain = ({ children }) => {
 
   return (
     <div className='lightBgMain' style={{ flexGrow: 10 }}>
-
-      <QuesionairModule></QuesionairModule>
-  
-
+      {children}
     </div>
   )
 }

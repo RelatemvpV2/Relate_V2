@@ -11,3 +11,11 @@
 .left-container,.right-container {
   margin-top: 3%;
 }
+
+.divider-horizantal {
+  width: 80%;
+  background-color: #41414E;
+  height: .5px;
+  margin: 30px auto;
+
+}
