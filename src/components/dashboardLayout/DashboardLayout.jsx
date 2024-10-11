@@ -8,9 +8,9 @@ import LightBgMain from '../lightBgMain/LightBgMain'
 
 import './dashboardLayout.css'
 
-const DashboardLayout = ({children}) => {
+const DashboardLayout = ({children, style}) => {
   return (
-    <div className='dashboard-layout'>
+    <div className='dashboard-layout' style={style}>
 
         <SideGreyBg></SideGreyBg>
         <LightBgMain>
