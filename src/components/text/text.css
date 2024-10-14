@@ -127,7 +127,6 @@ h1 {
 
 .sub-containerheading {
   width: 47vw;
-  flex-shrink: 0;
 }
 
 .sub-containerheadingtext {
@@ -375,7 +374,6 @@ h3 {
 
 @media screen and (max-width: 900px) {
   .sub-containerheadingtext {
-    color: #41414e;
     font-size: 36px;
   }
 }
@@ -397,22 +395,24 @@ h3 {
   }
   .heading-container {
     margin-bottom: 10px;
+   
+  }
+  .sub-containerheading {
+    width: 70%;
+    margin: auto;
+  }
+  .sub-containerheadingtext {
+    font-size: 25px;
+  
   }
 
-  .policy-textcontainer {
-    display: flex;
-    width: 394px;
-    height: 14px;
-    margin-top: -200%;
-    padding:7%;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-bottom: 24px;
+  .policy-text {
+    width: 80%;
+    margin: auto;
   }
-  .social-policytext{
-    margin-top: -80%;
-
+  .text ,.subcontainer-text{
+    width: 80%;
+    margin:auto;
   }
   }
 
