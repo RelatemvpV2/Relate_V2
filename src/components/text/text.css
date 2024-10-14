@@ -366,4 +366,19 @@ h3 {
   .description-container {
       margin-top: 10%;
   }
+  .policy-textcontainer {
+    display: flex;
+    width: 394px;
+    height: 14px;
+    margin-top: -200%;
+    padding:7%;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: 24px;
+  }
+  .social-policytext{
+    margin-top: -80%;
+
+  }
   }

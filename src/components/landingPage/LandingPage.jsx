@@ -20,7 +20,9 @@ const LandingPage = () => {
                 <div className='Landing-Nav-container'>
                     <section className='nav-firstSection'>
                         <Navbar />
+                        
                     </section>
+                    </div>
                     <section className='nav-login'>
                         <Nav>
                         <NavDropdown title="Login as" id="basic-nav-dropdown" style={{ color: "rgb(249, 238, 225)" }}>
@@ -34,7 +36,8 @@ const LandingPage = () => {
 
                         </Nav>
                     </section>
-                </div>
+                    
+                
 
                 <RelateLogo className="relate-logo-large" />
 

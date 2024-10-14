@@ -51,12 +51,9 @@ justify-self: end;
 } */
 
 .nav-login {
-    position: fixed;
-    top: 0;
-    right: 70px;
-    margin: 46px auto auto auto;
-    width: 150px;
-
+    position: absolute;
+    top: 12px;
+    right: 20px;
 }
 
 #basic-nav-dropdown {
