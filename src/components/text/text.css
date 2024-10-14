@@ -257,7 +257,7 @@ h3 {
   line-height: 21px;
   letter-spacing: 0.28px;
   margin: 0 auto;
-  /* width: 96%; */
+  width: 75%
 }
 
 .startques-container {
@@ -398,4 +398,23 @@ h3 {
   .heading-container {
     margin-bottom: 10px;
   }
+
+  .policy-textcontainer {
+    display: flex;
+    width: 394px;
+    height: 14px;
+    margin-top: -200%;
+    padding:7%;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: 24px;
+  }
+  .social-policytext{
+    margin-top: -80%;
+
+  }
+  }
+
 }
+

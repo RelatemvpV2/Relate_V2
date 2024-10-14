@@ -68,9 +68,9 @@ const InviteCreateUser = () => {
           {/*  Text component for p */}
           <Text type="p" className="description-text">
             An email has been sent to you please find it and confirm your identity.
-            <br />
+            
             To improve the quality of our help, we kindly ask you to provide some information about yourself.
-            <br />
+            
             Next up, is to invite your partner to answer the survey questions.
           </Text>
         </div>
@@ -94,7 +94,7 @@ const InviteCreateUser = () => {
               </Text>
             </div>
 
-            <div className="inputscontainer">
+            <div className="user-inputscontainer">
               <form onSubmit={handleSubmit}>
                 {/*  Text component for labels */}
                 <Text type="label" htmlFor="firstName" className="labels">
@@ -196,9 +196,9 @@ const InviteCreateUser = () => {
             <div className="subcontainer-text">
               {/*  Text component for p */}
               <Text type="p" className="text">
-                We will send an email to your partner, with the same <br />
-                questionnaire. Lorem ipsum dolor sit amet consectetur adipiscing <br /> elit. Ut eget nulla in nibh
-                tempus bibendum non quis sapien. <br />
+                We will send an email to your partner, with the same 
+                questionnaire. Lorem ipsum dolor sit amet consectetur adipiscing  elit. Ut eget nulla in nibh
+                tempus bibendum non quis sapien. 
                 Please type in your partner's email below.
               </Text>
             </div>

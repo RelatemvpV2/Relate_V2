@@ -19,3 +19,20 @@
   margin: 30px auto;
 
 }
+@media only screen and (max-width: 768px) {
+  .sub-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    /* margin-top: 4%; */
+  }
+  .dividercontainer {
+    visibility: hidden;
+
+  }
+  
+  
+}
+

@@ -197,7 +197,7 @@ const EmailSignup = ({ setLoading }) => {
         </Text>
       </div>
 
-      <div className="loginpage-buttoncontainer">
+      <div className="loginpage-buttoncontainer create-user">
 
         <Button className="loginpage-button" type="submit" onClick={handleSignup}>
           Create user
