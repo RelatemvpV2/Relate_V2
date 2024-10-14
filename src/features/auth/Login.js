@@ -16,7 +16,7 @@ import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import InputComponent from "../../components/inputs/InputComponent";
-import { loginUser } from "./authServices";
+import { loginUser, forgotPassword } from "./authServices";
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
 
@@ -69,10 +69,71 @@ const Login = () => {
         setError("Failed to login user with GraphQL: " + error.message);
        /*  console.log("GraphQL login error:", error.message);  */// Log GraphQL error
       }
-    } finally {
-      setLoading(false); 
     }
   };
+
+
+  const handleResetPwd = (email) => {
+console.log(email)
+  }
+
+  const handleForgotPwd = async () => {
+
+    navigate('/forgot-password');
+
+   /*  const email = await reqForEmail();
+    try {
+      
+      const response = await forgotPassword(email); // Call the GraphQL forgot password service
+      console.log("GraphQL response:", response); // Log GraphQL response for debugging
+
+      if (response.success) {
+        console.log("Password reset token sent to your email");
+        setMsg("Password reset token sent to your email") 
+      }
+      else {
+        console.log("User not found");
+        setError("User not found")
+      }
+    } catch (error) {
+      setError(error.message);
+      console.log(error.message);
+    } */
+  }
+
+
+
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setUser(user);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
+
+  //   return () => unsubscribe();
+  // }, []);
+
+  // const handleLogout = async () => {
+  //   try {
+  //     await signOut(auth);
+  //     localStorage.removeItem("token")
+  //     console.log("User signed out");
+  //   } catch (error) {
+  //     console.error("Error signing out:", error);
+  //   }
+  // };
+
+  // if (user) {
+  //   return (
+  //     <div className="welcome-page">
+  //       <h2>Welcome, {user.email}</h2>
+  //       <button onClick={handleLogout}>Logout</button>
+  //     </div>
+  //   );
+  // }
 
   return (
     <MainContainer>
@@ -111,6 +172,7 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+               
 
                 <div className="loginpage-buttoncontainer">
                   <Button className="loginpage-button" type="submit">
@@ -120,12 +182,13 @@ const Login = () => {
                 {/* Display error message */}
                 {error && <Text style={{ color: "red", marginBottom: 0 }}>{error}</Text>}
               </form>
-
-              <div className="links-textcontainer">
-                <Text type="a" href="/forgot-password" className="links-text">
-                  I forgot my password
-                </Text>
               </div>
+
+            <div className="links-textcontainer" onClick={handleForgotPwd}>
+              {/*  Text component for the link */}
+              <Text type="a" href="/forgot-password" className="links-text">
+                I forgot my password
+              </Text>
             </div>
           </div>
         </div>

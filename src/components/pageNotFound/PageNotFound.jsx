@@ -25,7 +25,7 @@ const PageNotFound = () => {
                     </div> */}
                
                 <Text type="h4"> 404 Error </Text>
-                <Text type="p">Uh oh. It ooks like that page you were looking for isn't here.</Text>
+                <Text type="p">Uh oh. It looks like that page you were looking for isn't here.</Text>
                 <span style={{fontSize:"30px"}}>&#128542;</span>
 
             </div>
