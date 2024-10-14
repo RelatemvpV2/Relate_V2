@@ -64,7 +64,7 @@ const Options = () => {
                     options.map((opt, i) => {
                         return <>
                             <section className={`Options-section ${optionActiveId === opt.id && 'option-active'}`} key={`option${i + 1}`}>
-                                {console.log(optionActiveId)}
+                              
                                 <Option optionVal={opt.score} text={opt.option} bgColor={"#41414E"} color={"#F9EEE1"} PWidth={"140px"} />
                                 
                             </section>
