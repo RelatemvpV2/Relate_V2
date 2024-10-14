@@ -1,0 +1,17 @@
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;    
+    margin-top: 2%;
+  }
+
+@media only screen and (max-width: 768px) {
+.navbar {
+    margin: 3% auto;
+    width: 100%;
+}
+}

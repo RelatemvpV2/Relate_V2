@@ -2,9 +2,10 @@
 import React from 'react';
 import './maincontainer.css'; // Import the CSS file
 
-const MainContainer = ({ children }) => {
+const MainContainer = ({ children, style }) => {
+
   return (
-    <div className="main-container">
+    <div className="main-container" style={style}>
       {children}
     </div>
   );

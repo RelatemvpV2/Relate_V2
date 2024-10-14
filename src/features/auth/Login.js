@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import '../userInvite/InviteCreateUser';
+
 //firebase
 import { auth } from "../../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+
 //navigation
 import { useNavigate } from "react-router-dom";
+
 //components
 import RelateLogo from "../../components/relatelogo/Relatelogo";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Button from "../../components/button/Button";
 import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
@@ -16,8 +19,10 @@ import InputComponent from "../../components/inputs/InputComponent";
 import { loginUser, forgotPassword } from "./authServices";
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
+
 // Loader component
-import Loader from "../../components/loader/Loader";  
+import Loader from "../../components/loader/Loader"; 
+ 
 //css
 import "./login.css";
 import './../../App.css';
@@ -34,35 +39,35 @@ const Login = () => {
     setLoading(true);
 
     try {
-      // Firebase Authentication
+     /*  // Firebase Authentication
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User signed in through Firebase");
-
+ */
       // GraphQL Login
       const response = await loginUser(email, password); // Call the GraphQL login service
-      console.log("GraphQL response:", response); // Log GraphQL response for debugging
+    /*   console.log("GraphQL response:", response); */ // Log GraphQL response for debugging
 
       if (response.success) {
         // If GraphQL login is successful, store the token
         localStorage.setItem("token", response.token);
-        console.log("Token stored in localStorage:", response.token); // Log the token to confirm it's stored
+       /*  console.log("Token stored in localStorage:", response.token); */ // Log the token to confirm it's stored
         
         // Navigate after successful login
-        navigate("/userInvite/InviteCreateUser");
+        navigate("/startQuestionare/StartQuesPage");
       } else {
         setError("Login failed. Please try again.");
-        console.log("GraphQL login failed.");
+       /*  console.log("GraphQL login failed."); */
       }
 
     } catch (error) {
-      if (error.code) {
+      if (error.code) /* {
         // Firebase specific error handling
         setError(error.message); // Firebase login error
         console.log("Firebase login error:", error.message); // Log Firebase error
-      } else {
+      } else */ {
         // GraphQL error handling
         setError("Failed to login user with GraphQL: " + error.message);
-        console.log("GraphQL login error:", error.message); // Log GraphQL error
+       /*  console.log("GraphQL login error:", error.message);  */// Log GraphQL error
       }
     }
   };
@@ -135,10 +140,11 @@ console.log(email)
       <GreyBackground>
         <Navbar />
         <RelateLogo className="relate-logo-large" />
+        {loading && <Loader />}
 
         <div className="login-container">
           {/* Show Loader when loading is true */}
-          {loading && <Loader />}
+          
           
           {/* Apply blur effect when loading */}
           <div className={loading ? "blurred-content" : ""}>
@@ -187,11 +193,15 @@ console.log(email)
           </div>
         </div>
       </GreyBackground>
+      
 
-      <div className="sub-container">
+      <div className={loading ? "sub-container blurred-content" : "sub-container"}>
         <div className="left-container">
-          <EmailSignup />
+          <EmailSignup setLoading={setLoading}  />
         </div>
+
+     
+
 
         <div className="dividercontainer">
           <div className="divider-Or">or</div>

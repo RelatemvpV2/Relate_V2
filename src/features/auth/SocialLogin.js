@@ -29,7 +29,7 @@ const SocialLogin = () => {
       }
 
       const result = await signInWithPopup(auth, provider);
-      console.log("User signed in:", result.user);
+      console.log("User signed in!");
     } catch (error) {
       console.error("Error during sign-in:", error);
     }
@@ -39,14 +39,14 @@ const SocialLogin = () => {
 <div className="social-login">
       <div className="sub-containerheading">
         {/*  Text component for the heading */}
-        <Text type="h3" className="sub-containerheadingtext">
+        <Text type="h2" className="sub-containerheadingtext">
           Login using platforms
         </Text>
       </div>
 
       <div className="subcontainer-text">
         {/*  Text component for the paragraph */}
-        <Text type="p" className="text">
+        <Text type="h3" className="text">
           Use an already existing account
         </Text>
       </div>
@@ -97,7 +97,7 @@ const SocialLogin = () => {
         </button>*/}
       </div> 
 
-      <div className="policy-textcontainer">
+      <div className="policy-textcontainer social-policytext">
         {/* Text component for the paragraph and links */}
         <Text type="p" className="policy-text">
   When signing in you accept our{" "}

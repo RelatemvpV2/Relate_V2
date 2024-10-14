@@ -51,12 +51,9 @@ justify-self: end;
 } */
 
 .nav-login {
-    position: fixed;
-    top: 0;
-    right: 70px;
-    margin: 46px auto auto auto;
-    width: 150px;
-
+    position: absolute;
+    top: 12px;
+    right: 20px;
 }
 
 #basic-nav-dropdown {
@@ -103,23 +100,30 @@ justify-self: end;
     justify-items: center;
     padding-top: 50px;
     height: max-content;
-    width: 80%;
+    max-width: 95%;
+    min-width: 80%;
 }
 
 .section-Landingpage {
     display: grid;
-    grid-template-rows: 40px auto 40px;
+    grid-template-rows: 60px 200px 40px;
     justify-items: center;
-    width: 70%;
+    max-width: 95%;
+    word-wrap: break-word;
+    min-width: 75%;
 
 }
 
 .P-overflow {
-
+    overflow: hidden;
     max-width: 98%;
-    overflow-wrap: break-word;
     align-items: center;
 
+
+}
+
+.landingPage-link{
+    font-size: 20px;
 }
 
 
@@ -152,4 +156,64 @@ justify-self: end;
 .text-container {
     width: 35%;
     margin-bottom: auto;
+}
+
+/* Media queries */
+
+@media screen and (max-width: 1075px) {
+    .h1 {
+        font-weight: 300;
+        line-height: 1;
+        font-size: 1rem;
+    }
+    .sections-container {
+        grid-template-columns: 1fr 2px 1fr 2px 1fr;
+    }
+
+    .section-Landingpage {
+        grid-template-rows: 60px 230px 40px;
+        padding-bottom: 20px;
+    }
+    .last-section-landingpage {
+        padding: 3% ;    
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .sections-container {
+        grid-template-columns: 1fr;
+    }
+
+    .section-Landingpage {
+        grid-template-rows: 60px auto 40px;
+        padding-bottom: 20px;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+
+    .last-section-landingpage {
+        flex-direction: column;
+        width:90vw;
+        margin: auto;
+     }
+     .img-container{
+         width:100%;
+         margin-bottom: 20px;
+         height:100vw;
+     }
+     .text-container {
+         width: 100%;
+     }
+     .p-text {
+        font-size: 14px;
+        line-height: 22px;
+        width:90vw;
+     }
+
+     .landingPage-link{
+        font-size: 14px;
+    }
+     
 }

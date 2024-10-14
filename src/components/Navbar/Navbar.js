@@ -1,8 +1,9 @@
 import React from "react";
+import './navbar.css'
 
 const Navbar = () => {
   return (
-    <nav style={styles.navbar}>
+    <nav style={styles.navbar} className="navbar">
       <ul style={styles.navList}>
         <li style={styles.navItem}>
           <a href="#about" style={styles.navLink}>
@@ -30,10 +31,7 @@ const Navbar = () => {
 };
 
 const styles = {
-  navbar: {
-    textAlign: "center",
-    marginTop: "46px",
-  },
+
   navList: {
     listStyleType: "none",
     margin: 0,
