@@ -33,7 +33,7 @@ const StartQuesPage = () => {
             Well done and welcome
           </Text>
           <Text type="p" className="description-text">
-            You have taken the first step to improve your relation and you and your partners <br />
+            You have taken the first step to improve your relation and you and your partners 
             answers will help us guide you in the best way.
           </Text>
         </div>
@@ -61,7 +61,7 @@ const StartQuesPage = () => {
         <div className="subcontainer-text">
           {/*  Text component for subheading */}
           <Text type="p" className="description-text"  style={{  color:"#41414E", margin:"20px auto"}}>
-            We will take you through 9 different categories, each containing a question. After submitting your <br /> answers we will match the answers with your partners, and help you identify focus areas.<br /> When you’re done, your answers will be shown in your personal dashboard.
+            We will take you through 9 different categories, each containing a question. After submitting your  answers we will match the answers with your partners, and help you identify focus areas. When you’re done, your answers will be shown in your personal dashboard.
 
           </Text>
           <div className="startques-buttoncontainer">
