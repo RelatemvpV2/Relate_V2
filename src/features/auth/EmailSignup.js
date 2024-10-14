@@ -93,12 +93,12 @@ const EmailSignup = ({ setLoading }) => {
       // if the api call is success.
       if (success) {
         setMsg(responseData)
-        console.log("User signed up successfully with GraphQL", responseData);
+       /*  console.log("User signed up successfully with GraphQL", responseData); */
       
         // Handle successful signup (e.g., redirect, store token, etc.) 
       } else {
         setError(responseData);
-        console.log("error:", responseData);
+        /* console.log("error:", responseData); */
       }
     } catch (error) {
       // Check if the error is from GraphQL
