@@ -50,10 +50,8 @@ const LandingPage = () => {
 
                     </div>
                     <div className="">
-                        <Text type="p" className='heading-desc' style={{ color: "#f9eee1" }}>
-                            We are here to help you improve yours.
-                            We believe that by strengthen your relationship
-                            you can improve the quality of your life.
+                        <Text type="p" className='heading-desc  p-text' style={{ color: "#f9eee1" }}>
+                            We are here to help you improve yours. We believe that by strengthen your relationship you can improve the quality of your life.
                         </Text>
                     </div>
                 </div>
@@ -70,13 +68,13 @@ const LandingPage = () => {
 
                     </div>
                     <div className="sub-container">
-                        <Text type="p" className='desc'>
+                        <Text type="p" className='desc  p-text'>
                             You go to the gym to strengthen your body and you take your car to service. What do you do to strengthen your relationship? Sadly almost 50% of all marriages ends with break up. We aim to make a difference and lower the numbers, and we believe that improved communication will make a difference.
                         </Text>
                     </div>
                     <div className="links-textcontainer">
                         {/*  Text component for the link */}
-                        <Text type="a" href="/Login" className="links-text" style={{ fontSize: "20px" }}>
+                        <Text type="a" href="/Login" className="links-text landingPage-link">
                             Try our free relation-questionnaire
                         </Text>
                     </div>
@@ -85,7 +83,7 @@ const LandingPage = () => {
                 <div className='sections-container'>
                     <section className='section-Landingpage'>
                         <Text type="h3" className='section-header'>Online questionnaire</Text>
-                        <Text className='P-overflow sections-text'>With our professional therapist
+                        <Text className='P-overflow sections-text  p-text'>With our professional therapist
                             we have put together a line-up of questions for you and your partner to answer. Based on your results we offer to help you in different ways. lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
                         <Button className='landingpage-button'>Learn more</Button>
                     </section>
@@ -97,7 +95,7 @@ const LandingPage = () => {
 
                     <section className='section-Landingpage'>
                         <Text type="h3" className='section-header'>Find your therapist</Text>
-                        <Text className='P-overflow sections-text'>With our database of therapists we lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna. Sed vitae quam massa. Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.</Text>
+                        <Text className='P-overflow sections-text  p-text'>With our database of therapists we lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna. Sed vitae quam massa. Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.</Text>
                         <Button className='landingpage-button'>Therapists</Button>
                     </section>
 
@@ -108,7 +106,7 @@ const LandingPage = () => {
 
                     <section className='section-Landingpage'>
                         <Text type="h3" className='section-header'>Recurring check-in</Text>
-                        <Text className='P-overflow sections-text'>Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.  Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.
+                        <Text className='P-overflow sections-text p-text'>Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.  Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.
                         </Text>
                         <Button className='landingpage-button'>How it works</Button>
                     </section>
@@ -125,7 +123,7 @@ const LandingPage = () => {
                     </div>
                     <div className='text-container' style={{ color: "#f9eee1" }}>
                         <Text type="h2" className='meet-our-expert'>Meet our expert</Text>
-                        <Text type="p" className=' meet-our-expert-text'>Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.
+                        <Text type="p" className='meet-our-expert-text p-text'>Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.
                             <br />
                             <br />
 

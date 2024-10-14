@@ -45,18 +45,18 @@ const Login = () => {
  */
       // GraphQL Login
       const response = await loginUser(email, password); // Call the GraphQL login service
-      console.log("GraphQL response:", response); // Log GraphQL response for debugging
+    /*   console.log("GraphQL response:", response); */ // Log GraphQL response for debugging
 
       if (response.success) {
         // If GraphQL login is successful, store the token
         localStorage.setItem("token", response.token);
-        console.log("Token stored in localStorage:", response.token); // Log the token to confirm it's stored
+       /*  console.log("Token stored in localStorage:", response.token); */ // Log the token to confirm it's stored
         
         // Navigate after successful login
         navigate("/startQuestionare/StartQuesPage");
       } else {
         setError("Login failed. Please try again.");
-        console.log("GraphQL login failed.");
+       /*  console.log("GraphQL login failed."); */
       }
 
     } catch (error) {
@@ -67,7 +67,7 @@ const Login = () => {
       } else */ {
         // GraphQL error handling
         setError("Failed to login user with GraphQL: " + error.message);
-        console.log("GraphQL login error:", error.message); // Log GraphQL error
+       /*  console.log("GraphQL login error:", error.message);  */// Log GraphQL error
       }
     } finally {
       setLoading(false); 
