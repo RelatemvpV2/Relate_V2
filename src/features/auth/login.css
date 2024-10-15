@@ -114,7 +114,7 @@
   background: #f9eee1;
   border-radius: 38px;
   border: 0.5px solid #41414e;
-  /* margin-right: 20px; */
+ 
   text-align: center;
   text-align-last: center;
 
@@ -248,13 +248,28 @@
   }
 
   .email-signup {
- 
   grid-template-rows: 1fr 1fr 3fr 1fr 1fr;
 }
 
-
 .social-login {
   grid-template-rows: 1fr;
+}
+.inputs-container{
+  flex-direction: column;
+}
+
+.gender-inputbox,.dateinputbox,.childinputbox {
+  width:300px;
+}
+.dateinputbox{
+  margin-right: 20px;
+  margin-bottom: 27px;
+}
+.inviteuser-inputbox {
+  width:300px;
+}
+.radiobut-container{
+  width:300px;
 }
 
 }
