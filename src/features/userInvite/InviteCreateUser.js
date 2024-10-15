@@ -46,6 +46,7 @@ const InviteCreateUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+     
     navigate("/startQuestionare/StartQuesPage");
     
    
@@ -98,7 +99,7 @@ const InviteCreateUser = () => {
               <form onSubmit={handleSubmit}>
                 {/*  Text component for labels */}
                 <Text type="label" htmlFor="firstName" className="labels">
-                  First Name
+                  First Name 
                 </Text>
                 <input
                   id="firstName"
@@ -107,10 +108,11 @@ const InviteCreateUser = () => {
                   className="inputboxes indent"
                   value={formData.firstName}
                   onChange={handleChange}
+                  required
                 />
 
                 <Text type="label" htmlFor="lastName" className="labels">
-                  Last Name
+                  Last Name 
                 </Text>
                 <input
                   id="lastName"
@@ -119,6 +121,7 @@ const InviteCreateUser = () => {
                   className="inputboxes indent"
                   value={formData.lastName}
                   onChange={handleChange}
+                  required
                 />
 
                 <div className="inputs-container">
