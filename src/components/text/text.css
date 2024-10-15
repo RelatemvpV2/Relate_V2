@@ -1,11 +1,11 @@
-.heading-container {
-  /*   width: 760px; */
+/* .heading-container {
+
   height: 42px;
   flex-shrink: 0;
 
   margin-bottom: 30px;
 }
-
+ */
 .heading-text {
   color: #f9eee1;
   font-style: normal;
@@ -127,7 +127,6 @@ h1 {
 
 .sub-containerheading {
   width: 47vw;
-  flex-shrink: 0;
 }
 
 .sub-containerheadingtext {
@@ -357,10 +356,16 @@ h3 {
 
 }
 
+.subcontainer-text{
+  width: 90%;
+  margin:auto;
+}
+
 @media only screen and (max-width: 768px) {
   .heading-container {
     margin-top: 8%;
     margin-left: 0%;
+    width:80%;
 
   }
 
@@ -369,18 +374,9 @@ h3 {
   }
 
   .description-container {
-    margin-top: 10%;
+    margin-top: 10px;
   }
-}
 
-@media screen and (max-width: 900px) {
-  .sub-containerheadingtext {
-    color: #41414e;
-    font-size: 36px;
-  }
-}
-
-@media screen and (max-width: 768px) {
   .heading-desc {
     font-size: 16px;
     font-weight: 400;
@@ -397,23 +393,34 @@ h3 {
   }
   .heading-container {
     margin-bottom: 10px;
+   
+  }
+  .sub-containerheading {
+    width: 70%;
+    margin: auto;
+  }
+  .sub-containerheadingtext {
+    font-size: 25px;
+  
   }
 
-  .policy-textcontainer {
-    display: flex;
-    width: 394px;
-    height: 14px;
-    margin-top: -200%;
-    padding:7%;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-bottom: 24px;
+  .policy-text {
+    width: 80%;
+    margin: auto;
   }
-  .social-policytext{
-    margin-top: -80%;
 
+  .text ,.subcontainer-text{
+    width: 90%;
+    margin:auto;
   }
   }
+
+  @media screen and (max-width: 900px) {
+    .sub-containerheadingtext {
+      font-size: 36px;
+    }
+   
+  }
+  
 
 

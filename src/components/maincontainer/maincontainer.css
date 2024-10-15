@@ -1,5 +1,5 @@
 .main-container {
-    background: #f9eee1;
+    background-color: #f9eee1;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -12,29 +12,14 @@
   width: 80%;
 }
 
-@media only screen and (max-width: 768px) {
-  .main-container {
-    width: 100%;
-    
-  }
-  }
 
-  @media only screen and (min-width: 768px) {
-    .main-container {
-      width: 100%;
-      
-    
-      
-    }
 
-  }
+
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .main-container {
     width: 100%;
-    
-    
     
   }
 
@@ -44,9 +29,6 @@
 @media only screen and (min-width: 1200px) {
   .main-container {
     width: 100%;
-
-    
-    
   }
 
 }
