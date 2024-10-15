@@ -206,7 +206,7 @@ const InviteCreateUser = () => {
               </Text>
             </div>
 
-            <div>
+            <div className="invitePartner-container">
               {/*  Text component for label */}
               <Text type="label" htmlFor="email" className="labels">
                 Email
