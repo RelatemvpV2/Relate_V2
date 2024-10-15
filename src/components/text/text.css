@@ -356,9 +356,11 @@ h3 {
 
 @media only screen and (max-width: 768px) {
   .heading-container {
-    margin-top: 8%;
-    margin-left: 0%;
+    margin-top: 18%;
+    /* margin-left: 0%; */
     width:80%;
+    margin:auto;
+    margin-bottom: 10px;
 
   }
 
@@ -384,10 +386,7 @@ h3 {
     line-height: 28px;
     text-align: center;
   }
-  .heading-container {
-    margin-bottom: 10px;
-   
-  }
+
   .sub-containerheading {
     width: 70%;
     margin: auto;
@@ -398,7 +397,7 @@ h3 {
   }
 
   .policy-text {
-    width: 80%;
+    width: 90%;
     margin: auto;
   }
 
@@ -406,6 +405,10 @@ h3 {
     width: 90%;
     margin:auto;
   }
+  .policy-textcontainer {
+    width: 90%;
+  }
+ 
   }
 
 
