@@ -239,6 +239,9 @@
   .social-button {
     width: 300px;
   }
+  .socialsignup-buttoncontainer {
+    height:auto;
+  }
 
   .svg-container {
     display: none;
@@ -248,11 +251,11 @@
   }
 
   .email-signup {
-  grid-template-rows: 1fr 1fr 3fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr auto 1fr 1fr;
 }
 
 .social-login {
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr 1fr auto 1fr 1fr;
 }
 .inputs-container{
   flex-direction: column;
