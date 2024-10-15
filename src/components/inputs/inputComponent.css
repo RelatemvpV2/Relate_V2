@@ -19,6 +19,17 @@
     line-height: 21px; /* 150% */
     letter-spacing: 0.28px;
   }
+  /* For Chrome, Edge, and Safari */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #f9eee1 inset !important; /* Keeps the input's background the same */
+  -webkit-text-fill-color: #41414e !important; /* Keeps the text color */
+}
+
+/* For Firefox */
+input:-moz-autofill {
+  box-shadow: 0 0 0 1000px #f9eee1 inset !important;
+  color: #41414e !important;
+}
 
 
   .inputboxes{
@@ -32,6 +43,19 @@
     border-radius: 38px;
     border: 0.5px solid #41414e;
   }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #f9eee1 inset !important; /* Keeps the input's original background color */
+    -webkit-text-fill-color:#41414e  !important; /* Sets the text color */
+}
+
+/* For Firefox */
+input:-moz-autofill {
+    box-shadow: 0 0 0 1000px #f9eee1 inset !important;
+    color:#41414e  !important;
+}
+ 
+
+
 
   .indent {
     text-indent: 20px; 

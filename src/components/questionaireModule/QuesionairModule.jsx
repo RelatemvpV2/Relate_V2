@@ -23,12 +23,17 @@ const QuesionairModule = () => {
       </Catagory>
       {/* Divider */}
       <div className="divider-horizantal"></div>
-
+      
       <Text type="p" className="text question-p">How well are your and your partner communicating today?</Text>
+      <div className='options-selection'>
       <Text type="p" className="text question-count" style={{ margin: 0 }}>Question 1 of 9</Text>
       <Text type="p" className="text select-score-p" style={{ margin: 0 }}>Please select score</Text>
       {/* options component */}
       <Options />
+
+      </div>
+
+      
 
       {/* Divider */}
       <div className="divider-horizantal"></div>

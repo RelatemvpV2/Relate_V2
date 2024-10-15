@@ -70,58 +70,51 @@ h1 {
 
 .my-relations {
   width: 198px;
-  height: 21px;
+  /* height: 21px; */
   flex-shrink: 0;
   color: #F9EEE1;
   text-align: center;
-  font-family: "Cormorant Garamond", serif;
-  /* Added serif fallback */
+  font-family: "Cormorant Garamond", serif; /* Added serif fallback */
   font-size: 27px;
   font-style: normal;
   font-weight: 700;
-  line-height: 21px;
-  /* 77.778% */
+  /* line-height: 21px;  */
 }
-
-.myrelations-text {
+.myrelations-text{
   width: 157px;
-  height: 21px;
-  flex-shrink: 0;
-  color: #F9EEE1;
-  text-align: center;
-  font-family: "Cormorant Garamond";
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 21px;
-  /* 116.667% */
-  text-decoration-line: underline;
+/* height: 21px; */
+flex-shrink: 0;
+color: #F9EEE1;
+text-align: center;
+font-family: "Cormorant Garamond";
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+/* line-height: 21px; */
+text-decoration-line: underline;
 }
-
-.newrelation-text {
+.newrelation-text{
   width: 157px;
-  height: 21px;
-  flex-shrink: 0;
-  color: #F9EEE1;
-  text-align: center;
-  font-family: "Cormorant Garamond";
-  font-size: 18px;
-  font-style: italic;
-  font-weight: 500;
-  line-height: 21px;
-  /* 116.667% */
+/* height: 21px; */
+flex-shrink: 0;
+color: #F9EEE1;
+text-align: center;
+font-family: "Cormorant Garamond";
+font-size: 18px;
+font-style: italic;
+font-weight: 500;
+/* line-height: 21px;  */
 }
-
-.therapist-text {
+.therapist-text{
   width: 198px;
   color: #F9EEE1;
-  text-align: center;
-  font-family: "Cormorant Garamond";
-  font-size: 27px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 21px;
-  /* 77.778% */
+text-align: center;
+font-family: "Cormorant Garamond";
+font-size: 27px;
+font-style: normal;
+font-weight: 500;
+margin-top: 15%;
+/* line-height: 21px;  */
 }
 
 
@@ -416,5 +409,5 @@ h3 {
   }
   }
 
-}
+
 
