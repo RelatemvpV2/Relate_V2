@@ -59,3 +59,16 @@
 .line-between-options {
     width: 3px;
 }
+.you-text{
+    position: absolute;
+    left: 700px;
+   
+    margin-top: 1% ;
+
+  
+    color: #C68977;
+    font-weight: bold;
+  
+  
+
+}
