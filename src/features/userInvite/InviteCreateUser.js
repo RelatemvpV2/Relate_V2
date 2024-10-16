@@ -14,7 +14,7 @@ import '../startQuestionare/StartQuesPage';
 import "../auth/login.css";
 import "./../../App.css";
 import "./userInvite.css";
-
+ 
 
 const InviteCreateUser = () => {
   const [formData, setFormData] = useState({
@@ -26,6 +26,7 @@ const InviteCreateUser = () => {
     partnerEmail: "",
     inviteLater: false, // Boolean to indicate whether to invite later
   });
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();  
 
   const handleChange = (e) => {
@@ -34,8 +35,13 @@ const InviteCreateUser = () => {
       ...formData,
       [name]: type === "checkbox" ? checked : value,
     });
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
   };
 
+ 
   const handleRadioChange = (e) => {
     const value = e.target.value === "true"; // Convert string to boolean for radio buttons
     setFormData({
@@ -43,15 +49,23 @@ const InviteCreateUser = () => {
       inviteLater: value, // Set inviteLater based on the selected radio option
     });
   };
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.firstName) newErrors.firstName = "First name is required";
+    if (!formData.lastName) newErrors.lastName = "Last name is required";
+    return newErrors;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-     
-    navigate("/startQuestionare/StartQuesPage");
-    
-   
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      // If no errors, navigate to the next page
+      navigate("/startQuestionare/StartQuesPage");
+    }
   };
-
   return (
 <MainContainer>
       <GreyBackground>
@@ -110,6 +124,7 @@ const InviteCreateUser = () => {
                   onChange={handleChange}
                   required
                 />
+                {errors.firstName && <Text type="p" style={{ color: "red" }}>{errors.firstName}</Text>}
 
                 <Text type="label" htmlFor="lastName" className="labels">
                   Last Name 
@@ -123,6 +138,7 @@ const InviteCreateUser = () => {
                   onChange={handleChange}
                   required
                 />
+                {errors.lastName && <Text type="p" style={{ color: "red" }}>{errors.lastName}</Text>}
 
                 <div className="inputs-container">
                   <div>
