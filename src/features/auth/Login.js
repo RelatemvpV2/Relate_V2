@@ -142,7 +142,7 @@ const Login = () => {
 
         <div className="dividercontainer">
           <div className="divider-Or">or</div>
-          <div className="svg-container">
+          <div className="svg-container hidden-xs">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="2"
