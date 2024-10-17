@@ -7,7 +7,7 @@
 .email-signup,
 .social-login {
   display: grid;
-  grid-template-rows: 1fr 1fr 5fr 1fr 1fr;
+ /*  grid-template-rows: 45px 45px auto 45px 45px; */
   height: max-content;
   align-items: center;
   justify-items: center;

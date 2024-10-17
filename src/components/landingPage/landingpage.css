@@ -26,15 +26,17 @@
 
 .nav-link,
 .dropdown-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;    
+    margin-top: 2%;
     font-family: 'raleway';
-    color: #F9EEE1 !important;
-    font-size: 18px;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 21px;
-    letter-spacing: 0.02em;
-    text-align: center;
-    background-color: #41414E;
-    text-decoration: none;
+    padding:0 40px 0 0;
 }
 
 .dropdown-menu {
