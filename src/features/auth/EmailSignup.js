@@ -8,7 +8,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth"; */
 import Button from "../../components/button/Button";
 import Text from "../../components/text/Text";
 import InputComponent from "../../components/inputs/InputComponent";
-import { registerUser } from "./authServices";
+
 //css
 import "./login.css";
 
@@ -87,28 +87,17 @@ const EmailSignup = ({ setLoading }) => {
     setLoading(true);
 
     try {
-
-      // After successful Firebase signup, proceed to GraphQL registration
-      const { success, responseData } = await registerUser(email, password); // Call the GraphQL registration service
-      // if the api call is success.
-      if (success) {
-        setMsg(responseData)
-       /*  console.log("User signed up successfully with GraphQL", responseData); */
+      // Firebase signup logic here
       
-        // Handle successful signup (e.g., redirect, store token, etc.) 
-      } else {
-        setError(responseData);
-        /* console.log("error:", responseData); */
-      }
+      // Handle successful signup (e.g., redirect, store token, etc.) 
+      
     } catch (error) {
-      // Check if the error is from GraphQL
-      // GraphQL error handling
-      setError("Failed to register user with GraphQL: " + error.message);
-    }
-    finally {
+      setError("Failed to sign up: " + error.message);
+    } finally {
       setLoading(false); // Stop loader
     }
-  };
+};
+
 
 
   useEffect(() => {
