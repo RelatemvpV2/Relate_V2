@@ -16,7 +16,7 @@ import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import InputComponent from "../../components/inputs/InputComponent";
-import { loginUser } from "./authServices";
+
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
 
@@ -42,37 +42,19 @@ const Login = () => {
      /*  // Firebase Authentication
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User signed in through Firebase");
- */
-      // GraphQL Login
-      const response = await loginUser(email, password); // Call the GraphQL login service
-    /*   console.log("GraphQL response:", response); */ // Log GraphQL response for debugging
+      */
 
-      if (response.success) {
-        // If GraphQL login is successful, store the token
-        localStorage.setItem("token", response.token);
-       /*  console.log("Token stored in localStorage:", response.token); */ // Log the token to confirm it's stored
-        
-        // Navigate after successful login
-        navigate("/startQuestionare/StartQuesPage");
-      } else {
-        setError("Login failed. Please try again.");
-       /*  console.log("GraphQL login failed."); */
-      }
+      // Navigate after successful login
+      navigate("/startQuestionare/StartQuesPage");
 
     } catch (error) {
-      if (error.code) /* {
-        // Firebase specific error handling
-        setError(error.message); // Firebase login error
-        console.log("Firebase login error:", error.message); // Log Firebase error
-      } else */ {
-        // GraphQL error handling
-        setError("Failed to login user with GraphQL: " + error.message);
-       /*  console.log("GraphQL login error:", error.message);  */// Log GraphQL error
-      }
+      setError("Failed to login user: " + error.message);
+      console.log("Login error:", error.message);  // Log generic login error
     } finally {
       setLoading(false); 
     }
-  };
+};
+
 
   return (
     <MainContainer>
