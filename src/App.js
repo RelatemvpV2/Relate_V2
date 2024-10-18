@@ -11,6 +11,7 @@ import Assessment from "./features/assessment/Assessment";
 import LandingPage from "./components/landingPage/LandingPage";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 import PopUpComponent from "./components/popUp/PopUpComponent";
+import Summary1stUser from "./components/summary/Summary1stUser";
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
         <Route path="/userInvite/InviteCreateUser" element={<InviteCreateUser />} />
         <Route path="/startQuestionare/StartQuesPage" element={<StartQuesPage />} />
         <Route path="/assessment/Assessment" element={<Assessment />} />
+        <Route path="/level1/yourSummary" element={<Summary1stUser/>} />
+
         
 
         {/* Define the route for Page not found */}
