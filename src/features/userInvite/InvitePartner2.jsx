@@ -16,7 +16,7 @@ const InvitePartner2 = () => {
             <div className="divider-horizantal"></div>
 
             <Text type="p" className="text questionaire-relation-review">Relation review</Text>
-            <Text type="p" className="text">Compared answers</Text>
+            <Text type="p" className="text" style={{fontSize:"40px"}}>Compared answers</Text>
 
 
             {/* Divider */}
