@@ -10,7 +10,7 @@ const InvitePartner2 = () => {
  
          <DashboardLayout>
             <Text type="h3" className='quesionaire-heading h3' >My relation with</Text>
-            <Text className='questionaire-partnerName '>James Samuelson</Text>
+            <Text className='questionaire-partnerName'><em>Waiting for relation</em></Text>
 
             {/* Divider */}
             <div className="divider-horizantal"></div>
@@ -26,20 +26,20 @@ const InvitePartner2 = () => {
             <div className="sub-containerheading">
                 {/*  Text component for h2 */}
                 <Text type="h2" className="sub-containereadingtext">
-                    Invite your partner
+                Waiting for relation to answer
                 </Text>
             </div>
 
             <div className="subcontainer-text">
                 {/*  Text component for p */}
-                <Text type="p" className="text">
+                <Text type="p" className="text" style={{lineHeight:"22px",maxWidth:"660px",margin:" 20px auto"}}>
                 To be able to help you in the best way, your partner will have to answer the same questionnaire. Please proceed by inviting your partner below
                 </Text>
             </div>
 
             <div className="invitePartner-container">
                 {/*  Text component for label */}
-                <Text type="label" htmlFor="email" className="labels">
+                <Text type="label" htmlFor="email" className="labels" style={{textAlign:"left"}}>
                     Email
                 </Text>
                 <input
@@ -47,7 +47,7 @@ const InvitePartner2 = () => {
                     type="email"
                     name="partnerEmail"
                     className="inviteuser-inputbox indent"
-                    value={"value"}
+                    value={"Your Partner's Email"}
                     onChange={()=>{}}
                     
                 />
