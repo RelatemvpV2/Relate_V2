@@ -12,6 +12,7 @@ import LandingPage from "./components/landingPage/LandingPage";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 import PopUpComponent from "./components/popUp/PopUpComponent";
 import Summary1stUser from "./components/summary/Summary1stUser";
+import InvitePartner2 from "./features/userInvite/InvitePartner2";
 
 
 function App() {
@@ -36,6 +37,8 @@ function App() {
         <Route path="/startQuestionare/StartQuesPage" element={<StartQuesPage />} />
         <Route path="/assessment/Assessment" element={<Assessment />} />
         <Route path="/level1/yourSummary" element={<Summary1stUser/>} />
+        <Route path="/level1/invitePartner2" element={<InvitePartner2/>} />
+
 
         
 
