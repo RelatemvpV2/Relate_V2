@@ -13,6 +13,7 @@ import PageNotFound from "./components/pageNotFound/PageNotFound";
 import PopUpComponent from "./components/popUp/PopUpComponent";
 import Summary1stUser from "./components/summary/Summary1stUser";
 import InvitePartner2 from "./features/userInvite/InvitePartner2";
+import WaitingForPartnerResonse1 from "./components/waiting/WaitingForPartnerResponse1";
 
 
 function App() {
@@ -38,9 +39,7 @@ function App() {
         <Route path="/assessment/Assessment" element={<Assessment />} />
         <Route path="/level1/yourSummary" element={<Summary1stUser/>} />
         <Route path="/level1/invitePartner2" element={<InvitePartner2/>} />
-
-
-        
+        <Route path="/level1/waitingParnerResponse" element={<WaitingForPartnerResonse1/>} />
 
         {/* Define the route for Page not found */}
         <Route
