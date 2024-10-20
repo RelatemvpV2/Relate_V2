@@ -1,4 +1,4 @@
-import { isEmpty, isNull } from "lodash";
+  import { isEmpty, isNull } from "lodash";
 
 export function isString(x) {
   return Object.prototype.toString.call(x) === "[object String]";

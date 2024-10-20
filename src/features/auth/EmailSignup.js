@@ -1,6 +1,7 @@
 // src/components/EmailSignup.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import registerUser from "../../utils/userApi";
 //firebase
 /* import { auth } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth"; */
@@ -87,8 +88,12 @@ const EmailSignup = ({ setLoading }) => {
     setLoading(true);
 
     try {
+      const response = await registerUser(email, password); // Call the API function
+      console.log('User registered successfully:', response);
+      setMsg("User registered successfully!"); // Set success message
+      navigate('/userInvite/InviteCreateUser'); // Redirect to a success page or dashboard
       // Firebase signup logic here
-      
+       
       // Handle successful signup (e.g., redirect, store token, etc.) 
       
     } catch (error) {

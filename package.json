@@ -1,7 +1,12 @@
 {
   "name": "relate",
   "version": "0.1.0",
-  "private": true,
+  
+"proxy": "https://h3fvm7vxdi.execute-api.eu-central-1.amazonaws.com",
+
+
+
+ "private": true,
   "dependencies": {
     "@apollo/client": "^3.11.7",
     "@fortawesome/fontawesome-free": "^6.6.0",
@@ -10,6 +15,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.7",
     "bootstrap": "^4.5.2",
     "firebase": "^10.13.1",
     "graphql": "^16.9.0",
