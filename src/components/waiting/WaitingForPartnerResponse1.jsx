@@ -20,7 +20,7 @@ const WaitingForPartnerResponse1 = () => {
                 <div className="divider-horizantal"></div>
 
                 <Text type="p" className="text questionaire-relation-review">Relation review</Text>
-                <Text type="p" className="Text ComparedAnswers" >Compared answers</Text>
+                <Text type="p" className="ComparedAnswers-Text" >Compared answers</Text>
 
 
                 {/* Divider */}
