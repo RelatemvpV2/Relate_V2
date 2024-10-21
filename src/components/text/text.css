@@ -419,6 +419,22 @@ h3 {
     }
    
   }
+
+  @media screen and (min-width:900px ) {
+    .heading-text {
+      height:42px;
+    }
+    }
+
+  @media screen and (min-width: 768px) and (max-width:900px ) {
+  .heading-text {
+    height:42px;
+    font-size: 36px;
+  }
+  .sub-containerheadingtext {
+    font-size: 32px;
+  }
+  }
   
 
 
