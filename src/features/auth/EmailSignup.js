@@ -33,7 +33,7 @@ const EmailSignup = ({ setLoading }) => {
 
     // At least one lowercase letter
     if (!/[a-z]/.test(password)) {
-      validationErrors.lowercase = 'Password must contain at least one lowercase letter.';
+      validationErrors.lowercase = 'Password must contain at least one lowercase letter.'
     }
 
     // At least one number
@@ -50,7 +50,6 @@ const EmailSignup = ({ setLoading }) => {
     if (password.length < 8) {
       validationErrors.length = 'Password must be at least 8 characters long.';
     }
-
     return validationErrors;
   };
 
@@ -62,19 +61,11 @@ const EmailSignup = ({ setLoading }) => {
     setErrors(validatePassword(newPassword));
   };
 
-  const handlePassword = (e) => {
-    e.preventDefault();
-
-    const validationErrors = validatePassword(password);
-    setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length === 0) {
-      alert('Password is valid!');
-    } else {
-      alert('Password is invalid!');
-    }
-  };
-
+  const clearInputFields = () => {
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  }
 
   const navigate = useNavigate();
 
@@ -82,23 +73,25 @@ const EmailSignup = ({ setLoading }) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
+      console.log("password do not match")
       setError("Passwords do not match");
+      
       return;
     }
+    
     setLoading(true);
 
     try {
       const response = await registerUser(email, password); // Call the API function
       console.log('User registered successfully:', response);
-      setMsg("User registered successfully!"); // Set success message
-      navigate('/userInvite/InviteCreateUser'); // Redirect to a success page or dashboard
-      // Firebase signup logic here
-       
-      // Handle successful signup (e.g., redirect, store token, etc.) 
-      
+      setMsg(response.data.message); // Set success message
+      navigate('/Login');
+     
     } catch (error) {
-      setError("Failed to sign up: " + error.message);
+      setError("Failed to sign up: " + error);
+      navigate('/Login');
     } finally {
+     
       setLoading(false); // Stop loader
     }
 };
@@ -106,7 +99,7 @@ const EmailSignup = ({ setLoading }) => {
 
 
   useEffect(() => {
-
+clearInputFields() 
   }, [error, msg])
 
 
@@ -167,16 +160,17 @@ const EmailSignup = ({ setLoading }) => {
             required
           />
           {msg && <Text style={{ color: "green" }}>{msg}</Text>}
+          
           {/* Display error message */}
           {error && <Text style={{ color: "red" }}>{error}</Text>}
 
-          <ul style={{ color: 'red' }}>
+         {/*  <ul style={{ color: 'red' }}>
             {errors.uppercase && <li>{errors.uppercase}</li>}
             {errors.lowercase && <li>{errors.lowercase}</li>}
             {errors.number && <li>{errors.number}</li>}
             {errors.specialChar && <li>{errors.specialChar}</li>}
             {errors.length && <li>{errors.length}</li>}
-          </ul>
+          </ul> */}
         </form>
       </div>
 
