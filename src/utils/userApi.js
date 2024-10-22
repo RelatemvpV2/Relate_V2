@@ -1,13 +1,35 @@
 import { callApi } from './api'; // Adjust the path as needed
 
-const registerUser = async (email, password) => {
+
+const userToken = window.localStorage.getItem("token");
+
+const setUserToken = (tokenName, tokenValue) => {
+  window.localStorage.setItem(tokenName, tokenValue);
+}
+
+export const deleteUserToken = (tokenName) => {
+  window.localStorage.removeItem(tokenName);
+}
+
+export const cachedUser = JSON.parse(window.localStorage.getItem("user"));
+
+export const setCachedUser = (key, value) => {
+  window.localStorage.setItem(key, JSON.stringify(value));
+}
+
+export const deleteCachedUser = (itemName) => {
+  window.localStorage.removeItem(itemName);
+}
+
+
+export const registerUser = async (email, password) => {
   const payload = {
     email: email,
     password: password,
     role: 'user', // Default role
   };
 
-  try {
+  try { 
     const response= await callApi(
       '/test/register',
       'POST', // Method
@@ -17,9 +39,30 @@ const registerUser = async (email, password) => {
 
  return response;
   } catch (error) {
-    console.error('Registration failed:', error.response.data.message);
+   // console.error('Registration failed:', error.response.data.message);
     throw error.response.data.message; // Propagate the error for further handling
   }
 };
 
-export default registerUser;
+export const LoginUser = async (email, password) => {
+  const payload = {
+    email: email,
+    password: password,
+    role: 'user', // Default role
+  };
+
+  try { 
+    const response= await callApi(
+      '/test/login',
+      'POST', // Method
+      
+      payload // Request body
+    );
+
+ return response;
+  } catch (error) {
+   // console.error('Login failed/email invalid:', error.response.data.message);
+    throw error.response.data.message; // Propagate the error for further handling
+  }
+};
+
