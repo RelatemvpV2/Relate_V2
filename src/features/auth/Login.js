@@ -63,7 +63,7 @@ const Login = () => {
       setCachedUser("token",response.data.token)
 
       // Navigate after successful login
-      navigate("/startQuestionare/StartQuesPage");
+      navigate("/userInvite/InviteCreateUser");
 
     } catch (error) {
       setError("Failed to login user try again: " + error);

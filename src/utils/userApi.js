@@ -29,17 +29,17 @@ export const registerUser = async (email, password) => {
     role: 'user', // Default role
   };
 
-  try { 
-    const response= await callApi(
+  try {
+    const response = await callApi(
       '/test/register',
       'POST', // Method
-      
+
       payload // Request body
     );
 
- return response;
+    return response;
   } catch (error) {
-   // console.error('Registration failed:', error.response.data.message);
+    // console.error('Registration failed:', error.response.data.message);
     throw error.response.data.message; // Propagate the error for further handling
   }
 };
@@ -51,17 +51,55 @@ export const LoginUser = async (email, password) => {
     role: 'user', // Default role
   };
 
-  try { 
-    const response= await callApi(
+  try {
+    const response = await callApi(
       '/test/login',
       'POST', // Method
-      
+
       payload // Request body
     );
 
- return response;
+    return response;
   } catch (error) {
-   // console.error('Login failed/email invalid:', error.response.data.message);
+    // console.error('Login failed/email invalid:', error.response.data.message);
+    throw error.response.data.message; // Propagate the error for further handling
+  }
+};
+
+export const forgotPasswordApiFunc = async (email) => {
+  const payload = {
+    email: email
+  };
+
+  try {
+    const response = await callApi(
+      '/test/forgot-password',
+      'POST', // Method
+      payload // Request body
+    );
+
+    return response;
+  } catch (error) {
+    // console.error('Login failed/email invalid:', error.response.data.message);
+    throw error.response.data.message; // Propagate the error for further handling
+  }
+};
+
+export const ResetPasswordAPIFunc = async (newPassword,resetToken) => {
+  const payload = {
+   "new_password":newPassword
+  };
+
+  try {
+    const response = await callApi(
+      `/test/reset-password?token=${resetToken}`,
+      'POST', // Method
+      payload // Request body
+    );
+
+    return response;
+  } catch (error) {
+    // console.error('Login failed/email invalid:', error.response.data.message);
     throw error.response.data.message; // Propagate the error for further handling
   }
 };
