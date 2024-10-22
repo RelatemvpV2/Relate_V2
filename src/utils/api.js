@@ -1,23 +1,23 @@
 import axios from 'axios'; // Import axios
 
 export const callApi = async (url, method = 'GET', body = null, headers = {}) => {
- /*  try { */
-    // Log the API request parameters
-    console.log('API Request:', { url, method, body, headers });
+  /*  try { */
+  // Log the API request parameters
+  //console.log('API Request:', { url, method, body, headers });
 
-    // Make the API call using Axios
-    const response = await axios({
-      method, // HTTP method
-      url, // The URL to send the request to
-      headers: {
-        'Content-Type': 'application/json', // Always set Content-Type to application/json
-        
-      },
-      data: body // Add the body to the request (for POST, PUT requests)
-    });
-console.log(response)
-    // Return the response data directly (Axios automatically parses JSON)
-    return response; 
+  // Make the API call using Axios
+  const response = await axios({
+    method, // HTTP method
+    url, // The URL to send the request to
+    headers: {
+      'Content-Type': 'application/json', // Always set Content-Type to application/json
+
+    },
+    data: body // Add the body to the request (for POST, PUT requests)
+  });
+
+  // Return the response data directly (Axios automatically parses JSON)
+  return response;
   /* } */ /* catch (error) {
     // Handle Axios specific errors
     if (error.response) {
@@ -34,6 +34,6 @@ console.log(response)
       console.error('Error setting up request:', error.message);
       throw error;
     } */
-   
-  
+
+
 };

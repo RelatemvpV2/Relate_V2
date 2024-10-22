@@ -1,10 +1,8 @@
 // src/components/EmailSignup.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import registerUser from "../../utils/userApi";
-//firebase
-/* import { auth } from "../../firebase/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth"; */
+import {registerUser} from "../../utils/userApi";
+
 //components
 import Button from "../../components/button/Button";
 import Text from "../../components/text/Text";
@@ -12,8 +10,6 @@ import InputComponent from "../../components/inputs/InputComponent";
 
 //css
 import "./login.css";
-
-
 
 const EmailSignup = ({ setLoading }) => {
   const [email, setEmail] = useState("");

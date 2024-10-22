@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../userInvite/InviteCreateUser';
 
-//firebase
-import { auth } from "../../firebase/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
 
 //navigation
 import { useNavigate } from "react-router-dom";
@@ -19,10 +16,12 @@ import InputComponent from "../../components/inputs/InputComponent";
 
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
+import { LoginUser, setCachedUser } from "../../utils/userApi";
+
 
 // Loader component
-import Loader from "../../components/loader/Loader"; 
- 
+import Loader from "../../components/loader/Loader";
+
 //css
 import "./login.css";
 import './../../App.css';
@@ -32,29 +31,39 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState("")
+
   const navigate = useNavigate();
+
+  const clearInputFields = () => {
+    setEmail("");
+    setPassword("");
+  }
+
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-     /*  // Firebase Authentication
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log("User signed in through Firebase");
-      */
+      const response = await LoginUser(email, password); // Call the API function
+      setCachedUser("token",response.data.token)
 
       // Navigate after successful login
       navigate("/startQuestionare/StartQuesPage");
 
     } catch (error) {
-      setError("Failed to login user: " + error.message);
-      console.log("Login error:", error.message);  // Log generic login error
+      setError("Failed to login user try again: " + error);
+      //console.log("Login error:", error);  // Log generic login error
     } finally {
-      setLoading(false); 
+      setLoading(false);//stop loader
     }
-};
+  };
 
+  useEffect(() => {
+    clearInputFields()
+  }, [error, msg])
 
   return (
     <MainContainer>
@@ -65,8 +74,8 @@ const Login = () => {
 
         <div className="login-container">
           {/* Show Loader when loading is true */}
-          
-          
+
+
           {/* Apply blur effect when loading */}
           <div className={loading ? "blurred-content" : ""}>
             <div className="heading-container">
@@ -112,14 +121,14 @@ const Login = () => {
           </div>
         </div>
       </GreyBackground>
-      
+
 
       <div className={loading ? "sub-container blurred-content" : "sub-container"}>
         <div className="left-container">
-          <EmailSignup setLoading={setLoading}  />
+          <EmailSignup setLoading={setLoading} />
         </div>
 
-     
+
 
 
         <div className="dividercontainer">
