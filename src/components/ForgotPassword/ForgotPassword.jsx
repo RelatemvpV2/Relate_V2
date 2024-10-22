@@ -27,6 +27,7 @@ const ForgotPassword = () => {
     const [msg, setMsg] = useState()
 
     const navigate = useNavigate();
+    const [touched, setTouched] = useState(false);
 
 
     const handleSubmit = async (e) => {
@@ -56,8 +57,16 @@ const ForgotPassword = () => {
             setError(error)
         } finally {
             setLoading(false); // Stop loader
+        setTouched(true);
+        if (email) {
+            // Perform the email sending logic here
+            setIsEmailSent(true);
         }
     }
+    const handleInputChange = (e) => {
+        setEmail(e.target.value);
+        setTouched(true); // Mark as touched when typing
+    };
 
 
     return (
@@ -98,7 +107,7 @@ const ForgotPassword = () => {
                                 <div className="logininputs-container">
                                     <form onSubmit={handleSubmit}>  {/* Changed from onClick to onSubmit */}
                                         <InputComponent
-                                            className="logininput-box"
+                                            className={`logininput-box ${touched && !email ? 'input-error' : ''}`}
                                             type="email"
                                             placeholder="Email"
                                             value={email}
@@ -129,7 +138,7 @@ const ForgotPassword = () => {
             </GreyBackground>
         </MainContainer>
 
-    )
+    )}
 }
 
-export default ForgotPassword
+export default ForgotPassword;

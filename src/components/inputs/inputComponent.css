@@ -63,6 +63,13 @@ input:-moz-autofill {
 .input-error {
   border: 2px solid rgb(201, 28, 28);
 }
+.error-asterisk {
+  color:rgb(201, 28, 28);;                /* Set the color of the asterisk */
+  margin-left: 5px;         /* Space between the label and asterisk */
+  font-size: 1.5rem;          /* Set the font size */
+  line-height: 1.2;         /* Adjust to match label line height */
+  vertical-align: middle;   /* Align vertically with the label */
+}
 
 
 

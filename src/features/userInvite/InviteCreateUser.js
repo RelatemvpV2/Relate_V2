@@ -31,7 +31,7 @@ const InviteCreateUser = () => {
     firstName: false,
     lastName: false,
     dob: false,
-    children: false,
+    
     gender: false,
     partnerEmail: false,
   });
@@ -73,7 +73,7 @@ const InviteCreateUser = () => {
     if (!formData.firstName) newErrors.firstName = true;
     if (!formData.lastName) newErrors.lastName = true;
     if (!formData.dob) newErrors.dob = true;
-    if (!formData.children) newErrors.children = true;
+    
     if (!formData.gender) newErrors.gender = true;
     if (!formData.inviteLater && (!formData.partnerEmail || !isValidEmail(formData.partnerEmail))) {
       newErrors.partnerEmail = true;
@@ -89,7 +89,7 @@ const InviteCreateUser = () => {
         firstName: true,
         lastName: true,
         dob: true,
-        children: true,
+        // children: true,
         gender: true,
         partnerEmail: !formData.inviteLater ? true : false,
       });
@@ -138,7 +138,7 @@ const InviteCreateUser = () => {
             <div className="user-inputscontainer">
               <form onSubmit={handleSubmit}>
                 <Text type="label" htmlFor="firstName" className="labels">
-                  First Name
+                  First Name{touched.firstName && !formData.firstName && <span className="error-asterisk">*</span>}
                 </Text>
                 <input
                   id="firstName"
@@ -152,7 +152,7 @@ const InviteCreateUser = () => {
                 />
 
                 <Text type="label" htmlFor="lastName" className="labels">
-                  Last Name
+                  Last Name{touched.lastName && !formData.lastName && <span className="error-asterisk">*</span>}
                 </Text>
                 <input
                   id="lastName"
@@ -168,7 +168,7 @@ const InviteCreateUser = () => {
                 <div className="inputs-container">
                   <div>
                     <Text type="label" htmlFor="dob" className="labels">
-                      Date of Birth
+                      Date of Birth{touched.dob && !formData.dob && <span className="error-asterisk">*</span>}
                     </Text>
                     <input
                       id="dob"
@@ -188,11 +188,11 @@ const InviteCreateUser = () => {
                     <select
                       id="children"
                       name="children"
-                      className={`childinputbox ${touched.children && !formData.children ? "input-error" : ""}`}
+                      className="childinputbox"
                       value={formData.children}
                       onChange={handleChange}
-                      onBlur={handleBlur}
-                      required
+               
+                      
                     >
                       <option value="">Please select</option>
                       <option value="none">None</option>
@@ -204,7 +204,7 @@ const InviteCreateUser = () => {
                 </div>
 
                 <Text type="label" htmlFor="gender" className="labels">
-                  Gender
+                  Gender{touched.gender && !formData.gender && <span className="error-asterisk">*</span>}
                 </Text>
                 <select
                   id="gender"
@@ -251,7 +251,7 @@ const InviteCreateUser = () => {
 
             <div className="invitePartner-container">
               <Text type="label" htmlFor="email" className="labels">
-                Email
+                Email{touched.partnerEmail && !formData.partnerEmail && <span className="error-asterisk">*</span>}
               </Text>
               <input
                 id="email"
