@@ -1,7 +1,7 @@
 import axios from 'axios'; // Import axios
 
 export const callApi = async (url, method = 'GET', body = null, headers = {}) => {
-  try {
+ /*  try { */
     // Log the API request parameters
     console.log('API Request:', { url, method, body, headers });
 
@@ -15,10 +15,10 @@ export const callApi = async (url, method = 'GET', body = null, headers = {}) =>
       },
       data: body // Add the body to the request (for POST, PUT requests)
     });
-
+console.log(response)
     // Return the response data directly (Axios automatically parses JSON)
-    return response.data; 
-  } catch (error) {
+    return response; 
+  /* } */ /* catch (error) {
     // Handle Axios specific errors
     if (error.response) {
       console.error('Error response data:', error.response.data); // Log response data
@@ -33,6 +33,7 @@ export const callApi = async (url, method = 'GET', body = null, headers = {}) =>
       // Something else happened while setting up the request
       console.error('Error setting up request:', error.message);
       throw error;
-    }
-  }
+    } */
+   
+  
 };
