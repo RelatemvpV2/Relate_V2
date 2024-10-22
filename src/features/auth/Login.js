@@ -30,6 +30,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("")
 
@@ -45,6 +47,16 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const emailValid = email.trim() !== "";
+    const passwordValid = password.trim() !== "";
+    setIsEmailValid(emailValid);
+    setIsPasswordValid(passwordValid);
+
+    // If either field is invalid, stop here
+    if (!emailValid || !passwordValid) {
+      setLoading(false);
+      return; // Prevent navigation if inputs are invalid
+    }
 
     try {
       const response = await LoginUser(email, password); // Call the API function
@@ -87,19 +99,25 @@ const Login = () => {
             <div className="logininputs-container">
               <form onSubmit={handleLogin}>  {/* Changed from onClick to onSubmit */}
                 <InputComponent
-                  className="logininput-box"
+                  className={`logininput-box ${!isEmailValid ? "input-error" : ""}`}
                   type="email"
                   placeholder="Email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setIsEmailValid(e.target.value.trim() !== ""); // Validate on change
+                  }}
                   required
                 />
                 <InputComponent
-                  className="logininput-box"
+                  className={`logininput-box ${!isPasswordValid ? "input-error" : ""}`}
                   type="password"
                   placeholder="Password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setIsPasswordValid(e.target.value.trim() !== ""); // Validate on change
+                  }}
                   required
                 />
 
