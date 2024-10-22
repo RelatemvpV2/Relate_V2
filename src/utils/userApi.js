@@ -8,18 +8,17 @@ const registerUser = async (email, password) => {
   };
 
   try {
-    const response = await callApi(
+    const response= await callApi(
       '/test/register',
       'POST', // Method
       
       payload // Request body
     );
-    
-    console.log('User registered successfully:', response);
-    return response;
+
+ return response;
   } catch (error) {
-    console.error('Registration failed:', error);
-    throw error; // Propagate the error for further handling
+    console.error('Registration failed:', error.response.data.message);
+    throw error.response.data.message; // Propagate the error for further handling
   }
 };
 

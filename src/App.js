@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 //Components
 import Login from "./features/auth/Login";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/ForgotPassword/ResetPassword";
 import Dashboard from "./components/dashboard/Dashboard";
 import InviteCreateUser from "./features/userInvite/InviteCreateUser";
 import StartQuesPage from "./features/startQuestionare/StartQuesPage";
@@ -23,23 +25,21 @@ function App() {
       <Routes>
 
         <Route path="/" element={<LandingPage />} />
-
         {/* Define the route for the login page */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword/>}/>
+        <Route path="/reset-password" element={<ResetPassword/>}/>
 
-        <Route path="/popup" element={<PopUpComponent/>}/>
-
-        <Route path="/dashboard" element={<Dashboard/>}/>
-
-
+        <Route path="/popup" element={<PopUpComponent />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         {/* Define the route for InviteCreateUser page */}
         <Route path="/userInvite/InviteCreateUser" element={<InviteCreateUser />} />
         <Route path="/startQuestionare/StartQuesPage" element={<StartQuesPage />} />
         <Route path="/assessment/Assessment" element={<Assessment />} />
-        <Route path="/level1/yourSummary" element={<Summary1stUser/>} />
-        <Route path="/level1/invitePartner2" element={<InvitePartner2/>} />
-        <Route path="/level1/waitingParnerResponse" element={<WaitingForPartnerResonse1/>} />
+        <Route path="/level1/yourSummary" element={<Summary1stUser />} />
+        <Route path="/level1/invitePartner2" element={<InvitePartner2 />} />
+        <Route path="/level1/waitingParnerResponse" element={<WaitingForPartnerResonse1 />} />
 
         {/* Define the route for Page not found */}
         <Route
