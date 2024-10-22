@@ -1,4 +1,9 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+
+//js
+import { forgotPasswordApiFunc } from "../../utils/userApi";
+//components
 import Navbar from '../Navbar/Navbar'
 import Text from '../text/Text'
 import GreyBackground from '../greybackground/Greybackground'
@@ -6,6 +11,8 @@ import MainContainer from '../maincontainer/Maincontainer'
 import InputComponent from '../inputs/InputComponent'
 import Button from '../button/Button'
 import RelateLogo from '../relatelogo/Relatelogo'
+
+
 
 import './forgotPassword.css'
 import { height } from '@fortawesome/free-brands-svg-icons/fa42Group'
@@ -17,10 +24,39 @@ const ForgotPassword = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
     const [isEmailSent, setIsEmailSent] = useState(false)
+    const [msg, setMsg] = useState()
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (email==="") {
+            setError("Please provide email ID");
+            return
+        }
+
         setIsEmailSent(true);
+        setLoading(true);
+       
+
+
+        try {
+            const response = await forgotPasswordApiFunc(email); // Call the API function
+            console.log('forgot pwd email sent:', response);
+            setMsg(response.data.message); // Set success message
+            setIsEmailSent(true)
+            navigate('/forgot-password');
+
+        } catch (error) {
+            setError("Failed to send email: " + error);
+            setIsEmailSent(false)
+            navigate('/forgot-password');
+            setError(error)
+        } finally {
+            setLoading(false); // Stop loader
+        }
     }
 
 
