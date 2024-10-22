@@ -1,20 +1,20 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-//Components
+// Components
 import Navbar from "../../components/Navbar/Navbar";
 import RelateLogo from "../../components/relatelogo/Relatelogo";
 import Button from "../../components/button/Button";
 import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
-import '../startQuestionare/StartQuesPage';
+import "../startQuestionare/StartQuesPage";
 
-//CSS
+// CSS
 import "../auth/login.css";
 import "./../../App.css";
 import "./userInvite.css";
- 
 
 const InviteCreateUser = () => {
   const [formData, setFormData] = useState({
@@ -26,8 +26,17 @@ const InviteCreateUser = () => {
     partnerEmail: "",
     inviteLater: false, // Boolean to indicate whether to invite later
   });
-  const [errors, setErrors] = useState({});
-  const navigate = useNavigate();  
+
+  const [touched, setTouched] = useState({
+    firstName: false,
+    lastName: false,
+    dob: false,
+    children: false,
+    gender: false,
+    partnerEmail: false,
+  });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -35,24 +44,40 @@ const InviteCreateUser = () => {
       ...formData,
       [name]: type === "checkbox" ? checked : value,
     });
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: "",
-    }));
   };
 
- 
-  const handleRadioChange = (e) => {
-    const value = e.target.value === "true"; // Convert string to boolean for radio buttons
-    setFormData({
-      ...formData,
-      inviteLater: value, // Set inviteLater based on the selected radio option
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched({
+      ...touched,
+      [name]: true,
     });
   };
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+
+  const handleRadioChange = (e) => {
+    const value = e.target.value === "true"; // Convert string to boolean for radio buttons
+    setFormData((prev) => ({
+      ...prev,
+      inviteLater: value, // Set inviteLater based on the selected radio option
+      partnerEmail: value ? "" : prev.partnerEmail, // Clear email if inviting later
+    }));
+    setTouched((prev) => ({ ...prev, partnerEmail: false })); // Reset email touched state
+  };
+
   const validate = () => {
     const newErrors = {};
-    if (!formData.firstName) newErrors.firstName = "First name is required";
-    if (!formData.lastName) newErrors.lastName = "Last name is required";
+    if (!formData.firstName) newErrors.firstName = true;
+    if (!formData.lastName) newErrors.lastName = true;
+    if (!formData.dob) newErrors.dob = true;
+    if (!formData.children) newErrors.children = true;
+    if (!formData.gender) newErrors.gender = true;
+    if (!formData.inviteLater && (!formData.partnerEmail || !isValidEmail(formData.partnerEmail))) {
+      newErrors.partnerEmail = true;
+    }
     return newErrors;
   };
 
@@ -60,18 +85,24 @@ const InviteCreateUser = () => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+      setTouched({
+        firstName: true,
+        lastName: true,
+        dob: true,
+        children: true,
+        gender: true,
+        partnerEmail: !formData.inviteLater ? true : false,
+      });
     } else {
-      // If no errors, navigate to the next page
       navigate("/startQuestionare/StartQuesPage");
     }
   };
+
   return (
-<MainContainer>
+    <MainContainer>
       <GreyBackground>
         <Navbar />
-
-        <RelateLogo className="relate-logo-large"/>
+        <RelateLogo className="relate-logo-large" />
 
         <div className="heading-container">
           <Text type="h3" className="heading-text">
@@ -80,18 +111,14 @@ const InviteCreateUser = () => {
         </div>
 
         <div className="description-container">
-          {/*  Text component for p */}
           <Text type="p" className="description-text">
-            An email has been sent to you please find it and confirm your identity.
-            
+            An email has been sent to you, please find it and confirm your identity.
             To improve the quality of our help, we kindly ask you to provide some information about yourself.
-            
             Next up, is to invite your partner to answer the survey questions.
           </Text>
         </div>
 
         <div className="links-textcontainer">
-          {/*  Text component for a */}
           <Text type="a" href="#" className="links-text">
             I did not receive an email
           </Text>
@@ -103,7 +130,6 @@ const InviteCreateUser = () => {
         <div className="left-container">
           <div className="profile-container">
             <div className="sub-containerheading">
-              {/*  Text component for h2 */}
               <Text type="h2" className="sub-containerheadingtext">
                 You
               </Text>
@@ -111,47 +137,48 @@ const InviteCreateUser = () => {
 
             <div className="user-inputscontainer">
               <form onSubmit={handleSubmit}>
-                {/*  Text component for labels */}
                 <Text type="label" htmlFor="firstName" className="labels">
-                  First Name 
+                  First Name
                 </Text>
                 <input
                   id="firstName"
                   type="text"
                   name="firstName"
-                  className="inputboxes indent"
+                  className={`inputboxes indent ${touched.firstName && !formData.firstName ? "input-error" : ""}`}
                   value={formData.firstName}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   required
                 />
-                {errors.firstName && <Text type="p" style={{ color: "red" }}>{errors.firstName}</Text>}
 
                 <Text type="label" htmlFor="lastName" className="labels">
-                  Last Name 
+                  Last Name
                 </Text>
                 <input
                   id="lastName"
                   type="text"
                   name="lastName"
-                  className="inputboxes indent"
+                  className={`inputboxes indent ${touched.lastName && !formData.lastName ? "input-error" : ""}`}
                   value={formData.lastName}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   required
                 />
-                {errors.lastName && <Text type="p" style={{ color: "red" }}>{errors.lastName}</Text>}
 
                 <div className="inputs-container">
                   <div>
-                    <Text type="label" htmlFor="dateofbirth" className="labels">
-                      Date of birth
+                    <Text type="label" htmlFor="dob" className="labels">
+                      Date of Birth
                     </Text>
                     <input
-                      id="dateofbirth"
+                      id="dob"
                       type="date"
                       name="dob"
-                      className="dateinputbox"
+                      className={`dateinputbox ${touched.dob && !formData.dob ? "input-error" : ""}`}
                       value={formData.dob}
                       onChange={handleChange}
+                      onBlur={handleBlur}
+                      required
                     />
                   </div>
                   <div>
@@ -161,9 +188,11 @@ const InviteCreateUser = () => {
                     <select
                       id="children"
                       name="children"
-                      className="childinputbox"
+                      className={`childinputbox ${touched.children && !formData.children ? "input-error" : ""}`}
                       value={formData.children}
                       onChange={handleChange}
+                      onBlur={handleBlur}
+                      required
                     >
                       <option value="">Please select</option>
                       <option value="none">None</option>
@@ -180,9 +209,11 @@ const InviteCreateUser = () => {
                 <select
                   id="gender"
                   name="gender"
-                  className="gender-inputbox"
+                  className={`gender-inputbox ${touched.gender && !formData.gender ? "input-error" : ""}`}
                   value={formData.gender}
                   onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
                 >
                   <option value="">Please select</option>
                   <option value="male">Male</option>
@@ -206,24 +237,19 @@ const InviteCreateUser = () => {
         <div className="right-container">
           <div className="invite-partner-container">
             <div className="sub-containerheading">
-              {/*  Text component for h2 */}
               <Text type="h2" className="sub-containerheadingtext">
                 Invite your partner
               </Text>
             </div>
 
             <div className="subcontainer-text">
-              {/*  Text component for p */}
               <Text type="p" className="text">
-                We will send an email to your partner, with the same 
-                questionnaire. Lorem ipsum dolor sit amet consectetur adipiscing  elit. Ut eget nulla in nibh
-                tempus bibendum non quis sapien. 
+                We will send an email to your partner with the same questionnaire. Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien.
                 Please type in your partner's email below.
               </Text>
             </div>
 
             <div className="invitePartner-container">
-              {/*  Text component for label */}
               <Text type="label" htmlFor="email" className="labels">
                 Email
               </Text>
@@ -231,7 +257,7 @@ const InviteCreateUser = () => {
                 id="email"
                 type="email"
                 name="partnerEmail"
-                className="inviteuser-inputbox indent"
+                className={`inviteuser-inputbox indent ${touched.partnerEmail && (!formData.partnerEmail || !isValidEmail(formData.partnerEmail)) ? "input-error" : ""}`}
                 value={formData.partnerEmail}
                 onChange={handleChange}
                 disabled={formData.inviteLater}
@@ -248,7 +274,6 @@ const InviteCreateUser = () => {
                   checked={formData.inviteLater}
                   onChange={handleRadioChange}
                 />
-                {/*  Text component for span */}
                 <Text type="span" className="radio-text">
                   I want to invite my partner later
                 </Text>
@@ -264,7 +289,6 @@ const InviteCreateUser = () => {
         </div>
       </div>
     </MainContainer>
-
   );
 };
 
