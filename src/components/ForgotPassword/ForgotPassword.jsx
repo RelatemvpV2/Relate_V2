@@ -17,11 +17,20 @@ const ForgotPassword = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
     const [isEmailSent, setIsEmailSent] = useState(false)
+    const [touched, setTouched] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIsEmailSent(true);
+        setTouched(true);
+        if (email) {
+            // Perform the email sending logic here
+            setIsEmailSent(true);
+        }
     }
+    const handleInputChange = (e) => {
+        setEmail(e.target.value);
+        setTouched(true); // Mark as touched when typing
+    };
 
 
     return (
@@ -62,7 +71,7 @@ const ForgotPassword = () => {
                                 <div className="logininputs-container">
                                     <form onSubmit={handleSubmit}>  {/* Changed from onClick to onSubmit */}
                                         <InputComponent
-                                            className="logininput-box"
+                                            className={`logininput-box ${touched && !email ? 'input-error' : ''}`}
                                             type="email"
                                             placeholder="Email"
                                             value={email}
