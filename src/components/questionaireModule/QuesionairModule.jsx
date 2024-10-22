@@ -18,7 +18,7 @@ const QuesionairModule = () => {
 
       <Text type="p" className="text questionaire-relation-review">Relation review</Text>
 
-      <Catagory>
+      <Catagory width={'80%'}>
         <p className='catagory-p'> Communication</p>
       </Catagory>
       {/* Divider */}

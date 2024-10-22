@@ -1,0 +1,27 @@
+.summary1CatagoryAlignment {
+    width: 400px;
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr;
+    align-items: center;
+    justify-self: center;
+    margin:10px auto;
+}
+
+.summary1CatagoryAlignment p {
+    margin: 0;
+}
+
+.summary-catagories-p {
+    color: #41414E;
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 150% */
+    letter-spacing: 0.32px;
+    margin: 30px auto 0;
+    width: 400px;
+    height: 25px;
+    text-align: left;
+}

@@ -54,6 +54,9 @@ input:-moz-autofill {
     color:#41414e  !important;
 }
  
+.input-error {
+  border: 2px solid rgb(201, 28, 28);
+}
 
 
 
