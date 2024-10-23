@@ -61,7 +61,7 @@ export const LoginUser = async (email, password) => {
 
     return response;
   } catch (error) {
-    // console.error('Login failed/email invalid:', error.response.data.message);
+    //console.error('Login failed/email invalid:', error.response.data.message);
     throw error.response.data.message; // Propagate the error for further handling
   }
 };
@@ -80,7 +80,7 @@ export const forgotPasswordApiFunc = async (email) => {
 
     return response;
   } catch (error) {
-    // console.error('Login failed/email invalid:', error.response.data.message);
+    console.error('email invalid:', error.response.data.message);
     throw error.response.data.message; // Propagate the error for further handling
   }
 };

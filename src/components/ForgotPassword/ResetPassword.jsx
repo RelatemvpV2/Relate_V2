@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams,useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 //js 
 import {ResetPasswordAPIFunc} from '../../utils/userApi'
@@ -16,29 +16,85 @@ import InputComponent from '../inputs/InputComponent'
 
 const ResetPassword = () => {
 
-  const [newPassword, setNewPassword] = useState()
-  const [newConfirmPassword, setNewConfirmPassword] = useState()
+  const [newPassword, setNewPassword] = useState("")
+  const [newConfirmPassword, setNewConfirmPassword] = useState("")
   const [msg,setMsg] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
+  const [errors, setErrors] = useState({})
 
   
-  let { token } = useParams()
   const navigate = useNavigate()
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const token = queryParams.get('token');
+
+
+  const validatePassword = (password) => {
+    const validationErrors = {};
+
+    // At least one uppercase letter
+    if (!/[A-Z]/.test(password)) {
+      validationErrors.uppercase = 'Password must contain at least one uppercase letter.';
+    }
+
+    // At least one lowercase letter
+    if (!/[a-z]/.test(password)) {
+      validationErrors.lowercase = 'Password must contain at least one lowercase letter.'
+    }
+
+    // At least one number
+    if (!/[0-9]/.test(password)) {
+      validationErrors.number = 'Password must contain at least one number.';
+    }
+
+    // At least one special character
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      validationErrors.specialChar = 'Password must contain at least one special character.';
+    }
+
+    // Minimum 8 characters
+    if (password.length < 8) {
+      validationErrors.length = 'Password must be at least 8 characters long.';
+    }
+    return validationErrors;
+  };
+
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setNewPassword(newPassword);
+
+    // Validate password on change
+    setErrors(validatePassword(newPassword));
+  };
+
+ /*  const clearInputFields = () => {
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  } */
+
 
 
 
   const handleSubmitNewPassword = async (e) => {
-
+    e.preventDefault();
     if (newPassword !== newConfirmPassword) {
       console.log("password do not match")
       setError("Passwords do not match");
       return;
     }
+    if(newPassword==="" || newConfirmPassword ===""){
+      setError("Please fill the fields with your new password")
+      return;
+    }
+
 
     setLoading(true);
 
     try {
+      console.log(token)
       const response = await ResetPasswordAPIFunc(newPassword,token); // Call the API function
       console.log('reset password', response);
       setMsg(response.data.message); // Set success message
@@ -46,7 +102,7 @@ const ResetPassword = () => {
 
     } catch (error) {
       setError("Failed to reset your password: " + error);
-      navigate('/forgot-password');
+      navigate(`/reset-password?token=${token}`);
       setError(error)
     } finally {
       setLoading(false); // Stop loader
@@ -79,7 +135,7 @@ const ResetPassword = () => {
                   type="password"
                   placeholder="New password (Must be 8 digits)"
                   value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  onChange={handlePasswordChange}
                   required
                 />
                 <InputComponent

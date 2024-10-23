@@ -33,16 +33,11 @@ const ForgotPassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (email==="") {
+        if (email === "") {
             setError("Please provide email ID");
             return
         }
-
-        setIsEmailSent(true);
         setLoading(true);
-       
-
-
         try {
             const response = await forgotPasswordApiFunc(email); // Call the API function
             console.log('forgot pwd email sent:', response);
@@ -52,15 +47,12 @@ const ForgotPassword = () => {
 
         } catch (error) {
             setError("Failed to send email: " + error);
-            setIsEmailSent(false)
+            setIsEmailSent(false) 
             navigate('/forgot-password');
             setError(error)
         } finally {
             setLoading(false); // Stop loader
-        setTouched(true);
-        if (email) {
-            // Perform the email sending logic here
-            setIsEmailSent(true);
+            setTouched(true);
         }
     }
     const handleInputChange = (e) => {
@@ -77,8 +69,8 @@ const ForgotPassword = () => {
                 {
                     isEmailSent ?
                         (<div className='resetEmailSentMsg'>
-                            <Text type='h2'>An email has been sent to</Text>
-                            <Text type='h3'>{email}</Text>
+                            <Text type='h2'>{msg}</Text>
+                            <Text type='h3'><em>{email}</em></Text>
 
                             <div>
                                 <span className='check-email'>
@@ -94,7 +86,6 @@ const ForgotPassword = () => {
 
                         /* on forgot password, requesting through email id */
                         : (
-
                             <div className="login-container" style={{ margin: "50px auto" }}>
                                 <div className={loading ? "blurred-content" : ""}>
 
@@ -128,17 +119,17 @@ const ForgotPassword = () => {
                                     </form>
 
                                 </div>
-                            </div>)
-
-
-
+                            </div>
+                        )
                 }
 
 
             </GreyBackground>
         </MainContainer>
 
-    )}
+    )
 }
+
+
 
 export default ForgotPassword;

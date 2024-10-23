@@ -16,8 +16,6 @@ import PopUpComponent from "./components/popUp/PopUpComponent";
 import Summary1stUser from "./components/summary/Summary1stUser";
 import InvitePartner2 from "./features/userInvite/InvitePartner2";
 import WaitingForPartnerResonse1 from "./components/waiting/WaitingForPartnerResponse1";
-
-
 function App() {
   return (
 
@@ -29,7 +27,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword/>}/>
-        <Route path="/reset-password" element={<ResetPassword/>}/>
+        <Route path={`/reset-password`} element={<ResetPassword/>}/>
 
         <Route path="/popup" element={<PopUpComponent />} />
         <Route path="/dashboard" element={<Dashboard />} />
