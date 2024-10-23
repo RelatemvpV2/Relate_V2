@@ -20,8 +20,28 @@ const EmailSignup = ({ setLoading }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [isInputValid, setIsInputValid] = useState(true);
   const [errors, setErrors] = useState({});
   const [msg, setMsg] = useState("")
+  const [submitted, setSubmitted] = useState(false);
+
+
+
+  const validateInput = () => {
+    // Check if the fields are filled and passwords match
+    const isValid = email.trim() !== "" && password.trim() !== "" && confirmPassword.trim() !== "" && password === confirmPassword;
+    setIsInputValid(isValid);
+    return isValid;
+  };
+
+  const handleInputChange = (field, value) => {
+    if (field === "email") setEmail(value);
+    if (field === "password") setPassword(value);
+    if (field === "confirmPassword") setConfirmPassword(value);
+    
+    // Validate input on change
+    validateInput();
+  };
 
   const validatePassword = (password) => {
     const validationErrors = {};
@@ -71,6 +91,8 @@ const EmailSignup = ({ setLoading }) => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setSubmitted(true);
+    if (!validateInput()) return;
 
     if (password !== confirmPassword) {
       console.log("password do not match")
@@ -125,38 +147,42 @@ clearInputFields()
         <form onSubmit={handleSignup}>
           {/*  Text component for labels */}
           <Text type="label" htmlFor="email" className="labels">
-            Email
+            Email{submitted && email.trim() === "" && <span className="error-asterisk">*</span>}
+            
+
           </Text>
           <InputComponent
             id="email"
-            className="inputboxes indent"
+            className={`inputboxes indent ${!isInputValid && email.trim() === "" ? "input-error" : ""}`}
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => handleInputChange("email", e.target.value)}
             required
           />
 
           <Text type="label" htmlFor="password" className="labels">
-            Create password. Must be 8 digits
+            Create password. Must be 8 digits{submitted && password.trim() === "" && <span className="error-asterisk">*</span>}
           </Text>
           <InputComponent
             id="password"
-            className="inputboxes indent"
+            className={`inputboxes indent ${!isInputValid && password.trim() === "" ? "input-error" : ""}`}
+           
             type="password"
             value={password}
-            onChange={handlePasswordChange}
+            onChange={(e) => handleInputChange("password", e.target.value)}
             required
           />
 
           <Text type="label" htmlFor="confirmPassword" className="labels">
-            Confirm password
+            Confirm password{submitted && confirmPassword.trim() === "" && <span className="error-asterisk">*</span>}
           </Text>
           <InputComponent
             id="confirmPassword"
-            className="inputboxes indent"
+            className={`inputboxes indent ${!isInputValid && confirmPassword.trim() === "" ? "input-error" : ""}`}
+            
             type="password"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
             required
           />
           {msg && <Text style={{ color: "green" }}>{msg}</Text>}
