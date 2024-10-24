@@ -98,7 +98,6 @@ const ResetPassword = () => {
       const response = await ResetPasswordAPIFunc(newPassword,token); // Call the API function
       console.log('reset password', response);
       setMsg(response.data.message); // Set success message
-      navigate('/Login');
 
     } catch (error) {
       setError("Failed to reset your password: " + error);
@@ -152,6 +151,10 @@ const ResetPassword = () => {
                     Save and Login
                   </Button>
                 </div>
+                {msg && <>
+                <Text style={{color:'green'}}>{msg}</Text>
+                <a href="/Login">go to Login</a>
+                </>}
                 {/* Display error message */}
                 {error && <Text style={{ color: "red", marginBottom: 0 }}>{error}</Text>}
               </form>
