@@ -81,17 +81,6 @@ import './option.css';
 // export default Options    
 
 
-
-
-
-
-
-
-
-
-
-
-
 const Options = () => {
     const [isScoreSelected, setIsScoreSelected] = useState(false);
     const [optionActiveId, setOptionActiveId] = useState(null);
