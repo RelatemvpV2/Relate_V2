@@ -131,7 +131,7 @@ const Login = () => {
               </form>
 
               <div className="links-textcontainer">
-                <Text type="a" href="/forgot-password" className="links-text">
+                <Text type="a" href="/forgot-password" className="links-text darkBgStyles">
                   I forgot my password
                 </Text>
               </div>

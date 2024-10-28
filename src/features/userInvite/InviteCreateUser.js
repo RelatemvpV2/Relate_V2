@@ -119,7 +119,7 @@ const InviteCreateUser = () => {
         </div>
 
         <div className="links-textcontainer">
-          <Text type="a" href="#" className="links-text">
+          <Text type="a" href="#" className="links-text darkBgStyles">
             I did not receive an email
           </Text>
         </div>
