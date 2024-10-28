@@ -61,7 +61,12 @@
 .rating-item.selected {
     background-color: #C68977;
     /* soft pinkish-brown for selected */
-    transform: scale(1.3);
+    transform: scale(1.1);
+    /* slightly larger when selected */
+}
+
+.rating-item.selected::before , .rating-item.selected::after{
+    transform: scale(.9);
     /* slightly larger when selected */
 }
 
@@ -73,7 +78,7 @@
     left: 28%;
     color: #C68977;
     /* soft pinkish-brown */
-    font-size: 1em;
+    font-size: .9em;
 }
 
 .rating-item.rating-label-not-good::after {
@@ -81,7 +86,10 @@
     content: 'Not good';
     position: absolute;
     top: 40px;
-    left: -100%;
+    left: -28%;
+    font-size: .9em;
+    width:max-content;
+
 }
 
 .rating-item.rating-label-very-good::after {
@@ -89,7 +97,9 @@
     content: 'Very good';
     position: absolute;
     top: 40px;
-    left: -95%;
+    left: -32%;
+    font-size: .9em;
+    width:max-content;
 }
 
 
@@ -111,6 +121,7 @@
         position: absolute;
         top: 0px;
         left: -220%;
+        font-size: .9em;
     }
 
     .rating-item.rating-label-very-good::after {
@@ -119,6 +130,7 @@
         position: absolute;
         top: 0px;
         left: -240%;
+        font-size: .9em;
     }
 
     /* Add the "You" label above the selected rating item */
@@ -129,7 +141,7 @@
         left: 135%;
         color: #C68977;
         /* soft pinkish-brown */
-        font-size: 1em;
+        font-size: .9em;
     }
 
 
