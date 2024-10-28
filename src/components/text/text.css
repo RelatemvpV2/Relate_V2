@@ -68,6 +68,14 @@ h1 {
   text-decoration-line: underline;
 }
 
+.links-text:hover{
+  color:rgb(65, 65, 78,0.6)
+}
+
+.links-text:active{
+ color:#41414E
+}
+
 .my-relations {
   width: 198px;
   /* height: 21px; */
