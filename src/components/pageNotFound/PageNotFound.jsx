@@ -2,34 +2,28 @@ import React from 'react'
 
 import Text from '../text/Text'
 import RelateLogo from '../relatelogo/Relatelogo'
+import MainContainer from '../maincontainer/Maincontainer'
+import GreyBackground from '../greybackground/Greybackground'
 
 const PageNotFound = () => {
-    return (
-        <div style={{
-            display: "flex",
-            justifyContent: "center",
-            fontSize: "40px",
-            flexDirection: "column",
-            width: "40%",
-            alignItems: "center",
-            color: "#41414E",
-            margin: "auto",
-            padding: "100px"
-        }}>
-            <RelateLogo className="relate-logo-tiny" />
-            {/*  <div className="links-textcontainer">
-                Text component for the link */}
-                {/*  <Text type="a" href="/rlte.io" className="links-text" style={{ fontSize: "20px" }}>
-                            relate.io
-                        </Text>
-                    </div> */}
-               
-                <Text type="h4"> 404 Error </Text>
-                <Text type="p">Uh oh. It ooks like that page you were looking for isn't here.</Text>
-                <span style={{fontSize:"30px"}}>&#128542;</span>
+    return <MainContainer style={{height:"100vh", position: "relative" }}>
+        <GreyBackground  style={{ position: 'fixed', top: 0,padding:"100px 0 " }}>
+        <RelateLogo className="relate-logo-large" />
+        <div className="heading-container">
+          <Text type="h3" className="heading-text">
+          Sorry, this page isn’t available
+          </Text>
+        </div>
 
-            </div>
-            )
+        <div className="description-container">
+          <Text type="p" className="description-text">
+          The link you followed may be broken, or the page may have been removed.
+          <a href="https://master.d2o54gcqu88iq5.amplifyapp.com/"> Go to front page</a>
+          </Text>
+        </div>
+        </GreyBackground>
+    </MainContainer>
+       
 }
 
-            export default PageNotFound;
+export default PageNotFound;
