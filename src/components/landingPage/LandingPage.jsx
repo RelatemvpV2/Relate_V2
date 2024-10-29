@@ -91,8 +91,6 @@ const LandingPage = () => {
                     {/* Divider */}
                     <div className="divider"></div>
 
-
-
                     <section className='section-Landingpage'>
                         <Text type="h3" className='section-header'>Find your therapist</Text>
                         <Text className='P-overflow sections-text  p-text'>With our database of therapists we lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna. Sed vitae quam massa. Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.</Text>
@@ -102,7 +100,6 @@ const LandingPage = () => {
 
                     {/* Divider */}
                     <div className="divider"></div>
-
 
                     <section className='section-Landingpage'>
                         <Text type="h3" className='section-header'>Recurring check-in</Text>

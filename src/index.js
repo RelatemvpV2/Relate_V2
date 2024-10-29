@@ -2,18 +2,18 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import ReactDOM from 'react-dom/client';
-import { ApolloProvider } from '@apollo/client';
+
 import './index.css';
-import client from './graphql/apolloClient'; 
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
+   
       <App />
-    </ApolloProvider>
+    
   </React.StrictMode>
 );
 

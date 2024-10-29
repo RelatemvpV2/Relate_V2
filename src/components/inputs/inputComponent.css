@@ -1,84 +1,96 @@
 .logininput-box {
-    width: 400px;
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 40px;
-    background: #f9eee1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 16px;
-    border-style: none;
-    text-align: center;
-    color: #41414e;
-    text-align: center;
-    font-family: Raleway;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 21px; /* 150% */
-    letter-spacing: 0.28px;
-  }
+  width: 400px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: #f9eee1;
+ /*  display: flex;
+  justify-content: center;
+  align-items: center; */
+  margin-bottom: 16px;
+  border-style: none;
+  color: #41414e;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  /* 150% */
+  letter-spacing: 0.28px;
+}
+
+/* For Chrome, Edge, and Safari */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #f9eee1 inset !important;
+  /* Keeps the input's background the same */
+  -webkit-text-fill-color: #41414e !important;
+  /* Keeps the text color */
+}
+
+/* For Firefox */
+input:-moz-autofill {
+  box-shadow: 0 0 0 1000px #f9eee1 inset !important;
+  color: #41414e !important;
+}
 
 
-  .inputboxes{
-    display: flex;
-    background: #f9eee1;
-    flex-direction: column;
-    width: 400px;
-    margin-bottom: 27px;
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 38px;
-    border: 0.5px solid #41414e;
+.inputboxes {
+  display: flex;
+  background: #f9eee1;
+  flex-direction: column;
+  width: 400px;
+  margin-bottom: 27px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 38px;
+  border: 0.5px solid #41414e;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #f9eee1 inset !important;
+  /* Keeps the input's original background color */
+  -webkit-text-fill-color: #41414e !important;
+  /* Sets the text color */
+}
+
+/* For Firefox */
+input:-moz-autofill {
+  box-shadow: 0 0 0 1000px #f9eee1 inset !important;
+  color: #41414e !important;
+}
+
+.input-error {
+  border: 2px solid rgb(201, 28, 28);
+}
+.error-asterisk {
+  color:rgb(201, 28, 28);;                /* Set the color of the asterisk */
+  margin-left: 5px;         /* Space between the label and asterisk */
+  font-size: 1.5rem;          /* Set the font size */
+  line-height: 1.2;         /* Adjust to match label line height */
+  vertical-align: middle;   /* Align vertically with the label */
+}
+
+
+
+.indent {
+  text-indent: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .inputboxes {
+    width: 300px;
   }
 
   .indent {
-    text-indent: 20px; 
-  }
-  @media only screen and (max-width: 768px) {
-    .inputboxes{
-      display: flex;
-      background: #f9eee1;
-      flex-direction: column;
-      width: 350px;
-      margin-bottom: 27px;
-      height: 40px;
-      flex-shrink: 0;
-      border-radius: 38px;
-      border: 0.5px solid #41414e;
-    }
-  
-    .indent {
-      text-indent: 20px; 
-    }
-    .logininput-box {
-      width: 350px;
-      height: 40px;
-      flex-shrink: 0;
-      border-radius: 40px;
-      background: #f9eee1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 16px;
-      border-style: none;
-      text-align: center;
-      color: #41414e;
-      text-align: center;
-      font-family: Raleway;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 21px; /* 150% */
-      letter-spacing: 0.28px;
-    }
- .inputscontainer{
-  margin-top: -100%;
- }
-
-    
-    
+    text-indent: 20px;
   }
 
-  
+  .logininput-box {
+    width: 300px;
+
+
+  }
+
+
+}

@@ -1,26 +1,43 @@
 // src/components/EmailSignup.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-//firebase
-/* import { auth } from "../../firebase/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth"; */
+import {registerUser} from "../../utils/userApi";
+
 //components
 import Button from "../../components/button/Button";
 import Text from "../../components/text/Text";
 import InputComponent from "../../components/inputs/InputComponent";
-import { registerUser } from "./authServices";
+
 //css
 import "./login.css";
-
-
 
 const EmailSignup = ({ setLoading }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [isInputValid, setIsInputValid] = useState(true);
   const [errors, setErrors] = useState({});
   const [msg, setMsg] = useState("")
+  const [submitted, setSubmitted] = useState(false);
+
+
+
+  const validateInput = () => {
+    // Check if the fields are filled and passwords match
+    const isValid = email.trim() !== "" && password.trim() !== "" && confirmPassword.trim() !== "" && password === confirmPassword;
+    setIsInputValid(isValid);
+    return isValid;
+  };
+
+  const handleInputChange = (field, value) => {
+    if (field === "email") setEmail(value);
+    if (field === "password") setPassword(value);
+    if (field === "confirmPassword") setConfirmPassword(value);
+    
+    // Validate input on change
+    validateInput();
+  };
 
   const validatePassword = (password) => {
     const validationErrors = {};
@@ -32,7 +49,7 @@ const EmailSignup = ({ setLoading }) => {
 
     // At least one lowercase letter
     if (!/[a-z]/.test(password)) {
-      validationErrors.lowercase = 'Password must contain at least one lowercase letter.';
+      validationErrors.lowercase = 'Password must contain at least one lowercase letter.'
     }
 
     // At least one number
@@ -49,7 +66,6 @@ const EmailSignup = ({ setLoading }) => {
     if (password.length < 8) {
       validationErrors.length = 'Password must be at least 8 characters long.';
     }
-
     return validationErrors;
   };
 
@@ -61,58 +77,47 @@ const EmailSignup = ({ setLoading }) => {
     setErrors(validatePassword(newPassword));
   };
 
-  const handlePassword = (e) => {
-    e.preventDefault();
-
-    const validationErrors = validatePassword(password);
-    setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length === 0) {
-      alert('Password is valid!');
-    } else {
-      alert('Password is invalid!');
-    }
-  };
-
+  const clearInputFields = () => {
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  }
 
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setSubmitted(true);
+    if (!validateInput()) return;
 
     if (password !== confirmPassword) {
+      console.log("password do not match")
       setError("Passwords do not match");
+      
       return;
     }
+    
     setLoading(true);
 
     try {
-
-      // After successful Firebase signup, proceed to GraphQL registration
-      const { success, responseData } = await registerUser(email, password); // Call the GraphQL registration service
-      // if the api call is success.
-      if (success) {
-        setMsg(responseData)
-       /*  console.log("User signed up successfully with GraphQL", responseData); */
-      
-        // Handle successful signup (e.g., redirect, store token, etc.) 
-      } else {
-        setError(responseData);
-        /* console.log("error:", responseData); */
-      }
+      const response = await registerUser(email, password); // Call the API function
+      console.log('User registered successfully:', response);
+      setMsg(response.data.message); // Set success message
+      navigate('/Login');
+     
     } catch (error) {
-      // Check if the error is from GraphQL
-      // GraphQL error handling
-      setError("Failed to register user with GraphQL: " + error.message);
-    }
-    finally {
+      setError("Failed to sign up: " + error);
+      navigate('/Login');
+    } finally {
+     
       setLoading(false); // Stop loader
     }
-  };
+};
+
 
 
   useEffect(() => {
-
+clearInputFields() 
   }, [error, msg])
 
 
@@ -138,51 +143,56 @@ const EmailSignup = ({ setLoading }) => {
         <form onSubmit={handleSignup}>
           {/*  Text component for labels */}
           <Text type="label" htmlFor="email" className="labels">
-            Email
+            Email{submitted && email.trim() === "" && <span className="error-asterisk">*</span>}
+            
+
           </Text>
           <InputComponent
             id="email"
-            className="inputboxes indent"
+            className={`inputboxes indent ${!isInputValid && email.trim() === "" ? "input-error" : ""}`}
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => handleInputChange("email", e.target.value)}
             required
           />
 
           <Text type="label" htmlFor="password" className="labels">
-            Create password. Must be 8 digits
+            Create password. Must be 8 digits{submitted && password.trim() === "" && <span className="error-asterisk">*</span>}
           </Text>
           <InputComponent
             id="password"
-            className="inputboxes indent"
+            className={`inputboxes indent ${!isInputValid && password.trim() === "" ? "input-error" : ""}`}
+           
             type="password"
             value={password}
-            onChange={handlePasswordChange}
+            onChange={(e) => handleInputChange("password", e.target.value)}
             required
           />
 
           <Text type="label" htmlFor="confirmPassword" className="labels">
-            Confirm password
+            Confirm password{submitted && confirmPassword.trim() === "" && <span className="error-asterisk">*</span>}
           </Text>
           <InputComponent
             id="confirmPassword"
-            className="inputboxes indent"
+            className={`inputboxes indent ${!isInputValid && confirmPassword.trim() === "" ? "input-error" : ""}`}
+            
             type="password"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
             required
           />
           {msg && <Text style={{ color: "green" }}>{msg}</Text>}
+          
           {/* Display error message */}
           {error && <Text style={{ color: "red" }}>{error}</Text>}
 
-          <ul style={{ color: 'red' }}>
+         {/*  <ul style={{ color: 'red' }}>
             {errors.uppercase && <li>{errors.uppercase}</li>}
             {errors.lowercase && <li>{errors.lowercase}</li>}
             {errors.number && <li>{errors.number}</li>}
             {errors.specialChar && <li>{errors.specialChar}</li>}
             {errors.length && <li>{errors.length}</li>}
-          </ul>
+          </ul> */}
         </form>
       </div>
 

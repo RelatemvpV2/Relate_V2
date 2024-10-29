@@ -1,9 +1,10 @@
 import React from 'react'
 
-import Options from '../optionComponent/Options'
+// import Options from '../optionComponent/Options'
 import Text from '../text/Text'
 import Catagory from '../catagory/Catagory'
 import Button from '../button/Button'
+import Rating from '../rating/Rating'
 
 import './quesionairModule.css'
 
@@ -18,17 +19,22 @@ const QuesionairModule = () => {
 
       <Text type="p" className="text questionaire-relation-review">Relation review</Text>
 
-      <Catagory>
+      <Catagory width={'80%'}>
         <p className='catagory-p'> Communication</p>
       </Catagory>
       {/* Divider */}
       <div className="divider-horizantal"></div>
 
       <Text type="p" className="text question-p">How well are your and your partner communicating today?</Text>
-      <Text type="p" className="text question-count" style={{ margin: 0 }}>Question 1 of 9</Text>
-      <Text type="p" className="text select-score-p" style={{ margin: 0 }}>Please select score</Text>
-      {/* options component */}
-      <Options />
+      <div className='options-selection'>
+        <Text type="p" className="text question-count" style={{ margin: 0 }}>Question 1 of 9</Text>
+        <Text type="p" className="text select-score-p" style={{ margin: 0 }}>Please select score</Text>
+
+        {/* rating */}
+        
+        <Rating />
+      </div>
+
 
       {/* Divider */}
       <div className="divider-horizantal"></div>
@@ -40,7 +46,6 @@ const QuesionairModule = () => {
           Go back
         </Text>
       </div>
-
     </div>
   )
 }

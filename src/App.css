@@ -1,5 +1,16 @@
 
 
+html{
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+html::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+  width:0;
+  height:0;
+}
+
 .sub-container {
   display: flex;
   justify-content: center;
@@ -21,18 +32,7 @@
 }
 @media only screen and (max-width: 768px) {
   .sub-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
-    /* margin-top: 4%; */
+  flex-direction: column;
   }
-  .dividercontainer {
-    visibility: hidden;
-
-  }
-  
-  
 }
 
