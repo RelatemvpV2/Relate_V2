@@ -13,8 +13,8 @@ import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import InputComponent from "../../components/inputs/InputComponent";
-
 import EmailSignup from "./EmailSignup";
+
 import SocialLogin from "./SocialLogin";
 import { LoginUser, setUserToken } from "../../utils/userApi";
 
@@ -120,6 +120,7 @@ const Login = () => {
                   }}
                   required
                 />
+               
 
                 <div className="loginpage-buttoncontainer">
                   <Button className="loginpage-button" type="submit">
@@ -135,8 +136,15 @@ const Login = () => {
                   I forgot my password
                 </Text>
               </div>
+
+            <div className="links-textcontainer">
+              {/*  Text component for the link */}
+              <Text type="a" href="/forgot-password" className="links-text">
+                I forgot my password
+              </Text>
             </div>
           </div>
+        </div>
         </div>
       </GreyBackground>
 
@@ -171,5 +179,6 @@ const Login = () => {
     </MainContainer>
   );
 };
+
 
 export default Login;
