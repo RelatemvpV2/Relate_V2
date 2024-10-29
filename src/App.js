@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 //Components
 import Login from "./features/auth/Login";
-import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
-import ResetPassword from "./components/ForgotPassword/ResetPassword";
+import ForgotPassword from "./components/forgotPassword/ForgotPassword";
+import ResetPassword from "./components/forgotPassword/ResetPassword";
 import Dashboard from "./components/dashboard/Dashboard";
 import InviteCreateUser from "./features/userInvite/InviteCreateUser";
 import StartQuesPage from "./features/startQuestionare/StartQuesPage";
@@ -12,7 +12,6 @@ import LanguageSwitcher from "./components/LanguageSwitcher";
 import Assessment from "./features/assessment/Assessment";
 import LandingPage from "./components/landingPage/LandingPage";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
-import ForgotPassword from "./components/forgotPassword/ForgotPassword"
 import PopUpComponent from "./components/popUp/PopUpComponent";
 import Summary1stUser from "./components/summary/Summary1stUser";
 import InvitePartner2 from "./features/userInvite/InvitePartner2";
@@ -33,7 +32,6 @@ function App() {
         <Route path="/popup" element={<PopUpComponent />} />
         <Route path="/dashboard" element={<Dashboard />} />
         {/* Define the route for InviteCreateUser page */}
-        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/userInvite/InviteCreateUser" element={<InviteCreateUser />} />
         <Route path="/startQuestionare/StartQuesPage" element={<StartQuesPage />} />
         <Route path="/assessment/Assessment" element={<Assessment />} />
