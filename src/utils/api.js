@@ -1,6 +1,8 @@
 import axios from 'axios'; // Import axios
 
-export const callApi = async (url, method = 'GET', body = null, headers = {}) => {
+export const callApi = async (url, method = 'GET', body = null, headers = {
+  'Content-Type': 'application/json', // Always set Content-Type to application/json
+}) => {
   /*  try { */
   // Log the API request parameters
   //console.log('API Request:', { url, method, body, headers });
@@ -9,10 +11,7 @@ export const callApi = async (url, method = 'GET', body = null, headers = {}) =>
   const response = await axios({
     method, // HTTP method
     url, // The URL to send the request to
-    headers: {
-      'Content-Type': 'application/json', // Always set Content-Type to application/json
-
-    },
+    headers: headers,
     data: body // Add the body to the request (for POST, PUT requests)
   });
 

@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { userToken,UpdateUserProfile } from "../../utils/userApi.js"
 
 // Components
 import Navbar from "../../components/Navbar/Navbar";
@@ -17,13 +18,18 @@ import "./../../App.css";
 import "./userInvite.css";
 
 const InviteCreateUser = () => {
+
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState()
+  const [latestAge,setLatestAge] = useState(0)
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    dob: "",
-    children: "",
-    gender: "",
-    partnerEmail: "",
+    full_name: "",
+    age: 0,
+    gender:"",
+    date_of_birth: "",
+    partner_email: "",
+    number_of_children:0,
+
     inviteLater: false, // Boolean to indicate whether to invite later
   });
 
@@ -31,15 +37,29 @@ const InviteCreateUser = () => {
     firstName: false,
     lastName: false,
     dob: false,
-    
     gender: false,
     partnerEmail: false,
   });
 
+
   const navigate = useNavigate();
+
+  const calculateAge = (dob1) => {
+    var today = new Date();
+    var birthDate = new Date(dob1);  // create a date object directly from `dob1` argument
+    var age_now = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age_now--;
+    }
+    console.log(age_now);
+    return age_now;
+  }
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
     setFormData({
       ...formData,
       [name]: type === "checkbox" ? checked : value,
@@ -73,7 +93,7 @@ const InviteCreateUser = () => {
     if (!formData.firstName) newErrors.firstName = true;
     if (!formData.lastName) newErrors.lastName = true;
     if (!formData.dob) newErrors.dob = true;
-    
+
     if (!formData.gender) newErrors.gender = true;
     if (!formData.inviteLater && (!formData.partnerEmail || !isValidEmail(formData.partnerEmail))) {
       newErrors.partnerEmail = true;
@@ -81,8 +101,29 @@ const InviteCreateUser = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload = {
+      full_name: `${formData.firstName} ${formData.lastName}`,
+      date_of_birth: formData.dob,
+      gender: formData.gender,
+      number_of_children:  formData.children,
+      age: calculateAge(formData.dob),
+      nationality: "",
+      languages_spoken: "",
+      location: "",
+      anniversary_date: "1999-12-12",/* should remove 'required' from Backend */
+      interests: "",
+      hobbies: "", 
+      channel: "",
+      created_at: new Date()
+    }
+
+    if (formData.partnerEmail !== "")
+      payload["partner_email"] = formData.partnerEmail
+
+    console.log("payload:", payload)
+
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setTouched({
@@ -93,11 +134,26 @@ const InviteCreateUser = () => {
         gender: true,
         partnerEmail: !formData.inviteLater ? true : false,
       });
-    } else {
+      return;
+    }
+    setLoading(true);
+
+    try {
+      const response = await UpdateUserProfile(payload); // Call the API function
+      // console.log("profile updated successfully", response)
+      // start questionaire page with partner email.
       navigate("/startQuestionare/StartQuesPage");
+
+    } catch (error) {
+      setError("Failed to login user try again: " + error);
+      //console.log("Login error:", error);  // Log generic login error
+    } finally {
+      setLoading(false);//stop loader
     }
   };
 
+
+  
   return (
     <MainContainer>
       <GreyBackground>
@@ -145,7 +201,7 @@ const InviteCreateUser = () => {
                   type="text"
                   name="firstName"
                   className={`inputboxes indent ${touched.firstName && !formData.firstName ? "input-error" : ""}`}
-                  value={formData.firstName}
+                  value={formData.firstName || ''}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   required
@@ -159,7 +215,7 @@ const InviteCreateUser = () => {
                   type="text"
                   name="lastName"
                   className={`inputboxes indent ${touched.lastName && !formData.lastName ? "input-error" : ""}`}
-                  value={formData.lastName}
+                  value={formData.lastName || ''}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   required
@@ -175,7 +231,7 @@ const InviteCreateUser = () => {
                       type="date"
                       name="dob"
                       className={`dateinputbox ${touched.dob && !formData.dob ? "input-error" : ""}`}
-                      value={formData.dob}
+                      value={formData.dob || ''}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
@@ -191,8 +247,6 @@ const InviteCreateUser = () => {
                       className="childinputbox"
                       value={formData.children}
                       onChange={handleChange}
-               
-                      
                     >
                       <option value="">Please select</option>
                       <option value="none">None</option>
@@ -258,7 +312,7 @@ const InviteCreateUser = () => {
                 type="email"
                 name="partnerEmail"
                 className={`inviteuser-inputbox indent ${touched.partnerEmail && (!formData.partnerEmail || !isValidEmail(formData.partnerEmail)) ? "input-error" : ""}`}
-                value={formData.partnerEmail}
+                value={formData.partnerEmail || ''}
                 onChange={handleChange}
                 disabled={formData.inviteLater}
               />
