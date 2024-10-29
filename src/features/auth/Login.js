@@ -16,7 +16,7 @@ import InputComponent from "../../components/inputs/InputComponent";
 
 import EmailSignup from "./EmailSignup";
 import SocialLogin from "./SocialLogin";
-import { LoginUser, setCachedUser } from "../../utils/userApi";
+import { LoginUser, setUserToken } from "../../utils/userApi";
 
 
 // Loader component
@@ -60,7 +60,7 @@ const Login = () => {
 
     try {
       const response = await LoginUser(email, password); // Call the API function
-      setCachedUser("token",response.data.token)
+      setUserToken("token",response.data.token)
 
       // Navigate after successful login
       navigate("/userInvite/InviteCreateUser");
