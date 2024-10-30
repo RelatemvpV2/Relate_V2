@@ -105,9 +105,10 @@ export const ResetPasswordAPIFunc = async (newPassword, resetToken) => {
 
 export const UpdateUserProfile = async (formData) => {
   const payload = formData;
+ const token = window.localStorage.getItem('token')
 
-  if (!userToken) {
-    throw new Error("Invalid Login")
+  if (!token) {
+        throw new Error("Invalid Login")
   }
 
   try {
@@ -117,7 +118,7 @@ export const UpdateUserProfile = async (formData) => {
       payload, // Request body
       {
         'Content-Type': 'application/json', // Always set Content-Type to application/json
-        'Authorization': `Bearer ${userToken}`
+        'Authorization': `Bearer ${token}`
       }
     );
 
@@ -127,4 +128,6 @@ export const UpdateUserProfile = async (formData) => {
     throw error.response.data.message; // Propagate the error for further handling
   }
 };
+
+
 
