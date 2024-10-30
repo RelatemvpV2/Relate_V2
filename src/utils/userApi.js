@@ -54,7 +54,6 @@ export const LoginUser = async (email, password) => {
     const response = await callApi(
       '/test/login',
       'POST', // Method
-
       payload // Request body
     );
 
@@ -105,10 +104,10 @@ export const ResetPasswordAPIFunc = async (newPassword, resetToken) => {
 
 export const UpdateUserProfile = async (formData) => {
   const payload = formData;
- const token = window.localStorage.getItem('token')
+  const token = window.localStorage.getItem('token')
 
   if (!token) {
-        throw new Error("Invalid Login")
+    throw new Error("Invalid Login")
   }
 
   try {
@@ -125,6 +124,34 @@ export const UpdateUserProfile = async (formData) => {
     return response;
   } catch (error) {
     // console.error('Login failed/email invalid:', error.response.data.message);
+    throw error.response.data.message; // Propagate the error for further handling
+  }
+};
+
+export const getPartner = async () => {
+
+  const token = window.localStorage.getItem('token')
+
+  if (!token) {
+    throw new Error("Invalid Login")
+  }
+  console.log(":get partner")
+
+  try {
+    const response = await callApi(
+      `/test/get-partner-email`,
+      "GET",
+      null,
+      {
+        'Content-Type': 'application/json', // Always set Content-Type to application/json
+        'Authorization': `Bearer ${token}`
+      }
+    );
+    console.log(response, ":get partner")
+    return response;
+  } catch (error) {
+
+    console.error('error in get partner:', error.response.data.message);
     throw error.response.data.message; // Propagate the error for further handling
   }
 };

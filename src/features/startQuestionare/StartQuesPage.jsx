@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
-import '../assessment/Assessment';
+import React, { useState, useEffect } from 'react';
+/* import '../assessment/Assessment'; */
 import { useNavigate } from 'react-router-dom';
+
+//components
 import MainContainer from '../../components/maincontainer/Maincontainer';
 import GreyBackground from '../../components/greybackground/Greybackground';
 import Navbar from '../../components/Navbar/Navbar';
-
 import RelateLogo from '../../components/relatelogo/Relatelogo';
 import Text from '../../components/text/Text';
 import Button from '../../components/button/Button';
 
+//js
+import { getPartner } from "../../utils/userApi";
+
+//css
+import './startQuesPage.css'
+
 
 const StartQuesPage = () => {
 
-  const [isPartnerInvited, setIsPartnerInvited] = useState(true);
+  const [partnerEmail, setPartnerEmail] = useState("");
   
   //get email of the partner and display
 
@@ -21,6 +28,28 @@ const StartQuesPage = () => {
   const handleGetStarted = () => {
     navigate('/assessment/Assessment'); // Step 3 - Update the path to your Assessment page route
   };
+  const getPartnerEmail = async () => {
+    try{
+      const response = await getPartner();
+      console.log('get partner: ',response)
+      console.log(response.data[0]["partner_email"])
+      setPartnerEmail(response.data[0]['partner_email'])
+
+    }
+    catch(error){
+      console.log("error in getting partner",error)
+    }
+    finally{
+
+    }
+
+  }
+
+  useEffect(()=>{
+   getPartnerEmail();
+  },[])
+
+
   return (
     <MainContainer style={{paddingBottom:"30vh"}}>
       <GreyBackground >
@@ -37,15 +66,22 @@ const StartQuesPage = () => {
             answers will help us guide you in the best way.
           </Text>
         </div>
-
-       {isPartnerInvited && <div className='description-container'>
+        <div className='invite-partner-remainder'>
+       {partnerEmail ?<>
           <Text type="p" className="description-text" style={{marginBottom:0}}>
             An invitation has been sent to:
           </Text>
           <Text type="p" className="username-text">
-            firstnamelastname@mail.com
+            {partnerEmail}
           </Text>
-        </div>}
+          </>
+          :
+          <Text className="description-text">– so do not forget to invite your partner later. </Text>
+        
+        }
+        </div>
+        
+       
 
 
 
