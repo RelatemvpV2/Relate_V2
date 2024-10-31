@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '../userInvite/InviteCreateUser';
 
-
 //navigation
 import { useNavigate } from "react-router-dom";
 
@@ -75,7 +74,12 @@ const Login = () => {
 
   useEffect(() => {
     clearInputFields()
+    
   }, [error, msg])
+
+  useEffect(()=>{
+    window.localStorage.setItem("token","")
+  })
 
   return (
     <MainContainer>
@@ -137,12 +141,6 @@ const Login = () => {
                 </Text>
               </div>
 
-            <div className="links-textcontainer">
-              {/*  Text component for the link */}
-              <Text type="a" href="/forgot-password" className="links-text">
-                I forgot my password
-              </Text>
-            </div>
           </div>
         </div>
         </div>
@@ -153,9 +151,6 @@ const Login = () => {
         <div className="left-container">
           <EmailSignup setLoading={setLoading} />
         </div>
-
-
-
 
         <div className="dividercontainer">
           <div className="divider-Or">or</div>
