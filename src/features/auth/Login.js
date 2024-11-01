@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useRef, useEffect } from 'react';
+import { createPopper } from '@popperjs/core';
 import '../userInvite/InviteCreateUser';
 
 //navigation
@@ -24,6 +26,7 @@ import Loader from "../../components/loader/Loader";
 //css
 import "./login.css";
 import './../../App.css';
+import PopUpComponent from "../../components/popUp/PopUpComponent";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -34,14 +37,25 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("")
 
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const buttonRef = useRef(null);
+  const dialogRef = useRef(null);
+
   const navigate = useNavigate();
 
   const clearInputFields = () => {
     setEmail("");
     setPassword("");
   }
+  const toggleDialog = () => {
+    setDialogOpen(!isDialogOpen);
 
-
+    if (!isDialogOpen && buttonRef.current && dialogRef.current) {
+      createPopper(buttonRef.current, dialogRef.current, {
+        placement: 'bottom',
+      });
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -59,13 +73,14 @@ const Login = () => {
 
     try {
       const response = await LoginUser(email, password); // Call the API function
-      setUserToken("token",response.data.token)
+      setUserToken("token", response.data.token)
 
       // Navigate after successful login
       navigate("/userInvite/InviteCreateUser");
 
     } catch (error) {
-      setError("Failed to login user try again: " + error);
+      toggleDialog()
+      setError(/* "Failed to login user try again: " + */ error);
       //console.log("Login error:", error);  // Log generic login error
     } finally {
       setLoading(false);//stop loader
@@ -74,11 +89,11 @@ const Login = () => {
 
   useEffect(() => {
     clearInputFields()
-    
+
   }, [error, msg])
 
-  useEffect(()=>{
-    window.localStorage.setItem("token","")
+  useEffect(() => {
+    window.localStorage.setItem("token", "")
   })
 
   return (
@@ -86,14 +101,14 @@ const Login = () => {
       <GreyBackground>
         <Navbar />
         <RelateLogo className="relate-logo-large" />
+
+        {/* Show Loader when loading is true */}
         {loading && <Loader />}
 
         <div className="login-container">
-          {/* Show Loader when loading is true */}
-
 
           {/* Apply blur effect when loading */}
-          <div className={loading ? "blurred-content" : ""}>
+          <div className={loading || isDialogOpen ? "blurred-content" : ""}>
             <div className="heading-container">
               <Text type="h3" className="heading-text">
                 I have an account
@@ -124,7 +139,7 @@ const Login = () => {
                   }}
                   required
                 />
-               
+
 
                 <div className="loginpage-buttoncontainer">
                   <Button className="loginpage-button" type="submit">
@@ -132,7 +147,7 @@ const Login = () => {
                   </Button>
                 </div>
                 {/* Display error message */}
-                {error && <Text style={{ color: "red", marginBottom: 0 }}>{error}</Text>}
+                {/*  {error && <Text style={{ color: "red", marginBottom: 0 }}>{error}</Text>} */}
               </form>
 
               <div className="links-textcontainer">
@@ -141,15 +156,17 @@ const Login = () => {
                 </Text>
               </div>
 
+            </div>
           </div>
         </div>
-        </div>
       </GreyBackground>
+      {isDialogOpen && <PopUpComponent buttonRef={buttonRef} dialogRef={dialogRef} text={msg} error={error} toggleDialog={toggleDialog} />}
 
 
-      <div className={loading ? "sub-container blurred-content" : "sub-container"}>
+      <div className={loading || isDialogOpen ? "sub-container blurred-content" : "sub-container"}>
         <div className="left-container">
-          <EmailSignup setLoading={setLoading} />
+          <EmailSignup setLoading={setLoading}
+            toggleDialog={toggleDialog} msg={msg} setMsg={setMsg} error={error} setError={setError} />
         </div>
 
         <div className="dividercontainer">

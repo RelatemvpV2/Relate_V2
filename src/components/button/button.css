@@ -61,5 +61,22 @@
   color: #fff;
 }
 
+.popup-0k-btn {
+margin:auto;
+width: 114.156px;
+height: 40px;
+border-radius: 40px;
+border: 0.5px solid #41414E;
+background-color: unset;
+color: #41414E;
+text-align: center;
+font-family: Raleway;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 21px; /* 175% */
+letter-spacing: 0.24px;
+}
+
 
 @media only screen and (max-width: 768px) {}
