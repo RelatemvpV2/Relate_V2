@@ -1,17 +1,14 @@
 {
   "name": "relate",
   "version": "0.1.0",
-  
-"proxy": "https://h3fvm7vxdi.execute-api.eu-central-1.amazonaws.com",
-
-
-
- "private": true,
+  "proxy": "https://h3fvm7vxdi.execute-api.eu-central-1.amazonaws.com",
+  "private": true,
   "dependencies": {
     "@apollo/client": "^3.11.7",
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@popperjs/core": "^2.11.8",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

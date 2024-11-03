@@ -1,31 +1,32 @@
 // src/components/EmailSignup.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {registerUser} from "../../utils/userApi";
+import { registerUser } from "../../utils/userApi";
 
 //components
 import Button from "../../components/button/Button";
 import Text from "../../components/text/Text";
 import InputComponent from "../../components/inputs/InputComponent";
 
+import PopUpComponent from "../../components/popUp/PopUpComponent";
+
 //css
 import "./login.css";
 
-const EmailSignup = ({ setLoading }) => {
+const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+  /* const [error, setError] = useState(""); */
   const [isInputValid, setIsInputValid] = useState(true);
   const [errors, setErrors] = useState({});
-  const [msg, setMsg] = useState("")
+  /*  const [msg, setMsg] = useState("") */
   const [submitted, setSubmitted] = useState(false);
-
 
 
   const validateInput = () => {
     // Check if the fields are filled and passwords match
-    const isValid = email.trim() !== "" && password.trim() !== "" && confirmPassword.trim() !== "" && password === confirmPassword;
+    const isValid = email.trim() !== "" && password.trim() !== "" && confirmPassword.trim() !== "";
     setIsInputValid(isValid);
     return isValid;
   };
@@ -34,7 +35,7 @@ const EmailSignup = ({ setLoading }) => {
     if (field === "email") setEmail(value);
     if (field === "password") setPassword(value);
     if (field === "confirmPassword") setConfirmPassword(value);
-    
+
     // Validate input on change
     validateInput();
   };
@@ -88,36 +89,43 @@ const EmailSignup = ({ setLoading }) => {
   const handleSignup = async (e) => {
     e.preventDefault();
     setSubmitted(true);
-    if (!validateInput()) return;
 
+    console.log('sign up')
+    if (!validateInput()){
+      setError("Invalid input");
+      toggleDialog();
+      return;
+}
     if (password !== confirmPassword) {
       console.log("password do not match")
       setError("Passwords do not match");
-      
+      toggleDialog();
       return;
     }
-    
+
     setLoading(true);
 
     try {
       const response = await registerUser(email, password); // Call the API function
       console.log('User registered successfully:', response);
+      toggleDialog();
       setMsg(response.data.message); // Set success message
       navigate('/Login');
-     
+
     } catch (error) {
       setError("Failed to sign up: " + error);
+      toggleDialog();
       navigate('/Login');
     } finally {
-     
+
       setLoading(false); // Stop loader
     }
-};
+  };
 
 
 
   useEffect(() => {
-clearInputFields() 
+    clearInputFields()
   }, [error, msg])
 
 
@@ -144,7 +152,7 @@ clearInputFields()
           {/*  Text component for labels */}
           <Text type="label" htmlFor="email" className="labels">
             Email{submitted && email.trim() === "" && <span className="error-asterisk">*</span>}
-            
+
 
           </Text>
           <InputComponent
@@ -162,7 +170,7 @@ clearInputFields()
           <InputComponent
             id="password"
             className={`inputboxes indent ${!isInputValid && password.trim() === "" ? "input-error" : ""}`}
-           
+
             type="password"
             value={password}
             onChange={(e) => handleInputChange("password", e.target.value)}
@@ -175,43 +183,33 @@ clearInputFields()
           <InputComponent
             id="confirmPassword"
             className={`inputboxes indent ${!isInputValid && confirmPassword.trim() === "" ? "input-error" : ""}`}
-            
+
             type="password"
             value={confirmPassword}
             onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
             required
           />
-          {msg && <Text style={{ color: "green" }}>{msg}</Text>}
-          
-          {/* Display error message */}
-          {error && <Text style={{ color: "red" }}>{error}</Text>}
 
-         {/*  <ul style={{ color: 'red' }}>
-            {errors.uppercase && <li>{errors.uppercase}</li>}
-            {errors.lowercase && <li>{errors.lowercase}</li>}
-            {errors.number && <li>{errors.number}</li>}
-            {errors.specialChar && <li>{errors.specialChar}</li>}
-            {errors.length && <li>{errors.length}</li>}
-          </ul> */}
+
+
+          <div className="policy-textcontainer">
+            {/* component for policy paragraph */}
+            <Text type="p" className="policy-text">
+              By clicking ‘Create user’ you accept our{" "}
+              <span className="legal-info">terms and conditions.</span> Learn how we
+              use your data in our{" "}
+              <span className="legal-info">privacy policy</span> and{" "}
+              <span className="legal-info">cookie policy</span>.
+            </Text>
+          </div>
+
+          <div className="loginpage-buttoncontainer create-user">
+
+            <Button className="loginpage-button" type="submit">
+              Create user
+            </Button>
+          </div>
         </form>
-      </div>
-
-      <div className="policy-textcontainer">
-        {/* component for policy paragraph */}
-        <Text type="p" className="policy-text">
-          By clicking ‘Create user’ you accept our{" "}
-          <span className="legal-info">terms and conditions.</span> Learn how we
-          use your data in our{" "}
-          <span className="legal-info">privacy policy</span> and{" "}
-          <span className="legal-info">cookie policy</span>.
-        </Text>
-      </div>
-
-      <div className="loginpage-buttoncontainer create-user">
-
-        <Button className="loginpage-button" type="submit" onClick={handleSignup}>
-          Create user
-        </Button>
       </div>
     </div>
   );
