@@ -68,69 +68,74 @@ h1 {
   text-decoration-line: underline;
 }
 
-.links-text:hover{
-  color:rgb(65, 65, 78,0.6)
+.links-text:hover {
+  color: rgb(65, 65, 78, 0.6)
 }
 
 
-.links-text:active{
- color:#41414E
+.links-text:active {
+  color: #41414E
 }
 
-.darkBgStyles:hover{
+.darkBgStyles:hover {
   Color: #F9EEE1
 }
 
-.darkBgStyles:active{
+.darkBgStyles:active {
   Color: #696F7D
 }
+
 .my-relations {
   width: 198px;
   /* height: 21px; */
   flex-shrink: 0;
   color: #F9EEE1;
   text-align: center;
-  font-family: "Cormorant Garamond", serif; /* Added serif fallback */
+  font-family: "Cormorant Garamond", serif;
+  /* Added serif fallback */
   font-size: 27px;
   font-style: normal;
   font-weight: 700;
   /* line-height: 21px;  */
 }
-.myrelations-text{
+
+.myrelations-text {
   width: 157px;
-/* height: 21px; */
-flex-shrink: 0;
-color: #F9EEE1;
-text-align: center;
-font-family: "Cormorant Garamond";
-font-size: 18px;
-font-style: normal;
-font-weight: 700;
-/* line-height: 21px; */
-text-decoration-line: underline;
+  /* height: 21px; */
+  flex-shrink: 0;
+  color: #F9EEE1;
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  /* line-height: 21px; */
+  text-decoration-line: underline;
 }
-.newrelation-text{
+
+.newrelation-text {
   width: 157px;
-/* height: 21px; */
-flex-shrink: 0;
-color: #F9EEE1;
-text-align: center;
-font-family: "Cormorant Garamond";
-font-size: 18px;
-font-style: italic;
-font-weight: 500;
-/* line-height: 21px;  */
+  /* height: 21px; */
+  flex-shrink: 0;
+  color: #F9EEE1;
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 500;
+  /* line-height: 21px;  */
 }
-.therapist-text{
+
+.therapist-text {
   width: 198px;
   color: #F9EEE1;
-text-align: center;
-font-family: "Cormorant Garamond";
-font-size: 27px;
-font-style: normal;
-font-weight: 500;
-margin-top: 15%;
-/* line-height: 21px;  */
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 500;
+  margin-top: 15%;
+  /* line-height: 21px;  */
 }
 
 
@@ -365,28 +370,57 @@ h3 {
 
 }
 
-.subcontainer-text{
+.subcontainer-text {
   width: 90%;
+  margin: auto;
+}
+
+.popup-text {
+  color: #41414E;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  /* 141.667% */
+  letter-spacing: 0.24px;
+}
+
+.subscription-end-para {
+  max-width: 760px;
+  height: 90px;
+  flex-shrink: 0;
+  color: #41414E;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  /* 141.667% */
+  letter-spacing: 0.24px;
   margin:auto;
 }
 
-.popup-text{
+.choose-later {
   color: #41414E;
 text-align: center;
 font-family: Raleway;
-font-size: 12px;
+font-size: 16px;
 font-style: normal;
 font-weight: 400;
-line-height: 17px; /* 141.667% */
-letter-spacing: 0.24px;
+line-height: 22px; /* 137.5% */
+letter-spacing: 0.32px;
+text-decoration-line: underline;
 }
 
 @media only screen and (max-width: 768px) {
   .heading-container {
     margin-top: 18%;
     /* margin-left: 0%; */
-    width:80%;
-    margin:auto;
+    width: 80%;
+    margin: auto;
     margin-bottom: 10px;
 
   }
@@ -418,9 +452,10 @@ letter-spacing: 0.24px;
     width: 70%;
     margin: auto;
   }
+
   .sub-containerheadingtext {
     font-size: 25px;
-  
+
   }
 
   .policy-text {
@@ -428,40 +463,40 @@ letter-spacing: 0.24px;
     margin: auto;
   }
 
-  .text ,.subcontainer-text{
+  .text,
+  .subcontainer-text {
     width: 90%;
-    margin:auto;
+    margin: auto;
   }
+
   .policy-textcontainer {
     width: 90%;
   }
- 
-  }
+
+}
 
 
 
-  @media screen and (max-width: 900px) {
-    .sub-containerheadingtext {
-      font-size: 36px;
-    }
-   
-  }
-
-  @media screen and (min-width:900px ) {
-    .heading-text {
-      height:42px;
-    }
-    }
-
-  @media screen and (min-width: 768px) and (max-width:900px ) {
-  .heading-text {
-    height:42px;
+@media screen and (max-width: 900px) {
+  .sub-containerheadingtext {
     font-size: 36px;
   }
+
+}
+
+@media screen and (min-width:900px) {
+  .heading-text {
+    height: 42px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width:900px) {
+  .heading-text {
+    height: 42px;
+    font-size: 36px;
+  }
+
   .sub-containerheadingtext {
     font-size: 32px;
   }
-  }
-  
-
-
+}
