@@ -11,11 +11,13 @@ import MainContainer from "../../components/maincontainer/Maincontainer";
 import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import "../startQuestionare/StartQuesPage";
+import LogoutButton from "../../components/logout/Logout";
 
 // CSS
 import "../auth/login.css";
 import "./../../App.css";
 import "./userInvite.css";
+
 
 const InviteCreateUser = () => {
 
@@ -27,7 +29,7 @@ const InviteCreateUser = () => {
     age: 0,
     gender:"",
     date_of_birth: "",
-    partner_email: "",
+    partnerEmail: "",
     number_of_children:0,
 
     inviteLater: false, // Boolean to indicate whether to invite later
@@ -78,14 +80,14 @@ const InviteCreateUser = () => {
   };
 
 
-  const handleRadioChange = (e) => {
-    const value = e.target.value === "true"; // Convert string to boolean for radio buttons
+  const handleCheckboxChange = (e) => {
+    const checked = e.target.checked;
     setFormData((prev) => ({
       ...prev,
-      inviteLater: value, // Set inviteLater based on the selected radio option
-      partnerEmail: value ? "" : prev.partnerEmail, // Clear email if inviting later
+      inviteLater: checked,
+      partnerEmail: checked ? "" : prev.partnerEmail, 
     }));
-    setTouched((prev) => ({ ...prev, partnerEmail: false })); // Reset email touched state
+    setTouched((prev) => ({ ...prev, partnerEmail: false })); 
   };
 
   const validate = () => {
@@ -157,7 +159,11 @@ const InviteCreateUser = () => {
   return (
     <MainContainer>
       <GreyBackground>
+      <div className='d-flex justify-content-between'>
         <Navbar />
+        <LogoutButton/>
+
+        </div>
         <RelateLogo className="relate-logo-large" />
 
         <div className="heading-container">
@@ -319,20 +325,23 @@ const InviteCreateUser = () => {
             </div>
 
             <div className="radiobut-container">
-              <label>
-                <input
-                  type="radio"
-                  className="radio-option"
-                  name="inviteOption"
-                  value="true"
-                  checked={formData.inviteLater}
-                  onChange={handleRadioChange}
-                />
-                <Text type="span" className="radio-text">
-                  I want to invite my partner later
-                </Text>
-              </label>
+
+
+<label>
+    <input
+      type="checkbox" 
+      className="checkbox-option"
+      name="inviteLater"
+      checked={formData.inviteLater} 
+      onChange={handleCheckboxChange} 
+    />
+    <Text type="span" className="checkbox-text">
+      I want to invite my partner later
+    </Text>
+  </label>
             </div>
+
+            
 
             <div className="userpage-buttoncontainer">
               <Button className="userpage-button" type="submit" onClick={handleSubmit}>
