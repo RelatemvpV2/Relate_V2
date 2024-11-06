@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { createPopper } from '@popperjs/core';
+import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 //js
@@ -12,10 +11,13 @@ import MainContainer from '../maincontainer/Maincontainer'
 import InputComponent from '../inputs/InputComponent'
 import Button from '../button/Button'
 import RelateLogo from '../relatelogo/Relatelogo'
-import PopUpComponent from "../../components/popUp/PopUpComponent";
-import Loader from '../loader/Loader';
+
+
 
 import './forgotPassword.css'
+import { height } from '@fortawesome/free-brands-svg-icons/fa42Group'
+
+
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("")
@@ -24,23 +26,8 @@ const ForgotPassword = () => {
     const [isEmailSent, setIsEmailSent] = useState(false)
     const [msg, setMsg] = useState()
 
-    const [isDialogOpen, setDialogOpen] = useState(false);
-    const buttonRef = useRef(null);
-    const dialogRef = useRef(null);
-
-
     const navigate = useNavigate();
     const [touched, setTouched] = useState(false);
-
-    const toggleDialog = () => {
-        setDialogOpen(!isDialogOpen);
-
-        if (!isDialogOpen && buttonRef.current && dialogRef.current) {
-            createPopper(buttonRef.current, dialogRef.current, {
-                placement: 'bottom',
-            });
-        }
-    };
 
 
     const handleSubmit = async (e) => {
@@ -48,7 +35,6 @@ const ForgotPassword = () => {
 
         if (email === "") {
             setError("Please provide email ID");
-            toggleDialog();
             return
         }
         setLoading(true);
@@ -57,13 +43,11 @@ const ForgotPassword = () => {
             console.log('forgot pwd email sent:', response);
             setMsg(response.data.message); // Set success message
             setIsEmailSent(true)
-            toggleDialog();
             navigate('/forgot-password');
 
         } catch (error) {
             setError("Failed to send email: " + error);
-            setIsEmailSent(false)
-            toggleDialog();
+            setIsEmailSent(false) 
             navigate('/forgot-password');
             setError(error)
         } finally {
@@ -82,12 +66,6 @@ const ForgotPassword = () => {
             <GreyBackground style={{ position: 'fixed', top: 0 }}>
                 <Navbar />
                 <RelateLogo className="relate-logo-large" />
-
-                {/* Show Loader when loading is true */}
-                {loading && <Loader />}
-
-                {isDialogOpen && <PopUpComponent buttonRef={buttonRef} dialogRef={dialogRef} text={msg} error={error} toggleDialog={toggleDialog} />}
-
                 {
                     isEmailSent ?
                         (<div className='resetEmailSentMsg'>
@@ -103,10 +81,13 @@ const ForgotPassword = () => {
 
                         </div>)
 
+
+
+
                         /* on forgot password, requesting through email id */
                         : (
-                            <div className={`login-container ${loading || isDialogOpen ? "blurred-content" : ""}`} style={{ margin: "50px auto" }}>
-                                <div>
+                            <div className="login-container" style={{ margin: "50px auto" }}>
+                                <div className={loading ? "blurred-content" : ""}>
 
                                     <div className="heading-container">
                                         <Text type="h3" className="heading-text">
@@ -134,7 +115,7 @@ const ForgotPassword = () => {
                                             </Button>
                                         </div>
                                         {/* Display error message */}
-                                        {/*  {error && <Text style={{ color: "red", marginBottom: 0 }}>{error}</Text>} */}
+                                        {error && <Text style={{ color: "red", marginBottom: 0 }}>{error}</Text>}
                                     </form>
 
                                 </div>
