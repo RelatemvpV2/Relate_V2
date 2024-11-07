@@ -74,6 +74,7 @@ const Login = () => {
     try {
       const response = await LoginUser(email, password); // Call the API function
       setUserToken("token", response.data.token)
+      console.log("Token:", response.data.token);
 
       // Navigate after successful login
       navigate("/userInvite/InviteCreateUser");
