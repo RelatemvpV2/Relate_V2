@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Button from '../button/Button';
 import PopUpComponent from '../popUp/PopUpComponent'
 
-const RecommendedAndMoreCategories = ({ isSelected }) => {
+const RecommendedAndMoreCategories = ({ isHovered,showAllCategories,setShowAllCategories }) => {
 
   // List of categories with their selected status
   const [categories, setCategories] = useState([
@@ -17,27 +17,6 @@ const RecommendedAndMoreCategories = ({ isSelected }) => {
     { name: "Boundaries", selected: false },
     { name: "Everyday Life", selected: false },
   ]);
-
-  // State to toggle between views
-  const [showAllCategories, setShowAllCategories] = useState(false);
-
-  /*   const [isDialogOpen, setDialogOpen] = useState(false);
-    const buttonRef = useRef(null);
-    const dialogRef = useRef(null); */
-
-  // const toggleDialog = () => {
-  //   setDialogOpen(!isDialogOpen);
-
-  //   if (!isDialogOpen && buttonRef.current && dialogRef.current) {
-  //     createPopper(buttonRef.current, dialogRef.current, {
-  //       placement: 'bottom',
-  //     });
-  //   }
-  // };
-
-  // const link = document.querySelector('.link-p');
-  const parent = document.querySelector('.subscription-plans');
-  const cardRecommended = document.querySelector('.plan-card:nth-child(2)')
 
   const selectedCount = categories.filter((category) => category.selected).length;
 
@@ -61,7 +40,7 @@ const RecommendedAndMoreCategories = ({ isSelected }) => {
 
   useEffect(() => {
 
-  }, [isSelected])
+  }, [isHovered])
 
 
   return (
@@ -91,22 +70,8 @@ const RecommendedAndMoreCategories = ({ isSelected }) => {
         {showAllCategories ? (
           <span>Un-mark to mark new categories</span>
         ) : (
-          <span disabled={!isSelected} onClick={(event) => {
-            console.log(isSelected)
+          <span onClick={(event) => {
             event.preventDefault();
-            event.stopPropagation()
-            if (isSelected) {
-              console.log(isSelected, "if")
-             parent && (parent.style.alignItems = 'center')
-             cardRecommended && (cardRecommended.style.height = "700px")
-            }
-           /*  else {
-              console.log(isSelected, "else")
-              parent && (parent.style.alignItems = 'flex-end')
-              cardRecommended && (cardRecommended.style.height = "443px")
-            } */
-
-            console.log("Link clicked")
             setShowAllCategories(true)
 
           }}>
@@ -119,9 +84,6 @@ const RecommendedAndMoreCategories = ({ isSelected }) => {
         <Button
           className='card-category-selection-btn'
           onClick={(event) => {
-            event.stopPropagation()
-            parent && (parent.style.alignItems = 'flex-end')
-            cardRecommended && (cardRecommended.style.height = "573px")
             setShowAllCategories(false)
 
           }}>Selection OK</Button>

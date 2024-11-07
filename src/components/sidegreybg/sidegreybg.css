@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  height: 100%;
 }
 
 .sidebar-nav {
@@ -74,6 +74,6 @@
   margin-bottom: 10px;
 }
 
-.bm-cross-button span{
-  border:1px #F9EEE1 solid; 
+.bm-cross-button span {
+  border: 1px #F9EEE1 solid;
 }

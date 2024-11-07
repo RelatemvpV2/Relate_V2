@@ -1,5 +1,5 @@
 // SubscriptionPlans.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SubscriptionPlanCard from './SubscriptionPlanCard';
 import './subscriptionCard.css';
 import DashboardLayout from '../dashboardLayout/DashboardLayout';
@@ -7,7 +7,20 @@ import Text from '../text/Text';
 import Button from '../button/Button';
 
 const SubscriptionsPage = () => {
-    const [selectedCard, setSelectedCard] = useState("threeCategories");
+
+    const [hoveredCard, setHoveredCard] = useState("Work with 3 categories");
+
+    // State to toggle between views in recommended and More categories
+    const [showAllCategories, setShowAllCategories] = useState(false);
+
+    useEffect(() => {
+        console.log(showAllCategories, "useeffect")
+    }, [showAllCategories])
+
+    const handleHover = (id) => {
+        setHoveredCard(id);
+    };
+
 
     const categories = [
         "Communication",
@@ -19,17 +32,6 @@ const SubscriptionsPage = () => {
         "Boundaries",
         "Everyday Life"
     ]
-
-    /* const handleCardSelect = (card) => {
-        setSelectedCard(card === selectedCard ? null : card);
-    }; */
-
-    // Select a card only if it's not already selected
-    const handleCardSelect = (cardName) => {
-        if (selectedCard !== cardName) {
-            setSelectedCard(cardName);
-        }
-    };
 
     const handleSaveSelection = (card, selectedCategories) => {
         alert(`Categories saved for ${card}: ${selectedCategories.join(", ")}`);
@@ -44,25 +46,26 @@ const SubscriptionsPage = () => {
             <div className="divider-horizantal"></div>
 
 
-            <div className="subscription-plans">
-                <div classname="card-group">
+            <div className={`${showAllCategories ? 'extendedCardStyle' : 'subscription-plans'}`}>
 
-
+                <div className="card_group">
                     <SubscriptionPlanCard
-
+                        id="Preventive check-in"
                         title="Preventive check-in"
                         description="With this plan you and your relation will have scheduled check-ins."
                         description2="Keep up the good work. Continously work to strengthen your relation with scheduled check-ins"
                         price="50 dkk/month"
                         priceDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."
-                        isSelected={selectedCard === 'checkin'}
-                        onSelect={() => handleCardSelect('checkin')}
+                        isHovered={"Preventive check-in" === hoveredCard}
                         onSaveSelection={(selectedCategories) => handleSaveSelection('checkin', selectedCategories)}
+                        handleHover={handleHover}
                     />
                     <Button className='learn-more-btn'>Learn more</Button>
                 </div>
-                <div classname="card-group">
+
+                <div className="card_group">
                     <SubscriptionPlanCard
+                        id="Work with 3 categories"
                         isRecommended={true}
                         title="Work with 3 categories"
                         description="With this plan, you and your relation work to strengthen your relation in 3 chosen categories."
@@ -71,31 +74,35 @@ const SubscriptionsPage = () => {
                         priceDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."
                         categories={categories}
                         maxCategories={3}
-                        isSelected={selectedCard === 'threeCategories'}
-                        onSelect={() => handleCardSelect('threeCategories')}
+                        isHovered={"Work with 3 categories" === hoveredCard}
+                        handleHover={handleHover}
+                        showAllCategories={showAllCategories}
+                        setShowAllCategories={setShowAllCategories}
                         onSaveSelection={(selectedCategories) => handleSaveSelection('threeCategories', selectedCategories)}
                     />
 
                     <Button className='learn-more-btn'>Learn more</Button>
 
                 </div>
-                <div classname="card-group"> <SubscriptionPlanCard
+                <div className="card_group"> <SubscriptionPlanCard
+                    id="Work with all categories"
                     title="Work with all categories"
                     description="With this plan all our categories are unlocked."
                     price="300 dkk/month"
                     priceDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."
                     categories={categories}
                     maxCategories={8} // All categories can be selected
-                    isSelected={selectedCard === 'allCategories'}
-                    onSelect={() => handleCardSelect('allCategories')}
+                    isHovered={"Work with all categories" === hoveredCard}
+                    handleHover={handleHover}
+
                     onSaveSelection={(selectedCategories) => handleSaveSelection('allCategories', selectedCategories)}
                 />
                     <Button className='learn-more-btn'>Learn more</Button>
                 </div>
-                
+
             </div>
             <Text type='p' className='subscription-end-para'>If you wish to proceed with our recommended categories and work to strengthen your relation,
-                    we will take you through a series of online questions, guides and exercises. </Text>
+                we will take you through a series of online questions, guides and exercises. </Text>
             <Text type="a" className='choose-later links-text'>Choose later</Text>
         </DashboardLayout>
     );
