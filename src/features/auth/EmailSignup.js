@@ -151,7 +151,9 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
         <form onSubmit={handleSignup}>
           {/*  Text component for labels */}
           <Text type="label" htmlFor="email" className="labels">
+          <span className="label-text">
             Email{submitted && email.trim() === "" && <span className="error-asterisk">*</span>}
+            </span>
 
 
           </Text>
@@ -165,7 +167,9 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
           />
 
           <Text type="label" htmlFor="password" className="labels">
+          <span className="label-text">
             Create password. Must be 8 digits{submitted && password.trim() === "" && <span className="error-asterisk">*</span>}
+            </span>
           </Text>
           <InputComponent
             id="password"
@@ -178,7 +182,9 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
           />
 
           <Text type="label" htmlFor="confirmPassword" className="labels">
+          <span className="label-text">
             Confirm password{submitted && confirmPassword.trim() === "" && <span className="error-asterisk">*</span>}
+            </span>
           </Text>
           <InputComponent
             id="confirmPassword"
