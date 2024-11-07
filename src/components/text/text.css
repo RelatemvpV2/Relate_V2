@@ -225,6 +225,11 @@ h3 {
   /* 175% */
   letter-spacing: 0.24px;
   margin-bottom: 9.55px;
+  
+}
+.label-text{
+  position: relative;
+  white-space: nowrap;
 }
 
 .policy-textcontainer {

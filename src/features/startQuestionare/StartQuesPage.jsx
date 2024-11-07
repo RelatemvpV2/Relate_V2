@@ -9,12 +9,14 @@ import Navbar from '../../components/Navbar/Navbar';
 import RelateLogo from '../../components/relatelogo/Relatelogo';
 import Text from '../../components/text/Text';
 import Button from '../../components/button/Button';
+import LogoutButton from '../../components/logout/Logout';
 
 //js
 import { getPartner } from "../../utils/userApi";
 
 //css
 import './startQuesPage.css'
+
 
 
 const StartQuesPage = () => {
@@ -53,7 +55,12 @@ const StartQuesPage = () => {
   return (
     <MainContainer style={{paddingBottom:"30vh"}}>
       <GreyBackground >
+        <div className='d-flex justify-content-between'>
         <Navbar />
+        <LogoutButton/>
+
+        </div>
+
 
         <RelateLogo className="relate-logo-large" />
         <div className="heading-container">

@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 //Components
 import Login from "./features/auth/Login";
-import ForgotPassword from "./components/forgotPassword/ForgotPassword";
-import ResetPassword from "./components/forgotPassword/ResetPassword";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import ResetPassword from './components/ForgotPassword/ResetPassword'
 import Dashboard from "./components/dashboard/Dashboard";
 import InviteCreateUser from "./features/userInvite/InviteCreateUser";
 import StartQuesPage from "./features/startQuestionare/StartQuesPage";
@@ -17,10 +17,14 @@ import Summary1stUser from "./components/summary/Summary1stUser";
 import InvitePartner2 from "./features/userInvite/InvitePartner2";
 import WaitingForPartnerResonse1 from "./components/waiting/WaitingForPartnerResponse1";
 import ComparedAnswers from "./components/comparedAnswers/ComparedAnswers";
+
+import { AuthProvider } from "./components/logout/AuthContext";
 function App() {
   return (
+    
 
     <Router>
+      <AuthProvider>
       <Routes>
 
         <Route path="/" element={<LandingPage />} />
@@ -49,7 +53,9 @@ function App() {
 
 
       </Routes>
+      </AuthProvider>
     </Router>
+    
 
   );
 }
