@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 //Components
 import Login from "./features/auth/Login";
-import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
-import ResetPassword from './components/ForgotPassword/ResetPassword'
+import ForgotPassword from "./components/forgotPassword/ForgotPassword";
+import ResetPassword from './components/forgotPassword/ResetPassword'
 import Dashboard from "./components/dashboard/Dashboard";
 import InviteCreateUser from "./features/userInvite/InviteCreateUser";
 import StartQuesPage from "./features/startQuestionare/StartQuesPage";
