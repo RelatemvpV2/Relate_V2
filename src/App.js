@@ -17,6 +17,7 @@ import Summary1stUser from "./components/summary/Summary1stUser";
 import InvitePartner2 from "./features/userInvite/InvitePartner2";
 import WaitingForPartnerResonse1 from "./components/waiting/WaitingForPartnerResponse1";
 import ComparedAnswers from "./components/comparedAnswers/ComparedAnswers";
+import SubscriptionsPage from "./components/subscription/SubscriptionsPage";
 
 import { AuthProvider } from "./components/logout/AuthContext";
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/level1/invitePartner2" element={<InvitePartner2 />} />
         <Route path="/level1/waitingParnerResponse" element={<WaitingForPartnerResonse1 />} />
         <Route path="/level1/comparedResults" element={<ComparedAnswers/>} /> 
+        <Route path="/level1/subscriptions" element={<SubscriptionsPage/>} />
 
         {/* Define the route for Page not found */}
         <Route
