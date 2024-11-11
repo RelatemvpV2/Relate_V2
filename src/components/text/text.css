@@ -86,16 +86,19 @@ h1 {
 }
 .my-relations {
   width: 198px;
+  cursor: pointer;
   /* height: 21px; */
   flex-shrink: 0;
   color: #F9EEE1;
   text-align: center;
-  font-family: "Cormorant Garamond", serif; /* Added serif fallback */
+  font-family: "Cormorant Garamond";
   font-size: 27px;
   font-style: normal;
   font-weight: 700;
   /* line-height: 21px;  */
 }
+
+
 .myrelations-text{
   width: 157px;
 /* height: 21px; */
@@ -132,6 +135,7 @@ font-weight: 500;
 margin-top: 15%;
 /* line-height: 21px;  */
 }
+
 
 
 .sub-containerheading {
