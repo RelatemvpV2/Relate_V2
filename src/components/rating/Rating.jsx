@@ -2,17 +2,15 @@ import React, { useState } from 'react'
 //css
 import './Rating.css';
 
-const Rating = () => {
+const Rating = ({onRatingSelected}) => {
 
     const [isScoreSelected, setIsScoreSelected] = useState(false);
     const [ratingActiveId, setRatingActiveId] = useState(null);
     const [info, setInfo] = useState();
 
-    console.log(ratingActiveId)
-
-
     const handleRatingClick = (id) => {
         setRatingActiveId(id); // Update the active option ID
+        onRatingSelected(id)
         setIsScoreSelected(true);
         setInfo(null);
     };
