@@ -4,16 +4,15 @@ import ProgressBar from '../progressBar/ProgressBar';
 import '../comparedAnswers/comparedAnswers.css'
 
 const ScoreRow = ({ category }) => {
-    const { name, you, partner } = category;
 
     return (
       <div className="score-row">
-        <div className="category-name">{name}</div>
+        <div className="category-name">{category.category}</div>
         <div className="scores">
-          <div className="score you">{you}</div>
-          <div className="score partner">{partner}</div>
+          <div className="score you">{category.answers[0].score}</div>
+          <div className="score partner">{category.answers[1].score}</div>
         </div>
-        <ProgressBar you={you} partner={partner} />
+        <ProgressBar you={category.answers[0].score} partner={category.answers[1].score} />
       </div>
     );
 }

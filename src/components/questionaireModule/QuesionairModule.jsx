@@ -8,7 +8,19 @@ import Rating from '../rating/Rating'
 
 import './quesionairModule.css'
 
-const QuesionairModule = () => {
+const QuesionairModule = ({categoryData, onAnswerChange}) => {
+
+  const handleSelectedRating = (rating) => {
+    let answer = {
+      categoryId: categoryData.id,
+      questionId: categoryData.questions[0].id,
+      response: rating,
+      responseType: "text", 
+      format: "text"
+  }
+    onAnswerChange(answer)
+  }
+
   return (
     <div className='questionaire-div'>
       <Text type="h3" className='quesionaire-heading h3' >My relation with</Text>
@@ -20,32 +32,25 @@ const QuesionairModule = () => {
       <Text type="p" className="text questionaire-relation-review">Relation review</Text>
 
       <Catagory width={'80%'}>
-        <p className='catagory-p'> Communication</p>
+        <p className='catagory-p'> {categoryData?.name}</p>
       </Catagory>
       {/* Divider */}
       <div className="divider-horizantal"></div>
 
-      <Text type="p" className="text question-p">How well are your and your partner communicating today?</Text>
+      <Text type="p" className="text question-p">{categoryData?.questions[0]?.question}</Text>
       <div className='options-selection'>
         <Text type="p" className="text question-count" style={{ margin: 0 }}>Question 1 of 9</Text>
         <Text type="p" className="text select-score-p" style={{ margin: 0 }}>Please select score</Text>
 
         {/* rating */}
         
-        <Rating />
+        <Rating onRatingSelected={handleSelectedRating} />
       </div>
 
 
       {/* Divider */}
       <div className="divider-horizantal"></div>
 
-      <Button className='loginpage-button'>Continue</Button>
-      <div className="links-textcontainer">
-        {/*  Text component for the link */}
-        <Text type="a" href="/" className="links-text" style={{ fontSize: "12px" }}>
-          Go back
-        </Text>
-      </div>
     </div>
   )
 }
