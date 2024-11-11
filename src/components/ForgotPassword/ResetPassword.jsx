@@ -81,22 +81,17 @@ const ResetPassword = () => {
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
     setNewPassword(newPassword);
-    toggleDialog();
-    // Validate password on change
-    setErrors(validatePassword(newPassword));
+     // Validate password on change
+     setErrors(validatePassword(newPassword));
   };
-
-  /*  const clearInputFields = () => {
-     setEmail("");
-     setPassword("");
-     setConfirmPassword("");
-   } */
-
-
-
 
   const handleSubmitNewPassword = async (e) => {
     e.preventDefault();
+
+    if (Object.keys(errors).length !== 0) {
+      toggleDialog();
+     }
+
     if (newPassword !== newConfirmPassword) {
       console.log("password do not match")
       setError("Passwords do not match");
@@ -175,7 +170,7 @@ const ResetPassword = () => {
                   </Button>
                 </div>
                 {msg && <>
-                  <Text style={{ color: 'green' }}>{msg}</Text>
+                 {/*  <Text style={{ color: 'green' }}>{msg}</Text> */}
                   <a href="/Login">go to Login</a>
                 </>}
                
