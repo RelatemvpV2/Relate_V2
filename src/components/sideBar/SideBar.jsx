@@ -1,6 +1,6 @@
 import React from 'react'
 import Relatelogo from '../relatelogo/Relatelogo';
-import { slide as BurgerMenu } from 'react-burger-menu';
+
 
 
 import Text from '../text/Text';
