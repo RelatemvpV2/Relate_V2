@@ -5,6 +5,7 @@ import './button.css'
 const Button = ({ 
   className = '', 
   type = 'button',
+  style={},
   onClick, 
   children, 
   disabled = false 
@@ -15,6 +16,7 @@ const Button = ({
       type={type} 
       onClick={onClick}
       disabled={disabled} 
+      style={style}
     >
       {children}
     </button>
