@@ -22,7 +22,7 @@ import './startQuesPage.css'
 const StartQuesPage = () => {
 
   const [partnerEmail, setPartnerEmail] = useState("");
-  
+
   //get email of the partner and display
 
   const navigate = useNavigate(); // Step 2
@@ -31,33 +31,32 @@ const StartQuesPage = () => {
     navigate('/assessment/Assessment'); // Step 3 - Update the path to your Assessment page route
   };
   const getPartnerEmail = async () => {
-    try{
+    try {
       const response = await getPartner();
-      console.log('get partner: ',response)
+      console.log('get partner: ', response)
       console.log(response.data[0]["partner_email"])
       setPartnerEmail(response.data[0]['partner_email'])
 
     }
-    catch(error){
-      console.log("error in getting partner",error)
+    catch (error) {
+      console.log("error in getting partner", error)
     }
-    finally{
-
+    finally {
     }
 
   }
 
-  useEffect(()=>{
-   getPartnerEmail();
-  },[])
+  useEffect(() => {
+    getPartnerEmail();
+  }, [])
 
 
   return (
-    <MainContainer style={{paddingBottom:"30vh"}}>
+    <MainContainer style={{ paddingBottom: "30vh" }}>
       <GreyBackground >
         <div className='d-flex justify-content-between'>
-        <Navbar />
-        <LogoutButton/>
+          <Navbar />
+          <LogoutButton />
 
         </div>
 
@@ -69,26 +68,26 @@ const StartQuesPage = () => {
             Well done and welcome
           </Text>
           <Text type="p" className="description-text">
-            You have taken the first step to improve your relation and you and your partners 
+            You have taken the first step to improve your relation and you and your partners
             answers will help us guide you in the best way.
           </Text>
         </div>
         <div className='invite-partner-remainder'>
-       {partnerEmail ?<>
-          <Text type="p" className="description-text" style={{marginBottom:0}}>
-            An invitation has been sent to:
-          </Text>
-          <Text type="p" className="username-text">
-            {partnerEmail}
-          </Text>
+          {partnerEmail ? <>
+            <Text type="p" className="description-text" style={{ marginBottom: 0 }}>
+              An invitation has been sent to:
+            </Text>
+            <Text type="p" className="username-text">
+              {partnerEmail}
+            </Text>
           </>
-          :
-          <Text className="description-text">– so do not forget to invite your partner later. </Text>
-        
-        }
+            :
+            <Text className="description-text">– so do not forget to invite your partner later. </Text>
+
+          }
         </div>
-        
-       
+
+
 
 
 
@@ -96,14 +95,14 @@ const StartQuesPage = () => {
       <div className='startques-container'>
         <div className="sub-containerheading">
           {/* Text component for heading */}
-          <Text type="h3" className="heading-text h3" style={{  color:"#41414E",margin:0}}>
+          <Text type="h3" className="heading-text h3" style={{ color: "#41414E", margin: 0 }}>
             Next: Start your journey
           </Text>
         </div>
 
         <div className="subcontainer-text">
           {/*  Text component for subheading */}
-          <Text type="p" className="description-text"  style={{  color:"#41414E", margin:"20px auto"}}>
+          <Text type="p" className="description-text" style={{ color: "#41414E", margin: "20px auto" }}>
             We will take you through 9 different categories, each containing a question. After submitting your  answers we will match the answers with your partners, and help you identify focus areas. When you’re done, your answers will be shown in your personal dashboard.
 
           </Text>
