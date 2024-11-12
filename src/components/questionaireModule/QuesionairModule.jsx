@@ -64,7 +64,7 @@ const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total}) =
       }
       
       <div className='options-selection'>
-        <Text type="p" className="text question-count" style={{ margin: 0 }}>Question {currentIndex} of {total}</Text>
+        <Text type="p" className="text question-count" style={{ margin: 0 }}>Question {currentIndex+1} of {total}</Text>
         <Text type="p" className="text select-score-p" style={{ margin: 0 }}>Please select score</Text>
 
         {/* rating */}
