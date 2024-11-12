@@ -1,10 +1,14 @@
 
-import React, { useState } from 'react';
-import './sidegreybg.css'; // Importing the CSS'
-import Relatelogo from '../relatelogo/Relatelogo';
 
-import Text from '../text/Text';
+import React,{ useState , useEffect } from 'react';
+import './sidegreybg.css'; // Importing the CSS'
 import Footer from '../footer/Footer';
+import Text from '../text/Text';
+import RelateLogo from '../relatelogo/Relatelogo';
+
+
+
+
 
 const SideGreyBg = () => {
   const [showRelations, setShowRelations] = useState(false);
@@ -21,7 +25,7 @@ const SideGreyBg = () => {
   return (
     <div className="sidegrey-bg">
       <aside className="sidebar">
-        <Relatelogo className="relate-logo-small" />
+        <RelateLogo className="relate-logo-small" />
 
 
         <nav className="sidebar-nav">
@@ -89,7 +93,23 @@ const SideGreyBg = () => {
       </aside>
 
     </div>
+ 
   );
 };
 
-export default SideGreyBg;
+export default SideGreyBg;   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
