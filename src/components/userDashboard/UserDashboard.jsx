@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 
 //components
 import Text from '../text/Text';
@@ -10,6 +10,9 @@ import Button from '../button/Button';
 import { getAllCategories } from '../../services/api/categoryApi';
 
 const UserDashboard = () => {
+  const [data, setData] = useState(null); // State for storing API data
+  const [loading, setLoading] = useState(true); // State for loading status
+  const [error, setError] = useState(null); // State for error handling
 
 
     useEffect(() => {
