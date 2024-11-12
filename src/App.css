@@ -1,14 +1,20 @@
-
-
-html{
+html {
   overflow-y: scroll;
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
 }
-html::-webkit-scrollbar { 
-  display: none;  /* Safari and Chrome */
-  width:0;
-  height:0;
+
+html::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+  width: 0;
+  height: 0;
+}
+
+body {
+  font-family: "Cormorant Garamond";
 }
 
 .sub-container {
@@ -19,7 +25,8 @@ html::-webkit-scrollbar {
   /* margin-top: 4%; */
 }
 
-.left-container,.right-container {
+.left-container,
+.right-container {
   margin-top: 3%;
 }
 
@@ -30,9 +37,9 @@ html::-webkit-scrollbar {
   margin: 30px auto;
 
 }
+
 @media only screen and (max-width: 768px) {
   .sub-container {
-  flex-direction: column;
+    flex-direction: column;
   }
 }
-
