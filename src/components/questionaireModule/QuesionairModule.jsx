@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 // import Options from '../optionComponent/Options'
 import Text from '../text/Text'
@@ -7,8 +7,29 @@ import Button from '../button/Button'
 import Rating from '../rating/Rating'
 
 import './quesionairModule.css'
+import { getCategoryById } from '../../services/api/categoryApi'
 
-const QuesionairModule = ({categoryData, onAnswerChange}) => {
+const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total}) => {
+
+  const [category, setCategory] = useState(null);
+
+   // API call function
+   const fetchCategoryDetails = async (categoryId) => {
+    try {
+      const response = await getCategoryById(categoryId);
+      const data = await response.data;
+      setCategory(data);
+      // You can set this data to a state if you need to display or use it in the component
+    } catch (error) {
+      console.error('Error fetching category data:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (categoryData?.id) {
+      fetchCategoryDetails(categoryData.id);
+    }
+  }, [categoryData]);
 
   const handleSelectedRating = (rating) => {
     let answer = {
@@ -37,9 +58,13 @@ const QuesionairModule = ({categoryData, onAnswerChange}) => {
       {/* Divider */}
       <div className="divider-horizantal"></div>
 
-      <Text type="p" className="text question-p">{categoryData?.questions[0]?.question}</Text>
+      {category?.questions.length > 0 ? 
+      <><Text type="p" className="text question-p">{category?.questions[0]?.question}</Text></>:
+      <><Text type="p" className="text question-p">{"No Question"}</Text></>
+      }
+      
       <div className='options-selection'>
-        <Text type="p" className="text question-count" style={{ margin: 0 }}>Question 1 of 9</Text>
+        <Text type="p" className="text question-count" style={{ margin: 0 }}>Question {currentIndex} of {total}</Text>
         <Text type="p" className="text select-score-p" style={{ margin: 0 }}>Please select score</Text>
 
         {/* rating */}

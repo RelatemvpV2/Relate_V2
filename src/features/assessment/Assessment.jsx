@@ -26,7 +26,7 @@ const Assessment = () => {
     try {
       if (answer) {
         console.log(answer);
-        await saveAnswer(assessmentId,answer.categoryId, answer.questionId, answer); // Call save answer API with the current answer
+        await saveAnswer(assessmentId, answer.categoryId, answer.questionId, answer); // Call save answer API with the current answer
       }
       if (currentQuestionIndex < data.length - 1) {
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
@@ -62,141 +62,13 @@ const Assessment = () => {
     const fetchData = async () => {
       try {
         setLoading(true); // Start loading
-        const response = await getAllCategories(); // Replace with your proxy endpoint        
-        // if (!response) {
-        //   throw new Error(`HTTP error! Status: ${response.status}`);
-        // }
-        // const result = await response.json();
-        setData([
-          {
-            "id": "categoryID",
-            "type": "level-1",
-            "name": "Category Name",
-            "description": "Description of the main category",
-            "introVideo": "url_or_identifier",
-            "parentId": null,
-            "nextLevelDescription": "next level description",
-            "enableIntro": true,
-            "enableDescription": true,
-            "enablenextDescription": true,
-            "sortOrder": 1,
-            "questions": [
-              {
-                "id": "questionID",
-                "type": "text/media",
-                "questionMedia": "url_or_identifier",
-                "question": "What is your favorite category?",
-                "description": "A question about color preference",
-                "questionType": "multiple choice",
-                "answerType": "text/audio/video/file",
-                "options": [
-                  {
-                    "labelText": "Option Aa",
-                    "sortOrder": 1
-                  },
-                  {
-                    "labelText": "Option B",
-                    "sortOrder": 2
-                  },
-                  {
-                    "labelText": "Option C",
-                    "sortOrder": 3
-                  },
-                  {
-                    "labelText": "Option Cc",
-                    "sortOrder": 4
-                  }
-                ],
-                "isActive": true,
-                "weightage": 10,
-                "sortOrder": 1
-              }
-            ]
-          },
-          {
-            "id": "subcategoryID",
-            "type": "level-2",
-            "name": "Subcategory Name",
-            "description": "Description of the subcategory",
-            "introVideo": "url_or_identifier",
-            "parentId": "categoryID",
-            "nextLevelDescription": "next level description",
-            "enableIntro": true,
-            "enableDescription": true,
-            "enablenextDescription": true,
-            "sortOrder": 1,
-            "questions": [
-              {
-                "id": "questionID",
-                "type": "text/media",
-                "questionMedia": "url_or_identifier",
-                "question": "What is your favorite color sub categpry?",
-                "description": "A question about color preference",
-                "questionType": "multiple choice",
-                "answerType": "text/audio/video/file",
-                "options": [
-                  {
-                    "labelText": "Option A",
-                    "sortOrder": 1
-                  },
-                  {
-                    "labelText": "Option B",
-                    "sortOrder": 2
-                  },
-                  {
-                    "labelText": "Option C",
-                    "sortOrder": 3
-                  }
-                ],
-                "isActive": true,
-                "weightage": 10,
-                "sortOrder": 1
-              }
-            ]
-          },
-          {
-            "id": "subsubcategoryID",
-            "type": "level-3",
-            "name": "Sub-subcategory Name",
-            "description": "Description of the sub-subcategory",
-            "introVideo": "url_or_identifier",
-            "parentId": "subcategoryID",
-            "nextLevelDescription": "next level description",
-            "enableIntro": true,
-            "enableDescription": true,
-            "enablenextDescription": true,
-            "sortOrder": 1,
-            "questions": [
-              {
-                "id": "questionID",
-                "type": "text/media",
-                "questionMedia": "url_or_identifier",
-                "question": "What is your favorite color sub sub ?",
-                "description": "A question about color preference",
-                "questionType": "multiple choice/fillup/choices/radio/media",
-                "answerType": "text/audio/video/file",
-                "options": [
-                  {
-                    "labelText": "Option A",
-                    "sortOrder": 1
-                  },
-                  {
-                    "labelText": "Option B",
-                    "sortOrder": 2
-                  },
-                  {
-                    "labelText": "Option C",
-                    "sortOrder": 3
-                  }
-                ],
-                "isActive": true,
-                "weightage": 10,
-                "sortOrder": 1
-              }
-            ]
-          }
+        const response = await getAllCategories(); // Replace with your proxy endpoint 
+        console.log(response.data);
 
-        ]); // Store data
+        if (!response) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        setData(response?.data); // Store data
       } catch (err) {
         setError(err.message); // Store error message
       } finally {
@@ -227,9 +99,11 @@ const Assessment = () => {
         ) : data && data[currentQuestionIndex] ? (
           <>
             <QuesionairModule
-          categoryData={data ? data[currentQuestionIndex] : null}
-          onAnswerChange={handleAnswerChange} // Pass handler to child
-        />
+              categoryData={data ? data[currentQuestionIndex] : null}
+              currentIndex={currentQuestionIndex}
+              total={data.length}
+              onAnswerChange={handleAnswerChange} // Pass handler to child
+            />
             <Button className="loginpage-button" onClick={handleSaveAnswer}>Continue</Button>
           </>
         ) : (
