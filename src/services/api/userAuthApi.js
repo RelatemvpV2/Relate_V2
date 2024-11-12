@@ -96,7 +96,7 @@ export const uploadProfilePic = async (data) => {
     }
 };
 
-export const getPartnerEmail = async (data) => {
+export const getPartnerEmail = async () => {
     try {
         const response = await userAuthApiService.get(`/test/get-partner-email`);
         return response;
