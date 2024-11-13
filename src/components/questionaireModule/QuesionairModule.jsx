@@ -33,12 +33,14 @@ const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total}) =
 
   const handleSelectedRating = (rating) => {
     let answer = {
-      categoryId: categoryData.id,
-      questionId: categoryData.questions[0].id,
+      categoryId: category.id,
+      questionId: category.questions[0].id,
       response: rating,
       responseType: "text", 
       format: "text"
   }
+  console.log(categoryData);
+  
     onAnswerChange(answer)
   }
 
