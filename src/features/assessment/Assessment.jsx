@@ -43,6 +43,8 @@ const Assessment = () => {
   // Update answer when receiving input from AnswerComponent
   const handleAnswerChange = (newAnswer) => {
     setAnswer(newAnswer);
+    console.log(answer);
+    
   };
 
   const handleSummary = () => {
@@ -63,8 +65,6 @@ const Assessment = () => {
       try {
         setLoading(true); // Start loading
         const response = await getAllCategories(); // Replace with your proxy endpoint 
-        console.log(response.data);
-
         if (!response) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
