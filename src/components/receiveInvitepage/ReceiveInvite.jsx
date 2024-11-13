@@ -22,6 +22,7 @@ const ReceiveInvite = () => {
     const [newInvite, setNewInvite] = useState(true)
     const [activeBtnId, setActiveBtnId] = useState(null)
     const [subjectOpen, setSubjectOpen] = useState(false)
+    
 
     useEffect(() => {
         const fetchMessages = async () => {
