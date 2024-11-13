@@ -5,13 +5,17 @@ import './sidegreybg.css'; // Importing the CSS'
 import Footer from '../footer/Footer';
 import Text from '../text/Text';
 import RelateLogo from '../relatelogo/Relatelogo';
+import { getPartnerEmail } from '../../services/api/userAuthApi';
 
+
+const email = window.localStorage.getItem("email");
 
 
 
 
 const SideGreyBg = () => {
   const [showRelations, setShowRelations] = useState(false);
+  const [messages, setMessages] = useState([])
 
   const toggleRelations = () => {
     setShowRelations((prevShowRelations) => !prevShowRelations);
@@ -22,6 +26,24 @@ const SideGreyBg = () => {
     invitationNotSent: ['Sample Person 1'],
     waitingForResponse: ['Sample Person 2'],
   };
+  useEffect(() => {
+    const fetchPartnerEmail = async () => {
+      try {
+        const response = await getPartnerEmail();
+        console.log("API response:", response.data);
+       
+        const receiverNames = response.data
+          .filter((each) => each.reciever_email !== email)
+          .map((each) => each.reciever_name || "Unknown Receiver");
+
+        setMessages(receiverNames); 
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+    fetchPartnerEmail();
+  }, []); 
+
   return (
     <div className="sidegrey-bg">
       <aside className="sidebar">
@@ -45,9 +67,11 @@ const SideGreyBg = () => {
           </Text>
           {showRelations && (
             <div className="relations-dropdown">
-              <Text type="p" className="relation-item active">James Samuelson</Text>
-              <Text type="p" className="relation-item">Second Relation</Text>
-              <Text type="p" className="relation-item">Third Relation</Text>
+              {messages.map((name, i) => (
+                <Text key={i} type="p" className="relation-item">
+                  {name}
+                </Text>
+              ))}
             </div>
           )}
           {userRelations.invitationNotSent.length > 0 && (
