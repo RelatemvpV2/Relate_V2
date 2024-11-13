@@ -62,13 +62,13 @@ const ReceiveInvite = () => {
             
             {
                 messages
-                    .filter(each => each.partner_email == email) 
+                    .filter(each => each.reciever_email == email) 
                     .map((each, i) => (
                         <section key={i}>
                             <div>
                                 <div className="messages-table">
-                                    <div>{each.subject}</div>
-                                    <div>{each.partner_email}</div>
+                                    <div>{each.invitation_status=="Pending"? "You have been invited": "Accepted invite"}</div>
+                                    <div>{each.sender_name}</div>
                                     <div>{each.invitation_status}</div> 
                                     
                                     <div>
