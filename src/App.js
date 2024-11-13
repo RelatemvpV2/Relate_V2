@@ -1,6 +1,8 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
+import { useTranslation } from 'react-i18next';
+
 //Components
 import Login from "./features/auth/Login";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
@@ -8,7 +10,6 @@ import ResetPassword from './components/ForgotPassword/ResetPassword'
 import Dashboard from "./components/dashboard/Dashboard";
 import InviteCreateUser from "./features/userInvite/InviteCreateUser";
 import StartQuesPage from "./features/startQuestionare/StartQuesPage";
-import LanguageSwitcher from "./components/LanguageSwitcher";
 import Assessment from "./features/assessment/Assessment";
 import LandingPage from "./components/landingPage/LandingPage";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
@@ -22,17 +23,19 @@ import SubscriptionsPage from "./components/subscription/SubscriptionsPage";
 import { AuthProvider } from "./components/logout/AuthContext";
 import ReceiveInvite from "./components/receiveInvitepage/ReceiveInvite";
 
+
 function App() {
+
+  const { t, i18n } = useTranslation();
+
   return (
-
-
     <Router>
       <AuthProvider>
         <Routes>
 
           <Route path="/" element={<LandingPage />} />
+          
           {/* Define the route for the login page */}
-          <Route path="/" element={<LandingPage />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path={`/reset-password`} element={<ResetPassword />} />
