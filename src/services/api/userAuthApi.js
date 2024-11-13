@@ -24,10 +24,10 @@ export const registerUser = async (userData) => {
 export const userLogin = async (userData) => {
     try {
         const user = await userAuthApiService.post("/test/login", userData);
-        if(user) {
-            this.setUserToken("token", user.token)
-        }
-        return user;
+        console.log(user)
+        return user
+        
+        
     } catch (error) {
         return {};
     }
@@ -96,7 +96,7 @@ export const uploadProfilePic = async (data) => {
     }
 };
 
-export const getPartnerEmail = async (data) => {
+export const getPartnerEmail = async () => {
     try {
         const response = await userAuthApiService.get(`/test/get-partner-email`);
         return response;

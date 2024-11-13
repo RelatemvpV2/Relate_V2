@@ -9,74 +9,31 @@ import Summary1EachCatogoryScore from './Summary1EachCatogoryScore';
 //css
 import './summary1stUser.css';
 import Button from '../button/Button';
+import { getAssessmentSummary } from '../../services/api/answerApi';
 
 const Summary1stUser = () => {
 
-  const [data, setData] = useState(null); // State for storing API data
-  const [loading, setLoading] = useState(true); // State for loading status
-  const [error, setError] = useState(null); // State for error handling
-  const [assessmentId, setAssessmentId] = useState(localStorage.getItem("assessment-id"));
+    const [data, setData] = useState(null); // State for storing API data
+    const [loading, setLoading] = useState(true); // State for loading status
+    const [error, setError] = useState(null); // State for error handling
+    const [assessmentId, setAssessmentId] = useState(localStorage.getItem("assessment-id"));
 
-  useEffect(() => {
-    // Function to fetch data
-    const fetchData = async () => {
-      try {
-        setLoading(true); // Start loading
-        // const response = await getAllCategories();  
-        // if (!response) {
-        //   throw new Error(`HTTP error! Status: ${response.status}`);
-        // }
-        // const result = await response.json();
-        setData([
-          {
-            "id": "categoryID",
-            "type": "level-1",
-            "name": "Category Name",
-            "description": "Description of the main category",
-            "introVideo": "url_or_identifier",
-            "parentId": null,
-            "nextLevelDescription": "next level description",
-            "enableIntro": true,
-            "enableDescription": true,
-            "enablenextDescription": true,
-            "sortOrder": 1,
-            "questions": []
-          },
-          {
-            "id": "subcategoryID",
-            "type": "level-2",
-            "name": "Subcategory Name",
-            "description": "Description of the subcategory",
-            "introVideo": "url_or_identifier",
-            "parentId": "categoryID",
-            "nextLevelDescription": "next level description",
-            "enableIntro": true,
-            "enableDescription": true,
-            "enablenextDescription": true,
-            "sortOrder": 1,
-            "questions": []
-          },
-          {
-            "id": "subsubcategoryID",
-            "type": "level-3",
-            "name": "Sub-subcategory Name",
-            "description": "Description of the sub-subcategory",
-            "introVideo": "url_or_identifier",
-            "parentId": "subcategoryID",
-            "nextLevelDescription": "next level description",
-            "enableIntro": true,
-            "enableDescription": true,
-            "enablenextDescription": true,
-            "sortOrder": 1,
-            "questions": []
+    useEffect(() => {
+        // Function to fetch data
+        const fetchData = async () => {
+          try {
+            setLoading(true); // Start loading
+            const response = await getAssessmentSummary(assessmentId);  
+            if (!response) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const result = await response.data;
+            setData(result); // Store data
+          } catch (err) {
+            setError(err.message); // Store error message
+          } finally {
+            setLoading(false); // Stop loading
           }
-
-        ]); // Store data
-      } catch (err) {
-        setError(err.message); // Store error message
-      } finally {
-        setLoading(false); // Stop loading
-      }
     };
 
     fetchData(); // Call the function on mount
