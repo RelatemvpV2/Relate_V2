@@ -18,6 +18,7 @@ import EmailSignup from "./EmailSignup";
 
 import SocialLogin from "./SocialLogin";
 import { LoginUser, setUserToken } from "../../utils/userApi";
+import {getUserById} from "../../services/api/userAuthApi"
 
 
 // Loader component
@@ -72,13 +73,31 @@ const Login = () => {
     }
 
     try {
-      const response = await LoginUser(email, password); // Call the API function
+      const response = await LoginUser(email, password);
+      // console.log(response.data) // Call the API function
       setUserToken("token", response.data.token)
       console.log("Token:", response.data.token);
+      window.localStorage.setItem("email", email);
 
-      // Navigate after successful login
-      navigate("/userInvite/InviteCreateUser");
+      const savedEmail = window.localStorage.getItem("email");
+      if (savedEmail) {
+        console.log("Email saved in local storage:", savedEmail);
+      } else {
+        console.error("Failed to save email in local storage");
+      }
 
+     
+      const userId = response.data.user_id; 
+     const userResponse = await getUserById(userId); 
+    console.log("User Details:", userResponse.data);
+      if (userResponse.data.full_name === null && userResponse.data.date_of_birth === null) {
+         navigate("/userInvite/InviteCreateUser");
+        
+       
+      } else {
+        
+        navigate("/dashboard"); 
+      }
     } catch (error) {
       toggleDialog()
       setError(/* "Failed to login user try again: " + */ error);
