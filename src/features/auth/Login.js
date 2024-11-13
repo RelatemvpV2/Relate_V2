@@ -18,7 +18,7 @@ import EmailSignup from "./EmailSignup";
 
 import SocialLogin from "./SocialLogin";
 import { LoginUser, setUserToken } from "../../utils/userApi";
-import {getUserById} from "../../services/api/userAuthApi"
+import {getUserById,userLogin} from "../../services/api/userAuthApi"
 
 
 // Loader component
@@ -73,8 +73,13 @@ const Login = () => {
     }
 
     try {
-      const response = await LoginUser(email, password);
-      // console.log(response.data) // Call the API function
+      const payload = {
+        email: email,
+        password: password,
+        role: 'user', // Default role
+      };
+      const response = await userLogin(payload);
+      console.log(response) 
       setUserToken("token", response.data.token)
       console.log("Token:", response.data.token);
       window.localStorage.setItem("email", email);
@@ -98,10 +103,13 @@ const Login = () => {
         
         navigate("/dashboard"); 
       }
-    } catch (error) {
-      toggleDialog()
-      setError(/* "Failed to login user try again: " + */ error);
-      //console.log("Login error:", error);  // Log generic login error
+    } 
+    catch (err) {
+      // Only set the error message, not the entire error object
+      setError(err.message || "Failed to login, please try again.");
+      toggleDialog();
+    
+    
     } finally {
       setLoading(false);//stop loader
     }
