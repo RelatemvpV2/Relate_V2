@@ -1,11 +1,11 @@
 
 
-import React,{ useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './sidegreybg.css'; // Importing the CSS'
 import Footer from '../footer/Footer';
 import Text from '../text/Text';
 import RelateLogo from '../relatelogo/Relatelogo';
-import { getPartnerEmail } from '../../services/api/userAuthApi';
+import { getPartnerEmail, updateInvitationStatus } from '../../services/api/userAuthApi';
 import { useNavigate } from 'react-router-dom';
 import Dashboard from '../dashboard/Dashboard';
 
@@ -27,28 +27,34 @@ const SideGreyBg = () => {
   };
 
   const redirectToRelation = (relation) => {
-    navigate("/dashboard")    
+    navigate("/dashboard")
   }
 
-  const userRelations = {
+ /*  const userRelations = {
 
     invitationNotSent: ['Sample Person 1'],
     waitingForResponse: ['Sample Person 2'],
   };
+ */
+  const checkPendingInvitations = messages && messages.filter((msg) => msg.invitation_status === 'pending')
+  
+
   useEffect(() => {
     const fetchPartnerEmail = async () => {
       try {
-        const response = await getPartnerEmail();       
+        const response = await getPartnerEmail();
         const receiverNames = response.data
           .filter((each) => each.reciever_email !== email);
 
-        setMessages(receiverNames); 
+        setMessages(receiverNames);
       } catch (error) {
         console.error("Error fetching messages:", error);
       }
     };
     fetchPartnerEmail();
-  }, []); 
+  }, []);
+
+  console.log("messages side bar",messages)
 
   return (
     <div className="sidegrey-bg">
@@ -57,14 +63,14 @@ const SideGreyBg = () => {
 
 
         <nav className="sidebar-nav">
-        <Text type="p" className="therapist-text"
-        onClick={redirectToInvitations}>
-        Me
+          <Text type="p" className="therapist-text"
+            onClick={redirectToInvitations}>
+            Me
 
           </Text>
-        <svg xmlns="http://www.w3.org/2000/svg" width="173" height="2" viewBox="0 0 173 2" fill="none">
-  <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5"/>
-</svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="173" height="2" viewBox="0 0 173 2" fill="none">
+            <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5" />
+          </svg>
           <Text
             type="p"
             className={`my-relations ${showRelations ? 'active' : ''}`}
@@ -74,62 +80,68 @@ const SideGreyBg = () => {
           </Text>
           {showRelations && (
             <div className="relations-dropdown">
-              {messages.map((relations, i) => (
+              {messages
+              .filter(each => each.sender_email == email)
+              .map((relations, i) => (
                 <Text key={i} type="p" className="relation-item"
-                onClick={() => redirectToRelation(relations)}>
+                  onClick={() => redirectToRelation(relations)}>
                   {relations.reciever_name}
                 </Text>
               ))}
             </div>
           )}
-          {userRelations.invitationNotSent.length > 0 && (
+          {/* {userRelations.invitationNotSent.length > 0 && ( */}
+          {(messages.length === 0) && (
+
             <div className="category">
               <Text type="p" className="relation-item active">No inviation sent</Text>
             </div>
           )}
 
 
-          {userRelations.waitingForResponse.length > 0 && (
-            <div className="category">
-              <Text type="p" className="relation-item active">Waiting for relation
+          {/* {userRelations.waitingForResponse.length > 0 && ( */}
+          {(messages && messages.length > 0 && checkPendingInvitations.length > 0 ) && (
 
+            <div className="category">
+              <Text type="p" className="relation-item active">
+                Waiting for relation
               </Text>
             </div>
           )}
-          <Text type="p" className="myrelations-text">
+         {/*  <Text type="p" className="myrelations-text">
             James S
-          </Text>
+          </Text> */}
           <Text type="p" className="newrelation-text">
             + Add new relation
 
           </Text>
           <svg xmlns="http://www.w3.org/2000/svg" width="173" height="2" viewBox="0 0 173 2" fill="none">
-  <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5"/>
-</svg>
+            <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5" />
+          </svg>
           <Text type="p" className="therapist-text">
             Therapists
 
           </Text>
           <svg xmlns="http://www.w3.org/2000/svg" width="173" height="2" viewBox="0 0 173 2" fill="none">
-  <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5"/>
-</svg>
+            <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5" />
+          </svg>
           <Text type="p" className="therapist-text">
             Settings
 
           </Text>
           <svg xmlns="http://www.w3.org/2000/svg" width="173" height="2" viewBox="0 0 173 2" fill="none">
-  <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5"/>
-</svg>
+            <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5" />
+          </svg>
         </nav>
         <Footer />
       </aside>
 
     </div>
- 
+
   );
 };
 
-export default SideGreyBg;   
+export default SideGreyBg;
 
 
 
