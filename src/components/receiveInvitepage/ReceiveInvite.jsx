@@ -17,38 +17,6 @@ import { getPartnerEmail, updateInvitationStatus } from '../../services/api/user
 import './receiveInvite.css'
 
 
-/* 
-
-************login from keerthi1822*********
-
-assessment_id:"146c5c29-3350-4354-8ffe-12cc00c996f4"
-id : "a6b7f522-70d7-4566-880d-565dcdea8e27"
-invitation_status:"Declined"
-invite_sent_date:"2024-11-14T12:19:59.094662"
-reciever_email:"keerthi1822@gmail.com"
-reciever_level1_status:false
-reciever_name:"keerthika Alampalli"
-sender_email:"keerthikagangisetty@gmail.com"
-sender_level1_status:false
-sender_name:"Name"
-
-**************login from keerthikagangisetty**********
-0
-: 
-assessment_id:"146c5c29-3350-4354-8ffe-12cc00c996f4"
-id:"a6b7f522-70d7-4566-880d-565dcdea8e27"
-invitation_status:"Declined"
-invite_sent_date:"2024-11-14T12:19:59.094662"
-reciever_email:"keerthi1822@gmail.com"
-reciever_level1_status:false
-reciever_name:"keerthika Alampalli"
-sender_email:"keerthikagangisetty@gmail.com"
-sender_level1_status:false
-sender_name:"Name"
-
-*/
-
-
 const email = window.localStorage.getItem("email");
 
 const ReceiveInvite = () => {
@@ -67,7 +35,7 @@ const ReceiveInvite = () => {
                 const response = await getPartnerEmail()
                 console.log("API response:", response.data);
                 // response.data.filter(user => user.partner_email == sessionStorage.get('user-email'))
-                setMessages(response.data)
+                setMessages(response.data.filter(each => each.reciever_email == email))
             } catch (error) {
                 console.error("Error fetching messages:", error)
             }
@@ -75,21 +43,22 @@ const ReceiveInvite = () => {
         fetchMessages()
     }, [])
 
+    console.log(messages)
 
-    const handleInviteStatus = async (compat_id) => {
-        console.log(invitation_status)
+    const handleInviteStatus = async (compat_id,newStatus) => {
+        console.log(newStatus)
         try {
             const response = await updateInvitationStatus(
                 {
                     "compat_id": compat_id || window.localStorage.getItem('current_assesment_id'),
-                    "action": invitation_status
+                    "action": newStatus
                 }
             )
 
-            if (invitation_status === 'Accept')
+            if (newStatus === 'Accept')
                 navigate("/startQuestionare/StartQuesPage")
 
-            if (invitation_status === 'Decline')
+            if (newStatus === 'Decline')
                 navigate("/dashboard")
 
 
@@ -116,7 +85,8 @@ const ReceiveInvite = () => {
 
 
             {
-                (messages ? messages
+                (messages && messages.length > 0)
+                    ? (messages
                     .filter(each => each.reciever_email == email)
                     .map((each, i) => (
                         <section key={i}>
@@ -163,23 +133,18 @@ const ReceiveInvite = () => {
                                                 console.log(each)
                                                 setInvitation_status('Accept')
                                                 window.localStorage.setItem('current_assesment_id', each.assessment_id);
-                                                handleInviteStatus(each.id);
+                                                handleInviteStatus(each.id,'Accept');
                                             }}>Accept and start</Button>
 
                                             <Text type="a" className='reject-invitation' onClick={() => {
                                                 setInvitation_status('Decline')
-                                                handleInviteStatus(each.id)
+                                                handleInviteStatus(each.id,'Decline')
                                             }}>Reject invitation</Text>
                                         </div>
                                         }
                                         {each.invitation_status == "Accepted"
                                             && <div className='btn-link-container'>
-                                                <Button className='Accept-and-start-btn' onClick={() => {
-                                                    console.log(each)
-                                                    setInvitation_status('Accept')
-                                                    window.localStorage.setItem('current_assesment_id', each.assessment_id);
-                                                    handleInviteStatus(each.id);
-                                                }}>start</Button>
+                                                <Button className='Accept-and-start-btn' onClick={() => { }}>start</Button>
                                             </div>
                                         }
                                     </div>
@@ -188,9 +153,9 @@ const ReceiveInvite = () => {
 
                             <div className="divider-horizantal" style={{ margin: "10px auto" }}></div>
                         </section>
-                    ))
-                    : <p>"No messages found"</p>
-                )
+                    )))
+                    : <p>"No Invites yet"</p>
+                
             }
         </DashboardLayout>
     )
