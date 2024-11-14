@@ -25,26 +25,24 @@ const Assessment = () => {
   const handleSaveAnswer = async () => {
     try {
       if (answer) {
-        console.log(answer);
         await saveAnswer(assessmentId, answer.categoryId, answer.questionId, answer); // Call save answer API with the current answer
-      }
-      if (currentQuestionIndex < data.length - 1) {
-        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-        setAnswer(null); // Reset answer state for the next question
-      } else {
-        alert("All questions answered!");
-        handleSummary();
       }
     } catch (error) {
       console.error("Error saving answer:", error);
+      return;
+    }
+    if (currentQuestionIndex < data.length - 1) {
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      setAnswer(null); // Reset answer state for the next question
+    } else {
+      alert("All questions answered!");
+      handleSummary();
     }
   };
 
   // Update answer when receiving input from AnswerComponent
   const handleAnswerChange = (newAnswer) => {
-    setAnswer(newAnswer);
-    console.log(answer);
-
+    setAnswer(newAnswer);    
   };
 
   const handleSummary = () => {
@@ -103,6 +101,7 @@ const Assessment = () => {
               currentIndex={currentQuestionIndex}
               total={data.length}
               onAnswerChange={handleAnswerChange} // Pass handler to child
+              answer={answer}
             />
             <div className="question-description">
               When considering your answer think of bla bla bla. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum

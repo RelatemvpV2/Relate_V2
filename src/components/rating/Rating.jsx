@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 //css
 import './Rating.css';
 
-const Rating = ({onRatingSelected}) => {
+const Rating = ({onRatingSelected, answer}) => {
 
     const [isScoreSelected, setIsScoreSelected] = useState(false);
-    const [ratingActiveId, setRatingActiveId] = useState(null);
+    const [ratingActiveId, setRatingActiveId] = useState(answer);
     const [info, setInfo] = useState();
 
     const handleRatingClick = (id) => {

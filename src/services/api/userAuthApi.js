@@ -26,8 +26,6 @@ export const userLogin = async (userData) => {
         const user = await userAuthApiService.post("/test/login", userData);
         console.log(user)
         return user
-        
-        
     } catch (error) {
         return {};
     }
