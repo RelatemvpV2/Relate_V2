@@ -6,20 +6,29 @@ import Footer from '../footer/Footer';
 import Text from '../text/Text';
 import RelateLogo from '../relatelogo/Relatelogo';
 import { getPartnerEmail } from '../../services/api/userAuthApi';
+import { useNavigate } from 'react-router-dom';
+import Dashboard from '../dashboard/Dashboard';
 
 
 const email = window.localStorage.getItem("email");
-
-
-
 
 const SideGreyBg = () => {
   const [showRelations, setShowRelations] = useState(false);
   const [messages, setMessages] = useState([])
 
+  const navigate = useNavigate();
+
   const toggleRelations = () => {
     setShowRelations((prevShowRelations) => !prevShowRelations);
   };
+
+  const redirectToInvitations = () => {
+    navigate("/dashboard/messages");
+  };
+
+  const redirectToRelation = (relation) => {
+    navigate("/dashboard")    
+  }
 
   const userRelations = {
 
@@ -29,12 +38,9 @@ const SideGreyBg = () => {
   useEffect(() => {
     const fetchPartnerEmail = async () => {
       try {
-        const response = await getPartnerEmail();
-        console.log("API response:", response.data);
-       
+        const response = await getPartnerEmail();       
         const receiverNames = response.data
-          .filter((each) => each.reciever_email !== email)
-          .map((each) => each.reciever_name || "Unknown Receiver");
+          .filter((each) => each.reciever_email !== email);
 
         setMessages(receiverNames); 
       } catch (error) {
@@ -51,7 +57,8 @@ const SideGreyBg = () => {
 
 
         <nav className="sidebar-nav">
-        <Text type="p" className="therapist-text">
+        <Text type="p" className="therapist-text"
+        onClick={redirectToInvitations}>
         Me
 
           </Text>
@@ -67,9 +74,10 @@ const SideGreyBg = () => {
           </Text>
           {showRelations && (
             <div className="relations-dropdown">
-              {messages.map((name, i) => (
-                <Text key={i} type="p" className="relation-item">
-                  {name}
+              {messages.map((relations, i) => (
+                <Text key={i} type="p" className="relation-item"
+                onClick={() => redirectToRelation(relations)}>
+                  {relations.reciever_name}
                 </Text>
               ))}
             </div>

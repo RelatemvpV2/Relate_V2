@@ -97,11 +97,8 @@ const Login = () => {
     console.log("User Details:", userResponse.data);
       if (userResponse.data.full_name === null && userResponse.data.date_of_birth === null) {
          navigate("/userInvite/InviteCreateUser");
-        
-       
       } else {
-        
-        navigate("/dashboard"); 
+        navigate("/dashboard/messages"); 
       }
     } 
     catch (err) {

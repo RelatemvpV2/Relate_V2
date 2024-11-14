@@ -9,7 +9,7 @@ import Rating from '../rating/Rating'
 import './quesionairModule.css'
 import { getCategoryById } from '../../services/api/categoryApi'
 
-const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total}) => {
+const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total, answer}) => {
 
   const [category, setCategory] = useState(null);
 
@@ -71,7 +71,7 @@ const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total}) =
 
         {/* rating */}
         
-        <Rating onRatingSelected={handleSelectedRating} />
+        <Rating onRatingSelected={handleSelectedRating} answer={answer} />
       </div>
 
 
