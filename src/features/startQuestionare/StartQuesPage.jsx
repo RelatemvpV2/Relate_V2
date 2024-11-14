@@ -34,8 +34,8 @@ const StartQuesPage = () => {
     try {
       const response = await getPartner();
       console.log('get partner: ', response)
-      console.log(response.data[0]["partner_email"])
-      setPartnerEmail(response.data[0]['partner_email'])
+      console.log(response.data[0]["reciever_email"])
+      setPartnerEmail(response.data[0]["reciever_email"])
 
     }
     catch (error) {
