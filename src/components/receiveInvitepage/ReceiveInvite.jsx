@@ -62,7 +62,7 @@ const ReceiveInvite = () => {
             <div className="divider-horizantal" style={{ marginBottom: "10px", marginTop: 0 }}></div>
             
             {
-                messages
+               ( messages ? messages
                     .filter(each => each.reciever_email == email) 
                     .map((each, i) => (
                         <section key={i}>
@@ -97,6 +97,8 @@ const ReceiveInvite = () => {
                             <div className="divider-horizantal" style={{ margin: "10px auto" }}></div>
                         </section>
                     ))
+                :"No messages found"
+            )
             }
         </DashboardLayout>
     )

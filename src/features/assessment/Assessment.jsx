@@ -103,11 +103,18 @@ const Assessment = () => {
               onAnswerChange={handleAnswerChange} // Pass handler to child
               answer={answer}
             />
+            <div className="question-description">
+              When considering your answer think of bla bla bla. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            </div>
             <Button className="loginpage-button" onClick={handleSaveAnswer}>Continue</Button>
           </>
         ) : (
           <p>No data available</p>
         )}
+
+        {/* Divider */}
+        <div className="divider-horizantal"></div>
+
         <div className="links-textcontainer">
           <Text type="a" className="links-text" style={{ fontSize: "12px" }} onClick={handleGoBack}>
             Go back

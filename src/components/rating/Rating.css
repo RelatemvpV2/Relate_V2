@@ -4,6 +4,14 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    color: #F9EEE1;
+    text-align: center;
+    font-family: Raleway; 
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    /* 137.5% */
+
 }
 
 /* Title styling */
@@ -65,7 +73,8 @@
     /* slightly larger when selected */
 }
 
-.rating-item.selected::before , .rating-item.selected::after{
+.rating-item.selected::before,
+.rating-item.selected::after {
     transform: scale(.9);
     /* slightly larger when selected */
 }
@@ -88,7 +97,7 @@
     top: 40px;
     left: -28%;
     font-size: .9em;
-    width:max-content;
+    width: max-content;
 
 }
 
@@ -99,7 +108,7 @@
     top: 40px;
     left: -32%;
     font-size: .9em;
-    width:max-content;
+    width: max-content;
 }
 
 

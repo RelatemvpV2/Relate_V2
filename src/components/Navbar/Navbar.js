@@ -1,28 +1,33 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
+
+
 import './navbar.css'
 
 const Navbar = () => {
+
+  const { t, i18n } = useTranslation();
   return (
     <nav style={styles.navbar} className="navbar">
       <ul style={styles.navList}>
         <li style={styles.navItem}>
           <a href="#about" style={styles.navLink}>
-            About
+            {t('NAV_ABOUT')}
           </a>
         </li>
         <li style={styles.navItem}>
           <a href="#services" style={styles.navLink}>
-            Services
+            {t('NAV_SERVICES')}
           </a>
         </li>
         <li style={styles.navItem}>
           <a href="#therapists" style={styles.navLink}>
-            Therapists
+          {t('NAV_THERAPISTS')}
           </a>
         </li>
         <li style={styles.navItem}>
           <a href="#contact" style={styles.navLink}>
-            Contact
+          {t('NAV_CONTACT')}
           </a>
         </li>
       </ul>

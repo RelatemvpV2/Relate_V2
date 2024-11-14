@@ -10,44 +10,44 @@ const catagories = [
 
 const statusTable = [{
     catagory: "Communication",
-    status: "Invite Relation",
+    status: "UNLOCK CATEGORY",
     rating: 6,
-    subCatagories: 6,
+    subCatagories: 7,
 }, {
     catagory: "Intimacy",
-    status: "Invite Relation",
+    status: "UNLOCK CATEGORY",
     rating: 6,
-    subCatagories: 6,
+    subCatagories: 4,
 }, {
     catagory: "Values",
-    status: "Invite Relation",
+    status: "UNLOCK CATEGORY",
     rating: 6,
-    subCatagories: 6,
+    subCatagories: 5,
 }, {
     catagory: "Economy",
-    status: "Invite Relation",
+    status: "UNLOCK CATEGORY",
     rating: 6,
     subCatagories: 6,
 }, {
     catagory: "Child rearing",
-    status: "Invite Relation",
+    status: "UNLOCK CATEGORY",
     rating: 6,
-    subCatagories: 6,
+    subCatagories: 2,
 }, {
     catagory: "Trust",
-    status: "Invite Relation",
+    status: "UNLOCK CATEGORY",
     rating: 6,
-    subCatagories: 6,
+    subCatagories: 4,
 }, {
     catagory: "Boundaries",
-    status: "Invite Relation",
+    status: "UNLOCK CATEGORY",
     rating: 6,
-    subCatagories: 6,
+    subCatagories: 1,
 }, {
     catagory: "Everyday life",
-    status: "Invite Relation",
+    status: "UNLOCK CATEGORY",
     rating: 6,
-    subCatagories: 6,
+    subCatagories: 3,
 }]
 
 const CatagoryStatusTable = () => {
@@ -64,20 +64,20 @@ const CatagoryStatusTable = () => {
                 <li style={{ visibility: "hidden" }}>button</li>
             </ul>
             {/* Divider */}
-            <div className="divider-horizantal" style={{marginBottom:"10px",marginTop:0}}></div>
+            <div className="divider-horizantal" style={{marginBottom:"26px",marginTop:0}}></div>
             {
                 statusTable.map((each,i) => {
                     return <section key={i}>
                         <ul className='table'>
                             <li>{each.catagory}</li>
                             <li>{each.status}</li>{/* link */}
-                            <li><section className='circle-background'>{each.rating}</section></li>{/* Number */}
-                            <li>{each.subCatagories}</li>{/* count 0 of 6 */}
+                            <li><section className='circle-background'><span>{each.rating}</span></section></li>{/* Number */}
+                            <li>{each.subCatagories} of {8}</li>{/* count 0 of 6 */}
                             <li><Button className='manage-button'>Manage</Button></li>
                         </ul>
 
                         {/* Divider */}
-                        <div className="divider-horizantal" style={{margin:"10px auto"}}></div>
+                        <div className="divider-horizantal" style={{margin:"26px auto"}}></div>
                     </section>
                 })
             }

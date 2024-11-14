@@ -2,9 +2,9 @@ import React from 'react'
 
 import "./catagory.css"
 
-const Catagory = ({children,width}) => {
+const Catagory = ({children,className}) => {
   return (
-    <div className='catagory' style={{width:`${width}`}}>{children}</div>
+    <div className={className} >{children}</div>
   )
 }
 

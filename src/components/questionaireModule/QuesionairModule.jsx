@@ -54,7 +54,7 @@ const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total, an
 
       <Text type="p" className="text questionaire-relation-review">Relation review</Text>
 
-      <Catagory width={'80%'}>
+      <Catagory className={'catagory'} width={'80%'}>
         <p className='catagory-p'> {categoryData?.name}</p>
       </Catagory>
       {/* Divider */}
@@ -73,10 +73,6 @@ const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total, an
         
         <Rating onRatingSelected={handleSelectedRating} answer={answer} />
       </div>
-
-
-      {/* Divider */}
-      <div className="divider-horizantal"></div>
 
     </div>
   )
