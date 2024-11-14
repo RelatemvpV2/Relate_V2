@@ -75,7 +75,6 @@ const Assessment = () => {
     };
 
     fetchData(); // Call the function on mount
-    console.log(data);
   }, []); // Empty dependency array ensures it only runs once on mount
 
   // Monitor `data` changes for debugging
@@ -101,7 +100,6 @@ const Assessment = () => {
               currentIndex={currentQuestionIndex}
               total={data.length}
               onAnswerChange={handleAnswerChange} // Pass handler to child
-              answer={answer}
             />
             <div className="question-description">
               When considering your answer think of bla bla bla. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
