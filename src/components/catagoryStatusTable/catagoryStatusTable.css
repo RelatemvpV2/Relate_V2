@@ -6,6 +6,12 @@
     height: 50px;
 }
 
+.blurred-content {
+    filter: blur(1px); /* Adjust the blur intensity as needed */
+    pointer-events: none; /* Disable interaction while loading */
+    opacity: 0.6; /* Slight transparency for a blemish effect */
+  }
+
 
 .table-header,
 .table {
