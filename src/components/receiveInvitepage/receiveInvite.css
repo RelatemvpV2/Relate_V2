@@ -178,6 +178,7 @@
     text-underline-offset: auto;
     text-underline-position: from-font;
     margin: 20px 0;
+    cursor: pointer;
 }
 
 .subject-open{

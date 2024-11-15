@@ -66,6 +66,7 @@ h1 {
   /* 150% */
   letter-spacing: 0.28px;
   text-decoration-line: underline;
+  cursor: pointer;
 }
 
 .links-text:hover {

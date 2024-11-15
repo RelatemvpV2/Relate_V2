@@ -1,13 +1,16 @@
 
 
 import React, { useState, useEffect } from 'react';
-import './sidegreybg.css'; // Importing the CSS'
+import { useNavigate } from 'react-router-dom';
+//components
 import Footer from '../footer/Footer';
 import Text from '../text/Text';
 import RelateLogo from '../relatelogo/Relatelogo';
-import { getPartnerEmail, updateInvitationStatus } from '../../services/api/userAuthApi';
-import { useNavigate } from 'react-router-dom';
-import Dashboard from '../dashboard/Dashboard';
+import { getPartnerEmail } from '../../services/api/userAuthApi';
+
+//css
+import './sidegreybg.css'; // Importing the CSS'
+
 
 
 const email = window.localStorage.getItem("email");
@@ -43,10 +46,10 @@ const SideGreyBg = () => {
     const fetchPartnerEmail = async () => {
       try {
         const response = await getPartnerEmail();
-        const receiverNames = response.data
-          .filter((each) => each.reciever_email !== email);
+        /* const receiverNames = response.data
+          .filter((each) => each.reciever_email !== email); */
 
-        setMessages(receiverNames);
+        setMessages(response.data);
       } catch (error) {
         console.error("Error fetching messages:", error);
       }
@@ -81,17 +84,17 @@ const SideGreyBg = () => {
           {showRelations && (
             <div className="relations-dropdown">
               {messages
-              .filter(each => each.sender_email == email)
+              .filter(each => each.invitation_status === "Accepted")
               .map((relations, i) => (
                 <Text key={i} type="p" className="relation-item"
                   onClick={() => redirectToRelation(relations)}>
-                  {relations.reciever_name}
+                  {relations.sender_name}
                 </Text>
               ))}
             </div>
           )}
           {/* {userRelations.invitationNotSent.length > 0 && ( */}
-          {(messages.length === 0) && (
+          {(messages && messages.length > 0 && messages.filter(each => each.sender_email === email) ) && (
 
             <div className="category">
               <Text type="p" className="relation-item active">No inviation sent</Text>
