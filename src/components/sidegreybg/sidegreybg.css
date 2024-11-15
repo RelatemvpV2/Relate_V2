@@ -45,6 +45,7 @@
   letter-spacing: 0.24px;
   margin: 0;
   padding: 2px 0;
+  cursor: pointer;
 }
 
 .relation-item + .relation-item {

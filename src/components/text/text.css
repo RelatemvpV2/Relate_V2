@@ -127,6 +127,7 @@ h1 {
   font-size: 18px;
   font-style: italic;
   font-weight: 500;
+  cursor: pointer;
   /* line-height: 21px;  */
 }
 
