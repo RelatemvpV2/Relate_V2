@@ -57,15 +57,8 @@ const UserDashboard = () => {
 
             </div>
 
-
              {/* Table */}
-
              <CatagoryStatusTable></CatagoryStatusTable>
-
-
-
-          
-
 
         </div>
     )
