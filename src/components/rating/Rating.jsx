@@ -21,7 +21,7 @@ const Rating = ({ onRatingSelected, options }) => {
         setRatingActiveId(null); // Update the active option ID
         onRatingSelected(null)
         setIsScoreSelected(false);
-    }, []);
+    }, [options]);
 
     // const ratings = [1, 2, 3, 4, 5, 6, 7]
     return (
