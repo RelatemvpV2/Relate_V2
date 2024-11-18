@@ -93,7 +93,7 @@ const SideGreyBg = () => {
           </Text>
           {showRelations && (
             <div className="relations-dropdown">
-              {messages
+              {messages && messages.length > 0 && messages
                 .filter(each => each.invitation_status === "Accepted")
                 .map((relations, i) => (
                   <Text key={i} type="p" className="relation-item"
