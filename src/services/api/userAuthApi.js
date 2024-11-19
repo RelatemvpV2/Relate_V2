@@ -110,3 +110,14 @@ export const getAssessmentStatus = async (data) => {
         return {};
     }
 }
+
+export const sendInvite = async (data) => {
+    try {
+        const response = await userAuthApiService.post(`/test/send-invite`,data);
+        
+        return response;
+    } catch(error) {
+        console.error("Error sending invite:", error.response || error.message);
+        return {};
+    }
+}

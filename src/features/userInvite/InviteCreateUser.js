@@ -1,7 +1,8 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { userToken, UpdateUserProfile } from "../../utils/userApi.js"
+import { userToken,UpdateUserProfile } from "../../utils/userApi.js"
+import { sendInvite } from "../../services/api/userAuthApi.js";
 
 // Components
 import Navbar from "../../components/Navbar/Navbar";
@@ -12,14 +13,18 @@ import Text from "../../components/text/Text";
 import GreyBackground from "../../components/greybackground/Greybackground";
 import "../startQuestionare/StartQuesPage";
 import LogoutButton from "../../components/logout/Logout";
+import InvitePartner2 from "./InvitePartner2.jsx";
+
 
 // CSS
 import "../auth/login.css";
 import "./../../App.css";
 import "./userInvite.css";
 
+const email = window.localStorage.getItem("email");
 
 const InviteCreateUser = () => {
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
@@ -44,7 +49,7 @@ const InviteCreateUser = () => {
   });
 
 
-  const navigate = useNavigate();
+   
 
   const calculateAge = (dob1) => {
     var today = new Date();
@@ -136,15 +141,26 @@ const InviteCreateUser = () => {
     setLoading(true);
 
     try {
-      const response = await UpdateUserProfile(payload); // Call the API function
-      // start questionaire page with partner email.
+      await UpdateUserProfile(payload);
+  
+      // Check if partner email is provided, not the same as the user's email, and invite isn't delayed
+      if (formData.partnerEmail && formData.partnerEmail !== email && !formData.inviteLater) {
+          const inviteResponse = await sendInvite(formData.partnerEmail);
+          console.log("Invite sent successfully:", inviteResponse);
+  
+          
+         
+      }
+  
+      // Navigate to the next page only after invite handling is complete
       navigate("/startQuestionare/StartQuesPage");
-
-    } catch (error) {
-      setError("Failed to login user try again: " + error);
-    } finally {
-      setLoading(false);//stop loader
-    }
+  
+  } catch (error) {
+      setError("Failed to login user, try again: " + error);
+  } finally {
+      setLoading(false); // Stop loader
+  }
+  
   };
 
 

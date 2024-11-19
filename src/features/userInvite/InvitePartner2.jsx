@@ -1,10 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 import Text from '../../components/text/Text'
 import DashboardLayout from '../../components/dashboardLayout/DashboardLayout'
 import Button from '../../components/button/Button'
 
 const InvitePartner2 = () => {
+    const [partnerEmail, setPartnerEmail] = useState("");
+    const handleEmailChange = (event) => {
+        setPartnerEmail(event.target.value);
+      };
 
   return (
  
@@ -47,8 +51,9 @@ const InvitePartner2 = () => {
                     type="email"
                     name="partnerEmail"
                     className="inviteuser-inputbox indent"
-                    value={"Your Partner's Email"}
-                    onChange={()=>{}}
+                    value={partnerEmail}
+                    onChange={handleEmailChange}
+
                     
                 />
             </div>
