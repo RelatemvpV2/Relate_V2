@@ -93,7 +93,6 @@ const ResetPassword = () => {
      }
 
     if (newPassword !== newConfirmPassword) {
-      console.log("password do not match")
       setError("Passwords do not match");
       toggleDialog();
       return;
@@ -108,9 +107,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      console.log(token)
       const response = await ResetPasswordAPIFunc(newPassword, token); // Call the API function
-      console.log('reset password', response);
       setMsg(response.data.message); // Set success message
       toggleDialog();
 

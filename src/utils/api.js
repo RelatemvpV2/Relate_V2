@@ -5,7 +5,6 @@ export const callApi = async (url, method = 'GET', body = null, headers = {
 }) => {
   /*  try { */
   // Log the API request parameters
-  //console.log('API Request:', { url, method, body, headers });
 
   // Make the API call using Axios
   const response = await axios({

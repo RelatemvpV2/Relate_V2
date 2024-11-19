@@ -59,7 +59,6 @@ const SideGreyBg = () => {
     fetchPartnerEmail();
   }, []);
 
-  console.log("messages side bar", messages)
 
   return (
     <div className="sidegrey-bg">

@@ -6,10 +6,7 @@ import Circle from '../circleComponent/Circle'
 import './summary1stUser.css'
 
 const Summary1EachCatogoryScore = ({categoryData}) => {
-  useEffect(() => {
-    console.log(categoryData);
-    
-  })
+
   return (
     <div className="summary1CatagoryAlignment">
                     <p>{categoryData.name}</p>

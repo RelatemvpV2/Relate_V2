@@ -33,8 +33,7 @@ const StartQuesPage = () => {
   const getPartnerEmail = async () => {
     try {
       const response = await getPartner();
-      console.log('get partner: ', response)
-      console.log(response.data[0]["reciever_email"])
+
       setPartnerEmail(response.data[0]["reciever_email"])
 
     }

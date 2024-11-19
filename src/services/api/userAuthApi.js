@@ -24,7 +24,6 @@ export const registerUser = async (userData) => {
 export const userLogin = async (userData) => {
     try {
         const user = await userAuthApiService.post("/test/login", userData);
-        console.log(user)
         return user
     } catch (error) {
         return {};

@@ -16,14 +16,14 @@ const Summary1stUser = () => {
     const [data, setData] = useState(null); // State for storing API data
     const [loading, setLoading] = useState(true); // State for loading status
     const [error, setError] = useState(null); // State for error handling
-    const [assessmentId, setAssessmentId] = useState(localStorage.getItem("assessment-id"));
+    const [assessmentId, setAssessmentId] = useState(sessionStorage.getItem('current_assesment_id'));
 
     useEffect(() => {
         // Function to fetch data
         const fetchData = async () => {
           try {
             setLoading(true); // Start loading
-            const response = await getAssessmentSummary(assessmentId);  
+            const response = await getAssessmentSummary(sessionStorage.getItem('current_assesment_id'));  
             if (!response) {
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -37,7 +37,6 @@ const Summary1stUser = () => {
     };
 
     fetchData(); // Call the function on mount
-    console.log(data);
   }, []); // Empty dependency array ensures it only runs once on mount
 
   return (

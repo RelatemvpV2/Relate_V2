@@ -58,7 +58,6 @@ const ForgotPassword = () => {
         setLoading(true);
         try {
             const response = await forgotPasswordApiFunc(email); // Call the API function
-            console.log('forgot pwd email sent:', response);
             setMsg(response.data.message); // Set success message
             setIsEmailSent(true)
             toggleDialog();

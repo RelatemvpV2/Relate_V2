@@ -12,11 +12,6 @@ const SubscriptionsPage = () => {
 
     // State to toggle between views in recommended and More categories
     const [showAllCategories, setShowAllCategories] = useState(false);
-
-    useEffect(() => {
-        console.log(showAllCategories, "useeffect")
-    }, [showAllCategories])
-
     const handleHover = (id) => {
         setHoveredCard(id);
     };
