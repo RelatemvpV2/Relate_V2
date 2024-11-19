@@ -20,6 +20,14 @@
     text-decoration: underline;
 }
 
+.logout-link:hover {
+    color: #696f7d;
+}
+
+.logout-link:active {
+    color: #c68977;
+}
+
 .logged-in-text {
     width: 202px;
     height: 43px;

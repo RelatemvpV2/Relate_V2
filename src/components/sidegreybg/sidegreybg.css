@@ -21,12 +21,12 @@
   justify-content: center;
   margin-top: 5%;
 }   
-.my-relations.active, .relation-item.active {
+.my-relations.active, .relation-item.active,.Me-text.active, .Me-text.active  {
   color: #C68977; 
 }
 
 
-.relations-dropdown {
+.relations-dropdown,.me-dropdown {
   width: 157px;
     background-color: transparent;
     padding: 0;

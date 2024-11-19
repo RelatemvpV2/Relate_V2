@@ -86,7 +86,7 @@ h1 {
   Color: #696F7D
 }
 
-.my-relations {
+.my-relations,.Me-text{
   width: 198px;
   cursor: pointer;
   /* height: 21px; */
@@ -99,6 +99,7 @@ h1 {
   font-size: 27px;
   font-style: normal;
   font-weight: 700;
+  margin-top: 15%;
   /* line-height: 21px;  */
 }
 
