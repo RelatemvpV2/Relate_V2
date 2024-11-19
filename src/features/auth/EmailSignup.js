@@ -90,14 +90,12 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
     e.preventDefault();
     setSubmitted(true);
 
-    console.log('sign up')
     if (!validateInput()){
       setError("Invalid input");
       toggleDialog();
       return;
 }
     if (password !== confirmPassword) {
-      console.log("password do not match")
       setError("Passwords do not match");
       toggleDialog();
       return;
@@ -107,7 +105,6 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
 
     try {
       const response = await registerUser(email, password); // Call the API function
-      console.log('User registered successfully:', response);
       toggleDialog();
       setMsg(response.data.message); // Set success message
       navigate('/Login');

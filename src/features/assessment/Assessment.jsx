@@ -17,7 +17,7 @@ const Assessment = () => {
   const [error, setError] = useState(null); // State for error handling
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answer, setAnswer] = useState(null);
-  const [assessmentId, setAssessmentId] = useState(localStorage.getItem("assessment-id"))
+  const [assessmentId, setAssessmentId] = useState(sessionStorage.getItem('current_assesment_id'))
 
   const navigate = useNavigate();
 
@@ -76,13 +76,6 @@ const Assessment = () => {
 
     fetchData(); // Call the function on mount
   }, []); // Empty dependency array ensures it only runs once on mount
-
-  // Monitor `data` changes for debugging
-  useEffect(() => {
-    if (data) {
-      console.log("Data state updated:", data);
-    }
-  }, [data]);
 
   return (
     <div className="assessment-layout">

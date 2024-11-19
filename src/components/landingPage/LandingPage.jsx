@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -16,6 +16,10 @@ import './landingpage.css'
 
 
 const LandingPage = () => {
+
+    useEffect(() => {
+        localStorage.clear();
+      }, [])
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng); // Changes the language dynamically

@@ -40,7 +40,6 @@ const QuesionairModule = ({ categoryData, onAnswerChange, currentIndex, total })
         responseType: "text",
         format: "text"
       }
-      console.log(categoryData);
       onAnswerChange(answer)
     }
   }
