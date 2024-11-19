@@ -135,7 +135,6 @@ export const getPartner = async () => {
   if (!token) {
     throw new Error("Invalid Login")
   }
-  console.log(":get partner")
 
   try {
     const response = await callApi(
@@ -147,7 +146,6 @@ export const getPartner = async () => {
         'Authorization': `Bearer ${token}`
       }
     );
-    console.log(response, ":get partner")
     return response;
   } catch (error) {
 

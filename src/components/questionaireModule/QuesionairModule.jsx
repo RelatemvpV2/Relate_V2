@@ -9,12 +9,12 @@ import Rating from '../rating/Rating'
 import './quesionairModule.css'
 import { getCategoryById } from '../../services/api/categoryApi'
 
-const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total, answer}) => {
+const QuesionairModule = ({ categoryData, onAnswerChange, currentIndex, total }) => {
 
   const [category, setCategory] = useState(null);
 
-   // API call function
-   const fetchCategoryDetails = async (categoryId) => {
+  // API call function
+  const fetchCategoryDetails = async (categoryId) => {
     try {
       const response = await getCategoryById(categoryId);
       const data = await response.data;
@@ -32,16 +32,16 @@ const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total, an
   }, [categoryData]);
 
   const handleSelectedRating = (rating) => {
-    let answer = {
-      categoryId: category.id,
-      questionId: category.questions[0].id,
-      response: rating,
-      responseType: "text", 
-      format: "text"
-  }
-  console.log(categoryData);
-  
-    onAnswerChange(answer)
+    if (rating && category) {
+      let answer = {
+        categoryId: category.id,
+        questionId: category.questions[0].id,
+        response: Number(rating),
+        responseType: "text",
+        format: "text"
+      }
+      onAnswerChange(answer)
+    }
   }
 
   return (
@@ -60,18 +60,18 @@ const QuesionairModule = ({categoryData, onAnswerChange, currentIndex, total, an
       {/* Divider */}
       <div className="divider-horizantal"></div>
 
-      {category?.questions.length > 0 ? 
-      <><Text type="p" className="text question-p">{category?.questions[0]?.question}</Text></>:
-      <><Text type="p" className="text question-p">{"No Question"}</Text></>
+      {category?.questions.length > 0 ?
+        <><Text type="p" className="text question-p">{category?.questions[0]?.question}</Text></> :
+        <><Text type="p" className="text question-p">{"No Question"}</Text></>
       }
-      
+
       <div className='options-selection'>
-        <Text type="p" className="text question-count" style={{ margin: 0 }}>Question {currentIndex+1} of {total}</Text>
+        <Text type="p" className="text question-count" style={{ margin: 0 }}>Question {currentIndex + 1} of {total}</Text>
         <Text type="p" className="text select-score-p" style={{ margin: 0 }}>Please select score</Text>
 
         {/* rating */}
-        
-        <Rating onRatingSelected={handleSelectedRating} answer={answer} />
+
+        <Rating onRatingSelected={handleSelectedRating} options={category?.questions[0]?.options} />
       </div>
 
     </div>

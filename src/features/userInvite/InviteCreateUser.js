@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { userToken,UpdateUserProfile } from "../../utils/userApi.js"
+import { userToken, UpdateUserProfile } from "../../utils/userApi.js"
 
 // Components
 import Navbar from "../../components/Navbar/Navbar";
@@ -23,14 +23,14 @@ const InviteCreateUser = () => {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
-  const [latestAge,setLatestAge] = useState(0)
+  const [latestAge, setLatestAge] = useState(0)
   const [formData, setFormData] = useState({
     full_name: "",
     age: 0,
-    gender:"",
+    gender: "",
     date_of_birth: "",
     partnerEmail: "",
-    number_of_children:0,
+    number_of_children: 0,
 
     inviteLater: false, // Boolean to indicate whether to invite later
   });
@@ -51,11 +51,9 @@ const InviteCreateUser = () => {
     var birthDate = new Date(dob1);  // create a date object directly from `dob1` argument
     var age_now = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
-    {
-        age_now--;
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age_now--;
     }
-    console.log(age_now);
     return age_now;
   }
 
@@ -85,9 +83,9 @@ const InviteCreateUser = () => {
     setFormData((prev) => ({
       ...prev,
       inviteLater: checked,
-      partnerEmail: checked ? "" : prev.partnerEmail, 
+      partnerEmail: checked ? "" : prev.partnerEmail,
     }));
-    setTouched((prev) => ({ ...prev, partnerEmail: false })); 
+    setTouched((prev) => ({ ...prev, partnerEmail: false }));
   };
 
   const validate = () => {
@@ -109,23 +107,20 @@ const InviteCreateUser = () => {
       full_name: `${formData.firstName} ${formData.lastName}`,
       date_of_birth: formData.dob,
       gender: formData.gender,
-      number_of_children:  formData.children,
+      number_of_children: formData.children,
       age: calculateAge(formData.dob),
       nationality: "",
       languages_spoken: "",
       location: "",
       anniversary_date: "1999-12-12",/* should remove 'required' from Backend */
       interests: "",
-      hobbies: "", 
+      hobbies: "",
       channel: "",
       created_at: new Date()
     }
 
     if (formData.partnerEmail !== "")
       payload["partner_email"] = formData.partnerEmail
-
-    console.log("payload:", payload)
-
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setTouched({
@@ -142,26 +137,24 @@ const InviteCreateUser = () => {
 
     try {
       const response = await UpdateUserProfile(payload); // Call the API function
-      // console.log("profile updated successfully", response)
       // start questionaire page with partner email.
       navigate("/startQuestionare/StartQuesPage");
 
     } catch (error) {
       setError("Failed to login user try again: " + error);
-      //console.log("Login error:", error);  // Log generic login error
     } finally {
       setLoading(false);//stop loader
     }
   };
 
 
-  
+
   return (
     <MainContainer>
       <GreyBackground>
-      <div className='d-flex justify-content-between'>
-        <Navbar />
-        <LogoutButton/>
+        <div className='d-flex justify-content-between'>
+          <Navbar />
+          <LogoutButton />
 
         </div>
         <RelateLogo className="relate-logo-large" />
@@ -200,8 +193,8 @@ const InviteCreateUser = () => {
             <div className="user-inputscontainer">
               <form onSubmit={handleSubmit}>
                 <Text type="label" htmlFor="firstName" className="labels">
-                <span className="label-text">
-                  First Name{touched.firstName && !formData.firstName && <span className="error-asterisk">*</span>}
+                  <span className="label-text">
+                    First Name{touched.firstName && !formData.firstName && <span className="error-asterisk">*</span>}
                   </span>
                 </Text>
                 <input
@@ -216,8 +209,8 @@ const InviteCreateUser = () => {
                 />
 
                 <Text type="label" htmlFor="lastName" className="labels">
-                <span className="label-text">
-                  Last Name{touched.lastName && !formData.lastName && <span className="error-asterisk">*</span>}
+                  <span className="label-text">
+                    Last Name{touched.lastName && !formData.lastName && <span className="error-asterisk">*</span>}
                   </span>
                 </Text>
                 <input
@@ -234,8 +227,8 @@ const InviteCreateUser = () => {
                 <div className="inputs-container">
                   <div>
                     <Text type="label" htmlFor="dob" className="labels">
-                    <span className="label-text">
-                      Date of Birth{touched.dob && !formData.dob && <span className="error-asterisk">*</span>}
+                      <span className="label-text">
+                        Date of Birth{touched.dob && !formData.dob && <span className="error-asterisk">*</span>}
                       </span>
                     </Text>
                     <input
@@ -270,8 +263,8 @@ const InviteCreateUser = () => {
                 </div>
 
                 <Text type="label" htmlFor="gender" className="labels">
-                <span className="label-text">
-                  Gender{touched.gender && !formData.gender && <span className="error-asterisk">*</span>}
+                  <span className="label-text">
+                    Gender{touched.gender && !formData.gender && <span className="error-asterisk">*</span>}
                   </span>
                 </Text>
                 <select
@@ -319,8 +312,8 @@ const InviteCreateUser = () => {
 
             <div className="invitePartner-container">
               <Text type="label" htmlFor="email" className="labels">
-              <span className="label-text">
-                Email{touched.partnerEmail && !formData.partnerEmail && <span className="error-asterisk">*</span>}
+                <span className="label-text">
+                  Email{touched.partnerEmail && !formData.partnerEmail && <span className="error-asterisk">*</span>}
                 </span>
               </Text>
               <input
@@ -337,21 +330,21 @@ const InviteCreateUser = () => {
             <div className="radiobut-container">
 
 
-<label>
-    <input
-      type="checkbox" 
-      className="checkbox-option"
-      name="inviteLater"
-      checked={formData.inviteLater} 
-      onChange={handleCheckboxChange} 
-    />
-    <Text type="span" className="checkbox-text">
-      I want to invite my partner later
-    </Text>
-  </label>
+              <label>
+                <input
+                  type="checkbox"
+                  className="checkbox-option"
+                  name="inviteLater"
+                  checked={formData.inviteLater}
+                  onChange={handleCheckboxChange}
+                />
+                <Text type="span" className="checkbox-text">
+                  I want to invite my partner later
+                </Text>
+              </label>
             </div>
 
-            
+
 
             <div className="userpage-buttoncontainer">
               <Button className="userpage-button" type="submit" onClick={handleSubmit}>

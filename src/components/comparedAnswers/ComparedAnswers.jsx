@@ -76,7 +76,6 @@ const ComparedAnswers = () => {
         };
 
         fetchData(); // Call the function on mount
-        console.log(data);
     }, []); // Empty dependency array ensures it only runs once on mount
 
 

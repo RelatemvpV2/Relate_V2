@@ -18,7 +18,7 @@ import EmailSignup from "./EmailSignup";
 
 import SocialLogin from "./SocialLogin";
 import { LoginUser, setUserToken } from "../../utils/userApi";
-import {getUserById,userLogin} from "../../services/api/userAuthApi"
+import { getUserById, userLogin } from "../../services/api/userAuthApi"
 
 
 // Loader component
@@ -79,34 +79,24 @@ const Login = () => {
         role: 'user', // Default role
       };
       const response = await userLogin(payload);
-      console.log(response) 
       setUserToken("token", response.data.token)
-      console.log("Token:", response.data.token);
       window.localStorage.setItem("email", email);
 
       const savedEmail = window.localStorage.getItem("email");
-      if (savedEmail) {
-        console.log("Email saved in local storage:", savedEmail);
-      } else {
-        console.error("Failed to save email in local storage");
-      }
-
-     
-      const userId = response.data.user_id; 
-     const userResponse = await getUserById(userId); 
-    console.log("User Details:", userResponse.data);
+      const userId = response.data.user_id;
+      const userResponse = await getUserById(userId);
       if (userResponse.data.full_name === null && userResponse.data.date_of_birth === null) {
-         navigate("/userInvite/InviteCreateUser");
+        navigate("/userInvite/InviteCreateUser");
       } else {
-        navigate("/dashboard/messages"); 
+        navigate("/dashboard/messages");
       }
-    } 
+    }
     catch (err) {
       // Only set the error message, not the entire error object
       setError(err.message || "Failed to login, please try again.");
       toggleDialog();
-    
-    
+
+
     } finally {
       setLoading(false);//stop loader
     }

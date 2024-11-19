@@ -39,7 +39,7 @@ export const getAnswersForAssessmentAndCategory = async (assessmentId, categoryI
 export const getAssessmentSummary = async (assessmentId) => {
     try {
         const response = await answerApiService.get("/test/AssessmentID/" + assessmentId + "?summary=true");
-        return response;
+        return response?.rankedCategories;
     } catch (error) {
         return {};
     }
