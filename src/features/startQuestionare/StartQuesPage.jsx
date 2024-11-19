@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 /* import '../assessment/Assessment'; */
 import { useNavigate } from 'react-router-dom';
 
+
 //components
 import MainContainer from '../../components/maincontainer/Maincontainer';
 import GreyBackground from '../../components/greybackground/Greybackground';
@@ -20,6 +21,7 @@ import './startQuesPage.css'
 
 
 const StartQuesPage = () => {
+  
 
   const [partnerEmail, setPartnerEmail] = useState("");
 
@@ -27,13 +29,22 @@ const StartQuesPage = () => {
 
   const navigate = useNavigate(); // Step 2
 
+  
+
   const handleGetStarted = () => {
-    navigate('/assessment/Assessment'); // Step 3 - Update the path to your Assessment page route
+    if (partnerEmail) {
+      navigate('/assessment/Assessment'); // Navigate to Assessment page if partnerEmail exists
+    } else {
+      navigate('/dashboard'); 
+    }
+ 
   };
   const getPartnerEmail = async () => {
     try {
       const response = await getPartner();
-
+      console.log('get partner: ', response)
+      
+      console.log(response.data[0]["reciever_email"])
       setPartnerEmail(response.data[0]["reciever_email"])
 
     }

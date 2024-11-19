@@ -88,9 +88,10 @@ const Login = () => {
       if (userResponse.data.full_name === null && userResponse.data.date_of_birth === null) {
         navigate("/userInvite/InviteCreateUser");
       } else {
-        navigate("/dashboard/messages");
+        navigate("/dashboard"); 
       }
-    }
+      
+    } 
     catch (err) {
       // Only set the error message, not the entire error object
       setError(err.message || "Failed to login, please try again.");

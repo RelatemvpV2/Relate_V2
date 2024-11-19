@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './assessment.css'; // CSS for custom styles
 import SideGreyBg from '../../components/sidegreybg/SideGreyBg';
+import SideBar from '../../components/sideBar/SideBar';
 import MainContainer from '../../components/maincontainer/Maincontainer';
 import LightBgMain from '../../components/lightBgMain/LightBgMain';
 import QuesionairModule from '../../components/questionaireModule/QuesionairModule';
@@ -79,7 +80,7 @@ const Assessment = () => {
 
   return (
     <div className="assessment-layout">
-      <SideGreyBg />
+      < SideBar/>
 
       <LightBgMain>
         {loading ? (
