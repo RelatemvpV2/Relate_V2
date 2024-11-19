@@ -40,6 +40,7 @@ const ReceiveInvite = () => {
         }
     }, [])
 
+
     const handleInviteStatus = async (compat_id, newStatus) => {
         try {
             const response = await updateInvitationStatus(
@@ -88,7 +89,9 @@ const ReceiveInvite = () => {
                     ? (messages
                         .filter(each => each.reciever_email === email)
                         .map((each, i) => (
+
                             <><section key={i+ each.assessment_id}>
+
                                 <ul className='messages-table-header'>
                                     <div>Subject</div>
                                     <div>From</div>
@@ -122,6 +125,7 @@ const ReceiveInvite = () => {
 
                                             {each.invitation_status === "Pending" && <div className='btn-link-container'>
                                                 <Button className='Accept-and-start-btn' onClick={() => {
+
                                                     setInvitation_status('Accept');
                                                     window.localStorage.setItem('current_assesment_id', each.assessment_id);
                                                     handleInviteStatus(each.id, 'Accept');
@@ -134,10 +138,12 @@ const ReceiveInvite = () => {
                                             </div>}
                                             {each.invitation_status === "Accepted" && <div className='btn-link-container'>
                                                 <Button className='Accept-and-start-btn' onClick={() => {
+
                                                     acceptAndRedirectToAssessment(each)
                                                 }}>{"REJ"}</Button>
 
                                             </div>}
+
                                         </div>
                                     )}
                                 </div>

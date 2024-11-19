@@ -57,6 +57,7 @@ const SideGreyBg = () => {
     fetchPartnerEmail();
   }, []);
 
+
   return (
     <div className="sidegrey-bg">
       <aside className="sidebar">
