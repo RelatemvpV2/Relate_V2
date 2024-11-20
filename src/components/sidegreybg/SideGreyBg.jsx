@@ -6,7 +6,7 @@ import SideBar from '../sideBar/SideBar';
 
 
 const SideGreyBg = () => {
-  const [menuItems, setMenuItems] = useState([]);
+  
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
 

@@ -17,8 +17,6 @@ const SideGreyBg = () => {
   const [showRelations, setShowRelations] = useState(false);
   const [showSubMe, setShowSubMe] = useState(false);
 
-
-
   const [messages, setMessages] = useState([])
 
   const navigate = useNavigate();
@@ -41,10 +39,6 @@ const SideGreyBg = () => {
 
   const checkPendingInvitations = messages && messages.filter((msg) => msg.invitation_status === 'pending')
 
-
- 
-
-
   useEffect(() => {
         const fetchPartnerEmail = async () => {
           try {
@@ -62,7 +56,7 @@ const SideGreyBg = () => {
 
 
   return (
-    <div className="sidegrey-bg">
+   
       <aside className="sidebar">
         <RelateLogo className="relate-logo-small" />
 
@@ -98,7 +92,7 @@ const SideGreyBg = () => {
                 .map((relations, i) => (
                   <Text key={i} type="p" className="relation-item"
                     onClick={() => redirectToRelation(relations)}>
-                    {relations.sender_name}
+                     {relations.reciever_name}
                   </Text>
                 ))}
               {/* {userRelations.invitationNotSent.length > 0 && ( */}
@@ -148,7 +142,7 @@ const SideGreyBg = () => {
         <Footer />
       </aside>
 
-    </div>
+
 
   );
 };
