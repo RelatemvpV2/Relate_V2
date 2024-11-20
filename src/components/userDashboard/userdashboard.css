@@ -5,6 +5,26 @@
     display: flex;
   
     justify-content: center;
-    align-items: center;
-    margin-top: -6%;
+    align-items: flex-start;
+   
+    width:80%;
+    margin:auto;
  }
+
+ .upper-container div{
+    margin:0 3%;
+ }
+
+
+ @media only screen and (max-width: 667px) {
+
+   .upper-container{
+    flex-direction: column;
+   }
+
+   .invisible{
+      height:0;
+      visibility: collapse;
+   }
+  
+  }

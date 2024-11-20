@@ -79,6 +79,8 @@ const UserDashboard = () => {
           const partnerEmails = partnerResponse?.data || [];
           console.log("Partner emails fetched successfully:", partnerEmails);
           setShowUpperContainer(partnerEmails.length === 0);
+          
+
   
           // Fetch assessment status if partner emails exist
           if (partnerEmails.length > 0) {
@@ -125,33 +127,36 @@ const UserDashboard = () => {
       {/* Divider */}
       <div className="divider-horizantal"></div>
 
-      {showUpperContainer ? (
+      {true ? (
         <div className="upper-container">
-          <div style={{ marginRight: "4%", marginTop: "-7%" }}>
+          <div>
             <Text type="h3" className="user-dashboard-heading h3">
               Try an example
             </Text>
             <Text type="p" className="text" style={{ fontSize: "12px" }}>
               Curious to see how it works? Give it a try and invite your partner
-              afterwards. (Your answers will not be saved)
+              afterwards. <br/> (Your answers will not be saved)
             </Text>
-            <Button className="userpage-button">Start Example</Button>
+            <Button className="userpage-button" style={{marginTop:"5%"}}>Start Example</Button>
           </div>
 
           {/* Divider */}
+          <div className='invisible'>
           <svg xmlns="http://www.w3.org/2000/svg" width="2" height="235" viewBox="0 0 2 235" fill="none">
             <path d="M1 0L1.00001 235" stroke="#41414E" strokeWidth="0.5" />
           </svg>
+          </div>
 
-          <div style={{ margin: "5%" }}>
+          <div>
             <div className="invitePartner-container">
               <Text type="h3" className="user-dashboard-heading h3">
                 Invite your partner
               </Text>
               <Text type="p" className="text" style={{ fontSize: "12px" }}>
                 If you are ready to invite your partner, please type your partner's
-                email and send your invitation. (Your answers will be saved)
+                email and send your invitation.<br/> (Your answers will be saved)
               </Text>
+              <section className='form_email'>
               <Text type="label" htmlFor="email" className="labels" style={{ textAlign: "left" }}>
                 Email
               </Text>
@@ -163,6 +168,7 @@ const UserDashboard = () => {
                 value={partnerEmail}
                 onChange={handleEmailChange}
               />
+              </section>
             </div>
             <div className="userpage-buttoncontainer" style={{ marginTop: "30px" }}>
               <Button className="userpage-button" type="submit" onClick={handleSendInvitation}>
@@ -194,8 +200,11 @@ const UserDashboard = () => {
         </div>
       )}
 
-      <p>graphs integration</p>
-      <div className="graph-section"></div>
+      
+      <div className="graph-section blurred-content ">
+      <p style={{marginTop:'3%'}}>graphs integration</p>
+        <Button className='dashboardGraphsBtn'>View your latest comparison summary</Button>
+      </div>
 
       {/* Table */}
       <CatagoryStatusTable />

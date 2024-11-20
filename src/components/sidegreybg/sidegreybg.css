@@ -1,8 +1,4 @@
-.sidegrey-bg{
-   
-  background: #41414e;
-  width: 20%;
-}
+
 
 .sidebar {
   background: #41414e;
@@ -10,8 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
+  /* justify-content: center; */
+/*   height: 100%; */
 }
 
 .sidebar-nav {
@@ -31,8 +27,6 @@
     background-color: transparent;
     padding: 0;
     text-align: center;
-    
-   
 }
 
 .relation-item {
@@ -55,7 +49,6 @@
  
 /* Burger menu from react-burger-menu */
 
-/* MyResponsiveMenu.css */
 
 /* Desktop menu styles */
 .desktop-menu {
@@ -76,6 +69,10 @@
 
   .mobile-menu {
     display: block;
+  }
+
+  .sidebar{
+    width:80%;
   }
 }
 
