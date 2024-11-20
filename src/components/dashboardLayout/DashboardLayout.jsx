@@ -13,8 +13,8 @@ const DashboardLayout = ({children, style}) => {
   return (
     <div className='dashboard-layout' style={style}>
 
-        {/* <SideGreyBg></SideGreyBg> */}
-        <SideBar></SideBar>
+        <SideGreyBg></SideGreyBg>
+        {/* <SideBar></SideBar> */}
         <LightBgMain>
             {children}
         </LightBgMain>
