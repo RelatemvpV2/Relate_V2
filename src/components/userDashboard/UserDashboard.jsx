@@ -95,6 +95,7 @@ const UserDashboard = () => {
             console.log("Partner invitation status:", partnerInvitationPending);
   
             setUserStatus(user1Status);
+            // setUserStatus(true);
             setInvitationPending(partnerInvitationPending);
           } else {
             console.log("No partner emails found, skipping assessment status fetch.");

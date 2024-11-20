@@ -84,13 +84,41 @@ const Login = () => {
       setToken("user_id", response.data.user_id)
 
       const savedEmail = window.localStorage.getItem("email");
+//      
+      // const userId = response.data.user_id;
+      // const userResponse = await getUserById(userId);
+      // if (userResponse.data.full_name=== null && userResponse.data.date_of_birth === null) {
+      //   navigate("/userInvite/InviteCreateUser");
+      // } else {
+      //   navigate("/dashboard"); 
+      // }
       const userId = response.data.user_id;
-      const userResponse = await getUserById(userId);
-      if (userResponse.data.full_name === null && userResponse.data.date_of_birth === null) {
-        navigate("/userInvite/InviteCreateUser");
-      } else {
-        navigate("/dashboard"); 
+
+      try {
+        const userResponse = await getUserById(userId);
+        const userData = userResponse.data?.users; // Access the 'users' object in the response
+      
+        if (!userData) {
+          throw new Error("User data is missing in the response.");
+        }
+      
+        // Check if either field is null, undefined, or empty
+        const isFullNameMissing = !userData.full_name || userData.full_name.trim() === "";
+        const isDateOfBirthMissing = !userData.date_of_birth || userData.date_of_birth.trim() === "";
+      
+        // If either is missing, navigate to the invite creation page
+        if (isFullNameMissing && isDateOfBirthMissing) {
+          navigate("/userInvite/InviteCreateUser");
+        } else {
+          // Otherwise, navigate to the dashboard
+          navigate("/dashboard");
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+        // Handle error case if needed
       }
+      
+
       
     } 
     catch (err) {
