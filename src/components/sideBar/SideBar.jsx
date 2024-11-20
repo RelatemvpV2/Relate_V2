@@ -34,6 +34,7 @@ const SideGreyBg = () => {
   };
 
   const redirectToRelation = (relation) => {
+    localStorage.setItem("current_relation", JSON.stringify(relation))
     navigate("/dashboard")
   }
 
@@ -44,8 +45,7 @@ const SideGreyBg = () => {
           try {
             const response = await getPartnerEmail();       
             // const receiverNames = response.data
-            //   .filter((each) => each.reciever_email !== email);
-    
+            //   .filter((compatObj) => compatObj.reciever_email !== email);
             setMessages(response.data); 
           } catch (error) {
             console.error("Error fetching messages:", error);
@@ -88,15 +88,15 @@ const SideGreyBg = () => {
           {showRelations && (
             <div className="relations-dropdown">
               {messages && messages.length > 0 && messages
-                .filter(each => each.invitation_status === "Accepted" && each.reciever_email !== email)
+                .filter(compatObj => compatObj.invitation_status === "Accepted")
                 .map((relations, i) => (
                   <Text key={i} type="p" className="relation-item"
                     onClick={() => redirectToRelation(relations)}>
-                     {relations.reciever_name}
+                     {(relations.reciever_name === email)? relations.reciever_name:relations.sender_name}
                   </Text>
                 ))}
               {/* {userRelations.invitationNotSent.length > 0 && ( */}
-              {(messages && messages.length > 0 && messages.filter(each => each.sender_email === email)) && (
+              {(messages && messages.length > 0 && messages.filter(compatObj => compatObj.sender_email === email)) && (
 
                 <div className="category">
                   <Text type="p" className="relation-item active">No new inviation sent</Text>
