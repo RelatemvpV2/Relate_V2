@@ -21,7 +21,7 @@ import './startQuesPage.css'
 
 
 const StartQuesPage = () => {
-  
+
 
   const [partnerEmail, setPartnerEmail] = useState("");
 
@@ -29,23 +29,27 @@ const StartQuesPage = () => {
 
   const navigate = useNavigate(); // Step 2
 
-  
+  const email = window.localStorage.getItem("email");
 
   const handleGetStarted = () => {
     if (partnerEmail) {
       navigate('/assessment/Assessment'); // Navigate to Assessment page if partnerEmail exists
     } else {
-      navigate('/dashboard'); 
+      navigate('/dashboard');
     }
- 
+
   };
   const getPartnerEmail = async () => {
     try {
       const response = await getPartner();
-      console.log('get partner: ', response)
-      
-      console.log(response.data[0]["reciever_email"])
-      setPartnerEmail(response.data[0]["reciever_email"])
+
+      //checking if the login is same as receiver
+      if (email === response.data[0]["reciever_email"]) {
+        setPartnerEmail(response.data[0]["sender_email"])
+      }
+      else {
+        setPartnerEmail(response.data[0]["reciever_email"])
+      }
 
     }
     catch (error) {

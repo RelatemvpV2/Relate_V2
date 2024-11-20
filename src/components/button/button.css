@@ -145,4 +145,13 @@
   letter-spacing: 0.28px;
 }
 
-@media only screen and (max-width: 768px) {}
+@media only screen and (max-width: 666px) {
+
+  .dashboardGraphsBtn {
+    width: 250px;
+   
+    font-family: Raleway;
+    font-size: 10px;
+   
+  }
+}
