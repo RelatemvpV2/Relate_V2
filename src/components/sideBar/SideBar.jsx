@@ -94,7 +94,7 @@ const SideGreyBg = () => {
           {showRelations && (
             <div className="relations-dropdown">
               {messages && messages.length > 0 && messages
-                .filter(each => each.invitation_status === "Accepted")
+                .filter(each => each.invitation_status === "Accepted" && each.reciever_email !== email)
                 .map((relations, i) => (
                   <Text key={i} type="p" className="relation-item"
                     onClick={() => redirectToRelation(relations)}>

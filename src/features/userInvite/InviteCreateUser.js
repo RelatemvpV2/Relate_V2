@@ -142,6 +142,7 @@ const InviteCreateUser = () => {
 
     try {
       await UpdateUserProfile(payload);
+      
   
       // Check if partner email is provided, not the same as the user's email, and invite isn't delayed
       if (formData.partnerEmail && formData.partnerEmail !== email && !formData.inviteLater) {
