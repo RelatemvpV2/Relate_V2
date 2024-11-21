@@ -10,6 +10,7 @@ import Summary1EachCatogoryScore from './Summary1EachCatogoryScore';
 import './summary1stUser.css';
 import Button from '../button/Button';
 import { getAssessmentSummary } from '../../services/api/answerApi';
+import { useNavigate } from 'react-router-dom';
 
 const Summary1stUser = () => {
 
@@ -18,17 +19,18 @@ const Summary1stUser = () => {
     const [error, setError] = useState(null); // State for error handling
     const [assessmentId, setAssessmentId] = useState(sessionStorage.getItem('current_assesment_id'));
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         // Function to fetch data
         const fetchData = async () => {
           try {
-            setLoading(true); // Start loading
+            setLoading(true); // Start loading            
             const response = await getAssessmentSummary(sessionStorage.getItem('current_assesment_id'));  
             if (!response) {
               throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const result = await response.data;
-            setData(result); // Store data
+            }            
+            setData(response.data); // Store data
           } catch (err) {
             setError(err.message); // Store error message
           } finally {
@@ -38,6 +40,10 @@ const Summary1stUser = () => {
 
     fetchData(); // Call the function on mount
   }, []); // Empty dependency array ensures it only runs once on mount
+
+  const handleComparisonNavigate = () => {
+    navigate('/level1/comparedResults')
+  }
 
   return (
     <DashboardLayout>
@@ -58,7 +64,7 @@ const Summary1stUser = () => {
       <Catagory  className="summary-catagory">
         <div className="summary1CatagoryAlignment" style={{ height: '100%' }}>
           <p >Overall relation</p>
-          <Circle bgColor={"#C68977"} color={"#F9EEE1"} optionVal={"1"} diameter={"40px"} />
+          <Circle bgColor={"#C68977"} color={"#F9EEE1"} optionVal={data?.totalScore} diameter={"40px"} />
           <Text type="a" href="#" className="links-text edit-in-summary" style={{ color: "rgba(65, 65, 78, 0.60)", textAlign: "left" }}>
             Edit
           </Text>
@@ -67,11 +73,11 @@ const Summary1stUser = () => {
 
       {/* loop this component with catogories and the scores of the each catagory */}
 
-      {data && data.map(category => (
-        <Summary1EachCatogoryScore categoryData={category} />
+      {data && data.summary.length> 0 && data.summary.map((category, index) => (
+        <Summary1EachCatogoryScore key={category.id || index} categoryData={category} />
       ))}
 
-      <Button className='loginpage-button' style={{margin:"45px auto"}}>Continue</Button>
+      <Button className='loginpage-button' onClick={handleComparisonNavigate} style={{margin:"45px auto"}}>Continue</Button>
 
 
       {/* Divider */}
