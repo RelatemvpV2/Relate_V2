@@ -86,9 +86,9 @@ const ReceiveInvite = () => {
             {
                 (messages && messages.length > 0)
                     ? (messages
-                        .filter(each => each.reciever_email === email)
-                        .map((each, i) => (
-                            <><section key={i+ each.assessment_id}>
+                        .filter(msg => (msg.sender_email === email && msg.invitation_status !== "Accepted"))
+                        .map((msg, i) => (
+                            <><section key={i+ msg.assessment_id}>
                                 <ul className='messages-table-header'>
                                     <div>Subject</div>
                                     <div>From</div>
@@ -100,42 +100,42 @@ const ReceiveInvite = () => {
                                 <div className="divider-horizantal" style={{ marginBottom: "10px", marginTop: 0 }}></div>
                                 <div>
                                     <div className="messages-table">
-                                        <div>{each.invitation_status === "Pending" ? "You have been invited" : `${each.invitation_status} invite`}</div>
-                                        <div>{each.sender_name}</div>
-                                        <div>{each.invitation_status}</div>
+                                        <div>{msg.invitation_status === "Pending" ? "You have been invited" : `${msg.invitation_status} invite`}</div>
+                                        <div>{msg.sender_name}</div>
+                                        <div>{msg.invitation_status}</div>
 
                                         <div>
-                                            <Button onClick={() => handleButtonClick(each.id)}
-                                                className={`${each.inviteStatus === "Pending" ? "pending-btn" : "open-or-close-btn"}`}>
-                                                {each.invitation_status === "Pending" ? "Read" : subjectOpen ? "Close" : "Open"}
+                                            <Button onClick={() => handleButtonClick(msg.id)}
+                                                className={`${msg.inviteStatus === "Pending" ? "pending-btn" : "open-or-close-btn"}`}>
+                                                {msg.invitation_status === "Pending" ? "Read" : subjectOpen ? "Close" : "Open"}
                                             </Button>
                                         </div>
                                     </div>
 
                                     {/* Display subject and related content when the button is clicked */}
-                                    {activeBtnId === each.id && subjectOpen && (
+                                    {activeBtnId === msg.id && subjectOpen && (
                                         <div className='subject-open'>
                                             <Text type="p" className='invite-req-message'>
-                                                {each.sender_name} has invited you to answer our questionnaire to strengthen your relationship.
+                                                {msg.sender_name} has invited you to answer our questionnaire to strengthen your relationship.
                                             </Text>
 
 
-                                            {each.invitation_status === "Pending" && <div className='btn-link-container'>
+                                            {msg.invitation_status === "Pending" && <div className='btn-link-container'>
                                                 <Button className='Accept-and-start-btn' onClick={() => {
                                                     setInvitation_status('Accept');
-                                                    window.localStorage.setItem('current_assesment_id', each.assessment_id);
-                                                    handleInviteStatus(each.id, 'Accept');
+                                                    window.localStorage.setItem('current_assesment_id', msg.assessment_id);
+                                                    handleInviteStatus(msg.id, 'Accept');
                                                 }}>Accept and start</Button>
 
                                                 <Text type="a" className='reject-invitation' onClick={() => {
                                                     setInvitation_status('Decline');
-                                                    handleInviteStatus(each.id, 'Decline');
+                                                    handleInviteStatus(msg.id, 'Decline');
                                                 }}>Reject invitation</Text>
                                             </div>}
-                                            {each.invitation_status === "Accepted" && <div className='btn-link-container'>
+                                            {msg.invitation_status === "Accepted" && <div className='btn-link-container'>
                                                 <Button className='Accept-and-start-btn' onClick={() => {
-                                                    acceptAndRedirectToAssessment(each)
-                                                }}>{each.invitation_status}</Button>
+                                                    acceptAndRedirectToAssessment(msg)
+                                                }}>{msg.invitation_status}</Button>
 
                                             </div>}
                                         </div>
@@ -145,7 +145,7 @@ const ReceiveInvite = () => {
 
                                 <div>
                                     <Text type="a" className='links-text' onClick={() => {
-                                        (!each.sender_level1_status) && navigate("/dashboard")
+                                        (!msg.sender_level1_status) && navigate("/dashboard")
                                     }}>go to dashboard</Text>
                                 </div>
 

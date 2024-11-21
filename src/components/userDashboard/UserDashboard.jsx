@@ -22,6 +22,8 @@ const UserDashboard = () => {
   const [showUpperContainer, setShowUpperContainer] = useState(true);
   const [userStatus, setUserStatus] = useState(false);
   const [invitationPending, setInvitationPending] = useState(false); // New state for invitation status
+  const [currentRelation, setCurrentRelation] = useState({})
+
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -57,21 +59,24 @@ const UserDashboard = () => {
   };
 
   useEffect(() => {
+    const current_relation_obj = JSON.parse(localStorage.getItem("current_relation"))
+    setCurrentRelation(current_relation_obj)
+
     // Function to fetch data
     const fetchData = async () => {
       try {
         setLoading(true); // Start loading
-  
+
         // Fetch all categories
         console.log("Fetching categories...");
-        const response = await getAllCategories();  
+        const response = await getAllCategories();
         if (!response) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const result = await response.data;
         setData(result);
-      
-  
+
+
         try {
           // Fetch partner emails
           console.log("Fetching partner emails for user:", userEmail);
@@ -79,21 +84,21 @@ const UserDashboard = () => {
           const partnerEmails = partnerResponse?.data || [];
           console.log("Partner emails fetched successfully:", partnerEmails);
           setShowUpperContainer(partnerEmails.length === 0);
-          
 
-  
+
+
           // Fetch assessment status if partner emails exist
           if (partnerEmails.length > 0) {
             console.log("Partner emails exist, fetching assessment status...");
             const assessmentResponse = await getAssessmentStatus();
             console.log("Assessment status fetched successfully:", assessmentResponse?.data);
-  
+
             const user1Status = assessmentResponse?.data?.user1_level1_status || false;
             const partnerInvitationPending = partnerEmails[0]?.invitation_status === "Pending";
-  
+
             console.log("User's assessment status:", user1Status);
             console.log("Partner invitation status:", partnerInvitationPending);
-  
+
             setUserStatus(user1Status);
             // setUserStatus(true);
             setInvitationPending(partnerInvitationPending);
@@ -111,18 +116,18 @@ const UserDashboard = () => {
         setLoading(false); // Stop loading
       }
     };
-  
+
     fetchData(); // Call the function on mount
-  }, []); 
-  
-  
+  }, []);
+
 
   return (
     <div>
       <Text type="h3" className="user-dashboard-heading h3">
         My relation with
       </Text>
-      <Text className="user-partnerName">No invitation sent</Text>
+      <Text className="user-partnerName">
+        {currentRelation && currentRelation.sender_name && (currentRelation.sender_name !== userEmail) ? currentRelation.sender_name : "No invitation sent"}</Text>
 
       {/* Divider */}
       <div className="divider-horizantal"></div>
@@ -135,16 +140,16 @@ const UserDashboard = () => {
             </Text>
             <Text type="p" className="text" style={{ fontSize: "12px" }}>
               Curious to see how it works? Give it a try and invite your partner
-              afterwards. <br/> (Your answers will not be saved)
+              afterwards. <br /> (Your answers will not be saved)
             </Text>
-            <Button className="userpage-button" style={{marginTop:"5%"}}>Start Example</Button>
+            <Button className="userpage-button" style={{ marginTop: "5%" }}>Start Example</Button>
           </div>
 
           {/* Divider */}
-          <div className='invisible'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="2" height="235" viewBox="0 0 2 235" fill="none">
-            <path d="M1 0L1.00001 235" stroke="#41414E" strokeWidth="0.5" />
-          </svg>
+          <div className='invisible_line'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="2" height="235" viewBox="0 0 2 235" fill="none">
+              <path d="M1 0L1.00001 235" stroke="#41414E" strokeWidth="0.5" />
+            </svg>
           </div>
 
           <div>
@@ -154,20 +159,20 @@ const UserDashboard = () => {
               </Text>
               <Text type="p" className="text" style={{ fontSize: "12px" }}>
                 If you are ready to invite your partner, please type your partner's
-                email and send your invitation.<br/> (Your answers will be saved)
+                email and send your invitation.<br /> (Your answers will be saved)
               </Text>
               <section className='form_email'>
-              <Text type="label" htmlFor="email" className="labels" style={{ textAlign: "left" }}>
-                Email
-              </Text>
-              <input
-                id="email"
-                type="email"
-                name="partnerEmail"
-                className="inviteuser-inputbox indent"
-                value={partnerEmail}
-                onChange={handleEmailChange}
-              />
+                <Text type="label" htmlFor="email" className="labels" style={{ textAlign: "left" }}>
+                  Email
+                </Text>
+                <input
+                  id="email"
+                  type="email"
+                  name="partnerEmail"
+                  className="inviteuser-inputbox indent"
+                  value={partnerEmail}
+                  onChange={handleEmailChange}
+                />
               </section>
             </div>
             <div className="userpage-buttoncontainer" style={{ marginTop: "30px" }}>
@@ -200,9 +205,9 @@ const UserDashboard = () => {
         </div>
       )}
 
-      
-      <div className="graph-section blurred-content ">
-      <p style={{marginTop:'3%'}}>graphs integration</p>
+
+      <div className="graph-section ">
+        <p style={{ marginTop: '3%' }}>graphs integration</p>
         <Button className='dashboardGraphsBtn'>View your latest comparison summary</Button>
       </div>
 

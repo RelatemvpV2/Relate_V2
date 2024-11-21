@@ -54,7 +54,7 @@ const CatagoryStatusTable = () => {
     return (
         /*  <div className="table-container">  */
             
-             <div className="blurred-content table-container"> 
+             <div className="table-container"> 
 
              {/* Divider */}
              <div className="divider-horizantal"style={{margin:"10px auto 0"}}></div>
