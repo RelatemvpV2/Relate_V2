@@ -37,14 +37,14 @@ const Assessment = () => {
       setAnswer(null); // Reset answer state for the next question
     } else {
       alert("All questions answered!");
-      
+
       handleSummary();
     }
   };
 
   // Update answer when receiving input from AnswerComponent
   const handleAnswerChange = (newAnswer) => {
-    setAnswer(newAnswer);    
+    setAnswer(newAnswer);
   };
 
   const handleSummary = () => {
@@ -60,6 +60,9 @@ const Assessment = () => {
   };
 
   useEffect(() => {
+    if (!sessionStorage.getItem('current_assesment_id')) {
+      navigate("/dashboard");
+    }
     // Function to fetch data
     const fetchData = async () => {
       try {
@@ -81,7 +84,7 @@ const Assessment = () => {
 
   return (
     <div className="assessment-layout">
-      < SideBar/>
+      < SideBar />
 
       <LightBgMain>
         {loading ? (
