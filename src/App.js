@@ -22,6 +22,7 @@ import SubscriptionsPage from "./components/subscription/SubscriptionsPage";
 
 import { AuthProvider } from "./components/logout/AuthContext";
 import ReceiveInvite from "./components/receiveInvitepage/ReceiveInvite";
+import PrivateRoute from "./features/auth/PrivateRoute";
 
 
 function App() {
@@ -34,26 +35,29 @@ function App() {
         <Routes>
 
           <Route path="/" element={<LandingPage />} />
-          
+
           {/* Define the route for the login page */}
           <Route path="/Login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path={`/reset-password`} element={<ResetPassword />} />
           <Route path="/popup" element={<PopUpComponent />} />
 
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/messages" element={<ReceiveInvite />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/messages" element={<ReceiveInvite />} />
 
 
-          {/* Define the route for InviteCreateUser page */}
-          <Route path="/userInvite/InviteCreateUser" element={<InviteCreateUser />} />
-          <Route path="/startQuestionare/StartQuesPage" element={<StartQuesPage />} />
-          <Route path="/assessment/Assessment" element={<Assessment />} />
-          <Route path="/level1/yourSummary" element={<Summary1stUser />} />
-          <Route path="/level1/invitePartner2" element={<InvitePartner2 />} />
-          <Route path="/level1/waitingParnerResponse" element={<WaitingForPartnerResonse1 />} />
-          <Route path="/level1/comparedResults" element={<ComparedAnswers />} />
-          <Route path="/level1/subscriptions" element={<SubscriptionsPage />} />
+            {/* Define the route for InviteCreateUser page */}
+            <Route path="/userInvite/InviteCreateUser" element={<InviteCreateUser />} />
+            <Route path="/startQuestionare/StartQuesPage" element={<StartQuesPage />} />
+            <Route path="/assessment/Assessment" element={<Assessment />} />
+            <Route path="/level1/yourSummary" element={<Summary1stUser />} />
+            <Route path="/level1/invitePartner2" element={<InvitePartner2 />} />
+            <Route path="/level1/waitingParnerResponse" element={<WaitingForPartnerResonse1 />} />
+            <Route path="/level1/comparedResults" element={<ComparedAnswers />} />
+            <Route path="/level1/subscriptions" element={<SubscriptionsPage />} />
+          </Route>
+
 
 
           {/* Define the route for Page not found */}
