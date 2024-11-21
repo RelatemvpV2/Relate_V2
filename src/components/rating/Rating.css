@@ -149,16 +149,13 @@
         top: 0px;
         left: 135%;
         color: #C68977;
-        /* soft pinkish-brown */
         font-size: .9em;
     }
 
 
     .rating-scale::before {
         width: 2px;
-        /* Vertical line */
         height: 90%;
-        /* Full height */
         top: 10px;
         bottom: 10px;
         left: 50%;

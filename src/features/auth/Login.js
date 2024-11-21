@@ -84,7 +84,7 @@ const Login = () => {
       setToken("user_id", response.data.user_id)
 
       const savedEmail = window.localStorage.getItem("email");
-//      
+      //      
       // const userId = response.data.user_id;
       // const userResponse = await getUserById(userId);
       // if (userResponse.data.full_name=== null && userResponse.data.date_of_birth === null) {
@@ -97,15 +97,16 @@ const Login = () => {
       try {
         const userResponse = await getUserById(userId);
         const userData = userResponse.data?.users; // Access the 'users' object in the response
-      
+
         if (!userData) {
+          toggleDialog();
           throw new Error("User data is missing in the response.");
         }
-      
+
         // Check if either field is null, undefined, or empty
         const isFullNameMissing = !userData.full_name || userData.full_name.trim() === "";
         const isDateOfBirthMissing = !userData.date_of_birth || userData.date_of_birth.trim() === "";
-      
+
         // If either is missing, navigate to the invite creation page
         if (isFullNameMissing && isDateOfBirthMissing) {
           navigate("/userInvite/InviteCreateUser");
@@ -115,12 +116,14 @@ const Login = () => {
         }
       } catch (error) {
         console.error("Error fetching user details:", error);
+        toggleDialog();
+
         // Handle error case if needed
       }
-      
 
-      
-    } 
+
+
+    }
     catch (err) {
       // Only set the error message, not the entire error object
       setError(err.message || "Failed to login, please try again.");

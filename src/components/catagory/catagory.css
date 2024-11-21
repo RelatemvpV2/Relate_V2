@@ -1,6 +1,6 @@
 .catagory {
-    width:80%;
-    height:95px;
+    max-width:650px;
+    height:72px;
     background: #C6897740;
     color:#41414E;
     border-radius: 40px;

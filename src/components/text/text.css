@@ -86,7 +86,8 @@ h1 {
   Color: #696F7D
 }
 
-.my-relations,.Me-text{
+.my-relations,
+.Me-text {
   width: 198px;
   cursor: pointer;
   /* height: 21px; */
@@ -238,9 +239,10 @@ h3 {
   /* 175% */
   letter-spacing: 0.24px;
   margin-bottom: 9.55px;
-  
+
 }
-.label-text{
+
+.label-text {
   position: relative;
   white-space: nowrap;
 }
@@ -325,52 +327,64 @@ h3 {
 }
 
 .quesionaire-heading {
-  height: 21px;
-  font-family: Cormorant Garamond;
-  font-size: 40px;
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-size: 30px;
+  font-style: normal;
   font-weight: 600;
   line-height: 21px;
-  text-align: center;
+  /* 70% */
 }
 
 .questionaire-partnerName {
-  margin-top: 30px;
-  height: 23px;
-  font-family: Cormorant Garamond;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 21px;
+  color: #41414E;
   text-align: center;
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  /* 150% */
+  letter-spacing: 0.28px;
 }
 
 .questionaire-relation-review {
-  height: 35px;
-  font-family: Cormorant Garamond;
-  font-size: 20px;
-  font-style: italic;
-  font-weight: 600;
-  line-height: 43px;
+  color: #41414E;
   text-align: center;
+  font-family: Raleway;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 43px;
+  /* 358.333% */
+  letter-spacing: 0.24px;
+  margin: 0;
 }
 
 .question-p {
-  font-family: Raleway;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.02em;
+  color: #41414E;
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 25px;
+  /* 104.167% */
   text-align: center;
 
 }
 
 .question-count {
+  color: rgba(65, 65, 78, 0.50);
+  text-align: center;
   font-family: Raleway;
-  font-size: 12px;
+  font-size: 10px;
+  font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  letter-spacing: 0.02em;
-  text-align: center;
-
+  /* 200% */
+  letter-spacing: 0.2px;
+  margin-top:20px;
 }
 
 .select-score-p {
@@ -413,19 +427,20 @@ h3 {
   line-height: 17px;
   /* 141.667% */
   letter-spacing: 0.24px;
-  margin:auto;
+  margin: auto;
 }
 
 .choose-later {
   color: #41414E;
-text-align: center;
-font-family: Raleway;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 22px; /* 137.5% */
-letter-spacing: 0.32px;
-text-decoration-line: underline;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  /* 137.5% */
+  letter-spacing: 0.32px;
+  text-decoration-line: underline;
 }
 
 @media only screen and (max-width: 768px) {
