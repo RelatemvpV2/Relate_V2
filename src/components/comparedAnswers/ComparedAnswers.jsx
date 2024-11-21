@@ -5,6 +5,9 @@ import Text from '../text/Text'
 import ScoreRow from '../scoreRow/ScoreRow'
 
 import './comparedAnswers.css'
+import { getAnswersGroupByAssessment, getAssessmentAnswerByQuestion } from '../../services/api/answerApi'
+import Button from '../button/Button'
+import { useNavigate } from 'react-router-dom'
 
 
 const categories = [
@@ -25,49 +28,23 @@ const ComparedAnswers = () => {
     const [loading, setLoading] = useState(true); // State for loading status
     const [error, setError] = useState(null); // State for error handling
 
+    const navigate = useNavigate();
+
+    const handleRecommendationNavigate = () => {
+        navigate('/level1/subscriptions')
+      }
+    
+
     useEffect(() => {
         // Function to fetch data
         const fetchData = async () => {
             try {
                 setLoading(true); // Start loading
-                // const response = await getAllCategories();      
-                // if (!response) {
-                //   throw new Error(`HTTP error! Status: ${response.status}`);
-                // }
-                // const result = await response.json();
-                setData(
-                    [
-                        {
-                            "assessmentId": "assessmentID",
-                            "categoryId": "categoryID",
-                            "category": "Communication",
-                            "questionId": "questionID",
-                            "question": "question",
-                            "answers": [
-                                {
-                                    "userId": "userID1",
-                                    "response": "Frequently",
-                                    "responseType": "media/audio/video/file",
-                                    "format": ".pdf",
-                                    "score": 5,
-                                    "answeredDate": "2024-11-03T12:05:00Z",
-                                    "isActive": true,
-                                },
-                                {
-                                    "userId": "userID2",
-                                    "response": "Frequently",
-                                    "responseType": "media/audio/video/file",
-                                    "format": ".pdf",
-                                    "score": 2,
-                                    "answeredDate": "2024-11-03T12:05:00Z",
-                                    "isActive": true,
-                                }
-                            ],
-                            "overAllScore": 4, //combined aggregated score of both the answers from partners
-                            "sortOrderOfCategory": 1,
-                        },
-                    ]
-                ); // Store data
+                const response = await getAnswersGroupByAssessment(sessionStorage.getItem('current_assesment_id'));      
+                if (!response) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+                }                
+                setData(response.data); // Store data
             } catch (err) {
                 setError(err.message); // Store error message
             } finally {
@@ -104,6 +81,9 @@ const ComparedAnswers = () => {
                             <ScoreRow key={index} category={category} />
                         ))}
                     </div>
+
+                    <Button className='loginpage-button' onClick={handleRecommendationNavigate} style={{margin:"45px auto"}}>See Recommendations</Button>
+
 
                 </div>
             </DashboardLayout>

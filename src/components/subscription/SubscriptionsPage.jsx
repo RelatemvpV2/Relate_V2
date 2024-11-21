@@ -5,9 +5,13 @@ import './subscriptionCard.css';
 import DashboardLayout from '../dashboardLayout/DashboardLayout';
 import Text from '../text/Text';
 import Button from '../button/Button';
+import { getRecommendationsForAssessment } from '../../services/api/recommendationApi';
 
 const SubscriptionsPage = () => {
 
+    const [data, setData] = useState(null); // State for storing API data
+    const [loading, setLoading] = useState(true); // State for loading status
+    const [error, setError] = useState(null); // State for error handling
     const [hoveredCard, setHoveredCard] = useState("Work with 3 categories");
 
     // State to toggle between views in recommended and More categories
@@ -15,6 +19,26 @@ const SubscriptionsPage = () => {
     const handleHover = (id) => {
         setHoveredCard(id);
     };
+
+    useEffect(() => {
+        // Function to fetch data
+        const fetchData = async () => {
+            try {
+                setLoading(true); // Start loading
+                const response = await getRecommendationsForAssessment(sessionStorage.getItem('current_assesment_id'));
+                if (!response) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                setData(response.data); // Store data
+            } catch (err) {
+                setError(err.message); // Store error message
+            } finally {
+                setLoading(false); // Stop loading
+            }
+        };
+
+        fetchData(); // Call the function on mount
+    }, [])
 
 
     const categories = [
@@ -25,7 +49,8 @@ const SubscriptionsPage = () => {
         "Child rearing",
         "Trust",
         "Boundaries",
-        "Everyday Life"
+        "Everyday Life",
+        "Friends"
     ]
 
     const handleSaveSelection = (card, selectedCategories) => {
@@ -59,23 +84,29 @@ const SubscriptionsPage = () => {
                 </div>
 
                 <div className="card_group">
-                    <SubscriptionPlanCard
-                        id="Work with 3 categories"
-                        isRecommended={true}
-                        title="Work with 3 categories"
-                        description="With this plan, you and your relation work to strengthen your relation in 3 chosen categories."
-                        price="100 dkk/month"
-                        link="Click to see other categories or to swap to other categories"
-                        priceDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."
-                        categories={categories}
-                        maxCategories={3}
-                        isHovered={"Work with 3 categories" === hoveredCard}
-                        handleHover={handleHover}
-                        showAllCategories={showAllCategories}
-                        setShowAllCategories={setShowAllCategories}
-                        onSaveSelection={(selectedCategories) => handleSaveSelection('threeCategories', selectedCategories)}
-                    />
-
+                    {
+                        data && data.categories.length > 0 ?
+                            <>
+                                <SubscriptionPlanCard
+                                    id="Work with 3 categories"
+                                    isRecommended={true}
+                                    title="Work with 3 categories"
+                                    description="With this plan, you and your relation work to strengthen your relation in 3 chosen categories."
+                                    price="100 dkk/month"
+                                    link="Click to see other categories or to swap to other categories"
+                                    priceDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+                                    categories={data.categories}
+                                    maxCategories={3}
+                                    isHovered={"Work with 3 categories" === hoveredCard}
+                                    handleHover={handleHover}
+                                    showAllCategories={showAllCategories}
+                                    setShowAllCategories={setShowAllCategories}
+                                    onSaveSelection={(selectedCategories) => handleSaveSelection('threeCategories', selectedCategories)}
+                                />
+                            </>
+                            :
+                            <></>
+                    }
                     <Button className='learn-more-btn'>Learn more</Button>
 
                 </div>

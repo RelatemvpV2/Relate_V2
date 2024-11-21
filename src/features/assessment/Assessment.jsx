@@ -37,6 +37,7 @@ const Assessment = () => {
       setAnswer(null); // Reset answer state for the next question
     } else {
       alert("All questions answered!");
+      
       handleSummary();
     }
   };

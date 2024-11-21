@@ -41,7 +41,6 @@ const SubscriptionPlanCard = ({
         onSaveSelection(selectedCategories);
     };
 
-
     return (
 
         <div
@@ -65,6 +64,7 @@ const SubscriptionPlanCard = ({
 
             {id === 'Work with 3 categories' && <RecommendedAndMoreCategories
                 isHovered={isHovered}
+                rankedCategories={categories}
                 showAllCategories={showAllCategories}
                 setShowAllCategories={setShowAllCategories}
             />}

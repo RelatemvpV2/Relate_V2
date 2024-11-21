@@ -4,18 +4,19 @@ import React, { useState, useRef, useEffect } from 'react'
 import Button from '../button/Button';
 import PopUpComponent from '../popUp/PopUpComponent'
 
-const RecommendedAndMoreCategories = ({ isHovered,showAllCategories,setShowAllCategories }) => {
+const RecommendedAndMoreCategories = ({ isHovered,showAllCategories,setShowAllCategories, rankedCategories }) => {
 
   // List of categories with their selected status
   const [categories, setCategories] = useState([
-    { name: "Communication", selected: true },
-    { name: "Intimacy", selected: true },
-    { name: "Economy", selected: true },
+    { name: "Communication", selected: false },
+    { name: "Intimacy", selected: false },
+    { name: "Economy", selected: false },
     { name: "Values", selected: false },
     { name: "Child rearing", selected: false },
     { name: "Trust", selected: false },
     { name: "Boundaries", selected: false },
     { name: "Everyday Life", selected: false },
+    { name: "Friends", selected: false }
   ]);
 
   const selectedCount = categories.filter((category) => category.selected).length;
@@ -39,8 +40,15 @@ const RecommendedAndMoreCategories = ({ isHovered,showAllCategories,setShowAllCa
   };
 
   useEffect(() => {
-
-  }, [isHovered])
+   
+    categories.map((cat) => {
+      rankedCategories.forEach(rankedCat => {        
+        if(cat.name == rankedCat.name) {
+          cat.selected = true
+        }
+      });
+    })
+  }, [categories])
 
 
   return (

@@ -3,7 +3,7 @@ import { callApi } from './api'; // Adjust the path as needed
 
 export const userToken = window.localStorage.getItem("token");
 
-export const setUserToken = (key, token) => {
+export const setToken = (key, token) => {
   window.localStorage.setItem(key, token);
 }
 

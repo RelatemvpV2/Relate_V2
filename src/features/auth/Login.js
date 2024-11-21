@@ -17,7 +17,7 @@ import InputComponent from "../../components/inputs/InputComponent";
 import EmailSignup from "./EmailSignup";
 
 import SocialLogin from "./SocialLogin";
-import { LoginUser, setUserToken } from "../../utils/userApi";
+import { setToken } from "../../utils/userApi";
 import { getUserById, userLogin } from "../../services/api/userAuthApi"
 
 
@@ -79,8 +79,9 @@ const Login = () => {
         role: 'user', // Default role
       };
       const response = await userLogin(payload);
-      setUserToken("token", response.data.token)
-      window.localStorage.setItem("email", email);
+      setToken("token", response.data.token)
+      setToken("email", response.data.email)
+      setToken("user_id", response.data.user_id)
 
       const savedEmail = window.localStorage.getItem("email");
 //      
@@ -135,10 +136,6 @@ const Login = () => {
     clearInputFields()
 
   }, [error, msg])
-
-  useEffect(() => {
-    window.localStorage.setItem("token", "")
-  })
 
   return (
     <MainContainer>

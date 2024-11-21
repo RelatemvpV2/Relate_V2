@@ -5,8 +5,8 @@ const recommendationApiService = axios.create({
 	// baseURL: 'https://rzf8hgnfma.execute-api.ap-south-1.amazonaws.com/prod/v1/api', // OLD API base URL
 	baseURL:
 		process.env.NODE_ENV === 'development'
-			? 'https://api.lilypad.co.in/v1/api/recommendation'
-			: 'https://api.lilypad.co.in/v1/api/recommendation', // NEW API base URL
+		? 'https://jqjafti8m4.execute-api.eu-central-1.amazonaws.com'
+		: 'https://jqjafti8m4.execute-api.eu-central-1.amazonaws.com', // NEW API base URL
 });
 
 // Request interceptor to include auth token in specific requests
@@ -15,8 +15,8 @@ recommendationApiService.interceptors.request.use(
 		let authToken = localStorage.getItem('token');
 
 		if (authToken) {
-			// Check if the request URL requires authorization (e.g., cart-related endpoints)
-			if (config.url.includes('cart') || config.url.includes('review')) {
+			// Check if the request URL requires authorization 
+			if (true) {
 				config.headers['Authorization'] = `Bearer ${authToken}`;
 			}
 		}
