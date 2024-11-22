@@ -92,7 +92,7 @@ const SideGreyBg = () => {
                 .map((relations, i) => (
                   <Text key={i} type="p" className="relation-item"
                     onClick={() => redirectToRelation(relations)}>
-                     {(relations.reciever_name === email)? relations.reciever_name:relations.sender_name}
+                     {(relations.reciever_name !== email)? relations.reciever_name:relations.sender_name}
                   </Text>
                 ))}
               {/* {userRelations.invitationNotSent.length > 0 && ( */}

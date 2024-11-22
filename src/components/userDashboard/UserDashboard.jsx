@@ -132,7 +132,7 @@ const UserDashboard = () => {
       {/* Divider */}
       <div className="divider-horizantal"></div>
 
-      {true ? (
+      {showUpperContainer ? (
         <div className="upper-container">
           <div>
             <Text type="h3" className="user-dashboard-heading h3">

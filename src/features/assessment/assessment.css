@@ -5,7 +5,7 @@
 
 .question-description {
     width: 65%;
-    margin: 25px auto;
+    margin:0 auto 25px;
     color: #41414E;
     text-align: center;
     font-family: Raleway;

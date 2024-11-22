@@ -58,7 +58,7 @@ const QuesionairModule = ({ categoryData, onAnswerChange, currentIndex, total })
         <p className='catagory-p'> {categoryData?.name}</p>
       </Catagory>
       {/* Divider */}
-      <div className="divider-horizantal"></div>
+      {/* <div className="divider-horizantal"></div> */}
 
       {category?.questions.length > 0 ?
         <><Text type="p" className="text question-p">{category?.questions[0]?.question}</Text></> :
@@ -66,12 +66,11 @@ const QuesionairModule = ({ categoryData, onAnswerChange, currentIndex, total })
       }
 
       <div className='options-selection'>
-        <Text type="p" className="text question-count" style={{ margin: 0 }}>Question {currentIndex + 1} of {total}</Text>
-        <Text type="p" className="text select-score-p" style={{ margin: 0 }}>Please select score</Text>
-
         {/* rating */}
-
         <Rating onRatingSelected={handleSelectedRating} options={category?.questions[0]?.options} />
+
+        <Text type="p" className="text question-count" >Question {currentIndex + 1} of {total} | Please select score</Text>
+        {/* <Text type="p" className="text select-score-p" style={{ margin: 0 }}>Please select score</Text> */}
       </div>
 
     </div>
