@@ -75,7 +75,7 @@ const [yourSummaryValues,setYourSummaryValues] = useState(false)
                         <ul className='table'>
                             <li>{each.catagory}</li>
                             <li>{each.status}</li>{/* link */}
-                            <li><section className={`circle-background  ${false?"active":"inactive"}`}><span>{yourSummaryValues?each.rating:"-"}</span></section></li>{/* Number */}
+                            <li><section className={`circle-background  ${false?"catogory_active":"catogory_inactive"}`}><span>{yourSummaryValues?each.rating:"-"}</span></section></li>{/* Number */}
                             <li>{each.subCatagories} of {8}</li>{/* count 0 of 6 */}
                             <li><Button className='manage-button'>Manage</Button></li>
                         </ul>
