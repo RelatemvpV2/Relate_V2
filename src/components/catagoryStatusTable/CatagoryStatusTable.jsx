@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 //css
 import "./catagoryStatusTable.css"
@@ -51,13 +51,15 @@ const statusTable = [{
 }]
 
 const CatagoryStatusTable = () => {
+const [yourSummaryValues,setYourSummaryValues] = useState(false)
+
     return (
         /*  <div className="table-container">  */
             
              <div className="table-container"> 
 
              {/* Divider */}
-             <div className="divider-horizantal"style={{margin:"10px auto 0"}}></div>
+             {/* <div className="divider-horizantal"style={{margin:"10px auto 0"}}></div> */}
             <ul className='table-header'>
                 <li>Catagories</li>
                 <li>Status</li>
@@ -66,20 +68,20 @@ const CatagoryStatusTable = () => {
                 <li style={{ visibility: "hidden" }}>button</li>
             </ul>
             {/* Divider */}
-            <div className="divider-horizantal" style={{marginBottom:"26px",marginTop:0}}></div>
+            <div className="divider-horizantal" style={{marginBottom:"22px",marginTop:0}}></div>
             {
                 statusTable.map((each,i) => {
-                    return <section key={i}>
+                    return <section key={i}> 
                         <ul className='table'>
                             <li>{each.catagory}</li>
                             <li>{each.status}</li>{/* link */}
-                            <li><section className='circle-background'><span>{each.rating}</span></section></li>{/* Number */}
+                            <li><section className={`circle-background  ${false?"active":"inactive"}`}><span>{yourSummaryValues?each.rating:"-"}</span></section></li>{/* Number */}
                             <li>{each.subCatagories} of {8}</li>{/* count 0 of 6 */}
                             <li><Button className='manage-button'>Manage</Button></li>
                         </ul>
 
                         {/* Divider */}
-                        <div className="divider-horizantal" style={{margin:"26px auto"}}></div>
+                        <div className="divider-horizantal" style={{margin:"22px auto",backgroundColor:"#C68977"}}></div>
                     </section>
                 })
             }

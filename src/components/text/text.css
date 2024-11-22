@@ -326,7 +326,7 @@ h3 {
   letter-spacing: 0.32px;
 }
 
-.quesionaire-heading {
+.quesionaire-heading,.user-dashboard-heading {
   text-align: center;
   font-family: "Cormorant Garamond";
   font-size: 30px;
@@ -336,7 +336,7 @@ h3 {
   /* 70% */
 }
 
-.questionaire-partnerName {
+.questionaire-partnerName,.user-partnerName {
   color: #41414E;
   text-align: center;
   font-family: Raleway;

@@ -130,7 +130,7 @@ const UserDashboard = () => {
         {currentRelation && currentRelation.sender_name && (currentRelation.sender_name !== userEmail) ? currentRelation.sender_name : "No invitation sent"}</Text>
 
       {/* Divider */}
-      <div className="divider-horizantal"></div>
+      <div className="divider-horizantal" style={{margin:"26px auto 30px"}}></div>
 
       {showUpperContainer ? (
         <div className="upper-container">
