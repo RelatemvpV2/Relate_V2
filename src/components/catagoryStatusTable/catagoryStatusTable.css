@@ -1,5 +1,5 @@
 .table-container {
-    margin-bottom: 100px;
+    margin: 70px auto;
 }
 
 .table-header {
@@ -46,6 +46,8 @@
 }
 
 .table-header li:first-child,
+.table-header li:nth-child(2),
+.table-header li:nth-child(3),
 .table-header li:nth-child(4),
 .table-header li:nth-child(5) {
     width: 35%;
@@ -58,7 +60,11 @@
     letter-spacing: 0.28px;
 }
 
-.table-header li:nth-child(2),
+.table-header li:nth-child(3){
+    width:15%;
+}
+
+
 .table li:nth-child(4),
 .table li:nth-child(5) {
     width: 35%;
@@ -106,7 +112,7 @@
     text-decoration-line: underline;
 }
 
-.table-header li:nth-child(3),
+
 .table li:nth-child(3) {
     width: 15%;
     color: #41414E;
@@ -126,11 +132,24 @@
 .table li:nth-child(3) .circle-background {
     width: 30px;
     height: 30px;
-    border: 1px solid #c68977;
+    color: #F9EEE1;
     border-radius: 50%;
-    background-color: #c68977;
     margin: auto;
     position: relative;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; 
+}
+
+.active{
+    background-color:#c68977;
+}
+.inactive {
+    
+    background-color:#C1BFBE;; 
 }
 
 
@@ -138,7 +157,7 @@
     padding-top: 3px;
     position: absolute;
     top: 1px;
-    left: 9px;
+    left: 10px;
 }
 
 .manage-button {
@@ -172,6 +191,8 @@
     letter-spacing: 0.28px;
     background: rgba(198, 137, 119, 0.40);
 }
+
+
 
 
 @media only screen and (max-width: 1075px) {
