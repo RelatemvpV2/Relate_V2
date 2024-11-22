@@ -144,10 +144,10 @@
     line-height: 22px; 
 }
 
-.active{
+.catogory_active{
     background-color:#c68977;
 }
-.inactive {
+.catogory_inactive {
     
     background-color:#C1BFBE;; 
 }
