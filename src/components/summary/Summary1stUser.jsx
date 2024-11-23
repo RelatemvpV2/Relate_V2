@@ -64,7 +64,7 @@ const Summary1stUser = () => {
       <Catagory  className="summary-catagory">
         <div className="summary1CatagoryAlignment" style={{ height: '100%' }}>
           <p >Overall relation</p>
-          <Circle bgColor={"#C68977"} color={"#F9EEE1"} optionVal={data?.totalScore} diameter={"40px"} />
+          <Circle bgColor={"#C68977"} color={"#F9EEE1"} optionVal={"0"} diameter={"40px"} />
           <Text type="a" href="#" className="links-text edit-in-summary" style={{ color: "rgba(65, 65, 78, 0.60)", textAlign: "left" }}>
             Edit
           </Text>

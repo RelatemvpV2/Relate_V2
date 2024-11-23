@@ -46,11 +46,10 @@ const SubscriptionsPage = () => {
         "Intimacy",
         "Economy",
         "Values",
-        "Child rearing",
+        "Child Rearing",
         "Trust",
         "Boundaries",
-        "Everyday Life",
-        "Friends"
+        "Everyday life"
     ]
 
     const handleSaveSelection = (card, selectedCategories) => {

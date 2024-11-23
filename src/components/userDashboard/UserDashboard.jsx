@@ -15,14 +15,12 @@ import { sendInvite, getPartnerEmail, getAssessmentStatus } from '../../services
 const userEmail = localStorage.getItem('email');
 
 const UserDashboard = () => {
-  const [partnerEmail, setPartnerEmail] = useState("");
-  const [data, setData] = useState(null); // State for storing API data
-  const [loading, setLoading] = useState(true); // State for loading status
-  const [error, setError] = useState(null); // State for error handling
-  const [showUpperContainer, setShowUpperContainer] = useState(true);
+  const [partnerEmail, setPartnerEmail] = useState(null);
+  const [partnerUser, setPartnerUser] = useState(null);
   const [userStatus, setUserStatus] = useState(false);
-  const [invitationPending, setInvitationPending] = useState(false); // New state for invitation status
-  const [currentRelation, setCurrentRelation] = useState({})
+  const [currentRelation, setCurrentRelation] = useState(JSON.parse(localStorage.getItem("active_relation")))
+
+  const email = localStorage.getItem("email");
 
   const navigate = useNavigate();
 
@@ -59,65 +57,17 @@ const UserDashboard = () => {
   };
 
   useEffect(() => {
-    const current_relation_obj = JSON.parse(localStorage.getItem("current_relation"))
-    setCurrentRelation(current_relation_obj)
 
-    // Function to fetch data
-    const fetchData = async () => {
-      try {
-        setLoading(true); // Start loading
-
-        // Fetch all categories
-        console.log("Fetching categories...");
-        const response = await getAllCategories();
-        if (!response) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const result = await response.data;
-        setData(result);
-
-
-        try {
-          // Fetch partner emails
-          console.log("Fetching partner emails for user:", userEmail);
-          const partnerResponse = await getPartnerEmail(userEmail);
-          const partnerEmails = partnerResponse?.data || [];
-          console.log("Partner emails fetched successfully:", partnerEmails);
-          setShowUpperContainer(partnerEmails.length === 0);
-
-
-
-          // Fetch assessment status if partner emails exist
-          if (partnerEmails.length > 0) {
-            console.log("Partner emails exist, fetching assessment status...");
-            const assessmentResponse = await getAssessmentStatus();
-            console.log("Assessment status fetched successfully:", assessmentResponse?.data);
-
-            const user1Status = assessmentResponse?.data?.user1_level1_status || false;
-            const partnerInvitationPending = partnerEmails[0]?.invitation_status === "Pending";
-
-            console.log("User's assessment status:", user1Status);
-            console.log("Partner invitation status:", partnerInvitationPending);
-
-            setUserStatus(user1Status);
-            // setUserStatus(true);
-            setInvitationPending(partnerInvitationPending);
-          } else {
-            console.log("No partner emails found, skipping assessment status fetch.");
-          }
-        } catch (partnerError) {
-          console.error("Error fetching partner emails or assessment status:", partnerError);
-          setError(partnerError.message || "Failed to fetch partner details.");
-        }
-      } catch (categoryError) {
-        console.error("Error fetching categories:", categoryError);
-        setError(categoryError.message || "Failed to fetch categories.");
-      } finally {
-        setLoading(false); // Stop loading
-      }
-    };
-
-    fetchData(); // Call the function on mount
+    if (currentRelation && currentRelation.sender_email === email) {      
+      setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.reciever_level1_status })
+    }
+    if (currentRelation && currentRelation.reciever_email === email) {
+      setPartnerUser({ name: currentRelation.sender_name, email: currentRelation.sender_email, level1Status: currentRelation.sender_level1_status })
+    }
+    console.log(currentRelation.sender_email, currentRelation.reciever_email, email);
+    console.log(partnerUser);
+    
+    
   }, []);
 
 
@@ -127,12 +77,11 @@ const UserDashboard = () => {
         My relation with
       </Text>
       <Text className="user-partnerName">
-        {currentRelation && currentRelation.sender_name && (currentRelation.sender_name !== userEmail) ? currentRelation.sender_name : "No invitation sent"}</Text>
+        {!currentRelation ? "No invitation sent" : partnerUser?.name}</Text>
 
-      {/* Divider */}
-      <div className="divider-horizantal" style={{margin:"26px auto 30px"}}></div>
+      <div className="divider-horizantal"></div>
 
-      {showUpperContainer ? (
+      {!currentRelation ? (
         <div className="upper-container">
           <div>
             <Text type="h3" className="user-dashboard-heading h3">
@@ -182,7 +131,8 @@ const UserDashboard = () => {
             </div>
           </div>
         </div>
-      ) : !userStatus && (
+      ) : (currentRelation && partnerUser?.level1Status === "Pending" && partnerUser?.invitation_status === "Accepted" ?
+
         <div className="resume-container">
           <Text type="p" className="text" style={{ fontSize: "12px" }}>
             We need you to complete the questionnaire in order to help you in the best way.
@@ -190,21 +140,21 @@ const UserDashboard = () => {
           <Button className="userpage-button" onClick={handleResumeClick}>
             Resume
           </Button>
-        </div>
-      )}
+        </div> :
+        (currentRelation && partnerUser?.level1Status === false && partnerUser?.invitation_status === "Accepted" ?
 
-      {/* Remainder container */}
-      {invitationPending && userStatus && (
-        <div className="remainder-container">
-          <Text type="p" className="text" style={{ fontSize: "12px" }}>
-            Waiting for your relation to complete the questionnaire. Soon you’ll be able to follow your progress.
-          </Text>
-          <Button className="userpage-button" onClick={handleRemainderClick}>
-            Remainder
-          </Button>
-        </div>
-      )}
-
+          <div className="remainder-container">
+            <Text type="p" className="text" style={{ fontSize: "12px" }}>
+              Waiting for your relation to complete the questionnaire. Soon you’ll be able to follow your progress.
+            </Text>
+            <Button className="userpage-button" onClick={handleRemainderClick}>
+              Remainder
+            </Button>
+          </div> :
+          <div></div>
+        )
+      )
+      }
 
       <div className="graph-section ">
         <p style={{ marginTop: '3%' }}>graphs integration</p>

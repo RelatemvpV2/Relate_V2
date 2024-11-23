@@ -12,10 +12,10 @@ const RecommendedAndMoreCategories = ({ isHovered,showAllCategories,setShowAllCa
     { name: "Intimacy", selected: false },
     { name: "Economy", selected: false },
     { name: "Values", selected: false },
-    { name: "Child rearing", selected: false },
+    { name: "Child Rearing", selected: false },
     { name: "Trust", selected: false },
     { name: "Boundaries", selected: false },
-    { name: "Everyday Life", selected: false },
+    { name: "Everyday life", selected: false },
     { name: "Friends", selected: false }
   ]);
 

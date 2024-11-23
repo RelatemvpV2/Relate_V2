@@ -5,11 +5,11 @@ import SideBar from '../../components/sideBar/SideBar';
 import MainContainer from '../../components/maincontainer/Maincontainer';
 import LightBgMain from '../../components/lightBgMain/LightBgMain';
 import QuesionairModule from '../../components/questionaireModule/QuesionairModule';
-import { getAllCategories } from '../../services/api/categoryApi';
+import { getAllCategories, getCategoryById } from '../../services/api/categoryApi';
 import Text from '../../components/text/Text'
 import Button from '../../components/button/Button'
 import { saveAnswer } from '../../services/api/answerApi';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const Assessment = () => {
   const [rating, setRating] = useState(null);
@@ -19,6 +19,9 @@ const Assessment = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answer, setAnswer] = useState(null);
   const [assessmentId, setAssessmentId] = useState(sessionStorage.getItem('current_assesment_id'))
+
+  const [searchParams] = useSearchParams();
+  const paramValue = searchParams.get('assessment-type');
 
   const navigate = useNavigate();
 
@@ -32,7 +35,7 @@ const Assessment = () => {
       console.error("Error saving answer:", error);
       return;
     }
-    if (currentQuestionIndex < data.length - 1) {
+    if (currentQuestionIndex < data.length - 1 && paramValue !== "edit") {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       setAnswer(null); // Reset answer state for the next question
     } else {
@@ -79,7 +82,31 @@ const Assessment = () => {
       }
     };
 
-    fetchData(); // Call the function on mount
+    // Function to fetch data
+    const fetchCategory = async (catid) => {
+      try {
+        setLoading(true); // Start loading
+        const response = await getCategoryById(catid); // Replace with your proxy endpoint 
+        if (!response) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        setData([response?.data]);
+      } catch (err) {
+        setError(err.message); // Store error message
+      } finally {
+        setLoading(false); // Stop loading
+      }
+    };
+
+
+    if (!paramValue) {
+      fetchData(); // Call the function on mount
+    }
+    if (paramValue === "edit") {
+      console.log(localStorage.getItem("selected_question_edit"));
+      
+      fetchCategory(localStorage.getItem("selected_question_edit"))
+    }
   }, []); // Empty dependency array ensures it only runs once on mount
 
   return (

@@ -10,11 +10,11 @@ import { useNavigate } from 'react-router-dom';
 
 import Dashboard from '../dashboard/Dashboard';
 
-const email = window.localStorage.getItem("email");
+const email = localStorage.getItem("email");
 
 
 const SideGreyBg = () => {
-  const [showRelations, setShowRelations] = useState(false);
+  const [showRelations, setShowRelations] = useState(true);
   const [showSubMe, setShowSubMe] = useState(false);
 
   const [messages, setMessages] = useState([])
@@ -22,6 +22,8 @@ const SideGreyBg = () => {
   const navigate = useNavigate();
 
   const toggleRelations = () => {
+    console.log(messages);
+    
     setShowRelations((prevShowRelations) => !prevShowRelations);
   };
 
@@ -34,8 +36,16 @@ const SideGreyBg = () => {
   };
 
   const redirectToRelation = (relation) => {
-    localStorage.setItem("current_relation", JSON.stringify(relation))
+    localStorage.setItem("active_relation", JSON.stringify(relation))
+    sessionStorage.setItem('current_assesment_id', relation.assessment_id)
     navigate("/dashboard")
+    // window.location.reload()
+  }
+
+  const redirectToInvite = () => {
+    localStorage.removeItem("active_relation")
+    navigate("/dashboard")
+    // window.location.reload()
   }
 
   const checkPendingInvitations = messages && messages.filter((msg) => msg.invitation_status === 'pending')
@@ -44,8 +54,6 @@ const SideGreyBg = () => {
         const fetchPartnerEmail = async () => {
           try {
             const response = await getPartnerEmail();       
-            // const receiverNames = response.data
-            //   .filter((compatObj) => compatObj.reciever_email !== email);
             setMessages(response.data); 
           } catch (error) {
             console.error("Error fetching messages:", error);
@@ -92,16 +100,16 @@ const SideGreyBg = () => {
                 .map((relations, i) => (
                   <Text key={i} type="p" className="relation-item"
                     onClick={() => redirectToRelation(relations)}>
-                     {(relations.reciever_name !== email)? relations.reciever_name:relations.sender_name}
+                     {(email==relations.reciever_email)?relations.sender_name:relations.reciever_name}
                   </Text>
                 ))}
               {/* {userRelations.invitationNotSent.length > 0 && ( */}
-              {(messages && messages.length > 0 && messages.filter(compatObj => compatObj.sender_email === email)) && (
+              {/* {(messages && messages.length > 0 && messages.filter(compatObj => compatObj.sender_email === email)) && (
 
                 <div className="category">
                   <Text type="p" className="relation-item active">No new inviation sent</Text>
                 </div>
-              )}
+              )} */}
 
 
               {/* {userRelations.waitingForResponse.length > 0 && ( */}
@@ -114,7 +122,7 @@ const SideGreyBg = () => {
                 </div>
               )}
              
-              <Text type="p" className="newrelation-text">
+              <Text type="p" className="newrelation-text" onClick={()=> redirectToInvite()}>
                 + Add new relation
 
               </Text>
