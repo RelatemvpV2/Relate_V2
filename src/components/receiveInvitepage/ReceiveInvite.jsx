@@ -69,7 +69,7 @@ const ReceiveInvite = () => {
 
     const acceptAndRedirectToAssessment = (compat) => {
         sessionStorage.setItem('current_assesment_id', compat.assessment_id)
-        if(sessionStorage.getItem('current_assesment_id') && !compat.sender_level1_status) {
+        if (sessionStorage.getItem('current_assesment_id') && !compat.sender_level1_status) {
             navigate("/assessment/Assessment");
         }
     }
@@ -86,13 +86,13 @@ const ReceiveInvite = () => {
             {
                 (messages && messages.length > 0)
                     ? (messages
-                        .filter(msg => (msg.sender_email === email && msg.invitation_status !== "Accepted"))
+                        .filter(msg => (msg.invitation_status !== "Accepted" && msg.sender_email !== email))
                         .map((msg, i) => (
-                            <><section key={i+ msg.assessment_id}>
+                            <><section key={i + msg.assessment_id}>
                                 <ul className='messages-table-header'>
                                     <div>Subject</div>
                                     <div>From</div>
-                                    {/* <div>Date</div> */}
+                                    {/* <div>To</div> */}
                                     <div>Status</div>
                                     <div style={{ visibility: "hidden" }}>button</div>
                                 </ul>
@@ -100,16 +100,18 @@ const ReceiveInvite = () => {
                                 <div className="divider-horizantal" style={{ marginBottom: "10px", marginTop: 0 }}></div>
                                 <div>
                                     <div className="messages-table">
+
                                         <div>{msg.invitation_status === "Pending" ? "You have been invited" : `${msg.invitation_status} invite`}</div>
                                         <div>{msg.sender_name}</div>
+                                        {/* <div>{msg.reciever_email}</div> */}
                                         <div>{msg.invitation_status}</div>
-
                                         <div>
                                             <Button onClick={() => handleButtonClick(msg.id)}
                                                 className={`${msg.inviteStatus === "Pending" ? "pending-btn" : "open-or-close-btn"}`}>
                                                 {msg.invitation_status === "Pending" ? "Read" : subjectOpen ? "Close" : "Open"}
                                             </Button>
                                         </div>
+
                                     </div>
 
                                     {/* Display subject and related content when the button is clicked */}
