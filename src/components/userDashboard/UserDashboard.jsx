@@ -12,13 +12,18 @@ import Button from '../button/Button';
 import { getAllCategories } from '../../services/api/categoryApi';
 import { sendInvite, getPartnerEmail, getAssessmentStatus } from '../../services/api/userAuthApi';
 
-const userEmail = localStorage.getItem('email');
+import ReactECharts from 'echarts-for-react'; // import reactecharts
+import { getAnswersGroupByAssessment } from '../../services/api/answerApi';
 
 const UserDashboard = () => {
   const [partnerEmail, setPartnerEmail] = useState(null);
   const [partnerUser, setPartnerUser] = useState(null);
   const [userStatus, setUserStatus] = useState(false);
   const [currentRelation, setCurrentRelation] = useState(JSON.parse(localStorage.getItem("active_relation")))
+
+  const [data, setData] = useState(null); // State for storing API data
+  const [loading, setLoading] = useState(true); // State for loading status
+  const [error, setError] = useState(null); // State for error handling
 
   const email = localStorage.getItem("email");
 
@@ -28,9 +33,52 @@ const UserDashboard = () => {
     setPartnerEmail(event.target.value);
   };
 
+  const option = {
+    title: {
+      text: 'Overall Relation Progress'
+    },
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      data: ['User1', 'User2']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    toolbox: {
+      feature: {
+        saveAsImage: {}
+      }
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['2021', '2022', '2023', '2024', '2025', '2026', '2027']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        name: 'User1',
+        type: 'line',
+        data: [2, 3, 4, 7, 5, 6, 4]
+      },
+      {
+        name: 'User2',
+        type: 'line',
+        data: [1, 4, 5, 5, 3, 5, 3]
+      }
+    ]
+  };
+
   const handleSendInvitation = async () => {
     try {
-      if (partnerEmail === userEmail) {
+      if (partnerEmail === email) {
         return; // If emails match, exit without sending invitation or showing an error
       }
 
@@ -49,6 +97,7 @@ const UserDashboard = () => {
   };
 
   const handleResumeClick = () => {
+    sessionStorage.setItem('current_assesment_id', currentRelation.assessment_id)
     navigate('/assessment/Assessment'); // Navigate to the assessment page
   };
 
@@ -57,17 +106,34 @@ const UserDashboard = () => {
   };
 
   useEffect(() => {
+    console.log(currentRelation.reciever_email === email);
 
-    if (currentRelation && currentRelation.sender_email === email) {      
+    if (currentRelation && currentRelation.sender_email === email) {
       setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.reciever_level1_status })
     }
     if (currentRelation && currentRelation.reciever_email === email) {
       setPartnerUser({ name: currentRelation.sender_name, email: currentRelation.sender_email, level1Status: currentRelation.sender_level1_status })
     }
-    console.log(currentRelation.sender_email, currentRelation.reciever_email, email);
     console.log(partnerUser);
-    
-    
+
+    const fetchData = async () => {
+      try {
+        setLoading(true); // Start loading
+        const response = await getAnswersGroupByAssessment(sessionStorage.getItem('current_assesment_id'));
+        if (!response) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        setData(response.data); // Store data
+      } catch (err) {
+        setError(err.message); // Store error message
+      } finally {
+        setLoading(false); // Stop loading
+      }
+    };
+    if (currentRelation.assessment_id) {
+      fetchData(); // Call the function on mount
+    }
+
   }, []);
 
 
@@ -131,13 +197,14 @@ const UserDashboard = () => {
             </div>
           </div>
         </div>
-      ) : (currentRelation && partnerUser?.level1Status === "Pending" && partnerUser?.invitation_status === "Accepted" ?
+      ) : (currentRelation && (partnerUser?.level1Status === "Pending" || partnerUser?.level1Status === false)
+        && currentRelation?.invitation_status === "Accepted" ?
 
         <div className="resume-container">
           <Text type="p" className="text" style={{ fontSize: "12px" }}>
             We need you to complete the questionnaire in order to help you in the best way.
           </Text>
-          <Button className="userpage-button" onClick={handleResumeClick}>
+          <Button className="userpage-button" onClick={() => handleResumeClick()}>
             Resume
           </Button>
         </div> :
@@ -157,7 +224,8 @@ const UserDashboard = () => {
       }
 
       <div className="graph-section ">
-        <p style={{ marginTop: '3%' }}>graphs integration</p>
+        <p style={{ marginTop: '3%' }}><ReactECharts option={option} /></p>
+
         <Button className='dashboardGraphsBtn'>View your latest comparison summary</Button>
       </div>
 

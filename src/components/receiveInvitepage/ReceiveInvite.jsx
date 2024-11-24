@@ -125,7 +125,7 @@ const ReceiveInvite = () => {
                                             {msg.invitation_status === "Pending" && <div className='btn-link-container'>
                                                 <Button className='Accept-and-start-btn' onClick={() => {
                                                     setInvitation_status('Accept');
-                                                    window.localStorage.setItem('current_assesment_id', msg.assessment_id);
+                                                    sessionStorage.setItem('current_assesment_id', msg.assessment_id);
                                                     handleInviteStatus(msg.id, 'Accept');
                                                 }}>Accept and start</Button>
 
