@@ -28,6 +28,7 @@ const SideGreyBg = () => {
   };
 
   const toggleMe = () => {
+    navigate("/dashboard/messages")
     setShowSubMe((prevShowMe) => !prevShowMe);
   }
 

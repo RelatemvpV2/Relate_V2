@@ -26,7 +26,7 @@ const Summary1stUser = () => {
         const fetchData = async () => {
           try {
             setLoading(true); // Start loading            
-            const response = await getAssessmentSummary(sessionStorage.getItem('current_assesment_id'));  
+            const response = await getAssessmentSummary(assessmentId);  
             if (!response) {
               throw new Error(`HTTP error! Status: ${response.status}`);
             }            

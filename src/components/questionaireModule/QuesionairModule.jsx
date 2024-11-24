@@ -12,6 +12,11 @@ import { getCategoryById } from '../../services/api/categoryApi'
 const QuesionairModule = ({ categoryData, onAnswerChange, currentIndex, total }) => {
 
   const [category, setCategory] = useState(null);
+  const [currentRelation, setCurrentRelation] = useState(JSON.parse(localStorage.getItem("active_relation")))
+  const [partnerUser, setPartnerUser] = useState(null);
+
+  const email = localStorage.getItem("email");
+
 
   // API call function
   const fetchCategoryDetails = async (categoryId) => {
@@ -24,6 +29,14 @@ const QuesionairModule = ({ categoryData, onAnswerChange, currentIndex, total })
       console.error('Error fetching category data:', error);
     }
   };
+  useEffect(()=> {
+    if (currentRelation && currentRelation.sender_email === email) {      
+      setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.reciever_level1_status })
+    }
+    if (currentRelation && currentRelation.reciever_email === email) {
+      setPartnerUser({ name: currentRelation.sender_name, email: currentRelation.sender_email, level1Status: currentRelation.sender_level1_status })
+    }
+  },[])
 
   useEffect(() => {
     if (categoryData?.id) {
@@ -47,7 +60,7 @@ const QuesionairModule = ({ categoryData, onAnswerChange, currentIndex, total })
   return (
     <div className='questionaire-div'>
       <Text type="h3" className='quesionaire-heading h3' >My relation with</Text>
-      <Text className='questionaire-partnerName '>James Samuelson</Text>
+      <Text className='questionaire-partnerName '> {!currentRelation ? "No invitation sent" : partnerUser?.name}</Text>
 
       {/* Divider */}
       <div className="divider-horizantal"></div>
