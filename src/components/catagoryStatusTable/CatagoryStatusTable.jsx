@@ -68,7 +68,6 @@ useEffect(() => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }            
         setData(response.data); // Store data
-        console.log(data);
         
       } catch (err) {
         setError(err.message); // Store error message
@@ -114,7 +113,22 @@ fetchData(); // Call the function on mount
                 })
             }
 
+            {
+                !data && statusTable.map((each,i) => {
+                    return <section key={i}> 
+                        <ul className='table'>
+                            <li>{each.catagory}</li>
+                            <li>{"UNLOCK CATEGORY"}</li>{/* link */}
+                            <li><section className={`circle-background  ${false?"catogory_active":"catogory_inactive"}`}><span>{each.answer?.score? each.answer?.score:"-"}</span></section></li>{/* Number */}
+                            <li>{4} of {8}</li>{/* count 0 of 6 */}
+                            <li><Button className='manage-button'>Manage</Button></li>
+                        </ul>
 
+                        {/* Divider */}
+                        <div className="divider-horizantal" style={{margin:"22px auto",backgroundColor:"#C68977"}}></div>
+                    </section>
+                })
+            }
 
         </div>
     )

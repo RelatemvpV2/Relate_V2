@@ -106,15 +106,14 @@ const UserDashboard = () => {
   };
 
   useEffect(() => {
-    console.log(currentRelation.reciever_email === email);
-
+ 
     if (currentRelation && currentRelation.sender_email === email) {
       setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.reciever_level1_status })
     }
     if (currentRelation && currentRelation.reciever_email === email) {
       setPartnerUser({ name: currentRelation.sender_name, email: currentRelation.sender_email, level1Status: currentRelation.sender_level1_status })
     }
-    console.log(partnerUser);
+   /*  console.log(partnerUser); */
 
     const fetchData = async () => {
       try {
@@ -130,8 +129,12 @@ const UserDashboard = () => {
         setLoading(false); // Stop loading
       }
     };
-    if (currentRelation.assessment_id) {
+    
+    if (currentRelation) {
       fetchData(); // Call the function on mount
+    }
+    else {
+      console.log("there is no current relation available")
     }
 
   }, []);
@@ -224,7 +227,7 @@ const UserDashboard = () => {
       }
 
       <div className="graph-section ">
-        <p style={{ marginTop: '3%' }}><ReactECharts option={option} /></p>
+        <p style={{ margin: '3% auto',width:"90%" }}><ReactECharts option={option} /></p>
 
         <Button className='dashboardGraphsBtn'>View your latest comparison summary</Button>
       </div>
