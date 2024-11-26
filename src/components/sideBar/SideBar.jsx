@@ -28,12 +28,11 @@ const SideGreyBg = () => {
   };
 
   const toggleMe = () => {
-    navigate("/dashboard/messages")
     setShowSubMe((prevShowMe) => !prevShowMe);
   }
 
   const redirectToInvitations = () => {
-    navigate("/dashboard/messages");
+    navigate("/messages");
   };
 
   const redirectToRelation = (relation) => {

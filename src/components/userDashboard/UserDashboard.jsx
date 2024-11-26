@@ -76,6 +76,10 @@ const UserDashboard = () => {
     ]
   };
 
+  const handleTryQuestionaire = () => {
+    navigate('/assessment/Assessment?assessment-type=tryQ')
+  }
+
   const handleSendInvitation = async () => {
     try {
       if (partnerEmail === email) {
@@ -84,7 +88,7 @@ const UserDashboard = () => {
 
       const payload = {
         receiver_email: partnerEmail,
-        relation_type: "Brother", //default relation
+        relation_type: "Spouse", //default relation
       };
 
       const response = await sendInvite(payload);
@@ -107,9 +111,7 @@ const UserDashboard = () => {
 
   useEffect(() => {
  
-    if (currentRelation && currentRelation.sender_email === email) {
-      setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.reciever_level1_status })
-    }
+   
     if (currentRelation && currentRelation.reciever_email === email) {
       setPartnerUser({ name: currentRelation.sender_name, email: currentRelation.sender_email, level1Status: currentRelation.sender_level1_status })
     }
@@ -135,6 +137,7 @@ const UserDashboard = () => {
     }
     else {
       console.log("there is no current relation available")
+
     }
 
   }, []);
@@ -160,7 +163,11 @@ const UserDashboard = () => {
               Curious to see how it works? Give it a try and invite your partner
               afterwards. <br /> (Your answers will not be saved)
             </Text>
-            <Button className="userpage-button" style={{ marginTop: "5%" }}>Start Example</Button>
+            <Button 
+            className="userpage-button" 
+            style={{ marginTop: "5%" }}
+            onClick={handleTryQuestionaire}
+            >Start Example</Button>
           </div>
 
           {/* Divider */}
@@ -234,6 +241,7 @@ const UserDashboard = () => {
 
       {/* Table */}
       <CatagoryStatusTable />
+      
     </div>
   );
 };
