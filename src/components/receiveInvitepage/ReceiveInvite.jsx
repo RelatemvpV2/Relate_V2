@@ -145,11 +145,11 @@ const ReceiveInvite = () => {
                                 </div>
                                 <div className="divider-horizantal" style={{ margin: "10px auto" }}></div>
 
-                                <div>
+                               {/*  <div>
                                     <Text type="a" className='links-text' onClick={() => {
                                         (!msg.sender_level1_status) && navigate("/dashboard")
                                     }}>go to dashboard</Text>
-                                </div>
+                                </div> */}
 
                             </section >
                             </>

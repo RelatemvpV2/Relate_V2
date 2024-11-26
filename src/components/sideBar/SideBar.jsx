@@ -28,12 +28,11 @@ const SideGreyBg = () => {
   };
 
   const toggleMe = () => {
-    navigate("/dashboard/messages")
     setShowSubMe((prevShowMe) => !prevShowMe);
   }
 
   const redirectToInvitations = () => {
-    navigate("/dashboard/messages");
+    navigate("/messages");
   };
 
   const redirectToRelation = (relation) => {
@@ -85,7 +84,7 @@ const SideGreyBg = () => {
             )
           }
           <svg xmlns="http://www.w3.org/2000/svg" width="173" height="2" viewBox="0 0 173 2" fill="none">
-            <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5" />
+            <path d="M0 1H173" stroke="#F9EEE1" strokeWidth="0.5" />
           </svg>
           <Text
             type="p"
@@ -131,21 +130,21 @@ const SideGreyBg = () => {
           )}
 
           <svg xmlns="http://www.w3.org/2000/svg" width="173" height="2" viewBox="0 0 173 2" fill="none">
-            <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5" />
+            <path d="M0 1H173" stroke="#F9EEE1" strokeWidth="0.5" />
           </svg>
           <Text type="p" className="therapist-text">
             Therapists
 
           </Text>
           <svg xmlns="http://www.w3.org/2000/svg" width="173" height="2" viewBox="0 0 173 2" fill="none">
-            <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5" />
+            <path d="M0 1H173" stroke="#F9EEE1" strokeWidth="0.5" />
           </svg>
           <Text type="p" className="therapist-text">
             Settings
 
           </Text>
           <svg xmlns="http://www.w3.org/2000/svg" width="173" height="2" viewBox="0 0 173 2" fill="none">
-            <path d="M0 1H173" stroke="#F9EEE1" stroke-width="0.5" />
+            <path d="M0 1H173" stroke="#F9EEE1" strokeWidth="0.5" />
           </svg>
         </nav>
         <Footer />
