@@ -73,7 +73,7 @@ const SubscriptionPlanCard = ({
 
             <div className='planCard-footer'>
                 {/* Divider */}
-                <div className="divider-horizantal" style={{ margin: "auto" }}></div>
+                <div className="divider-horizantal" style={{ margin: "10px auto" }}></div>
 
                 <p className="price">{price}</p>
                 <p className="price-description">{priceDescription}</p>
