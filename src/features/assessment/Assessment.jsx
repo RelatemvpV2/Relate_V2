@@ -35,12 +35,20 @@ const Assessment = () => {
       console.error("Error saving answer:", error);
       return;
     }
-    if (currentQuestionIndex < data.length - 1 && paramValue !== "edit") {
+    if (currentQuestionIndex < data.length - 1 && paramValue !== "edit" && paramValue !== "tryQ") {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       setAnswer(null); // Reset answer state for the next question
-    } else {
-      alert("All questions answered!");
+    } 
+    else if (paramValue === "tryQ" ){
+     
+      currentQuestionIndex < 1 ?
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1)
+      :navigate('/dashboard');
 
+      setAnswer(null); // Reset answer state for the next question
+    }
+    else {
+      alert("All questions answered!");
       handleSummary();
     }
   };
@@ -63,9 +71,11 @@ const Assessment = () => {
   };
 
   useEffect(() => {
-    if (!sessionStorage.getItem('current_assesment_id')) {
+  
+    if (paramValue !== "tryQ" && !sessionStorage.getItem('current_assesment_id')) {
       navigate("/dashboard");
     }
+    
     // Function to fetch data
     const fetchData = async () => {
       try {
@@ -98,8 +108,7 @@ const Assessment = () => {
       }
     };
 
-
-    if (!paramValue) {
+    if (!paramValue || paramValue === "tryQ" ) {
       fetchData(); // Call the function on mount
     }
     if (paramValue === "edit") {
@@ -108,6 +117,8 @@ const Assessment = () => {
       fetchCategory(localStorage.getItem("selected_question_edit"))
     }
   }, []); // Empty dependency array ensures it only runs once on mount
+
+  console.log("paramValue",paramValue)
 
   return (
     <div className="assessment-layout">
@@ -123,7 +134,7 @@ const Assessment = () => {
             <QuesionairModule
               categoryData={data ? data[currentQuestionIndex] : null}
               currentIndex={currentQuestionIndex}
-              total={data.length}
+              total={paramValue !== "tryQ" ? data.length : 2}
               onAnswerChange={handleAnswerChange} // Pass handler to child
             />
             <div className="question-description">
@@ -145,39 +156,6 @@ const Assessment = () => {
         </div>
       </LightBgMain>
 
-
-
-      {/* Right Pink Content */}
-      {/* <MainContainer >
-        <div className="assessment-container">
-          <div className="assessment-header">
-            <h2>My relation with</h2>
-            <p>John Snow</p>
-          </div>
-
-          <div className="assessment-question">
-            <h3>Overall relation to your partner</h3>
-            <p>How would you rate your overall relation to your partner today?</p>
-          </div>
-
-          <div className="rating-options">
-            {[7, 6, 5, 4, 3, 2, 1].map((value) => (
-              <label key={value} className={`rating-item ${rating === String(value) ? 'selected' : ''}`}>
-                <input
-                  type="radio"
-                  name="rating"
-                  value={value}
-                  onChange={handleRatingChange}
-                  checked={rating === String(value)}
-                />
-                {value}
-              </label>
-            ))}
-          </div>
-
-          <button className="continue-button" onClick={handleSubmit}>Continue</button>
-        </div>
-      </MainContainer> */}
     </div>
   );
 };
