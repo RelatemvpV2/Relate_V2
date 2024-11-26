@@ -81,6 +81,9 @@ const UserDashboard = () => {
   }
 
   const handleSendInvitation = async () => {
+
+    localStorage.setItem("active_relation", JSON.stringify(partnerEmail))
+
     try {
       if (partnerEmail === email) {
         return; // If emails match, exit without sending invitation or showing an error
@@ -111,7 +114,6 @@ const UserDashboard = () => {
 
   useEffect(() => {
  
-   
     if (currentRelation && currentRelation.reciever_email === email) {
       setPartnerUser({ name: currentRelation.sender_name, email: currentRelation.sender_email, level1Status: currentRelation.sender_level1_status })
     }

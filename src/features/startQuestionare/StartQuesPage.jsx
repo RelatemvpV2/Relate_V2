@@ -30,9 +30,13 @@ const StartQuesPage = () => {
   const navigate = useNavigate(); // Step 2
 
   const email = window.localStorage.getItem("email");
+  const activePartnerEmail = JSON.parse(window.localStorage.getItem("active_relation"));
+
+  
 
   const handleGetStarted = () => {
-    if (partnerEmail) {
+    if (partnerEmail || activePartnerEmail) {
+      console.log(activePartnerEmail)
       navigate('/assessment/Assessment'); // Navigate to Assessment page if partnerEmail exists
     } else {
       navigate('/dashboard');
@@ -43,13 +47,19 @@ const StartQuesPage = () => {
     try {
       const response = await getPartner();
 
+      setPartnerEmail(activePartnerEmail)
+
+      const matchRightPartner = response.data.filter((partner)=>partner.reciever_email === activePartnerEmail)
+    
+      sessionStorage.setItem('current_assesment_id', matchRightPartner[0].assessment_id)
+
       //checking if the login is same as receiver
-      if (email === response.data[0]["reciever_email"]) {
+    /*   if (email === response.data[0]["reciever_email"]) {
         setPartnerEmail(response.data[0]["sender_email"])
       }
       else {
         setPartnerEmail(response.data[0]["reciever_email"])
-      }
+      } */
 
     }
     catch (error) {
