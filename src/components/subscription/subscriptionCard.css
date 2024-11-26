@@ -42,7 +42,7 @@
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all .8s ease;
   cursor: pointer;
   height: 443px;
 }
