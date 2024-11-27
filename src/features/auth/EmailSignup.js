@@ -1,7 +1,7 @@
 // src/components/EmailSignup.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../../utils/userApi";
+import { registerUser } from "../../services/api/userAuthApi";
 
 //components
 import Button from "../../components/button/Button";
@@ -104,7 +104,7 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
     setLoading(true);
 
     try {
-      const response = await registerUser(email, password); // Call the API function
+      const response = await registerUser({email,password}); // Call the API function
       toggleDialog();
       setMsg(response.data.message); // Set success message
       navigate('/Login');

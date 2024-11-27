@@ -137,7 +137,6 @@ const UserDashboard = () => {
         setLoading(false); // Stop loading
       }
     };
-
     if (currentRelation) {
       fetchData(); // Call the function on mount
     }
@@ -249,7 +248,6 @@ const UserDashboard = () => {
 
       {/* Table */}
       <CatagoryStatusTable />
-
     </div>
   );
 };
