@@ -32,7 +32,7 @@ const SideGreyBg = () => {
   }
 
   const redirectToInvitations = () => {
-    navigate("/dashboard/messages");
+    navigate("/messages");
   };
 
   const redirectToRelation = (relation) => {

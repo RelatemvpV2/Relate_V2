@@ -18,6 +18,8 @@ const Summary1stUser = () => {
     const [loading, setLoading] = useState(true); // State for loading status
     const [error, setError] = useState(null); // State for error handling
     const [assessmentId, setAssessmentId] = useState(sessionStorage.getItem('current_assesment_id'));
+    const [currentRelation, setCurrentRelation] = useState(JSON.parse(localStorage.getItem("active_relation")))
+
 
     const navigate = useNavigate();
 
@@ -42,7 +44,12 @@ const Summary1stUser = () => {
   }, []); // Empty dependency array ensures it only runs once on mount
 
   const handleComparisonNavigate = () => {
-    navigate('/level1/comparedResults')
+    if(currentRelation.reciever_email!=null && currentRelation.reciever_level1_status) {
+      navigate('/level1/comparedResults')
+    } else  {
+      navigate('/level1/waitingParnerResponse')
+    }
+    
   }
 
   return (

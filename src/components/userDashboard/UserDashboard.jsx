@@ -108,16 +108,20 @@ const UserDashboard = () => {
     navigate('/assessment/Assessment'); // Navigate to the assessment page
   };
 
+  const handleComparisonSummary = () =>{
+    navigate('/level1/comparedResults');
+  }
+
   const handleRemainderClick = () => {
     console.log("Remainder sent");
   };
 
   useEffect(() => {
- 
+
     if (currentRelation && currentRelation.reciever_email === email) {
       setPartnerUser({ name: currentRelation.sender_name, email: currentRelation.sender_email, level1Status: currentRelation.sender_level1_status })
     }
-   /*  console.log(partnerUser); */
+    /*  console.log(partnerUser); */
 
     const fetchData = async () => {
       try {
@@ -133,7 +137,6 @@ const UserDashboard = () => {
         setLoading(false); // Stop loading
       }
     };
-    
     if (currentRelation) {
       fetchData(); // Call the function on mount
     }
@@ -165,10 +168,10 @@ const UserDashboard = () => {
               Curious to see how it works? Give it a try and invite your partner
               afterwards. <br /> (Your answers will not be saved)
             </Text>
-            <Button 
-            className="userpage-button" 
-            style={{ marginTop: "5%" }}
-            onClick={handleTryQuestionaire}
+            <Button
+              className="userpage-button"
+              style={{ marginTop: "5%" }}
+              onClick={handleTryQuestionaire}
             >Start Example</Button>
           </div>
 
@@ -221,29 +224,30 @@ const UserDashboard = () => {
           </Button>
         </div> :
         (currentRelation && partnerUser?.level1Status === false && partnerUser?.invitation_status === "Accepted" ?
-
-          <div className="remainder-container">
-            <Text type="p" className="text" style={{ fontSize: "12px" }}>
-              Waiting for your relation to complete the questionnaire. Soon you’ll be able to follow your progress.
-            </Text>
-            <Button className="userpage-button" onClick={handleRemainderClick}>
-              Remainder
-            </Button>
-          </div> :
+          <>
+            <div className="remainder-container">
+              <Text type="p" className="text" style={{ fontSize: "12px" }}>
+                Waiting for your relation to complete the questionnaire. Soon you’ll be able to follow your progress.
+              </Text>
+              <Button className="userpage-button" onClick={handleRemainderClick}>
+                Remainder
+              </Button>
+            </div>
+          </>
+          :
           <div></div>
         )
       )
       }
 
       <div className="graph-section ">
-        <p style={{ margin: '3% auto',width:"90%" }}><ReactECharts option={option} /></p>
+        <p style={{ margin: '3% auto', width: "90%" }}><ReactECharts option={option} /></p>
 
-        <Button className='dashboardGraphsBtn'>View your latest comparison summary</Button>
+        <Button className='dashboardGraphsBtn' onClick={handleComparisonSummary} >View your latest comparison summary</Button>
       </div>
 
       {/* Table */}
       <CatagoryStatusTable />
-      
     </div>
   );
 };
