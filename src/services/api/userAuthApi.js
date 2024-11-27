@@ -13,7 +13,8 @@ export const deleteUserToken = () => {
 
 export const registerUser = async (userData) => {
     try {
-        return userAuthApiService.post("/test/register", userData);
+        const user = userAuthApiService.post("/test/register", userData);
+        return user
     } catch (error) {
         // Handle the error here, log it, and return an empty array
         // console.error("Error writing review:", error);
