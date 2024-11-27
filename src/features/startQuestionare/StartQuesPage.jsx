@@ -13,7 +13,7 @@ import Button from '../../components/button/Button';
 import LogoutButton from '../../components/logout/Logout';
 
 //js
-import { getPartner } from "../../utils/userApi";
+import { getPartnerEmail } from '../../services/api/userAuthApi';
 
 //css
 import './startQuesPage.css'
@@ -43,9 +43,10 @@ const StartQuesPage = () => {
     }
 
   };
-  const getPartnerEmail = async () => {
+  const PartnerEmail = async () => {
     try {
-      const response = await getPartner();
+      const response = await getPartnerEmail();
+      
 
       setPartnerEmail(activePartnerEmail)
 
@@ -71,7 +72,7 @@ const StartQuesPage = () => {
   }
 
   useEffect(() => {
-    getPartnerEmail();
+    PartnerEmail();
   }, [])
 
 

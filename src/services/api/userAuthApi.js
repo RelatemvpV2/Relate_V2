@@ -54,7 +54,7 @@ export const resetPassword = async (data) => {
         const response = await userAuthApiService.post("/test/reset-password", data);
         return response;
     } catch (error) {
-        return {};
+        throw error;
     }
 };
 
