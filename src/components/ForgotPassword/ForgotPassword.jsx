@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPopper } from '@popperjs/core';
 import { useNavigate } from "react-router-dom";
+import { forgotPassword } from '../../services/api/userAuthApi';
 
 //js
 import { forgotPasswordApiFunc } from "../../utils/userApi";
@@ -57,7 +58,7 @@ const ForgotPassword = () => {
         }
         setLoading(true);
         try {
-            const response = await forgotPasswordApiFunc(email); // Call the API function
+            const response = await forgotPassword({email}); // Call the API function
             setMsg(response.data.message); // Set success message
             setIsEmailSent(true)
             toggleDialog();
