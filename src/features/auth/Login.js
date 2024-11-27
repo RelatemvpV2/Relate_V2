@@ -112,7 +112,7 @@ const Login = () => {
           navigate("/userInvite/InviteCreateUser");
         } else {
           // Otherwise, navigate to the dashboard
-          navigate("/dashboard/messages");
+          navigate("/dashboard");
         }
       } catch (error) {
         console.error("Error fetching user details:", error);
