@@ -2,8 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { createPopper } from '@popperjs/core';
 import { useNavigate, useLocation } from "react-router-dom";
 
+
 //js 
-import { ResetPasswordAPIFunc } from '../../utils/userApi'
+import { resetPassword } from '../../services/api/userAuthApi';
 //components
 import MainContainer from '../maincontainer/Maincontainer'
 import GreyBackground from '../greybackground/Greybackground'
@@ -31,9 +32,11 @@ const ResetPassword = () => {
 
   const navigate = useNavigate()
 
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const token = queryParams.get('token');
+  // const location = useLocation();
+  // const queryParams = new URLSearchParams(location.search);
+  // const token = queryParams.get('token');
+
+  const token = window.localStorage.getItem("token");
 
 
 
@@ -107,14 +110,16 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      const response = await ResetPasswordAPIFunc(newPassword, token); // Call the API function
+      const response = await resetPassword({newPassword});
+       // Call the API function
       setMsg(response.data.message); // Set success message
       toggleDialog();
 
     } catch (error) {
-      setError("Failed to reset your password: " + error);
+      const errorMessage = error.response?.data?.message || error.message || "An unexpected error occurred.";
+      // setError("Failed to reset your password: " + error);
       navigate(`/reset-password?token=${token}`);
-      setError(error)
+      setError(`Failed to reset your password: ${errorMessage}`);
       toggleDialog();
     } finally {
       setLoading(false); // Stop loader

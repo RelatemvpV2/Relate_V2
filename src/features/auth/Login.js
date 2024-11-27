@@ -17,7 +17,7 @@ import InputComponent from "../../components/inputs/InputComponent";
 import EmailSignup from "./EmailSignup";
 
 import SocialLogin from "./SocialLogin";
-import { setToken } from "../../utils/userApi";
+import { setUserToken } from "../../services/api/userAuthApi"
 import { getUserById, userLogin } from "../../services/api/userAuthApi"
 
 
@@ -79,9 +79,9 @@ const Login = () => {
         role: 'user', // Default role
       };
       const response = await userLogin(payload);
-      setToken("token", response.data.token)
-      setToken("email", response.data.email)
-      setToken("user_id", response.data.user_id)
+      setUserToken("token", response.data.token)
+      setUserToken("email", response.data.email)
+      setUserToken("user_id", response.data.user_id)
 
       const savedEmail = window.localStorage.getItem("email");
       //      
