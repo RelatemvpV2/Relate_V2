@@ -8,7 +8,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "./i18n/i18n"
+<<<<<<< HEAD
 import { AppProvider } from './contexts/AppContext';
+=======
+import { AppProvider } from './context/AppContext';
+>>>>>>> 1f84ef9 (App context set up)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
