@@ -38,18 +38,22 @@ const SideGreyBg = () => {
     navigate("/dashboard/messages");
   };
 
+  const redirectToSettings = () => {
+    navigate("/settings");
+  };
+
   const redirectToRelation = (relation) => {
     //localStorage.setItem("active_relation", JSON.stringify(relation))
     sessionStorage.setItem('current_assesment_id', relation.assessment_id)
     setCurrent_Relation(relation)
     navigate("/dashboard")
-    // window.location.reload()
+    window.location.reload()
   }
 
   const redirectToInvite = () => {
     localStorage.removeItem("active_relation")
     navigate("/dashboard")
-    // window.location.reload()
+    window.location.reload()
   }
 
   const checkPendingInvitations = messages && messages.filter((msg) => msg.invitation_status === 'pending')
@@ -144,7 +148,7 @@ const SideGreyBg = () => {
           <svg xmlns="http://www.w3.org/2000/svg" width="173" height="2" viewBox="0 0 173 2" fill="none">
             <path d="M0 1H173" stroke="#F9EEE1" strokeWidth="0.5" />
           </svg>
-          <Text type="p" className="therapist-text">
+          <Text type="p" className="therapist-text" onClick={() => redirectToSettings()}>
             Settings
 
           </Text>

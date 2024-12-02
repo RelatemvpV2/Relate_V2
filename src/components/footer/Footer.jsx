@@ -75,24 +75,6 @@ const Footer = () => {
 
     return (
         <div className="footer">
-            <div>
-                <label htmlFor="file">Upload an Excel to Process Triggers</label>
-                <br />
-                <input
-                    type="file"
-                    className="form-control"
-                    id="file"
-                    accept={SheetJSFT}
-                    onChange={handleChange}
-                />
-                <br />
-                <input
-                    type="submit"
-                    value="Process Triggers"
-                    onClick={handleFile}
-                />
-            </div>
-
             <Text
                 type="a"
                 className="logout-link"

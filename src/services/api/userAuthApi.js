@@ -97,6 +97,9 @@ export const uploadProfilePic = async (data) => {
 export const getPartnerEmail = async () => {
     try {
         const response = await userAuthApiService.get(`/test/get-partner-email`);
+        if(response && response.message=="No partner found.") {
+            return null;
+        }
         return response;
     } catch (error) {
         return {};

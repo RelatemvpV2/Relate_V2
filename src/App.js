@@ -22,6 +22,7 @@ import SubscriptionsPage from "./components/subscription/SubscriptionsPage";
 import { AuthProvider } from "./components/logout/AuthContext";
 import ReceiveInvite from "./components/receiveInvitepage/ReceiveInvite";
 import PrivateRoute from "./features/auth/PrivateRoute";
+import Settings from "./components/settings/Settings";
 
 
 
@@ -56,6 +57,7 @@ function App() {
             <Route path="/level1/waitingParnerResponse" element={<WaitingForPartnerResonse1 />} />
             <Route path="/level1/comparedResults" element={<ComparedAnswers />} />
             <Route path="/level1/subscriptions" element={<SubscriptionsPage />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
 
 

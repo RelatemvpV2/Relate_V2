@@ -155,7 +155,8 @@ const UserDashboard = () => {
       console.log("there is no current relation available")
         }
 
-  }, [currentRelation])
+  }, [currentRelation]);
+
 
   return (
     <div>
