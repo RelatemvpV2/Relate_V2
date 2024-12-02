@@ -19,15 +19,9 @@ import { getAnswersGroupByAssessment } from '../../services/api/answerApi';
 const UserDashboard = () => {
 
   const { current_Relation, setCurrent_Relation } = useContext(AppContext)
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> 864294d (summary and dasjboard changes resolved conflicts)
   const [partnerEmail, setPartnerEmail] = useState(null);
   const [partnerUser, setPartnerUser] = useState(null);
   const [userStatus, setUserStatus] = useState(false);
-
 
   const [currentRelation, setCurrentRelation] = useState(JSON.parse(localStorage.getItem("active_relation")) || current_Relation)
 
