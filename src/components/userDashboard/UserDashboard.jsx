@@ -19,7 +19,11 @@ import { getAnswersGroupByAssessment } from '../../services/api/answerApi';
 const UserDashboard = () => {
 
   const { current_Relation, setCurrent_Relation } = useContext(AppContext)
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 864294d (summary and dasjboard changes resolved conflicts)
   const [partnerEmail, setPartnerEmail] = useState(null);
   const [partnerUser, setPartnerUser] = useState(null);
   const [userStatus, setUserStatus] = useState(false);
@@ -125,6 +129,14 @@ const UserDashboard = () => {
   },[current_Relation])
 
   useEffect(() => {
+    setCurrentRelation(current_Relation)
+  }, [current_Relation])
+
+  useEffect(() => {
+
+    if (currentRelation && currentRelation.sender_email === email) {
+      setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.sender_level1_status })
+    }
 
     if (currentRelation && currentRelation.sender_email === email) {
       setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.sender_level1_status })
