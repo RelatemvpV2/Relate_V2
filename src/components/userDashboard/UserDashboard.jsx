@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //components
@@ -11,15 +11,21 @@ import './userdashboard.css';
 import Button from '../button/Button';
 import { getAllCategories } from '../../services/api/categoryApi';
 import { sendInvite, getPartnerEmail, getAssessmentStatus } from '../../services/api/userAuthApi';
+import { AppContext } from '../../contexts/AppContext'
 
 import ReactECharts from 'echarts-for-react'; // import reactecharts
 import { getAnswersGroupByAssessment } from '../../services/api/answerApi';
 
 const UserDashboard = () => {
+
+  const { current_Relation, setCurrent_Relation } = useContext(AppContext)
+ 
   const [partnerEmail, setPartnerEmail] = useState(null);
   const [partnerUser, setPartnerUser] = useState(null);
   const [userStatus, setUserStatus] = useState(false);
-  const [currentRelation, setCurrentRelation] = useState(JSON.parse(localStorage.getItem("active_relation")))
+
+
+  const [currentRelation, setCurrentRelation] = useState(JSON.parse(localStorage.getItem("active_relation")) || current_Relation)
 
   const [data, setData] = useState(null); // State for storing API data
   const [loading, setLoading] = useState(true); // State for loading status
@@ -95,8 +101,6 @@ const UserDashboard = () => {
       };
 
       const response = await sendInvite(payload);
-      console.log("Invitation sent successfully:", response);
-      // Navigate to the questionnaire page
       navigate('/startQuestionare/StartQuesPage');
     } catch (err) {
       console.log("Error sending invitation:", err);
@@ -108,7 +112,7 @@ const UserDashboard = () => {
     navigate('/assessment/Assessment'); // Navigate to the assessment page
   };
 
-  const handleComparisonSummary = () =>{
+  const handleComparisonSummary = () => {
     navigate('/level1/comparedResults');
   }
 
@@ -116,12 +120,19 @@ const UserDashboard = () => {
     console.log("Remainder sent");
   };
 
+  useEffect(()=>{
+    setCurrentRelation(current_Relation)
+  },[current_Relation])
+
   useEffect(() => {
 
+    if (currentRelation && currentRelation.sender_email === email) {
+      setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.sender_level1_status })
+    }
+      
     if (currentRelation && currentRelation.reciever_email === email) {
       setPartnerUser({ name: currentRelation.sender_name, email: currentRelation.sender_email, level1Status: currentRelation.sender_level1_status })
     }
-    /*  console.log(partnerUser); */
 
     const fetchData = async () => {
       try {
@@ -142,11 +153,9 @@ const UserDashboard = () => {
     }
     else {
       console.log("there is no current relation available")
+        }
 
-    }
-
-  }, []);
-
+  }, [currentRelation])
 
   return (
     <div>

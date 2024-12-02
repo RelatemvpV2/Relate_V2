@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 import { useTranslation } from 'react-i18next';
@@ -23,6 +22,7 @@ import SubscriptionsPage from "./components/subscription/SubscriptionsPage";
 import { AuthProvider } from "./components/logout/AuthContext";
 import ReceiveInvite from "./components/receiveInvitepage/ReceiveInvite";
 import PrivateRoute from "./features/auth/PrivateRoute";
+
 
 
 function App() {

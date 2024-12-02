@@ -1,23 +1,26 @@
 
 
 import React,{ useState , useEffect } from 'react';
-import '../sidegreybg/sidegreybg.css'; // Importing the CSS'
+import { useNavigate } from 'react-router-dom';
+
 import Footer from '../footer/Footer';
 import Text from '../text/Text';
 import RelateLogo from '../relatelogo/Relatelogo';
 import { getPartnerEmail } from '../../services/api/userAuthApi';
-import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../../contexts/AppContext'
 
-import Dashboard from '../dashboard/Dashboard';
+import '../sidegreybg/sidegreybg.css'; // Importing the CSS'
+import { useContext } from 'react';
 
 const email = localStorage.getItem("email");
-
 
 const SideGreyBg = () => {
   const [showRelations, setShowRelations] = useState(true);
   const [showSubMe, setShowSubMe] = useState(false);
 
   const [messages, setMessages] = useState([])
+
+  const { setCurrent_Relation } = useContext(AppContext)
 
   const navigate = useNavigate();
 
@@ -32,12 +35,13 @@ const SideGreyBg = () => {
   }
 
   const redirectToInvitations = () => {
-    navigate("/messages");
+    navigate("/dashboard/messages");
   };
 
   const redirectToRelation = (relation) => {
-    localStorage.setItem("active_relation", JSON.stringify(relation))
+    //localStorage.setItem("active_relation", JSON.stringify(relation))
     sessionStorage.setItem('current_assesment_id', relation.assessment_id)
+    setCurrent_Relation(relation)
     navigate("/dashboard")
     // window.location.reload()
   }
@@ -53,8 +57,9 @@ const SideGreyBg = () => {
   useEffect(() => {
         const fetchPartnerEmail = async () => {
           try {
-            const response = await getPartnerEmail();       
+            const response = await getPartnerEmail();    
             setMessages(response.data); 
+            console.log(response.data)
           } catch (error) {
             console.error("Error fetching messages:", error);
           }
@@ -100,7 +105,7 @@ const SideGreyBg = () => {
                 .map((relations, i) => (
                   <Text key={i} type="p" className="relation-item"
                     onClick={() => redirectToRelation(relations)}>
-                     {(email==relations.reciever_email)?relations.sender_name:relations.reciever_name}
+                     {(email===relations.reciever_email)?relations.sender_name:relations.reciever_name}
                   </Text>
                 ))}
               {/* {userRelations.invitationNotSent.length > 0 && ( */}
