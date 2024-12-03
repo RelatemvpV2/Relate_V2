@@ -12,16 +12,14 @@ import './popupcomponent.css'
 
 const PopUpComponent = ({ dialogRef, text = '', toggleDialog, error = '' }) => {
 
-
   return (
     <div
       ref={dialogRef}
       className='popup'
     >
       {text ? <img src={greenTick} alt="success" className='popup-img' />
-      :<img src={redCrossImg} alt="success" className='popup-img' />
+      :<img src={redCrossImg} alt="fail" className='popup-img' />
       }
-      {/*   {error && <img src={redCrossImg} alt="success" className='popup-img' />} */}
 
 
       {text
