@@ -44,7 +44,7 @@ const Summary1stUser = () => {
   }, []); // Empty dependency array ensures it only runs once on mount
 
   const handleComparisonNavigate = () => {
-    if(currentRelation.reciever_email!=null && currentRelation.reciever_level1_status) {
+    if(currentRelation.reciever_email!=null && currentRelation.reciever_level1_status && currentRelation.sender_level1_status) {
       navigate('/level1/comparedResults')
     } else  {
       navigate('/level1/waitingParnerResponse')
