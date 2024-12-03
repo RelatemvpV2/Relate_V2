@@ -13,7 +13,7 @@ import PopUpComponent from "../../components/popUp/PopUpComponent";
 //css
 import "./login.css";
 
-const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError, buttonRef,dialogRef}) => {
+const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -214,7 +214,7 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError, b
 
           <div className="loginpage-buttoncontainer create-user">
 
-            <Button className="loginpage-button" type="submit" ref={buttonRef}>
+            <Button className="loginpage-button" type="submit">
               Create user
             </Button>
           </div>
