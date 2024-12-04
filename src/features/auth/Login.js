@@ -96,7 +96,7 @@ const Login = () => {
 
       try {
         const userResponse = await getUserById(userId);
-        const userData = userResponse.data?.users; // Access the 'users' object in the response
+        const userData = userResponse.data?.users[0]; // Access the 'users' object in the response
 
         if (!userData) {
           toggleDialog();
@@ -104,9 +104,9 @@ const Login = () => {
         }
 
         // Check if either field is null, undefined, or empty
-        const isFullNameMissing = !userData.full_name || userData.full_name.trim() === "";
-        const isDateOfBirthMissing = !userData.date_of_birth || userData.date_of_birth.trim() === "";
-
+        const isFullNameMissing = userData.full_name == null || userData.full_name.trim() === "";
+        const isDateOfBirthMissing = userData.date_of_birth == null || userData.date_of_birth.trim() === "";
+      
         // If either is missing, navigate to the invite creation page
         if (isFullNameMissing && isDateOfBirthMissing) {
           navigate("/userInvite/InviteCreateUser");

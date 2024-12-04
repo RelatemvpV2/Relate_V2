@@ -13,7 +13,7 @@ import PopUpComponent from "../../components/popUp/PopUpComponent";
 //css
 import "./login.css";
 
-const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError }) => {
+const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -41,34 +41,39 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
   };
 
   const validatePassword = (password) => {
-    const validationErrors = {};
+    let validationErrors = "";
 
     // At least one uppercase letter
-    if (!/[A-Z]/.test(password)) {
-      validationErrors.uppercase = 'Password must contain at least one uppercase letter.';
+    const hasAtleastOneUpperChar= /[A-Z]/.test(password);
+    if (!hasAtleastOneUpperChar) {
+      validationErrors = 'Password must contain at least one uppercase letter.';
     }
 
     // At least one lowercase letter
-    if (!/[a-z]/.test(password)) {
-      validationErrors.lowercase = 'Password must contain at least one lowercase letter.'
+    const hasAtleastOneSmallChar= /[a-z]/.test(password);
+    if (!hasAtleastOneSmallChar) {
+      validationErrors = 'Password must contain at least one lowercase letter.'
     }
 
     // At least one number
-    if (!/[0-9]/.test(password)) {
-      validationErrors.number = 'Password must contain at least one number.';
+    const hasNumber= /[0-9]/.test(password);
+    if (!hasNumber) {
+      validationErrors = 'Password must contain at least one number.';
     }
 
     // At least one special character
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      validationErrors.specialChar = 'Password must contain at least one special character.';
+    const hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    if (!hasSpecialCharacter) {
+      validationErrors= 'Password must contain at least one special character.';
     }
 
     // Minimum 8 characters
     if (password.length < 8) {
-      validationErrors.length = 'Password must be at least 8 characters long.';
+      validationErrors = 'Password must be at least 8 characters long.';
     }
     return validationErrors;
   };
+
 
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
@@ -87,16 +92,22 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
+    
     e.preventDefault();
     setSubmitted(true);
 
-    if (!validateInput()){
+    if (!validateInput()) {
       setError("Invalid input");
       toggleDialog();
       return;
-}
+    }
     if (password !== confirmPassword) {
       setError("Passwords do not match");
+      toggleDialog();
+      return;
+    }
+    if(validatePassword(password)){
+      setError(JSON.stringify(validatePassword(password)));
       toggleDialog();
       return;
     }
@@ -104,28 +115,23 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
     setLoading(true);
 
     try {
-      const response = await registerUser({email,password}); // Call the API function
+      const response = await registerUser({ email, password }); // Call the API function
       toggleDialog();
       setMsg(response.data.message); // Set success message
       navigate('/Login');
 
     } catch (error) {
-      setError("Failed to sign up: " + error);
+      setError("Failed to sign up: " + error.response.data.message);
       toggleDialog();
       navigate('/Login');
     } finally {
-
       setLoading(false); // Stop loader
     }
   };
 
-
-
   useEffect(() => {
     clearInputFields()
   }, [error, msg])
-
-
 
   return (
     <div className="email-signup">
@@ -148,8 +154,8 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
         <form onSubmit={handleSignup}>
           {/*  Text component for labels */}
           <Text type="label" htmlFor="email" className="labels">
-          <span className="label-text">
-            Email{submitted && email.trim() === "" && <span className="error-asterisk">*</span>}
+            <span className="label-text">
+              Email{submitted && email.trim() === "" && <span className="error-asterisk">*</span>}
             </span>
 
 
@@ -164,8 +170,8 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
           />
 
           <Text type="label" htmlFor="password" className="labels">
-          <span className="label-text">
-            Create password. Must be 8 digits{submitted && password.trim() === "" && <span className="error-asterisk">*</span>}
+            <span className="label-text">
+              Create password. Must be 8 digits{submitted && password.trim() === "" && <span className="error-asterisk">*</span>}
             </span>
           </Text>
           <InputComponent
@@ -179,8 +185,8 @@ const EmailSignup = ({ setLoading, toggleDialog, msg, setMsg, error, setError })
           />
 
           <Text type="label" htmlFor="confirmPassword" className="labels">
-          <span className="label-text">
-            Confirm password{submitted && confirmPassword.trim() === "" && <span className="error-asterisk">*</span>}
+            <span className="label-text">
+              Confirm password{submitted && confirmPassword.trim() === "" && <span className="error-asterisk">*</span>}
             </span>
           </Text>
           <InputComponent

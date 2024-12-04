@@ -23,7 +23,6 @@ const UserDashboard = () => {
   const [partnerUser, setPartnerUser] = useState(null);
   const [userStatus, setUserStatus] = useState(false);
 
-
   const [currentRelation, setCurrentRelation] = useState(JSON.parse(localStorage.getItem("active_relation")) || current_Relation)
 
   const [data, setData] = useState(null); // State for storing API data
