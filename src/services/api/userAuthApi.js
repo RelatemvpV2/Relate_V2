@@ -49,9 +49,9 @@ export const forgotPassword = async (data) => {
     }
 };
 
-export const resetPassword = async (data) => {
+export const resetPassword = async (data,token) => {
     try {
-        const response = await userAuthApiService.post("/test/reset-password", data);
+        const response = await userAuthApiService.post(`/test/reset-password?token=${token}`, data);
         return response;
     } catch (error) {
         throw error;

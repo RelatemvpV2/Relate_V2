@@ -32,13 +32,9 @@ const ResetPassword = () => {
 
   const navigate = useNavigate()
 
-  // const location = useLocation();
-  // const queryParams = new URLSearchParams(location.search);
-  // const token = queryParams.get('token');
-
-  const token = window.localStorage.getItem("token");
-
-
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const token = queryParams.get('token');
 
   const toggleDialog = () => {
     setDialogOpen(!isDialogOpen);
@@ -110,7 +106,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      const response = await resetPassword({newPassword});
+      const response = await resetPassword({newPassword},token);
        // Call the API function
       setMsg(response.data.message); // Set success message
       toggleDialog();
