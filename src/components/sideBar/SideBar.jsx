@@ -43,11 +43,10 @@ const SideGreyBg = () => {
   };
 
   const redirectToRelation = (relation) => {
-    //localStorage.setItem("active_relation", JSON.stringify(relation))
+    localStorage.setItem("active_relation", JSON.stringify(relation))
     sessionStorage.setItem('current_assesment_id', relation.assessment_id)
     setCurrent_Relation(relation)
     navigate("/dashboard")
-    window.location.reload()
   }
 
   const redirectToInvite = () => {

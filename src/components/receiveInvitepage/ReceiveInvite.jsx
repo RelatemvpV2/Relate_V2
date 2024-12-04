@@ -68,6 +68,7 @@ const ReceiveInvite = () => {
     }
 
     const acceptAndRedirectToAssessment = (compat) => {
+        localStorage.setItem("active_relation", JSON.stringify(compat))
         sessionStorage.setItem('current_assesment_id', compat.assessment_id)
         if (sessionStorage.getItem('current_assesment_id') && !compat.sender_level1_status) {
             navigate("/assessment/Assessment");

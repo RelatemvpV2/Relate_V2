@@ -106,6 +106,7 @@ const UserDashboard = () => {
   };
 
   const handleResumeClick = () => {
+    localStorage.setItem("active_relation", JSON.stringify(currentRelation))
     sessionStorage.setItem('current_assesment_id', currentRelation.assessment_id)
     navigate('/assessment/Assessment'); // Navigate to the assessment page
   };
@@ -123,14 +124,6 @@ const UserDashboard = () => {
   },[current_Relation])
 
   useEffect(() => {
-    setCurrentRelation(current_Relation)
-  }, [current_Relation])
-
-  useEffect(() => {
-
-    if (currentRelation && currentRelation.sender_email === email) {
-      setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.sender_level1_status })
-    }
 
     if (currentRelation && currentRelation.sender_email === email) {
       setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.sender_level1_status })
