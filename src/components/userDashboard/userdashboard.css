@@ -1,0 +1,55 @@
+/* .graph-section {
+    height:30vh;
+} */
+.upper-container {
+   display: flex;
+
+   justify-content: center;
+   align-items: flex-start;
+
+   width: 80%;
+   margin: auto;
+}
+
+.upper-container div {
+   margin: 0 3%;
+}
+
+.invisible_line {
+   height: max-content;
+   visibility: visible;
+}
+
+
+@media only screen and (max-width: 967px) {
+   .upper-container {
+      width: 60%;
+      margin: auto;
+   }
+
+   .upper-container div {
+      margin: auto;
+      width:80%;
+   }
+
+   .upper-container div input{
+      margin: auto;
+      width:100%;
+   }
+}
+
+@media only screen and (max-width: 667px) {
+
+   .upper-container {
+      flex-direction: column;
+      justify-content: center;
+      width:100%;
+     
+   }
+
+   .invisible_line {
+      height: 0;
+      visibility: collapse;
+   }
+
+}

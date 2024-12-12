@@ -1,0 +1,18 @@
+.assessment-layout {
+    display: flex;
+    height: 100%;
+}
+
+.question-description {
+    width: 65%;
+    margin:0 auto 25px;
+    color: #41414E;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    /* 141.667% */
+    letter-spacing: 0.24px;
+}

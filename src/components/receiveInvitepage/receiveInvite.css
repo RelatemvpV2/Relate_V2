@@ -1,0 +1,197 @@
+.messages-header {
+    max-width: 70%;
+    margin: 8% auto;
+    color: #41414E;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    /* 157.143% */
+    letter-spacing: 0.28px;
+}
+
+.messages-table-header {
+    margin: 20px auto;
+    width: 80%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 0;
+}
+
+.messages-table {
+    width: 80%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    align-items: center;
+}
+
+.messages-table-header li,
+.messages-table li {
+    text-align: center;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.read-button,
+.pending-btn {
+    width: 128px;
+    height: 40px;
+    border-radius: 38px;
+    background: #41414E;
+    color: #F9EEE1;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    /* 150% */
+    letter-spacing: 0.28px;
+}
+
+
+.pending-btn:hover {
+    border-radius: 38px;
+    border: 0.5px solid #41414E;
+    background: rgba(198, 137, 119, 0.40);
+    color: #41414E;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    /* 150% */
+    letter-spacing: 0.28px;
+}
+
+
+.pending-btn:active {
+    border-radius: 38px;
+    border: 0.5px solid #41414E;
+    background: rgba(198, 137, 119, 0.40);
+    color: #C68977;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    /* 150% */
+    letter-spacing: 0.28px;
+}
+
+.open-or-close-btn {
+    width: 128px;
+    height: 40px;
+    border-radius: 40px;
+    border: 0.5px solid #41414E;
+    background: #F9EEE1;
+    color: #41414E;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    /* 137.5% */
+    letter-spacing: 0.32px;
+
+}
+
+.open-or-close-btn:hover {
+
+    border-radius: 38px;
+    background: #696F7D;
+    color: #F9EEE1;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    /* 150% */
+    letter-spacing: 0.28px;
+}
+
+.open-or-close-btn:active {
+    border-radius: 38px;
+    background: #696F7D;
+    color: #41414E;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    /* 150% */
+    letter-spacing: 0.28px;
+}
+
+.invite-req-message {
+    color: #41414E;
+    font-family: Raleway;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    /* 141.667% */
+    letter-spacing: 0.24px;
+    width:80%;
+    margin: auto;
+}
+
+.Accept-and-start-btn {
+    border-radius: 38px;
+    background: #C68977;
+    color: #FFF;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    /* 150% */
+    letter-spacing: 0.28px;
+   
+}
+
+.reject-invitation {
+    color: #41414E;
+    font-family: Raleway;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    /* 141.667% */
+    letter-spacing: 0.24px;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.subject-open{
+    margin: 20px ;
+    text-align: left;
+}
+
+.btn-link-container{
+    width:80%;
+    margin:10px auto;
+}
+
+.btn-link-container *{
+    display: block;
+    text-align: left;
+}

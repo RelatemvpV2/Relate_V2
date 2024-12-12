@@ -1,0 +1,19 @@
+/* Blurred content when loader is active */
+.blurred-content {
+  filter: blur(1px); /* Adjust the blur intensity as needed */
+  pointer-events: none; /* Disable interaction while loading */
+  opacity: 0.6; /* Slight transparency for a blemish effect */
+}
+
+.popup{
+  position: fixed;
+  border-radius: 40px;
+  background: rgba(255, 250, 243, 0.95);
+  box-shadow: 0px 3px 11px 0px rgba(0, 0, 0, 0.25);
+  width: 463px;
+  height: 263px;
+  z-index: 10;
+  margin:auto;
+  text-align: center;
+  padding:4%;
+}

@@ -1,0 +1,34 @@
+{
+    "WELCOME": "Welcome to our application!",
+    "DESCRIPTION": "Improve your relationship whether it is your partner, family member or a good friend.",
+    
+    "USER": "User",
+    "THERAPIST":"Therapist",
+
+    "NAV_ABOUT": "About",
+    "NAV_SERVICES":"Services",
+    "NAV_THERAPISTS":"Therapists",
+    "NAV_CONTACT":"Contact",
+
+    "LANDING_PAGE_HEADLINE": "Take care of your relations",
+    "LANDINGPAGE_HEADLINE_DESC":"We are here to help you improve yours. We believe that by strengthen your relationship you can improve the quality of your life.",
+    
+    "LANDING_WORK_WITH_RELATE":"Work with <em>relate</em> ",
+    "LANDING_WORK_WITH_RELATE_DESC":"You go to the gym to strengthen your body and you take your car to service. What do you do to strengthen your relationship? Sadly almost 50% of all marriages ends with break up. We aim to make a difference and lower the numbers, and we believe that improved communication will make a difference.",
+
+    "LANDING_TRY_FREE_QUESTIONAIRE":"Try our free relation-questionnaire",
+
+    "LANDING_ONLINE_QUESTIONAIRE":"Online questionnaire",
+    "LANDING_ONLINE_QUESTIONAIRE_DESC":"With our professional therapist we have put together a line-up of questions for you and your partner to answer. Based on your results we offer to help you in different ways. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "LANDING_LEARN_MORE":"Learn more",
+
+    "LANDING_FIND_YOUR_TERAPIST":"Find your therapist",
+    "LANDING_FIND_YOUR_TERAPIST_DESC":"With our database of therapists we lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna. Sed vitae quam massa. Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.",
+    
+    "lANDING_RECURRING_CHECK_IN":"Recurring check-in",
+    "LANDING_RECURRING_CHECK_IN_DESC":"Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.We encourage you to have a check-in on your relationship every month. Donec a laoreet urna.We encourage you to have a check-in on your relationship every month.",
+    "HOW_IT_WORKS":"How it Works",
+
+    "MEET_OUR_EXPORT":"Meet our expert",
+    "MEET_OUR_EXPORT_DESC":"Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.<br/>We encourage you to have a check-in on your relationship every month.<br/>Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut eget nulla in nibh tempus bibendum non quis sapien. Donec a laoreet urna.<br/>We encourage you to have a check-in on your relationship every month."
+}
