@@ -27,7 +27,9 @@ export const userLogin = async (userData) => {
         const user = await userAuthApiService.post("/test/login", userData);
         return user
     } catch (error) {
-        return {};
+        console.log(error);
+        
+        return {error};
     }
 };
 

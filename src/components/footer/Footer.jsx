@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './footer.css'; // Make sure to create this CSS file for styling
 import Text from '../text/Text';
 
@@ -13,6 +13,7 @@ const Footer = () => {
     const [file, setFile] = useState(null);
     const [data, setData] = useState([]);
     const [cols, setCols] = useState([]);
+    const [loggedinUser, setLoggedinUser] = useState(localStorage.getItem('loggedinUser'));
 
     const make_cols = refstr => {
         let o = [], C = XLSX.utils.decode_range(refstr).e.c + 1;
@@ -87,7 +88,7 @@ const Footer = () => {
                 type="p"
                 className="logged-in-text"
             >
-                Logged in as <br /> Firstname Lastname
+                Logged in as <br /> {loggedinUser!=null? <p>{JSON.parse(loggedinUser).full_name}</p> : "User"}
             </Text>
         </div>
     );
