@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userToken,UpdateUserProfile } from "../../utils/userApi.js"
-import { sendInvite } from "../../services/api/userAuthApi.js";
+import { profileUpdate, sendInvite } from "../../services/api/userAuthApi.js";
 
 // Components
 import Navbar from "../../components/Navbar/Navbar";
@@ -141,21 +141,19 @@ const InviteCreateUser = () => {
     setLoading(true);
 
     try {
-      await UpdateUserProfile(payload);
-      
-  
+      const response = await profileUpdate(payload);
+
       // Check if partner email is provided, not the same as the user's email, and invite isn't delayed
       if (formData.partnerEmail && formData.partnerEmail !== email && !formData.inviteLater) {
-          const inviteResponse = await sendInvite(formData.partnerEmail);
-          console.log("Invite sent successfully:", inviteResponse);
-  
-          
-         
+        const invite = await sendInvite(payload);
+        localStorage.setItem("active_relation", JSON.stringify(invite.data.response))
+        sessionStorage.setItem('current_assesment_id', invite.data.response.assessment_id)
+        navigate("/startQuestionare/StartQuesPage");
+
+      } else {
+        navigate("/dashboard");
       }
-  
-      // Navigate to the next page only after invite handling is complete
-      navigate("/startQuestionare/StartQuesPage");
-  
+      
   } catch (error) {
       setError("Failed to login user, try again: " + error);
   } finally {
