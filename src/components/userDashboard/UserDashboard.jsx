@@ -10,11 +10,12 @@ import CatagoryStatusTable from '../catagoryStatusTable/CatagoryStatusTable';
 import './userdashboard.css';
 import Button from '../button/Button';
 import { getAllCategories } from '../../services/api/categoryApi';
-import { sendInvite, getPartnerEmail, getAssessmentStatus } from '../../services/api/userAuthApi';
+import { sendInvite, getPartnerEmail, getAssessmentStatus, sendReminder } from '../../services/api/userAuthApi';
 import { AppContext } from '../../contexts/AppContext'
 
 import ReactECharts from 'echarts-for-react'; // import reactecharts
 import { getAnswersGroupByAssessment } from '../../services/api/answerApi';
+import { right } from '@popperjs/core';
 
 const UserDashboard = () => {
 
@@ -46,6 +47,7 @@ const UserDashboard = () => {
       trigger: 'axis'
     },
     legend: {
+      right: 20,
       data: ['User1', 'User2']
     },
     grid: {
@@ -65,21 +67,60 @@ const UserDashboard = () => {
       data: ['2021', '2022', '2023', '2024', '2025', '2026', '2027']
     },
     yAxis: {
-      type: 'value'
+      type: 'category',
+      show: true,
+      data: [1, 2, 3, 4, 5, 6, 7]
     },
     series: [
       {
         name: 'User1',
         type: 'line',
-        data: [2, 3, 4, 7, 5, 6, 4]
+        data: [1, 1]
       },
       {
         name: 'User2',
         type: 'line',
-        data: [1, 4, 5, 5, 3, 5, 3]
+        data: [1, 1]
       }
     ]
   };
+
+  const option1 = {
+    title: {
+      text: 'Overall Relation Status'
+    },
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      data: ['User1', 'User2']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    toolbox: {
+      feature: {
+        saveAsImage: {}
+      }
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      show: false
+      
+    },
+    yAxis: {
+      type: 'category',
+      show: true,
+      position: 'right',
+      data: ['1', '2', '3', '4', '5', '6', '7']
+    },
+
+  };
+
 
   const handleTryQuestionaire = () => {
     navigate('/assessment/Assessment?assessment-type=tryQ')
@@ -116,20 +157,31 @@ const UserDashboard = () => {
     navigate('/level1/comparedResults');
   }
 
-  const handleRemainderClick = () => {
-    console.log("Remainder sent");
-  };
+  const handleRemainderClick = async(compat_id) => {
+    try {
+        const response = await sendReminder(
+            {
+                "id": window.localStorage.getItem('current_assesment_id')
+            }
+        )
+        console.log(response);
+        alert(response?.data?.message)
+        
+    } catch (error) {
+        console.error("Error fetching messages:", error)
+    }
+}
 
-  useEffect(()=>{
+  useEffect(() => {
     setCurrentRelation(current_Relation)
-  },[current_Relation])
+  }, [current_Relation])
 
   useEffect(() => {
 
     if (currentRelation && currentRelation.sender_email === email) {
       setPartnerUser({ name: currentRelation.reciever_name, email: currentRelation.reciever_email, level1Status: currentRelation.sender_level1_status })
     }
-      
+
     if (currentRelation && currentRelation.reciever_email === email) {
       setPartnerUser({ name: currentRelation.sender_name, email: currentRelation.sender_email, level1Status: currentRelation.sender_level1_status })
     }
@@ -153,7 +205,7 @@ const UserDashboard = () => {
     }
     else {
       console.log("there is no current relation available")
-        }
+    }
 
   }, [currentRelation]);
 
@@ -250,8 +302,19 @@ const UserDashboard = () => {
       )
       }
 
-      <div className="graph-section ">
-        <p style={{ margin: '3% auto', width: "90%" }}><ReactECharts option={option} /></p>
+      <div className="graph-section">
+        <div className="chart-container">
+          <div className="charts">
+            <div className="chart-box">
+              <ReactECharts option={option1} header={"Overall Relation Status"} />
+            </div>
+            <div className="chart-box">
+              <ReactECharts option={option} header={"Overall Relation Progress"} />
+            </div>
+          </div>
+        </div>
+
+
 
         <Button className='dashboardGraphsBtn' onClick={handleComparisonSummary} >View your latest comparison summary</Button>
       </div>

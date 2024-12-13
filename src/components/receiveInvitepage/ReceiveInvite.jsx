@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Text from '../text/Text'
 import DashboardLayout from '../dashboardLayout/DashboardLayout'
 import Button from '../button/Button'
-import { getPartnerEmail, updateInvitationStatus } from '../../services/api/userAuthApi'
+import { getPartnerEmail, sendReminder, updateInvitationStatus } from '../../services/api/userAuthApi'
 
 //css
 import './receiveInvite.css'
@@ -72,6 +72,21 @@ const ReceiveInvite = () => {
         setSubjectOpen(!subjectOpen)
     }
 
+    const handleSendReminder = async(compat_id) => {
+        try {
+            const response = await sendReminder(
+                {
+                    "id": compat_id || window.localStorage.getItem('current_assesment_id')
+                }
+            )
+            console.log(response);
+            alert(response?.data?.message)
+            
+        } catch (error) {
+            console.error("Error fetching messages:", error)
+        }
+    }
+
     const acceptAndRedirectToAssessment = (compat) => {
         localStorage.setItem("active_relation", JSON.stringify(compat))
         sessionStorage.setItem('current_assesment_id', compat.assessment_id)
@@ -121,9 +136,9 @@ const ReceiveInvite = () => {
                                                     </Button>
                                                 </div> :
                                                 <div>
-                                                    <Button
+                                                    <Button onClick={() => handleSendReminder(msg.id)}
                                                         className={`${msg.inviteStatus === "Pending" ? "pending-btn" : "open-or-close-btn"}`}>
-                                                        {"Pending"}
+                                                        {"Remind"}
                                                     </Button>
                                                 </div>
                                         }

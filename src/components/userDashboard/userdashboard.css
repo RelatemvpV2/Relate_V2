@@ -53,3 +53,41 @@
    }
 
 }
+
+.chart-container {
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+ 
+ /* Header inside the container */
+ .chart-header {
+   margin-bottom: 20px;
+   font-size: 1.5rem;
+   color: #333;
+ }
+ 
+ /* Flexbox to align charts side by side */
+ .charts {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   gap: 20px;
+ }
+ 
+ /* Individual chart box styling */
+ .chart-box {
+   width: 45%;
+   padding: 15px;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   background-color: #f1e6e3;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+ }
+ 
+ /* Hover effect for chart boxes */
+ .chart-box:hover {
+   transform: translateY(-5px);
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+ }
+ 

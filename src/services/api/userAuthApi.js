@@ -127,3 +127,14 @@ export const sendInvite = async (data) => {
         return {};
     }
 }
+
+export const sendReminder = async (data) => {
+    try {
+        const response = await userAuthApiService.post(`/test/send-reminder`,data);
+        
+        return response;
+    } catch(error) {
+        console.error("Error sending reminder:", error.response || error.message);
+        return {};
+    }
+}
