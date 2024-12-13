@@ -254,6 +254,7 @@ const InviteCreateUser = () => {
                       value={formData.dob || ''}
                       onChange={handleChange}
                       onBlur={handleBlur}
+                      max={new Date().toISOString().split("T")[0]}
                       required
                     />
                   </div>
@@ -269,10 +270,10 @@ const InviteCreateUser = () => {
                       onChange={handleChange}
                     >
                       <option value="">Please select</option>
-                      <option value="none">None</option>
+                      <option value="0">None</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
-                      <option value="3+">3+</option>
+                      <option value="3">3+</option>
                     </select>
                   </div>
                 </div>
