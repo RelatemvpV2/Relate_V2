@@ -36,6 +36,8 @@ const QuesionairModule = ({ categoryData, onAnswerChange, currentIndex, total })
     if (currentRelation && currentRelation.reciever_email === email) {
       setPartnerUser({ name: currentRelation.sender_name, email: currentRelation.sender_email, level1Status: currentRelation.sender_level1_status })
     }
+    console.log(partnerUser);
+    
   },[])
 
   useEffect(() => {
@@ -60,7 +62,7 @@ const QuesionairModule = ({ categoryData, onAnswerChange, currentIndex, total })
   return (
     <div className='questionaire-div'>
       <Text type="h3" className='quesionaire-heading h3' >My relation with</Text>
-      <Text className='questionaire-partnerName '> {!currentRelation ? "No invitation sent" : partnerUser?.name}</Text>
+      <Text className='questionaire-partnerName '> {partnerUser?.name!=null? partnerUser?.name: partnerUser?.email}</Text>
 
       {/* Divider */}
       <div className="divider-horizantal"></div>

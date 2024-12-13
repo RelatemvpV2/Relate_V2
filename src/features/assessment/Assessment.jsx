@@ -27,6 +27,9 @@ const Assessment = () => {
 
   // Save answer function to call API and update state
   const handleSaveAnswer = async () => {
+    if (answer == null) {
+      return
+    }
     try {
       if (answer) {
         await saveAnswer(assessmentId, answer.categoryId, answer.questionId, answer); // Call save answer API with the current answer
@@ -38,17 +41,19 @@ const Assessment = () => {
     if (currentQuestionIndex < data.length - 1 && paramValue !== "edit" && paramValue !== "tryQ") {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       setAnswer(null); // Reset answer state for the next question
-    } 
-    else if (paramValue === "tryQ" ){
-     
+    }
+    else if (paramValue === "tryQ") {
+
       currentQuestionIndex < 1 ?
-      setCurrentQuestionIndex((prevIndex) => prevIndex + 1)
-      :navigate('/dashboard');
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1)
+        : navigate('/dashboard');
 
       setAnswer(null); // Reset answer state for the next question
     }
     else {
-      alert("All questions answered!");
+      if(paramValue !== "edit") {
+        alert("All questions answered!");
+      }
       handleSummary();
     }
   };
@@ -71,11 +76,11 @@ const Assessment = () => {
   };
 
   useEffect(() => {
-  
+
     if (paramValue !== "tryQ" && !sessionStorage.getItem('current_assesment_id')) {
       navigate("/dashboard");
     }
-    
+
     // Function to fetch data
     const fetchData = async () => {
       try {
@@ -108,12 +113,12 @@ const Assessment = () => {
       }
     };
 
-    if (!paramValue || paramValue === "tryQ" ) {
+    if (!paramValue || paramValue === "tryQ") {
       fetchData(); // Call the function on mount
     }
     if (paramValue === "edit") {
       console.log(localStorage.getItem("selected_question_edit"));
-      
+
       fetchCategory(localStorage.getItem("selected_question_edit"))
     }
   }, []); // Empty dependency array ensures it only runs once on mount
